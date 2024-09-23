@@ -218,7 +218,7 @@ class cmake_build_ext(build_ext):
             subprocess.check_output(['cmake', '--version'])
         except OSError as e:
             raise RuntimeError('Cannot find CMake executable') from e
-
+        os.environ['CUDA_TOOLKIT_ROOT_DIR'] = '/usr/local/cuda'
         # Create build directory if it does not exist.
         if not os.path.exists(self.build_temp):
             os.makedirs(self.build_temp)
