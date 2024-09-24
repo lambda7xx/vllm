@@ -101,6 +101,7 @@ class RequestOutput:
         lora_request: Optional[LoRARequest] = None,
         encoder_prompt: Optional[str] = None,
         encoder_prompt_token_ids: Optional[List[int]] = None,
+        schedule_time: Optional[float] = None,#Xiao: record the schedule time 
     ) -> None:
         self.request_id = request_id
         self.prompt = prompt
@@ -112,6 +113,7 @@ class RequestOutput:
         self.lora_request = lora_request
         self.encoder_prompt = encoder_prompt
         self.encoder_prompt_token_ids = encoder_prompt_token_ids
+        self.schedule_time = schedule_time #xiao:return the schedule time
 
     @classmethod
     def from_seq_group(cls,
@@ -263,6 +265,7 @@ class RequestOutputFactory:
     @staticmethod
     def create(seq_group):
         # Determine the type based on a condition, for example:
+        # print(f"1 vllm/outputs.py create type(seq_group): {type(seq_group)}")
         if hasattr(seq_group,
                    'embeddings') and seq_group.embeddings is not None:
             return EmbeddingRequestOutput.from_seq_group(seq_group)

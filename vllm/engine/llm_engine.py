@@ -115,6 +115,11 @@ class SchedulerContext:
                        is_last_step=is_last_step,
                        skip=[]))
 
+class RequestInfo:
+    def __init__(self, request_id, arrival_time, schedule_time):
+        self.request_id = request_id
+        self.arrival_time = arrival_time
+        self.schedule_time = schedule_time
 
 class LLMEngine:
     """An LLM engine that receives requests and generates texts.
@@ -295,6 +300,8 @@ class LLMEngine:
             self.tokenizer = None
             self.detokenizer = None
             tokenizer_group = None
+
+        self.rid_arrival_time = dict()  #Note: xiao, this is hacked for breakdown vllm  schedule time + llm engine time 
 
         # Ensure that the function doesn't contain a reference to self,
         # to avoid engine GC issues
@@ -643,6 +650,7 @@ class LLMEngine:
                                    from_decoder_prompt=False)
 
         # Create a SequenceGroup based on SamplingParams or PoolingParams
+        #print(f"1 vllm/engine/llm_engine.py _add_processed_request: params={type(params)}")
         if isinstance(params, SamplingParams):
             seq_group = self._create_sequence_group_with_sampling(
                 request_id,
@@ -729,11 +737,14 @@ class LLMEngine:
             >>> # continue the request processing
             >>> ...
         """
+        #print(f"1 vllm/engine/llm_engine.py add_request:  request_id={request_id}, arrival_time={arrival_time}")
         if lora_request is not None and not self.lora_config:
             raise ValueError(f"Got lora_request {lora_request} but LoRA is "
                              "not enabled!")
         if arrival_time is None:
             arrival_time = time.time()
+        
+        self.rid_arrival_time[request_id] = RequestInfo(request_id, arrival_time, None)
 
         preprocessed_inputs = self.input_preprocessor.preprocess(
             inputs,
@@ -896,6 +907,7 @@ class LLMEngine:
         request_id: If provided, then only this request is going to be processed
 
         """
+        #print(f"1 vllm/engine/llm_engine.py _process_model_outputs: request_id={request_id}")
         now = time.time()
 
         if len(ctx.output_queue) == 0:
@@ -999,6 +1011,9 @@ class LLMEngine:
             seq_group = scheduled_seq_group.seq_group
             seq_group.maybe_set_first_token_time(now)
             request_output = RequestOutputFactory.create(seq_group)
+            rid = seq_group.request_id
+            assert rid in self.rid_arrival_time  #xiao
+            request_output.schedule_time = self.rid_arrival_time[rid].schedule_time
             if request_output:
                 ctx.request_outputs.append(request_output)
 
@@ -1175,6 +1190,7 @@ class LLMEngine:
         # This ensures that the scheduler is only called again when the current
         # batch has completed.
         if not self._has_remaining_steps(seq_group_metadata_list):
+            #print(f"1 vllm/engine/llm_engine.py LLMEngine::step: not self._has_remaining_steps(seq_group_metadata_list)")
             # Schedule iteration
             (seq_group_metadata_list, scheduler_outputs,
              allow_async_output_proc
@@ -1185,12 +1201,14 @@ class LLMEngine:
 
             # Maybe switch from async mode to sync mode
             if not allow_async_output_proc and len(ctx.output_queue) > 0:
+                #print(f"1.5 vllm/engine/llm_engine.py LLMEngine::step: not allow_async_output_proc and len(ctx.output_queue) > 0")
                 self._process_model_outputs(ctx=ctx)
 
             if (self.scheduler_config.is_multi_step
                     and scheduler_outputs.num_lookahead_slots > 0):
                 # cache the scheduler outputs for the next iteration if we have
                 # lookahead slots
+                #print(f"1.7 vllm/engine/llm_engine.py LLMEngine::step: cache the scheduler outputs for the next iteration if we have lookahead slots")
                 self._cache_scheduler_outputs_for_multi_step(
                     virtual_engine, seq_group_metadata_list, scheduler_outputs,
                     allow_async_output_proc)
@@ -1201,11 +1219,24 @@ class LLMEngine:
         if not scheduler_outputs.is_empty():
             finished_requests_ids = self.scheduler[
                 virtual_engine].get_and_reset_finished_requests_ids()
-
+            # if len(finished_requests_ids) > 0:
+            #     #print(f"2 vllm/engine/llm_engine.py step: finished_requests_ids={finished_requests_ids}")
             # Check if we have a cached last_output from the previous iteration.
             # For supporting PP this is probably the best way to pass the
             # sampled_token_ids, as a separate broadcast over all the PP stages
             # will cause one virtual engine's microbatch to block the pipeline.
+            # rids = [
+
+            # for seq_group in seq_group_metadata_list:
+            #     rids.extend(seq_group.request_ids)
+
+            for seq_group in seq_group_metadata_list:
+                rid = seq_group.request_id
+                assert rid in self.rid_arrival_time
+                if self.rid_arrival_time[rid].schedule_time is None:
+                    self.rid_arrival_time[rid].schedule_time = time.time() #record its scheduled time
+                    #print(f"2.5 vllm/engine/llm_engine.py step: rid={rid}, and arrival_time:{self.rid_arrival_time[rid].arrival_time} and schedule_time={self.rid_arrival_time[rid].schedule_time} ")
+
             last_sampled_token_ids = \
                 self._get_last_sampled_token_ids(virtual_engine)
 
@@ -1224,17 +1255,19 @@ class LLMEngine:
             if allow_async_output_proc:
                 execute_model_req.async_callback = self.async_callbacks[
                     virtual_engine]
-
+            #print(f"3 vllm/engine/llm_engine.py step: self.model_executor={type(self.model_executor)}")
             outputs = self.model_executor.execute_model(
                 execute_model_req=execute_model_req)
 
             # We need to do this here so that last step's sampled_token_ids can
             # be passed to the next iteration for PP.
             if self.scheduler_config.is_multi_step:
+                #print(f"3.5 vllm/engine/llm_engine.py step: self.scheduler_config.is_multi_step")
                 self._update_cached_scheduler_output(virtual_engine, outputs)
         else:
             # Nothing scheduled => If there is pending async postprocessor,
             # then finish it here.
+            #print(f"4 vllm/engine/llm_engine.py step: Nothing scheduled => If there is pending async postprocessor, then finish it here.")
             if len(ctx.output_queue) > 0:
                 self._process_model_outputs(ctx=ctx)
             # No outputs in this case
@@ -1247,6 +1280,7 @@ class LLMEngine:
 
         if not self._has_remaining_steps(seq_group_metadata_list):
             # clear the cache if we have finished all the steps.
+            #print(f"5 vllm/engine/llm_engine.py step: clear the cache if we have finished all the steps.")
             if self.scheduler_config.is_multi_step:
                 self.cached_scheduler_outputs[0] = SchedulerOutputState()
 
@@ -1260,13 +1294,14 @@ class LLMEngine:
             if outputs and allow_async_output_proc:
                 assert len(outputs) == 1, (
                     "Async postprocessor expects only a single output set")
-
+                #print(f"5.5 vllm/engine/llm_engine.py step: outputs and allow_async_output_proc")
                 self._advance_to_next_step(
                     outputs[0], seq_group_metadata_list,
                     scheduler_outputs.scheduled_seq_groups)
 
             # Check if need to run the usual non-async path
             if not allow_async_output_proc:
+                #print(f"6 vllm/engine/llm_engine.py step: not allow_async_output_proc")
                 self._process_model_outputs(ctx=ctx)
 
                 # Log stats.
@@ -1281,6 +1316,7 @@ class LLMEngine:
         if not self.has_unfinished_requests():
             # Drain async postprocessor (if exists)
             if len(ctx.output_queue) > 0:
+                #print(f"7 vllm/engine/llm_engine.py step: Drain async postprocessor (if exists)")
                 self._process_model_outputs(ctx=ctx)
             assert len(ctx.output_queue) == 0
 

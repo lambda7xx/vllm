@@ -12,7 +12,7 @@ from vllm.config import (DecodingConfig, EngineConfig, LoRAConfig, ModelConfig,
 from vllm.core.scheduler import SchedulerOutputs
 from vllm.engine.arg_utils import AsyncEngineArgs
 from vllm.engine.async_timeout import asyncio_timeout
-from vllm.engine.llm_engine import LLMEngine, SchedulerOutputState
+from vllm.engine.llm_engine import LLMEngine, SchedulerOutputState, RequestInfo
 from vllm.engine.metrics_types import StatLoggerBase
 from vllm.executor.executor_base import ExecutorAsyncBase
 from vllm.executor.gpu_executor import GPUExecutorAsync
@@ -490,6 +490,8 @@ class AsyncLLMEngine:
 
         # Lazy initialized fields
         self._request_tracker: RequestTracker
+        #self.rid_arrival_time = dict()  #Note: xiao, this is hacked for breakdown vllm  schedule time + llm engine time 
+
 
     def __del__(self):
         if rt := getattr(self, "request_tracker", None):
@@ -784,6 +786,7 @@ class AsyncLLMEngine:
         trace_headers: Optional[Mapping[str, str]] = None,
         prompt_adapter_request: Optional[PromptAdapterRequest] = None
     ) -> AsyncGenerator[Union[RequestOutput, EmbeddingRequestOutput], None]:
+        #self.rid_arrival_time[request_id] = RequestInfo(request_id, arrival_time, None)
         if not self.is_running:
             if self.start_engine_loop:
                 self.start_background_loop()
