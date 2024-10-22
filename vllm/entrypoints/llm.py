@@ -30,6 +30,7 @@ from vllm.transformers_utils.tokenizer import (AnyTokenizer, MistralTokenizer,
 from vllm.transformers_utils.tokenizer_group import TokenizerGroup
 from vllm.usage.usage_lib import UsageContext
 from vllm.utils import Counter, deprecate_args, deprecate_kwargs, is_list_of
+import time 
 
 logger = init_logger(__name__)
 
@@ -912,7 +913,12 @@ class LLM:
         total_in_toks = 0
         total_out_toks = 0
         while self.llm_engine.has_unfinished_requests():
+            st = time.time()
+            print(f"one token start time:{st}")
             step_outputs = self.llm_engine.step()
+            ed = time.time()
+            print(f"one token end time:{ed}")
+            print(f"token generate duration:{ed-st}")
             for output in step_outputs:
                 if output.finished:
                     outputs.append(output)
