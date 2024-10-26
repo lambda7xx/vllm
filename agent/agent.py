@@ -49,6 +49,7 @@ def get_prompt(bs, pr_len):
 
 
 def with_agent(engine,args, prompts):
+    print(f"start with agent")
     warm_up(engine)
     print(f"finish warm up")
     max_token = args.max_tokens
@@ -286,6 +287,7 @@ def without_agent(engine, args,prompts):
                     print(f"finished[-1]:{finished[-1]} and rid:{rid}")
         if not (reqs or engine.has_unfinished_requests()):
             break
+        print(f"2 engine has unfinished requests:{engine.has_unfinished_requests()}")
     print(f"len(finished):{len(finished)}")
     latencies = 0
     total_tokens = 0
@@ -303,24 +305,21 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='benchmark.')
 
     parser.add_argument('--model', type=str, default='/data/Meta-Llama-3.1-8B-Instruct', help='model name')
-    # parser.add_argument('--model-name', type=str, default='llama3_8B', help='engine name')
-    # parser.add_argument('--request-rate', type=float, help='reqs/sec', default=5)
-    # parser.add_argument('--tensor-parallel-size', type=int, help='tp size', default=1)
     parser.add_argument('--num-act', type=int, help='number of react steps', default=3)
     parser.add_argument('--batch-size', type=int, help='batch size', default=1)
     parser.add_argument('--agent-parallelism', action='store_true', help='whether use agent parallelism or not')
     parser.add_argument("--agent-tokens", type=int, help="number of tokens for agent parallelism", default=32)
     parser.add_argument("--max-tokens", type=int, help="max tokens for one llm call", default=128)
-    # parser.add_argument('--preempt', type=bool, help='preempt', default=False)
-    # parser.add_argument('--duration', type=int, help='duration in seconds', default=5)
     args = parser.parse_args() 
     print(f"args.agent_parallelism:{args.agent_parallelism}")       
     model = args.model 
     engine_args = EngineArgs(model=model, enable_prefix_caching=True, enable_chunked_prefill=True)
     engine = LLMEngine.from_engine_args(engine_args)    
     prompts = get_prompt(args.batch_size, 500)
+    print(f"len(prompts):{len(prompts)}")
     #main(engine,args)
     if args.agent_parallelism:
+        print(f"start with agent")
         with_agent(engine, args, prompts)
     else:
         without_agent(engine, args, prompts)
