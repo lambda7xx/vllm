@@ -6,7 +6,7 @@ import numpy as np
 
 num_acts = [3,4,5,6]
 
-request_rates = [4, 5, 6, 7, 8, 9]
+request_rates = [1, 2, 3, 4, 5, 6]
 
 model_name = "llama3_1_8B"
 
@@ -23,7 +23,7 @@ for num_act in num_acts:
     queue_latency_dict[num_act] = []
     latency_percentage_dict[num_act] = []
     for rw in request_rates:
-        path = f"./data-0924/vllm_react_model_name_{model_name}_request_rate{rw}_num_act{int(num_act)}.pkl"
+        path = f"./data/vllm_react_model_name_{model_name}_request_rate{rw}_num_act{int(num_act)}.pkl"
         with open(path, "rb") as f:
             collect_data = pickle.load(f)
             total_duration = 0 
@@ -56,9 +56,9 @@ for num_act in num_acts:
     bars2 = ax.bar(index, inference_latency_dict[num_act], bar_width, bottom=queue_latency_dict[num_act], label='inference latency', color='red')
     for i, (latency_percentage) in enumerate(latency_percentage_dict[num_act]):
         ax.text(i, bars1[i].get_height() + bars2[i].get_height() + 0.1, f'{latency_percentage:.1f}%', ha='center')
-    ax.set_ylabel('Agent Normalized Latency(ms)')
-    ax.set_title(f'React={num_act} Latency Breakdown')
-    ax.set_xlabel('Agent Request Rate/s')
+    ax.set_ylabel('Agent Normalized Latency(ms)',fontsize=14)
+    ax.set_title(f'React={num_act} Latency Breakdown', fontsize=14)
+    ax.set_xlabel('Agent Request Rate/s',fontsize=14)
     ax.set_xticks(index)
     ax.set_xticklabels(request_rates)
     ax.legend()

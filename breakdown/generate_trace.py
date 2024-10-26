@@ -123,9 +123,9 @@ def generate_vllm_text_requests_fixed(
     # elif request_rate > 10:
     #     duration = 400
     if request_rate <= 8:
-        duration = int(1000 / request_rate) #
+        duration = int(100 / request_rate) #
     else:
-        duration = int(1200 / request_rate)
+        duration = int(120 / request_rate)
 
     
     for sec in range(duration):

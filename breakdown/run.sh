@@ -11,6 +11,9 @@ num_acts=(3 4 5 6)
 #request_rates=(5 6 7 8 9 10 11 12 13 14 15)
 request_rates=(1 2 3 4 5 6)
 
+num_acts=(2)
+#request_rates=(5 6 7 8 9 10 11 12 13 14 15)
+request_rates=(1)
 
 # num_system_prompts=(100)
 # request_rates=(30 35) #TODO (40, 45)

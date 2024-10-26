@@ -15,7 +15,7 @@ def warmup(engine, sampling_params):
     prompts.append(prompt)
 
     for i in range(3):
-        engine.add_request(request_id = i, inputs = prompt, params = sampling_params, arrival_time = time.time())
+        engine.add_request(request_id = i, prompt = prompt, params = sampling_params, arrival_time = time.time())
     while True:
         request_outputs: List[RequestOutput] = engine.step()
         for request_output in request_outputs:
@@ -64,7 +64,7 @@ def main(engine,request_rate:int, requests:list,args):
                     arrival_time =  request_time
                     metadata[rid] = [whole_prompt, arrival_time,request_time]
                 print(f"engine add_request rid:{rid}  and request_time:{request_time} and now:{now} ")
-                engine.add_request(request_id = rid, inputs = whole_prompt, params = sampling_params, arrival_time=request_time)
+                engine.add_request(request_id = rid, prompt = whole_prompt, params = sampling_params, arrival_time=request_time)
                 if rid not in freq:
                     freq[rid] = 1
             else:
