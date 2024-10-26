@@ -128,12 +128,12 @@ def with_agent(engine,args, prompts):
                 print(f"1.3 req_num_act:{req_num_act} and num_act:{num_act}")
                 if not request_output.finished and req_num_act != num_act:
                     #use agent parallelism 
-                    if req_num_act % 2 == 0:
+                    if req_num_act % 2 == 0 and req_id == rid2:
                         #req1 agent prefill, req2 prefill+ decode
                         if output_text_len % agent_tokens == 0:
                             #add rid1 into the engine
                             reqs.append([rid1, info[rid1].r2_user_prompt + output_text])
-                    else:
+                    elif req_num_act % 2 == 1 and req_id == rid1:
                         #req2 agent prefill, req1 prefill+decode
                         if output_text_len % agent_tokens == 0:
                             #add rid2 into the engine
