@@ -128,7 +128,7 @@ def main(engine, args):
                         else:
                             info[rid].total_duration += now - info[rid].arr2
                             info[rid].total_token += len(output.token_ids)
-                            reqs.append([rid1, sp1+prompts[int(rid1[:-1])]])
+                            reqs.append([rid1, sp1+ prompts[int(rid1[:-1])]])
                             req_acts[rid1] = rid1_num_act + 1
                     else:
                         if rid1 == rid:
