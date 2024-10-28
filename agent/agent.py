@@ -183,23 +183,24 @@ def with_agent_optimized(args, prompts):
                             if output_text_len != 0 and output_text_len % agent_tokens == 0:
                                 reqs.append([rx1, info[rx1].r1_user_prompt + output_text])
                                 marked[rx1] = False
-                                print(f"7 rx0:{rx0} prefill+decode and rx1:{rx1} prefill and terminate_rid:{terminate_rid}") 
+                                print(f"7 req_id:{req_id}  and rx0:{rx0} prefill+decode and rx1:{rx1} prefill and terminate_rid:{terminate_rid}") 
                             else:
                                 #store this requests 
                                 fin_req = FinishReq(rx0, rx1, output_text, output_text_len,now)
                                 finished_reqs[rx0] = fin_req
                                 finished_reqs[rx1] = fin_req
-                                print(f"8 rx0 prefill+decode and r1 prefill rx0:{rx1} finish {output_text_len} iteration but rx1:{rx1} not finish prefill ")
+                                print(f"7.5 req_id:{req_id} rx0:{rx0} finish {output_text_len} iteration but rx1:{rx1} not finish prefill ")
                         else:
                             #store this requests 
                             fin_req = FinishReq(rx0, rx1, output_text, output_text_len,now)
                             finished_reqs[rx0] = fin_req
                             finished_reqs[rx1] = fin_req
-                            print(f"8 rx0 prefill+decode and r1 prefill rx0:{rx1} finish {output_text_len} iteration but rx1:{rx1} not finish prefill ")
+                            print(f"8 req_id:{req_id} rx0:{rx1} finish {output_text_len} iteration but rx1:{rx1} not finish prefill ")
                     elif req_id == rx1:#r1 prefill done, but rx0 not finish prefill+decode r1->r0
                         marked[rx1] = True
                         if rx0 in finished_reqs:
                             fin_req = finished_reqs[rx0]
+                            print(f"8.2 req_id:{req_id} rx0:{rx0} prefill+decode and rx1:{rx1} prefill done and rx0 in finished_reqs and fin_req.r0_finished:{fin_req.r0_finished} ")
                             if fin_req.output_len % agent_tokens == 0 and fin_req.output_len != 0 and not fin_req.r0_finished:
                                 reqs.append([rx1, info[rx1].r1_user_prompt + fin_req.output_text])
                                 marked[rx0] = False
@@ -216,29 +217,31 @@ def with_agent_optimized(args, prompts):
                                 finished_reqs.pop(rx1)
                             
                 elif req_num_act % 2 == 0: #rx1 prefill, rx0 prefill + decode
-                    print(f"9 rx0:{rx0} prefill and rx1:{rx1} prefill + decode")
+                    print(f"8.3 req_id:{req_id} rx0:{rx0} prefill and rx1:{rx1} prefill + decode")
                     #rx1 prefill+decode run some iteration
                     if req_id == rx1:
                         if marked[rx0]:
                             if output_text_len != 0 and output_text_len % agent_tokens == 0:
                                 reqs.append([rx0, info[rx0].r2_user_prompt + output_text])
                                 marked[rx0] = False
-                                print(f"9.1 rx0:{rx0} prefill+decode and rx1:{rx1} prefill and terminate_rid:{terminate_rid}")
+                                print(f"8.4 req_id:{req_id} rx0:{rx0} prefill+decode and rx1:{rx1} prefill and terminate_rid:{terminate_rid}")
                             else:
                                 #store this requests 
                                 fin_req = FinishReq(rx0, rx1, output_text, output_text_len,now)
                                 finished_reqs[rx1] = fin_req
                                 finished_reqs[rx0] = fin_req
-                                print(f"9 rx0:{rx0} prefill and rx1:{rx1} prefill + decode")
+                                print(f"8.5 req_id:{req_id} rx0:{rx0} prefill and rx1:{rx1} prefill + decode generate fin_req")
                         else:
                             #store this requests 
                             fin_req = FinishReq(rx0, rx1, output_text, output_text_len,now)
                             finished_reqs[rx1] = fin_req
                             finished_reqs[rx0] = fin_req
-                            print(f"9 rx0:{rx0} prefill and rx1:{rx1} prefill + decode")
+                            print(f"8.6 req_id:{req_id} rx0:{rx0} prefill and rx1:{rx1} prefill + decode generate fin_req")
                     elif req_id == rx0:#r0 prefill done, but rx1 not finish prefill+decode r0->r1
                         marked[rx0] = True
+                        # print(f"9.2 req_id:{req_id} and rx0:{rx0} prefill and rx1:{rx1} prefill + decode and rx1 in finished_reqs")
                         if rx1 in finished_reqs:
+                            print(f"8.7 req_id:{req_id} and rx0:{rx0} prefill and rx1:{rx1} prefill + decode and rx1 in finished_reqs")
                             fin_req = finished_reqs[rx1]
                             if fin_req.output_len % agent_tokens == 0 and fin_req.output_len != 0 and not fin_req.r1_finished:
                                 reqs.append([rx0, info[rx0].r2_user_prompt + fin_req.output_text])
@@ -265,7 +268,7 @@ def with_agent_optimized(args, prompts):
                     #case 2:rx0 finished, rx1 finished
                         #rx0->prefill, rx0 + rx1 - > prefill + decode 
                     if req_id == rx0:#rx0 finished
-                        print(f"10 req_id:{req_id} and rx0:{rx0} prefill + decode done and rx1:{rx1} prefill")
+                        print(f"10 req_id:{req_id} and rx0:{rx0} prefill + decode done and rx1:{rx1} prefill and marked[rx1]:{marked[rx1]}")
                         if marked[rx1] == True:#rx1 finished
                             reqs.append([rx1, info[rx1].r1_user_prompt + output_text])
                             info[rx1].r2_user_prompt = info[rx1].r1_user_prompt + output_text
@@ -275,6 +278,7 @@ def with_agent_optimized(args, prompts):
                         else:#rx1 not finished
                             if rx1 not in finished_reqs:
                                 fin_req = FinishReq(rx0, rx1, output_text, output_text_len,now)
+                                print(f"10.2 req_id:{req_id} and rx0:{rx0} prefill + decode done and rx1:{rx1} prefill generate fin_req")
                                 finished_reqs[rx1] = fin_req
                                 finished_reqs[rx0] = fin_req 
                                 finished_reqs[rx0].r0_finished = True
@@ -288,6 +292,7 @@ def with_agent_optimized(args, prompts):
                                 finished_reqs[rx1].r0_finished = True
                                 finished_reqs[rx0].now = now
                                 finished_reqs[rx1].now = now
+                                print(f"10.4 req_id:{req_id} and rx0:{rx0} prefill + decode done and rx1:{rx1} prefill update fin_req")
 
                     elif req_id == rx1:#rx1 finished
                         if marked[rx1] == False:
@@ -300,7 +305,7 @@ def with_agent_optimized(args, prompts):
                             # fin_req.output_text = output_text
                             # fin_req.output_len = output_text_len
                             if fin_req.output_len % agent_tokens == 0 and output_text_len != 0 and not fin_req.r0_finished:
-                                print(f"11.5 rx0:{rx0} prefill + decode and rx1:{rx1} prefill done and rx0_stored:{rx0_stored}")
+                                print(f"11.5 req_id:{req_id} rx0:{rx0} prefill + decode and rx1:{rx1} prefill done and rx0_stored:{rx0_stored}")
                                 reqs.append([rx1, info[rx1].r1_user_prompt + fin_req.output_text])
                                 marked[rx0] = False
                                 # finished_reqs.remove(rx0)
@@ -310,7 +315,7 @@ def with_agent_optimized(args, prompts):
                                 if rx1 in finished_reqs:
                                     finished_reqs.pop(rx1)
                             elif fin_req.r0_finished:
-                                print(f"11.6 rx0:{rx0} prefill + decode and rx1:{rx1} prefill done and rx0_stored:{rx0_stored}")
+                                print(f"11.6 req_id:{req_id} rx0:{rx0} prefill + decode and rx1:{rx1} prefill done and rx0_stored:{rx0_stored}")
                                 reqs.append([rx1, info[rx1].r1_user_prompt + output_text])
                                 info[rx0].total_duration += fin_req.now - info[rx1].arr1
                                 info[rx0].total_token += len(request_output.outputs[0].token_ids)
@@ -336,6 +341,7 @@ def with_agent_optimized(args, prompts):
                         else:#r0 not finished
                             if rx0 not in finished_reqs:
                                 fin_req = FinishReq(rx0, rx1, output_text, output_text_len,now)
+                                print(f"12 req_id:{req_id} and rx0:{rx0} prefill and rx1:{rx1} prefill + decode and rx0 not in finished_reqs")
                                 finished_reqs[rx0] = fin_req
                                 finished_reqs[rx1] = fin_req
                                 finished_reqs[rx0].r1_finished = True
