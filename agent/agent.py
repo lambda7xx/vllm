@@ -168,7 +168,7 @@ def with_agent_optimized(args, prompts):
             start = time.time()
             request_outputs = engine.step()
             end = time.time()
-            #print(f"4.2 one step time:{end-start}")
+            print(f"4.2 one step time:{end-start}")
         except Exception as e:
             print(f"error: {e}")
 
@@ -190,7 +190,7 @@ def with_agent_optimized(args, prompts):
             is_terminate = info[rid1].terminate_application()
             final_terminate = info[rid1].final_terminate()
             output_text = request_output.outputs[0].text
-            #print(f"5 with_agent, req_id:{req_id} and rx0:{rx0} and rx1:{rx1} and req_num_act:{req_num_act} and req.finished:{request_output.finished} and o_len:{output_text_len}")
+            print(f"5 with_agent, req_id:{req_id} and rx0:{rx0} and rx1:{rx1} and req_num_act:{req_num_act} and req.finished:{request_output.finished} and o_len:{output_text_len}")
             #if req_num_act % 2 == 1, rx0 prefill+decode, rx1 only prefill,
             #if req_num_act % 2 == 0, rx1 prefill+decode, rx0 only prefill
             if not request_output.finished and not is_terminate:
@@ -298,7 +298,7 @@ def with_agent_optimized(args, prompts):
                                 #print(f"11.7 req_id:{req_id} rx0:{rx0} convert to agent prefill  and rx1:{rx1} convert prefill+decode")
                                 #print(f"11.7 req_id:{req_id} rx0:{rx0} prefill + decode ******done and rx1:{rx1} still agent prefill done")
                                 info[rx0].total_duration += now - info[rx1].arr1
-                                info[rx0].total_token += len(request_output.outputs[0].token_ids)
+                                info[rx0].total_token += fin_req.output_len
                                 #print(f"11.8 req_id:{req_id} rx0:{rx0} prefill + decode done and rx1:{rx1} prefill done and info[rx0].total_duration:{info[rx0].total_duration} and info[rx0].total_token:{info[rx0].total_token}")
                                 info[rx0].r2_user_prompt = info[rx1].r1_user_prompt + output_text
                                 info[rx0].r2_react_num += 1
@@ -353,7 +353,7 @@ def with_agent_optimized(args, prompts):
                                 marked[rx1] = False
                                 #print(f"12.75 req_id:{req_id} rx0:{rx0} prefill done and rx1:{rx1} prefill + decode done and and info[rx0].total_duration:{info[rx0].total_duration} and info[rx0].total_token:{info[rx0].total_token} ")
                                 info[rx0].total_duration += now - info[rx0].arr2
-                                info[rx0].total_token += len(request_output.outputs[0].token_ids)
+                                info[rx0].total_token += fin_req.output_len
                                 info[rx0].r1_user_prompt = info[rx0].r2_user_prompt + output_text
                                 info[rx0].r1_react_num += 1
                                 #print(f"12.8 req_id:{req_id} rx0:{rx0} prefill done and rx1:{rx1} prefill + decode done and info[rx0].total_duration:{info[rx0].total_duration} and info[rx0].total_token:{info[rx0].total_token}")
@@ -651,7 +651,7 @@ def without_agent(args,prompts):
             start = time.time()
             request_outputs = engine.step()
             end = time.time()
-            #print(f"one step time:{end-start}")
+            print(f"one step time:{end-start}")
         #don't use agent parallelism 
         except Exception as e:
             print(f"error: {e}")
