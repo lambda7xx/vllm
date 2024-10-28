@@ -211,7 +211,7 @@ def with_agent(args, prompts):
             rid1 = info[req_id].rid1
             rid2 = info[req_id].rid2  
             req_num_act = req_acts[rid1] + req_acts[rid2]
-            if request_output.finished and req_num_act != num_act:
+            if request_output.finished and req_num_act:
                 if req_num_act % 2 == 0 and req_id == rid2:
                     req_acts[rid1] += 1
                 elif req_num_act % 2 == 1 and req_id == rid1:
