@@ -170,6 +170,7 @@ def with_agent_optimized(args, prompts):
                         
             output_text_len = len(request_output.outputs[0].token_ids)
             is_terminate = info[rid1].terminate_application()
+            
             output_text = request_output.outputs[0].text
             print(f"5 with_agent, req_id:{req_id} and rx0:{rx0} and rx1:{rx1} and req_num_act:{req_num_act} and req.finished:{request_output.finished} and o_len:{output_text_len}")
             #if req_num_act % 2 == 1, rx0 prefill+decode, rx1 only prefill,
@@ -299,7 +300,8 @@ def with_agent_optimized(args, prompts):
                                     finished_reqs.pop(rx1)
                             #reqs.append([rx0, fin_req.prompt + output_text,])
                 elif req_num_act %2 == 0:#r0 prefill, rx1 prefill + decode
-                    if req == rx1:#r1 prefill+decode finished
+                    print(f"11.5 req_id:{req_id} and rx0:{rx0} prefill and rx1:{rx1} prefill + decode req_num_act %2 == 0")
+                    if req_id == rx1:#r1 prefill+decode finished
                         if marked[rx0] == True:#r0 prefill finished, r1 prefill+decode finished
                             reqs.append([rx1, info[rx1].r2_user_prompt + output_text])
                             # marked[rx0] = False
@@ -324,7 +326,8 @@ def with_agent_optimized(args, prompts):
                                 finished_reqs[rx1].now = now
                                 finished_reqs[rx0].r1_finished = True
                                 finished_reqs[rx1].r1_finished = True
-                    elif req == rx0:#r0 finished
+                    elif req_id == rx0:#r0 finished
+                        print(f"12.5 req_id:{req_id} and rx0:{rx0} prefill done and rx1:{rx1} prefill + decode and arked[rx0]:{marked[rx0]}")
                         if marked[rx0] == False:
                             marked[rx0] = True
                         #rx1  finished
