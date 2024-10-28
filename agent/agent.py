@@ -106,6 +106,7 @@ def with_agent_optimized(args, prompts):
     time.sleep(5)
     marked = dict()
     finished_reqs = dict() 
+    maked_id = dict()
     while True:
         now = time.time()
         while reqs:
@@ -174,7 +175,6 @@ def with_agent_optimized(args, prompts):
 
         #print(f"4.5 len(request_outputs):{len(request_outputs)}")
         now = time.time()
-
         for request_output in request_outputs:
             req_id = request_output.request_id
             rx0 = info[req_id].rid1
@@ -184,13 +184,13 @@ def with_agent_optimized(args, prompts):
                 terminate_rid = rx1
             else:
                 terminate_rid = rx0
-            req_num_act = info[req_id].get_react_num()
+            req_num_act = info[rx0].get_react_num()
                         
             output_text_len = len(request_output.outputs[0].token_ids)
             is_terminate = info[rid1].terminate_application()
             final_terminate = info[rid1].final_terminate()
             output_text = request_output.outputs[0].text
-            print(f"5 with_agent, req_id:{req_id} and rx0:{rx0} and rx1:{rx1} and req_num_act:{req_num_act} and req.finished:{request_output.finished} and o_len:{output_text_len}")
+            print(f"5 with_agent, req_id:{req_id} and rx0:{rx0} and rx1:{rx1} and req_num_act:{req_num_act} and req.finished:{request_output.finished} and o_len:{output_text_len} and is_terminate:{is_terminate}")
             #if req_num_act % 2 == 1, rx0 prefill+decode, rx1 only prefill,
             #if req_num_act % 2 == 0, rx1 prefill+decode, rx0 only prefill
             if not request_output.finished and not is_terminate:
@@ -240,8 +240,9 @@ def with_agent_optimized(args, prompts):
 
 
             elif request_output.finished and not is_terminate:
+                print(f"9 with_agent, req_id:{req_id} and rx0:{rx0} and rx1:{rx1} and req_num_act:{req_num_act} and request_output.finished and not is_terminate")
                 if req_num_act % 2 == 1:#rx0 prefill + decode, r1 prefill
-                    #print(f"9.4 req_id:{req_id} and rx0:{rx0} prefill + decode and rx1:{rx1} prefill")
+                    print(f"9.4 req_id:{req_id} and rx0:{rx0} prefill + decode and rx1:{rx1} prefill and marked[rx1]:{marked[rx1]}")
                 #1 rx0 prefill + decode, r1 prefill, it can decided by the req_num_act
                     #case 1:rx0 finished, rx1 not finished
                         #store/or update the fin_req, and then continue the rx1 prefill
@@ -249,7 +250,7 @@ def with_agent_optimized(args, prompts):
                         #rx0->prefill, rx0 + rx1 - > prefill + decode 
                     if req_id == rx0:#rx0 finished
                         #print(f"10 req_id:{req_id} and rx0:{rx0} prefill + decode done and rx1:{rx1} prefill and marked[rx1]:{marked[rx1]} and req_num_act:{req_num_act} and num_act:{num_act}")
-                        if marked[rx1] == True:#rx0 finished prefill+done, rx1 finished  prefill
+                        if marked[rx1] == True and req_num_act != num_act:#rx0 finished prefill+done, rx1 finished  prefill
                             #print(f"10.02 req_id:{req_id} and rx0:{rx0} ******* prefill+decode done and rx1:{rx1} agent prefill *****done")
                             if req_num_act != num_act:
                                 reqs.append([rx1, info[rx1].r1_user_prompt + output_text])
@@ -261,10 +262,12 @@ def with_agent_optimized(args, prompts):
                             info[rx1].total_token += len(request_output.outputs[0].token_ids)
                             #print(f"10.2 req_id:{req_id} and rx0:{rx0} prefill + decode done and rx1:{rx1} prefill done and info[rx1].total_duration:{info[rx1].total_duration} and info[rx1].total_token:{info[rx1].total_token}")
                             info[rx1].r2_react_num += 1
-                        else:#rx1 not finished,store the rx0 until the rx1 finished
+                            after_req_num_act = info[rx1].get_react_num()
+                            print(f"10.3 req_id:{req_id} and rx0:{rx0} prefill + decode done and rx1:{rx1} prefill done and after_req_num_act:{after_req_num_act} and num_act:{num_act}")
+                        elif req_num_act != num_act:#rx1 not finished,store the rx0 until the rx1 finished
                             if rx1 not in finished_reqs:
                                 fin_req = FinishReq(rx0, rx1, output_text, output_text_len,now)
-                                #print(f"10.25 req_id:{req_id} and rx0:{rx0} prefill + decode done and rx1:{rx1} prefill generate fin_req")
+                                print(f"10.25 req_id:{req_id} and rx0:{rx0} prefill + decode done and rx1:{rx1} prefill generate fin_req")
                                 finished_reqs[rx1] = fin_req
                                 finished_reqs[rx0] = fin_req 
                                 finished_reqs[rx0].r0_finished = True
@@ -278,7 +281,7 @@ def with_agent_optimized(args, prompts):
                                 finished_reqs[rx1].r0_finished = True
                                 finished_reqs[rx0].now = now
                                 finished_reqs[rx1].now = now
-                                #print(f"10.4 req_id:{req_id} and rx0:{rx0} prefill + decode done and rx1:{rx1} prefill update fin_req")
+                                print(f"10.4 req_id:{req_id} and rx0:{rx0} prefill + decode done and rx1:{rx1} prefill update fin_req")
 
                     elif req_id == rx1:#rx1 finished
                         if marked[rx1] == False:
@@ -303,6 +306,8 @@ def with_agent_optimized(args, prompts):
                                 info[rx0].r2_user_prompt = info[rx1].r1_user_prompt + output_text
                                 info[rx0].r2_react_num += 1
                                 marked[rx0] = False
+                                after_rect_num = info[rx0].get_react_num()
+                                print(f"11.9 req_id:{req_id} rx0:{rx0} prefill done and rx1:{rx1} prefill + decode done and after_rect_num:{after_rect_num} and num_act:{num_act}")
                                 # finished_reqs.remove(rx0)
                                 # finished_reqs.remove(rx1)
                                 if rx0 in finished_reqs:
@@ -311,7 +316,7 @@ def with_agent_optimized(args, prompts):
                                     finished_reqs.pop(rx1)
                             #reqs.append([rx0, fin_req.prompt + output_text,])
                 elif req_num_act %2 == 0:#r0 prefill, rx1 prefill + decode
-                    #print(f"11.5 req_id:{req_id} and rx0:{rx0} prefill and rx1:{rx1} prefill + decode req_num_act %2 == 0")
+                    print(f"11.5 req_id:{req_id} and rx0:{rx0} prefill and rx1:{rx1} prefill + decode req_num_act %2 == 0")
                     if req_id == rx1:#r1 prefill+decode finished
                         if marked[rx0] == True:#r0 prefill finished, r1 prefill+decode finished
                             if req_num_act != num_act:
@@ -320,12 +325,12 @@ def with_agent_optimized(args, prompts):
                             info[rx1].r1_user_prompt = info[rx1].r2_user_prompt + output_text
                             info[rx1].total_duration += now - info[req_id].arr2
                             info[rx1].total_token += len(request_output.outputs[0].token_ids)
-                            info[rx1].r1_react_num += 1
-                            #print(f"11.6 req_id:{req_id} and rx0:{rx0} prefill done and rx1:{rx1} prefill + decode done and info[rx1].total_duration:{info[rx1].total_duration} and info[rx1].total_token:{info[rx1].total_token}")
+                            info[rx0].r1_react_num += 1
+                            print(f"11.6 req_id:{req_id} and rx0:{rx0} prefill done and rx1:{rx1} prefill + decode done and info[rx1].total_duration:{info[rx1].total_duration} and info[rx1].total_token:{info[rx1].total_token}")
                         else:#r0 not finished
                             if rx0 not in finished_reqs:
                                 fin_req = FinishReq(rx0, rx1, output_text, output_text_len,now)
-                                #print(f"12 req_id:{req_id} and rx0:{rx0} prefill and rx1:{rx1} prefill + decode and rx0 not in finished_reqs")
+                                print(f"12 req_id:{req_id} and rx0:{rx0} prefill and rx1:{rx1} prefill + decode and rx0 not in finished_reqs")
                                 finished_reqs[rx0] = fin_req
                                 finished_reqs[rx1] = fin_req
                                 finished_reqs[rx0].r1_finished = True
@@ -339,6 +344,7 @@ def with_agent_optimized(args, prompts):
                                 finished_reqs[rx1].now = now
                                 finished_reqs[rx0].r1_finished = True
                                 finished_reqs[rx1].r1_finished = True
+                                print(f"12.1 req_id:{req_id} and rx0:{rx0} prefill and rx1:{rx1} prefill + decode and rx0 in finished_reqs")
                     elif req_id == rx0:#r0 finished
                         #print(f"12.5 req_id:{req_id} and rx0:{rx0} agent prefill done and rx1:{rx1} prefill + decode and marked[rx0]:{marked[rx0]}")
                         if marked[rx0] == False:
@@ -361,12 +367,31 @@ def with_agent_optimized(args, prompts):
                                     finished_reqs.pop(rx0)
                                 if rx1 in finished_reqs:
                                     finished_reqs.pop(rx1)
+                elif request_output.finished and is_terminate:
+                    print(f"13 with_agent, req_id:{req_id} and rx0:{rx0} and rx1:{rx1} and req_num_act:{req_num_act} and req.finished:{request_output.finished} and o_len:{output_text_len} and terminate_rid:{terminate_rid}")
+                    if req_num_act % 2 == 1:
+                        if req_id == rx0:
+                            info[rx1].r1_react_num += 1
+                        
+                    elif req_num_act % 2 ==0:
+                        if req_id == rx1:
+                            info[rx0].r2_react_num += 1
 
-            #print(f"17 with_agent, req_id:{req_id} and rx0:{rx0} and rx1:{rx1} and req_num_act:{req_num_act} and req.finished:{request_output.finished} and o_len:{output_text_len} and terminate_rid:{terminate_rid}")
+        for request_output in request_outputs:
+            req_id = request_output.request_id
+            rx0 = info[req_id].rid1
+            rx1 = info[req_id].rid2
+            rid = rx0[:-2]
+            if num_act % 2 == 0:
+                terminate_rid = rx1
+            else:
+                terminate_rid = rx0
+            req_num_act = info[rx0].get_react_num()
+            print(f"17 with_agent, req_id:{req_id} and rx0:{rx0} and rx1:{rx1} and req_num_act:{req_num_act} and req.finished:{request_output.finished} and o_len:{output_text_len} and terminate_rid:{terminate_rid}")
             if request_output.finished and req_num_act == num_act:
                 #finish the application
-                if req_num_act % 2 == 0 and req_id == terminate_rid:
-                    #print(f"13 rid2 finish the application req_num_act:{req_num_act} and num_act:{num_act} and terminate_rid:{terminate_rid}")
+                if req_num_act % 2 == 0 and req_id == terminate_rid and rid not in maked_id:
+                    print(f"13 rid2 finish the application req_num_act:{req_num_act} and num_act:{num_act} and terminate_rid:{terminate_rid}")
                     info[rx1].total_duration += now - info[rx1].arr2
                     info[rx1].total_token += len(request_output.outputs[0].token_ids)
                     finished.append({
@@ -374,16 +399,18 @@ def with_agent_optimized(args, prompts):
                         "total_duration": info[rid1].total_duration,
                         "total_token": info[rid1].total_token
                     })
-                    #print(f"14 finished[-1]:{finished[-1]} and rid:{rid} and terminate_rid:{terminate_rid} ")
-                elif req_num_act % 2 == 1 and req_id == terminate_rid:
+                    maked_id[rid] = True
+                    print(f"14 finished[-1]:{finished[-1]} and rid:{rid} and terminate_rid:{terminate_rid} ")
+                elif req_num_act % 2 == 1 and req_id == terminate_rid and rid not in maked_id:
                     info[rx0].total_duration += now - info[rx0].arr1
                     info[rx0].total_token += len(request_output.outputs[0].token_ids)
-                    #print(f"15 rid1 finish the application req_num_act:{req_num_act} and num_act:{num_act} and terminate_rid:{terminate_rid} ")
+                    print(f"15 rid1 finish the application req_num_act:{req_num_act} and num_act:{num_act} and terminate_rid:{terminate_rid} ")
                     finished.append({
                         "request_id": rid,
                         "total_duration": info[rid1].total_duration,
                         "total_token": info[rid1].total_token
                     })
+                    maked_id[rid] = True
                     print(f"16 finished[-1]:{finished[-1]} and rid:{rid}")
 
         if not (reqs or engine.has_unfinished_requests()):
