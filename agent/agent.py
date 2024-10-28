@@ -119,7 +119,7 @@ def with_agent_optimized(args, prompts):
                 rid2 = rid[:-2] + "i1"
             print(f"0 rid:{rid} and rid1:{rid1} and rid2:{rid2}")
             if rid1 not in info:
-                req = ReactReq( arr1=now,arr2=now, rid1=rid1, rid2=rid2,num_react = num_act)
+                req = ReactReq( arr1=now,arr2=None, rid1=rid1, rid2=rid2,num_react = num_act)
                 req.r1_user_prompt = prompt
                 req.r1_react_num =1#first time react 
                 info[rid1] = req
@@ -128,8 +128,10 @@ def with_agent_optimized(args, prompts):
                 #update the arr1 or arr2
                 if req_num_act % 2 == 1:
                     info[rid2].arr1 = now
+                    info[rid1].arr1 = now
                 elif req_num_act % 2 == 0:
                     info[rid1].arr2 = now
+                    info[rid2].arr2 = now
 
             req_num_act = info[rid1].get_react_num()
             is_terminate = info[rid1].terminate_application()
