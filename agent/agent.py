@@ -190,7 +190,7 @@ def with_agent_optimized(args, prompts):
             is_terminate = info[rid1].terminate_application()
             final_terminate = info[rid1].final_terminate()
             output_text = request_output.outputs[0].text
-            print(f"5 with_agent, req_id:{req_id} and rx0:{rx0} and rx1:{rx1} and req_num_act:{req_num_act} and req.finished:{request_output.finished} and o_len:{output_text_len} and output_text:{output_text}")
+            print(f"5 with_agent, req_id:{req_id} and rx0:{rx0} and rx1:{rx1} and req_num_act:{req_num_act} and req.finished:{request_output.finished} and o_len:{output_text_len}")
             #if req_num_act % 2 == 1, rx0 prefill+decode, rx1 only prefill,
             #if req_num_act % 2 == 0, rx1 prefill+decode, rx0 only prefill
             if not request_output.finished and not is_terminate:
