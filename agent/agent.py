@@ -170,12 +170,10 @@ def with_agent_optimized(args, prompts):
             print(f"5 with_agent, req_id:{req_id} and rx0:{rx0} and rx1:{rx1} and req_num_act:{req_num_act} and req.finished:{request_output.finished} and o_len:{output_text_len}")
             #if req_num_act % 2 == 1, rx0 prefill+decode, rx1 only prefill,
             #if req_num_act % 2 == 0, rx1 prefill+decode, rx0 only prefill
-
-
             if not request_output.finished and not is_terminate:
                 #analyze
                 if req_num_act % 2 == 1: #rx0 prefill + decode, rx1 prefill
-                    print(f"6.8 rx0:{rx0} prefill+decode and rx1:{rx1} prefill and marked[x1]:{marked[rx1]}") 
+                    print(f"6.8 req_id:{req_id} and rx0:{rx0} prefill+decode and rx1:{rx1} prefill and marked[x1]:{marked[rx1]}") 
                     #rx0 prefill+decode
                     #1)rx0 prefill+decode 完成一个iteration, 同时rx1完成了prefill,然后rx0生成的token数直接满足条件，那就继续让rx1 prefill，marked[rx1] = False
                     #2)rx0 prefill+decode 完成一个iteration, 同时rx1完成了prefill,然后rx0生成的token数不满足条件，那就继续让rx0 prefill+decode
@@ -199,6 +197,7 @@ def with_agent_optimized(args, prompts):
                             finished_reqs[rx1] = fin_req
                             print(f"8 rx0 prefill+decode and r1 prefill rx0:{rx1} finish {output_text_len} iteration but rx1:{rx1} not finish prefill ")
                     elif req_id == rx1:#r1 prefill done, but rx0 not finish prefill+decode r1->r0
+                        marked[rx1] = True
                         if rx0 in finished_reqs:
                             fin_req = finished_reqs[rx0]
                             if fin_req.output_len % agent_tokens == 0 and fin_req.output_len != 0 and not fin_req.r0_finished:
@@ -238,6 +237,7 @@ def with_agent_optimized(args, prompts):
                             finished_reqs[rx0] = fin_req
                             print(f"9 rx0:{rx0} prefill and rx1:{rx1} prefill + decode")
                     elif req_id == rx0:#r0 prefill done, but rx1 not finish prefill+decode r0->r1
+                        marked[rx0] = True
                         if rx1 in finished_reqs:
                             fin_req = finished_reqs[rx1]
                             if fin_req.output_len % agent_tokens == 0 and fin_req.output_len != 0 and not fin_req.r1_finished:
