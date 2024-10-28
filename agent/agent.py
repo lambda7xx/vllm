@@ -202,12 +202,12 @@ def with_agent_optimized(args, prompts):
                         if rx0 in finished_reqs:
                             fin_req = finished_reqs[rx0]
                             if fin_req.output_len % agent_tokens == 0 and fin_req.output_len != 0 and not fin_req.r0_finished:
-                                reqs.append([rx1, info[rx1].r0_user_prompt + fin_req.output_text])
+                                reqs.append([rx1, info[rx1].r1_user_prompt + fin_req.output_text])
                                 marked[rx0] = False
                                 finished_reqs.pop(rx0)
                                 finished_reqs.pop(rx1)
                             elif fin_req.r0_finished:
-                                reqs.append([rx1, info[rx1].r0_user_prompt + output_text])
+                                reqs.append([rx1, info[rx1].r1_user_prompt + output_text])
                                 info[rx1].total_duration += fin_req.now - info[rx0].arr1
                                 info[rx1].total_token += len(request_output.outputs[0].token_ids)
                                 info[rx1].r1_user_prompt = info[rx1].r0_user_prompt + output_text
@@ -216,17 +216,6 @@ def with_agent_optimized(args, prompts):
                                 finished_reqs.pop(rx0)
                                 finished_reqs.pop(rx1)
                             
-                    #pass, case 1 and case 2 
-                    # if marked[rx1]:
-                    #     if output_text_len != 0 and output_text_len % agent_tokens == 0:
-                    #         reqs.append([rx1, info[rx1].r1_user_prompt + output_text])
-                    #         marked[rx1] = False
-                    #         print(f"7 rx0:{rx0} prefill+decode and rx1:{rx1} prefill and terminate_rid:{terminate_rid}")
-                    # else:
-                    #     #store this requests 
-                    #     fin_req = FinishReq(rx0, rx1, output_text, output_text_len,now)
-                    #     finished_reqs[rx0] = fin_req
-                    #     print(f"8 rx0 prefill+decode and r1 prefill rx0:{rx1} finish {output_text_len} iteration but rx1:{rx1} not finish prefill ")
                 elif req_num_act % 2 == 0: #rx1 prefill, rx0 prefill + decode
                     print(f"9 rx0:{rx0} prefill and rx1:{rx1} prefill + decode")
                     #rx1 prefill+decode run some iteration
@@ -252,16 +241,16 @@ def with_agent_optimized(args, prompts):
                         if rx1 in finished_reqs:
                             fin_req = finished_reqs[rx1]
                             if fin_req.output_len % agent_tokens == 0 and fin_req.output_len != 0 and not fin_req.r1_finished:
-                                reqs.append([rx0, info[rx0].r1_user_prompt + fin_req.output_text])
+                                reqs.append([rx0, info[rx0].r2_user_prompt + fin_req.output_text])
                                 marked[rx1] = False
                                 finished_reqs.pop(rx0)
                                 finished_reqs.pop(rx1)
                             elif fin_req.r1_finished:
-                                reqs.append([rx0, info[rx0].r1_user_prompt + output_text])
+                                reqs.append([rx0, info[rx0].r2_user_prompt + output_text])
                                 info[rx0].total_duration += fin_req.now - info[rx0].arr2
                                 info[rx0].total_token += len(request_output.outputs[0].token_ids)
-                                info[rx0].r1_user_prompt = info[rx0].r1_user_prompt + output_text
-                                info[rx0].r1_react_num += 1
+                                info[rx0].r1_user_prompt = info[rx0].r2_user_prompt + output_text
+                                info[rx0].r2_react_num += 1
                                 marked[rx1] = False
                                 finished_reqs.pop(rx0)
                                 finished_reqs.pop(rx1)
