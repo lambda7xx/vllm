@@ -20,6 +20,7 @@ class ReactReq:
         self.r2_user_prompt = None
         self.need_r1_react_num = num_react // 2 + 1
         self.need_r2_react_num = num_react // 2
+        print(f"need_r1_react_num:{self.need_r1_react_num} and need_r2_react_num:{self.need_r2_react_num}")
         self.r1_react_num = 0
         self.r2_react_num = 0
         self.react_num = num_react 
@@ -119,10 +120,16 @@ def with_agent_optimized(args, prompts):
                 info[rid2] = req
             else:
                 #update the arr1 or arr2
-                if req_num_act % 2 == 1:
+                if req_num_act == 0:
                     info[rid1].arr1 = now
-                else:
-                    info[rid2].arr2 = now
+                elif req_num_act % 2 == 1:
+                    info[rid2].arr1 = now
+                elif req_num_act % 2 == 0:
+                    info[rid1].arr2 = now
+                # if req_num_act % 2 == :
+                #     info[rid1].arr1 = now
+                # else:
+                #     info[rid2].arr2 = now
             req_num_act = info[rid1].get_react_num()
             is_terminate = info[rid1].terminate_application()
             print(f"2 with_agent req_num_act:{req_num_act} and num_act:{num_act} and rid1={rid1} and rid2={rid2}")
