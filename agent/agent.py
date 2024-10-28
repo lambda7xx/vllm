@@ -18,6 +18,8 @@ class ReactReq:
         self.total_token = 0 
         self.r1_user_prompt = user_prompt
         self.r2_user_prompt = None
+        self.r1_user_prompt_len = 0
+        self.r2_user_prompt_len = 0
 
 def warm_up(engine):
     sampling_params = SamplingParams(temperature=0, top_p=0.95, max_tokens=25) #this can be changed
@@ -59,10 +61,10 @@ def with_agent(args, prompts):
     bs = args.batch_size
     print(f"max_token:{max_token} and agent_tokens:{agent_tokens}")
     sp1 = """
-    you are very powerful AI, Please help answer the below question and generate at least {max_token} tokens.
+    you are very powerful AI, Please help answer the below question.
     """
     sp2 ="""
-    Meta creates you and you are very good at answering the questinons, help me answer the below question and generate at least {max_token} tokens.
+    Meta creates you and you are very good at answering the questinons, help me answer the below question.
     """
     info = dict() #str -> ReactReq
     sampling_params = SamplingParams(temperature=0, top_p=0.95, max_tokens=max_token) #this can be changed
@@ -92,11 +94,12 @@ def with_agent(args, prompts):
             if rid2 not in req_acts:
                 req_acts[rid2] = 0
             req_num_act = req_acts[rid1] + req_acts[rid2]
-            print(f"0 rid:{rid} and rid1:{rid1} and rid2:{rid2}")
-            print(f"0.2 req_num_act:{req_num_act} and num_act:{num_act}")
+            # print(f"0 rid:{rid} and rid1:{rid1} and rid2:{rid2}")
+            # print(f"0.2 req_num_act:{req_num_act} and num_act:{num_act}")
             if rid1 not in info:
                 req = ReactReq( arr1=now,arr2=now, rid1=rid1, rid2=rid2)
                 req.r1_user_prompt = prompt
+                req.r1_user_prompt_len = len(prompt.split())
                 info[rid1] = req
                 info[rid2] = req
             else:
@@ -110,14 +113,14 @@ def with_agent(args, prompts):
                 engine.add_request(request_id = rid1, inputs = sp1+ prompt, params = sampling_params, arrival_time = now)
                 # do prefill for req2 
                 engine.add_request(request_id = rid2, inputs = sp2+ prompt, params = discard_sampling_params, arrival_time = now)
+                print(f"1.2 rid1:{rid1} is prefill+decode and rid2:{rid2} is agent parallelism")
             else:
                 engine.add_request(request_id = rid2, inputs = sp2+ prompt, params = sampling_params, arrival_time = now)
                 #do prefill for req1
                 engine.add_request(request_id = rid1, inputs = sp1+ prompt, params = discard_sampling_params, arrival_time = now)
-            print(f"1.1 with_agent engine has add request")
+                print(f"1.5 rid1:{rid1} is agent parallelism and rid2:{rid2} is prefill+decode")
         try:
             request_outputs = engine.step()
-            print(f"1.15 with_agent, len(request_outputs):{len(request_outputs)}")
         except Exception as e:
             print(f"error: {e}")
        
@@ -142,11 +145,13 @@ def with_agent(args, prompts):
                     if output_text_len % agent_tokens == 0:
                         #add rid1 into the engine
                         reqs.append([rid1, info[rid1].r2_user_prompt + output_text])
+                        print(f"1.4 rid1:{rid1} agent prefill and rid2:{rid2} prefill+decode")
                 elif req_num_act % 2 == 1 and req_id == rid1:
                     #req2 agent prefill, req1 prefill+decode
                     if output_text_len % agent_tokens == 0:
                         #add rid2 into the engine
                         reqs.append([rid2, info[rid2].r1_user_prompt + output_text])
+                        print(f"1.5 rid1:{rid1} prefill+decode and rid2:{rid2} agent prefill")
             elif request_output.finished and req_num_act != num_act:
                 #also use agent parallelism 
                 if req_num_act % 2 == 0:#r2 finished 
@@ -181,6 +186,7 @@ def with_agent(args, prompts):
         # print(f"2 engine has unfinished requests:{engine.has_unfinished_requests()}")    
     latencies = 0
     total_tokens = 0
+    print(f"len(finished):{len(finished)}")
     for d in finished:
         latencies += d["total_duration"]
         total_tokens += d["total_token"]
@@ -201,11 +207,12 @@ def without_agent(args,prompts):
 
     max_token = args.max_tokens
     bs  = args.batch_size
+    print(f"without_agent max_token:{max_token} ")
     sp1 = """
-    you are very powerful AI, Please help answer the below question and generate at least {max_token} tokens.
+    you are very powerful AI, Please help answer the below question.
     """
     sp2 ="""
-    Meta creates you and you are very good at answering the questinons, help me answer the below question and generate at least {max_token} tokens.
+    Meta creates you and you are very good at answering the questinons, help me answer the below question.
     """
     info = dict() #str -> ReactReq
     sampling_params = SamplingParams(temperature=0, top_p=0.95, max_tokens=max_token) #this can be changed
@@ -325,7 +332,7 @@ if __name__ == '__main__':
     parser.add_argument('--num-act', type=int, help='number of react steps', default=3)
     parser.add_argument('--batch-size', type=int, help='batch size', default=1)
     parser.add_argument('--agent-parallelism', action='store_true', help='whether use agent parallelism or not')
-    parser.add_argument("--agent-tokens", type=int, help="number of tokens for agent parallelism", default=32)
+    parser.add_argument("--agent-tokens", type=int, help="number of tokens for agent parallelism", default=64)
     parser.add_argument("--max-tokens", type=int, help="max tokens for one llm call", default=128)
     args = parser.parse_args() 
     print(f"args.agent_parallelism:{args.agent_parallelism}")      
