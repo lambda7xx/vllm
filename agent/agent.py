@@ -163,9 +163,9 @@ def with_agent_optimized(args, prompts):
             rx1 = info[req_id].rid2
             
             if num_act % 2 == 0:
-                terminate_rid = rx0
-            else:
                 terminate_rid = rx1
+            else:
+                terminate_rid = rx0
             req_num_act = info[req_id].get_react_num()
                         
             output_text_len = len(request_output.outputs[0].token_ids)
@@ -353,28 +353,7 @@ def with_agent_optimized(args, prompts):
                                 if rx1 in finished_reqs:
                                     finished_reqs.pop(rx1)
 
-            # elif request_output.finished and is_terminate:
-            #     if req_num_act % 2 == 0 and req_id == terminate_rid:
-            #         print(f"13 rid2 finish the application req_num_act:{req_num_act} and num_act:{num_act} and terminate_rid:{terminate_rid}")
-            #         info[rx1].total_duration += now - info[rx1].arr2
-            #         info[rx1].total_token += len(request_output.outputs[0].token_ids)
-            #         finished.append({
-            #             "request_id": rid,
-            #             "total_duration": info[rid1].total_duration,
-            #             "total_token": info[rid1].total_token
-            #         })
-            #         print(f"14 finished[-1]:{finished[-1]} and rid:{rid} and terminate_rid:{terminate_rid} ")
-            #     elif req_num_act % 2 == 1 and req_id == terminate_rid:
-            #         info[rx0].total_duration += now - info[rx0].arr1
-            #         info[rx0].total_token += len(request_output.outputs[0].token_ids)
-            #         print(f"15 rid1 finish the application req_num_act:{req_num_act} and num_act:{num_act} and terminate_rid:{terminate_rid} ")
-            #         finished.append({
-            #             "request_id": rid,
-            #             "total_duration": info[rid1].total_duration,
-            #             "total_token": info[rid1].total_token
-            #         })
-            #         print(f"16 finished[-1]:{finished[-1]} and rid:{rid}")
-            
+            print(f"17 with_agent, req_id:{req_id} and rx0:{rx0} and rx1:{rx1} and req_num_act:{req_num_act} and req.finished:{request_output.finished} and o_len:{output_text_len} and terminate_rid:{terminate_rid}")
             if request_output.finished and req_num_act == num_act:
                 #finish the application
                 if req_num_act % 2 == 0 and req_id == terminate_rid:
