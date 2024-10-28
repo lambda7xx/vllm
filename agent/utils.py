@@ -73,7 +73,7 @@ def count_tokens(input: Union[str, List, Dict], model: str = "gpt-4") -> int:
         raise ValueError(f"Input must be str, list or dict, but received {type(input)}")
 
 
-path ="/home/xiaoxias/vllm_profile/ShareGPT_V3_unfiltered_cleaned_split.json"
+path ="/home/xiaoxiang/data/ShareGPT_V3_unfiltered_cleaned_split.json"
 
 
 def read_json_file(path: str) -> List[Dict[str, Any]]:
@@ -88,7 +88,7 @@ def read_json_file(path: str) -> List[Dict[str, Any]]:
     prompt_300 = [] #<=300 
     prompt_400 = [] #300~500
     prompt_500 = [] # 500~600
-    prompt_1000 = [] # 1000~2000
+    prompt_1000 = [] # 1000~1200
     prompt_2000 = [] # 2000~2000
     for d in data:
         d_len = len(d["conversations"])
@@ -107,15 +107,15 @@ def read_json_file(path: str) -> List[Dict[str, Any]]:
         elif count_tokens(value) >=2000 and count_tokens(value) <= 2200:
             prompt_2000.append(value)
     #store the prompts into different files
-    with open("prompt_300.json", "w") as f:
-        json.dump(prompt_300, f)
-    with open("prompt_400.json", "w") as f:
-        json.dump(prompt_400, f)
-    with open("prompt_500.json", "w") as f:
-        json.dump(prompt_500, f)
-    with open("prompt_1000.json", "w") as f:
+    # with open("prompt_300.json", "w") as f:
+    #     json.dump(prompt_300, f)
+    # with open("prompt_400.json", "w") as f:
+    #     json.dump(prompt_400, f)
+    # with open("prompt_500.json", "w") as f:
+    #     json.dump(prompt_500, f)
+    with open("prompt_1100.json", "w") as f:
         json.dump(prompt_1000, f)
-    with open("prompt_2000.json", "w") as f:
-        json.dump(prompt_2000, f)
+    # with open("prompt_2000.json", "w") as f:
+    #     json.dump(prompt_2000, f)
 
 read_json_file(path)
