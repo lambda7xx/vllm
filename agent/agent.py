@@ -25,7 +25,10 @@ class ReactReq:
         self.r2_react_num = 0
         self.react_num = num_react 
     def terminate_application(self):
-        return self.r1_react_num + self.r2_react_num <= self.react_num
+        return self.r1_react_num + self.r2_react_num > self.react_num
+
+    def final_terminate(self):
+        return self.r1_react_num + self.r2_react_num == self.react_num
     
     def get_react_num(self):
         return self.r1_react_num + self.r2_react_num
@@ -127,12 +130,13 @@ def with_agent_optimized(args, prompts):
 
             req_num_act = info[rid1].get_react_num()
             is_terminate = info[rid1].terminate_application()
-            print(f"2 with_agent req_num_act:{req_num_act} and num_act:{num_act} and rid1={rid1} and rid2={rid2}")
+            final_terminate = info[rid1].final_terminate()
+            print(f"2 with_agent req_num_act:{req_num_act} and num_act:{num_act} and rid1={rid1} and rid2={rid2} and is_terminate:{is_terminate} and final_terminate:{final_terminate}")
             if req_num_act % 2 == 1 and not is_terminate:
                 #do prefill+docode for req1
                 engine.add_request(request_id = rid1, inputs = sp1+ prompt, params = sampling_params, arrival_time = now)
                 # do prefill for req2 
-                if not is_terminate:
+                if not final_terminate:
                     engine.add_request(request_id = rid2, inputs = sp2+ prompt, params = discard_sampling_params, arrival_time = now)
                     print(f"3 rid1:{rid1} is agent prefill and rid2:{rid2} is prefill+decode")
                     marked[rid2] = False 
@@ -142,7 +146,7 @@ def with_agent_optimized(args, prompts):
                 engine.add_request(request_id = rid2, inputs = sp2+ prompt, params = sampling_params, arrival_time = now)
                 #do prefill for req1
                 #info[rid1].r2_react_num += 1
-                if not is_terminate:
+                if not final_terminate:
                     engine.add_request(request_id = rid1, inputs = sp1+ prompt, params = discard_sampling_params, arrival_time = now)
                     print(f"4 rid1:{rid1} is agent parallelism and rid2:{rid2} is prefill+decode")
                     marked[rid1] = False
@@ -212,6 +216,7 @@ def with_agent_optimized(args, prompts):
                                 info[rx1].total_token += len(request_output.outputs[0].token_ids)
                                 info[rx1].r2_user_prompt = info[rx1].r1_user_prompt + output_text
                                 info[rx1].r2_react_num += 1
+                                print(f"8.25 req_id:{req_id} rx0:{rx0} become prefill and rx1:{rx1} become prefill done  ")
                                 marked[rx0] = False
                                 finished_reqs.pop(rx0)
                                 finished_reqs.pop(rx1)
