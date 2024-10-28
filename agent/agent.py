@@ -107,15 +107,16 @@ def with_agent(args, prompts):
             print(f"1 with_agent req_num_act:{req_num_act} and num_act:{num_act} and rid1={rid1} and rid2={rid2}")
             if req_num_act % 2 == 1:
                 engine.add_request(request_id = rid1, inputs = sp1+ prompt, params = sampling_params, arrival_time = now)
-                do prefill for req2 
+                # do prefill for req2 
                 engine.add_request(request_id = rid2, inputs = sp2+ prompt, params = discard_sampling_params, arrival_time = now)
             else:
                 engine.add_request(request_id = rid2, inputs = sp2+ prompt, params = sampling_params, arrival_time = now)
                 #do prefill for req1
                 engine.add_request(request_id = rid1, inputs = sp1+ prompt, params = discard_sampling_params, arrival_time = now)
-                print(f"1.1 with_agent engine has add request")
+            print(f"1.1 with_agent engine has add request")
         try:
             request_outputs = engine.step()
+            print(f"1.2 with_agent, len(request_outputs):{len(request_outputs)}")
         except Exception as e:
             print(f"error: {e}")
        
