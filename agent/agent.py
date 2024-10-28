@@ -210,8 +210,8 @@ def with_agent_optimized(args, prompts):
                                 reqs.append([rx1, info[rx1].r1_user_prompt + output_text])
                                 info[rx1].total_duration += fin_req.now - info[rx0].arr1
                                 info[rx1].total_token += len(request_output.outputs[0].token_ids)
-                                info[rx1].r1_user_prompt = info[rx1].r1_user_prompt + output_text
-                                info[rx1].r1_react_num += 1
+                                info[rx1].r2_user_prompt = info[rx1].r1_user_prompt + output_text
+                                info[rx1].r2_react_num += 1
                                 marked[rx0] = False
                                 finished_reqs.pop(rx0)
                                 finished_reqs.pop(rx1)
@@ -253,7 +253,7 @@ def with_agent_optimized(args, prompts):
                                 info[rx0].total_duration += fin_req.now - info[rx0].arr2
                                 info[rx0].total_token += len(request_output.outputs[0].token_ids)
                                 info[rx0].r1_user_prompt = info[rx0].r2_user_prompt + output_text
-                                info[rx0].r2_react_num += 1
+                                info[rx0].r1_react_num += 1
                                 marked[rx1] = False
                                 finished_reqs.pop(rx0)
                                 finished_reqs.pop(rx1)
