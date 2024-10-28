@@ -58,9 +58,12 @@ def warm_up(engine):
     print(f"finish warm up")
     
 def get_prompt(bs, pr_len):
+    path_400 = "prompt_400.json"
     path_500 ="prompt_500.json"
     path_1000 = "prompt_1000.json"
     path_2000 = "prompt_2000.json"
+    if pr_len == 400:
+        path = path_400
     if pr_len == 500:
         path = path_500
     elif pr_len == 1000:
@@ -70,7 +73,7 @@ def get_prompt(bs, pr_len):
     prompts = [] 
     with open(path, "r") as f:
         prompts = json.load(f)
-    return prompts[:bs]
+    return prompts[1:bs+1]
 
 def with_agent_optimized(args, prompts):
     print(f"start with agent")
@@ -131,6 +134,7 @@ def with_agent_optimized(args, prompts):
             req_num_act = info[rid1].get_react_num()
             is_terminate = info[rid1].terminate_application()
             final_terminate = info[rid1].final_terminate()
+            print(f"1.5 with_agent rid:{rid} and req_num_act:{req_num_act} rid1={rid1} and rid2={rid2} ")
             print(f"2 with_agent req_num_act:{req_num_act} and num_act:{num_act} and rid1={rid1} and rid2={rid2} and is_terminate:{is_terminate} and final_terminate:{final_terminate}")
             if req_num_act % 2 == 1 and not is_terminate:
                 #do prefill+docode for req1
@@ -150,10 +154,15 @@ def with_agent_optimized(args, prompts):
                     engine.add_request(request_id = rid1, inputs = sp1+ prompt, params = discard_sampling_params, arrival_time = now)
                     print(f"4 rid1:{rid1} is agent parallelism and rid2:{rid2} is prefill+decode")
                     marked[rid1] = False
+       
         try:
+            start = time.time()
             request_outputs = engine.step()
+            end = time.time()
+            print(f"4.2 one step time:{end-start}")
         except Exception as e:
             print(f"error: {e}")
+
         print(f"4.5 len(request_outputs):{len(request_outputs)}")
         now = time.time()
 
@@ -161,7 +170,7 @@ def with_agent_optimized(args, prompts):
             req_id = request_output.request_id
             rx0 = info[req_id].rid1
             rx1 = info[req_id].rid2
-            
+            rid = rx0[:-2]
             if num_act % 2 == 0:
                 terminate_rid = rx1
             else:
@@ -172,7 +181,7 @@ def with_agent_optimized(args, prompts):
             is_terminate = info[rid1].terminate_application()
             final_terminate = info[rid1].final_terminate()
             output_text = request_output.outputs[0].text
-            print(f"5 with_agent, req_id:{req_id} and rx0:{rx0} and rx1:{rx1} and req_num_act:{req_num_act} and req.finished:{request_output.finished} and o_len:{output_text_len}")
+            print(f"5 with_agent, req_id:{req_id} and rx0:{rx0} and rx1:{rx1} and req_num_act:{req_num_act} and req.finished:{request_output.finished} and o_len:{output_text_len} and output_text:{output_text}")
             #if req_num_act % 2 == 1, rx0 prefill+decode, rx1 only prefill,
             #if req_num_act % 2 == 0, rx1 prefill+decode, rx0 only prefill
             if not request_output.finished and not is_terminate:
@@ -235,15 +244,18 @@ def with_agent_optimized(args, prompts):
                             print(f"10.02 req_id:{req_id} and rx0:{rx0} ******* prefill+decode done and rx1:{rx1} agent prefill *****done")
                             if req_num_act != num_act:
                                 reqs.append([rx1, info[rx1].r1_user_prompt + output_text])
+                                prompt = info[rx1].r1_user_prompt + output_text
+                                print(f"10.03 req_id:{req_id} and rx0:{rx0} prefill + decode done and rx1:{rx1} ")
                                 print(f"10.1 req_id:{req_id} and rx0:{rx0} agent parallelism and rx1:{rx1} prefill+decode ")
                             info[rx1].r2_user_prompt = info[rx1].r1_user_prompt + output_text
                             info[rx1].total_duration += now - info[req_id].arr1
                             info[rx1].total_token += len(request_output.outputs[0].token_ids)
+                            print(f"10.2 req_id:{req_id} and rx0:{rx0} prefill + decode done and rx1:{rx1} prefill done and info[rx1].total_duration:{info[rx1].total_duration} and info[rx1].total_token:{info[rx1].total_token}")
                             info[rx1].r2_react_num += 1
                         else:#rx1 not finished,store the rx0 until the rx1 finished
                             if rx1 not in finished_reqs:
                                 fin_req = FinishReq(rx0, rx1, output_text, output_text_len,now)
-                                print(f"10.2 req_id:{req_id} and rx0:{rx0} prefill + decode done and rx1:{rx1} prefill generate fin_req")
+                                print(f"10.25 req_id:{req_id} and rx0:{rx0} prefill + decode done and rx1:{rx1} prefill generate fin_req")
                                 finished_reqs[rx1] = fin_req
                                 finished_reqs[rx0] = fin_req 
                                 finished_reqs[rx0].r0_finished = True
@@ -272,10 +284,13 @@ def with_agent_optimized(args, prompts):
                                 print(f"11.6 req_id:{req_id} rx0:{rx0} prefill + decode and rx1:{rx1} prefill done and rx0_stored:{rx0_stored}")
                                 if req_num_act != num_act:
                                     reqs.append([rx1, info[rx1].r1_user_prompt + output_text])
+                                    prompt = info[rx1].r1_user_prompt + output_text
+                                    print(f"11.7 req_id:{req_id} and rx0:{rx0} prefill + decode done and rx1:{rx1}")
                                 print(f"11.7 req_id:{req_id} rx0:{rx0} convert to agent prefill  and rx1:{rx1} convert prefill+decode")
                                 #print(f"11.7 req_id:{req_id} rx0:{rx0} prefill + decode ******done and rx1:{rx1} still agent prefill done")
-                                info[rx0].total_duration += fin_req.now - info[rx1].arr1
+                                info[rx0].total_duration += now - info[rx1].arr1
                                 info[rx0].total_token += len(request_output.outputs[0].token_ids)
+                                print(f"11.8 req_id:{req_id} rx0:{rx0} prefill + decode done and rx1:{rx1} prefill done and info[rx0].total_duration:{info[rx0].total_duration} and info[rx0].total_token:{info[rx0].total_token}")
                                 info[rx0].r2_user_prompt = info[rx1].r1_user_prompt + output_text
                                 info[rx0].r2_react_num += 1
                                 marked[rx0] = False
@@ -297,6 +312,7 @@ def with_agent_optimized(args, prompts):
                             info[rx1].total_duration += now - info[req_id].arr2
                             info[rx1].total_token += len(request_output.outputs[0].token_ids)
                             info[rx1].r1_react_num += 1
+                            print(f"11.6 req_id:{req_id} and rx0:{rx0} prefill done and rx1:{rx1} prefill + decode done and info[rx1].total_duration:{info[rx1].total_duration} and info[rx1].total_token:{info[rx1].total_token}")
                         else:#r0 not finished
                             if rx0 not in finished_reqs:
                                 fin_req = FinishReq(rx0, rx1, output_text, output_text_len,now)
@@ -324,11 +340,14 @@ def with_agent_optimized(args, prompts):
                             if fin_req.r1_finished:
                                 if req_num_act != num_act:
                                     reqs.append([rx0, info[rx1].r2_user_prompt + output_text])
+                                    print(f"12.7 req_id:{req_id} rx0:{rx0} convert prefill+decode and rx1:{rx1} may convert agent prefill")
                                 marked[rx1] = False
-                                info[rx0].total_duration += fin_req.now - info[rx0].arr2
+                                print(f"12.75 req_id:{req_id} rx0:{rx0} prefill done and rx1:{rx1} prefill + decode done and and info[rx0].total_duration:{info[rx0].total_duration} and info[rx0].total_token:{info[rx0].total_token} ")
+                                info[rx0].total_duration += now - info[rx0].arr2
                                 info[rx0].total_token += len(request_output.outputs[0].token_ids)
                                 info[rx0].r1_user_prompt = info[rx0].r2_user_prompt + output_text
                                 info[rx0].r1_react_num += 1
+                                print(f"12.8 req_id:{req_id} rx0:{rx0} prefill done and rx1:{rx1} prefill + decode done and info[rx0].total_duration:{info[rx0].total_duration} and info[rx0].total_token:{info[rx0].total_token}")
                                 if rx0 in finished_reqs:
                                     finished_reqs.pop(rx0)
                                 if rx1 in finished_reqs:
@@ -609,8 +628,12 @@ def without_agent(args,prompts):
                 engine.add_request(request_id = rid2, inputs = sp2+ prompt, params = sampling_params, arrival_time = now)
                 add_rid = rid2
             print(f"1.2 engine has add request and add_rid:{add_rid}")
+        
         try:
+            start = time.time()
             request_outputs = engine.step()
+            end = time.time()
+            print(f"one step time:{end-start}")
         #don't use agent parallelism 
         except Exception as e:
             print(f"error: {e}")
