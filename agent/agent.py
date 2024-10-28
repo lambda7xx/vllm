@@ -115,36 +115,29 @@ def with_agent_optimized(args, prompts):
             if rid1 not in info:
                 req = ReactReq( arr1=now,arr2=now, rid1=rid1, rid2=rid2,num_react = num_act)
                 req.r1_user_prompt = prompt
-                req.r1_react_num =0#first time react 
+                req.r1_react_num =1#first time react 
                 info[rid1] = req
                 info[rid2] = req
             else:
                 #update the arr1 or arr2
-                if req_num_act == 0:
-                    info[rid1].arr1 = now
-                elif req_num_act % 2 == 1:
+                if req_num_act % 2 == 1:
                     info[rid2].arr1 = now
                 elif req_num_act % 2 == 0:
                     info[rid1].arr2 = now
-                # if req_num_act % 2 == :
-                #     info[rid1].arr1 = now
-                # else:
-                #     info[rid2].arr2 = now
+
             req_num_act = info[rid1].get_react_num()
             is_terminate = info[rid1].terminate_application()
             print(f"2 with_agent req_num_act:{req_num_act} and num_act:{num_act} and rid1={rid1} and rid2={rid2}")
-            if req_num_act % 2 == 0 and not is_terminate:
+            if req_num_act % 2 == 1 and not is_terminate:
                 #do prefill+docode for req1
                 engine.add_request(request_id = rid1, inputs = sp1+ prompt, params = sampling_params, arrival_time = now)
-                if info[rid1].r1_react_num == 0:#first time react
-                    info[rid1].r1_react_num += 1
                 # do prefill for req2 
                 if not is_terminate:
                     engine.add_request(request_id = rid2, inputs = sp2+ prompt, params = discard_sampling_params, arrival_time = now)
                     print(f"3 rid1:{rid1} is agent prefill and rid2:{rid2} is prefill+decode")
                     marked[rid2] = False 
 
-            elif req_num_act % 2 == 1  and not is_terminate:
+            elif req_num_act % 2 == 0  and not is_terminate:
                 #do prefill+decode for req2
                 engine.add_request(request_id = rid2, inputs = sp2+ prompt, params = sampling_params, arrival_time = now)
                 #do prefill for req1
