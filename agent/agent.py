@@ -265,7 +265,6 @@ def with_agent_optimized(args, prompts):
                             info[rx1].total_token += len(request_output.outputs[0].token_ids)
                             #print(f"10.2 req_id:{req_id} and rx0:{rx0} prefill + decode done and rx1:{rx1} prefill done and info[rx1].total_duration:{info[rx1].total_duration} and info[rx1].total_token:{info[rx1].total_token}")
                             info[rx1].r2_react_num += 1
-                            after_req_num_act = info[rx1].get_react_num()
                             #print(f"10.3 req_id:{req_id} and rx0:{rx0} prefill + decode done and rx1:{rx1} prefill done and after_req_num_act:{after_req_num_act} and num_act:{num_act}")
                         elif req_num_act != num_act:#rx1 not finished,store the rx0 until the rx1 finished
                             if rx1 not in finished_reqs:
