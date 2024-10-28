@@ -113,12 +113,12 @@ def with_agent(args, prompts):
                 engine.add_request(request_id = rid1, inputs = sp1+ prompt, params = sampling_params, arrival_time = now)
                 # do prefill for req2 
                 engine.add_request(request_id = rid2, inputs = sp2+ prompt, params = discard_sampling_params, arrival_time = now)
-                print(f"1.2 rid1:{rid1} is prefill+decode and rid2:{rid2} is agent parallelism")
+                print(f"1.1 rid1:{rid1} is prefill+decode and rid2:{rid2} is agent parallelism")
             else:
                 engine.add_request(request_id = rid2, inputs = sp2+ prompt, params = sampling_params, arrival_time = now)
                 #do prefill for req1
                 engine.add_request(request_id = rid1, inputs = sp1+ prompt, params = discard_sampling_params, arrival_time = now)
-                print(f"1.5 rid1:{rid1} is agent parallelism and rid2:{rid2} is prefill+decode")
+                print(f"1.15 rid1:{rid1} is agent parallelism and rid2:{rid2} is prefill+decode")
         try:
             request_outputs = engine.step()
         except Exception as e:
@@ -134,13 +134,15 @@ def with_agent(args, prompts):
             #then the req_id maybe rid2, so we need to skip this request because it's still in the prefill 
             #also assume we prefill+decode for r2 and agent parallelism for r1, then the req_id maybe rid1
             #so we need to skip this request because it's still in the prefill
-            print(f"1.2 with_agent, req_id:{req_id} and rid1:{rid1} and rid2:{rid2}")
+            
             req_num_act = req_acts[rid1] + req_acts[rid2]
             output_text_len = len(request_output.outputs[0].token_ids)
             output_text = request_output.outputs[0].text
             if req_num_act == num_act:
                 finish_rid = rid
-            print(f"1.3 req_num_act:{req_num_act} and num_act:{num_act}")
+            #print(f"1.3 req_num_act:{req_num_act} and num_act:{num_act}")
+            print(f"1.2 with_agent, req_id:{req_id} and rid1:{rid1} and rid2:{rid2} and req_num_act:{req_num_act} and num_act:{num_act}")
+            print(f"1.3 with_agent, rid1:{rid1} and rid2:{rid2} and output_text_len:{output_text_len}")
             if not request_output.finished and req_num_act != num_act:
                 #use agent parallelism 
                 if req_num_act % 2 == 0 and req_id == rid2:
@@ -157,6 +159,10 @@ def with_agent(args, prompts):
                         print(f"1.5 rid1:{rid1} prefill+decode and rid2:{rid2} agent prefill")
             elif request_output.finished and req_num_act != num_act:
                 #also use agent parallelism 
+                if req_num_act % 2 == 0 and req_id == rid2:
+                    print(f"1.6 rid1:{rid1} and rid2:{rid2} rid2 finish its execution")
+                else:
+                    print(f"1.7 rid1:{rid1} and rid2:{rid2} rid1 finish its execution")
                 if req_num_act % 2 == 0 and req_id == rid2:#r2 finished 
                     #r2 decode+prefill, r1 only prefill
                     reqs.append([rid1, info[rid1].r2_user_prompt + output_text])
