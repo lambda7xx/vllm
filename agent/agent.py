@@ -56,6 +56,7 @@ def with_agent(args, prompts):
     warm_up(engine)   
     max_token = args.max_tokens
     agent_tokens = args.agent_tokens
+    bs = args.batch_size
     print(f"max_token:{max_token} and agent_tokens:{agent_tokens}")
     sp1 = """
     you are very powerful AI, Please help answer the below question and generate at least {max_token} tokens.
@@ -124,6 +125,7 @@ def with_agent(args, prompts):
             req_id = request_output.request_id
             rid1 = info[req_id].rid1
             rid2 = info[req_id].rid2
+            rid = rid1[:-2]
             #TODO(xiao): one bug here, assume we prefill+decode for r1 and agent parallelism for r2,
             #then the req_id maybe rid2, so we need to skip this request because it's still in the prefill 
             #also assume we prefill+decode for r2 and agent parallelism for r1, then the req_id maybe rid1
@@ -145,7 +147,7 @@ def with_agent(args, prompts):
                     if output_text_len % agent_tokens == 0:
                         #add rid2 into the engine
                         reqs.append([rid2, info[rid2].r1_user_prompt + output_text])
-            elif request_output.finished and req_num_act == num_act:
+            elif request_output.finished and req_num_act != num_act:
                 #also use agent parallelism 
                 if req_num_act % 2 == 0:#r2 finished 
                     #r2 decode+prefill, r1 only prefill
@@ -177,15 +179,15 @@ def with_agent(args, prompts):
         if not (reqs or engine.has_unfinished_requests()):
             break
         # print(f"2 engine has unfinished requests:{engine.has_unfinished_requests()}")    
-    # latencies = 0
-    # total_tokens = 0
-    # for d in finished:
-    #     latencies += d["total_duration"]
-    #     total_tokens += d["total_token"]
-    # normalized_latency = latencies/total_tokens
-    # avg_latency = latencies/len(finished)
-    # print(f"batch:{bs} and normalized_latency:{normalized_latency}")
-    # print(f"batch:{bs} and avg e2e latency:{avg_latency}")
+    latencies = 0
+    total_tokens = 0
+    for d in finished:
+        latencies += d["total_duration"]
+        total_tokens += d["total_token"]
+    normalized_latency = latencies/total_tokens
+    avg_latency = latencies/len(finished)
+    print(f"batch:{bs} and normalized_latency:{normalized_latency}")
+    print(f"batch:{bs} and avg e2e latency:{avg_latency}")
 
 
 
