@@ -112,13 +112,19 @@ def with_agent(args, prompts):
             if req_num_act % 2 == 1:
                 engine.add_request(request_id = rid1, inputs = sp1+ prompt, params = sampling_params, arrival_time = now)
                 # do prefill for req2 
-                engine.add_request(request_id = rid2, inputs = sp2+ prompt, params = discard_sampling_params, arrival_time = now)
-                print(f"3 rid1:{rid1} is prefill+decode and rid2:{rid2} is agent parallelism")
+                if req_num_act != num_act :
+                    engine.add_request(request_id = rid2, inputs = sp2+ prompt, params = discard_sampling_params, arrival_time = now)
+                    print(f"3 rid1:{rid1} is agent prefill and rid2:{rid2} is prefill+decode")
+                # engine.add_request(request_id = rid2, inputs = sp2+ prompt, params = discard_sampling_params, arrival_time = now)
+                # print(f"3 rid1:{rid1} is prefill+decode and rid2:{rid2} is agent parallelism")
             else:
                 engine.add_request(request_id = rid2, inputs = sp2+ prompt, params = sampling_params, arrival_time = now)
                 #do prefill for req1
-                engine.add_request(request_id = rid1, inputs = sp1+ prompt, params = discard_sampling_params, arrival_time = now)
-                print(f"4 rid1:{rid1} is agent parallelism and rid2:{rid2} is prefill+decode")
+                if req_num_act != num_act:
+                    engine.add_request(request_id = rid1, inputs = sp1+ prompt, params = discard_sampling_params, arrival_time = now)
+                    print(f"4 rid1:{rid1} is agent parallelism and rid2:{rid2} is prefill+decode")
+                # engine.add_request(request_id = rid1, inputs = sp1+ prompt, params = discard_sampling_params, arrival_time = now)
+                # print(f"4 rid1:{rid1} is agent parallelism and rid2:{rid2} is prefill+decode")
         try:
             request_outputs = engine.step()
         except Exception as e:
@@ -128,7 +134,7 @@ def with_agent(args, prompts):
             req_id = request_output.request_id
             rid1 = info[req_id].rid1
             rid2 = info[req_id].rid2
-            rid = rid1[:-2]
+            rid = req_id[:-2]
             if num_act % 2 == 0:
                 terminate_rid = rid2 
             else:
@@ -141,10 +147,8 @@ def with_agent(args, prompts):
             req_num_act = req_acts[rid1] + req_acts[rid2]
             output_text_len = len(request_output.outputs[0].token_ids)
             output_text = request_output.outputs[0].text
-
-            #print(f"1.3 req_num_act:{req_num_act} and num_act:{num_act}")
-            print(f"5 with_agent, req_id:{req_id} and rid1:{rid1} and rid2:{rid2} and terminate_rid:{terminate_rid} and req_num_act:{req_num_act} and num_act:{num_act}")
-            print(f"6 with_agent, rid1:{rid1} and rid2:{rid2} and terminate_rid:{terminate_rid}  and output_text_len:{output_text_len}")
+            now = time.time()
+            print(f"5 with_agent, req_id:{req_id} and rid1:{rid1} and rid2:{rid2} and terminate_rid:{terminate_rid} and req_num_act:{req_num_act} and output_text_len:{output_text_len}")
             if not request_output.finished and req_num_act != num_act:
                 #use agent parallelism 
                 if req_num_act % 2 == 0 and req_id == rid2:
@@ -159,6 +163,7 @@ def with_agent(args, prompts):
                         #add rid2 into the engine
                         reqs.append([rid2, info[rid2].r1_user_prompt + output_text])
                         print(f"8 rid1:{rid1} prefill+decode and rid2:{rid2} agent prefill and terminate_rid:{terminate_rid} ")
+
             elif request_output.finished and req_num_act != num_act:
                 #also use agent parallelism 
                 if req_num_act % 2 == 0 and req_id == rid2:
@@ -204,13 +209,12 @@ def with_agent(args, prompts):
         for request_output in request_outputs:
             req_id = request_output.request_id
             rid1 = info[req_id].rid1
-            rid2 = info[req_id].rid2
-            rid = rid1[:-2]    
+            rid2 = info[req_id].rid2  
             req_num_act = req_acts[rid1] + req_acts[rid2]
             if request_output.finished and req_num_act != num_act:
                 if req_num_act % 2 == 0 and req_id == rid2:
                     req_acts[rid1] += 1
-                else:
+                elif req_num_act % 2 == 1 and req_id == rid1:
                     req_acts[rid2] += 1
 
         if not (reqs or engine.has_unfinished_requests()):
