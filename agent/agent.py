@@ -170,7 +170,7 @@ def with_agent_optimized(args, prompts):
                         
             output_text_len = len(request_output.outputs[0].token_ids)
             is_terminate = info[rid1].terminate_application()
-            
+            final_terminate = info[rid1].final_terminate()
             output_text = request_output.outputs[0].text
             print(f"5 with_agent, req_id:{req_id} and rx0:{rx0} and rx1:{rx1} and req_num_act:{req_num_act} and req.finished:{request_output.finished} and o_len:{output_text_len}")
             #if req_num_act % 2 == 1, rx0 prefill+decode, rx1 only prefill,
@@ -238,13 +238,14 @@ def with_agent_optimized(args, prompts):
                     #case 2:rx0 finished, rx1 finished
                         #rx0->prefill, rx0 + rx1 - > prefill + decode 
                     if req_id == rx0:#rx0 finished
-                        print(f"10 req_id:{req_id} and rx0:{rx0} prefill + decode done and rx1:{rx1} prefill and marked[rx1]:{marked[rx1]}")
+                        print(f"10 req_id:{req_id} and rx0:{rx0} prefill + decode done and rx1:{rx1} prefill and marked[rx1]:{marked[rx1]} and req_num_act:{req_num_act} and num_act:{num_act}")
                         if marked[rx1] == True:#rx0 finished prefill+done, rx1 finished  prefill
-                            reqs.append([rx1, info[rx1].r1_user_prompt + output_text])
-                            info[rx1].r2_user_prompt = info[rx1].r1_user_prompt + output_text
-                            info[rx1].total_duration += now - info[req_id].arr1
-                            info[rx1].total_token += len(request_output.outputs[0].token_ids)
-                            info[rx1].r2_react_num += 1
+                            if req_num_act != num_act:
+                                reqs.append([rx1, info[rx1].r1_user_prompt + output_text])
+                                info[rx1].r2_user_prompt = info[rx1].r1_user_prompt + output_text
+                                info[rx1].total_duration += now - info[req_id].arr1
+                                info[rx1].total_token += len(request_output.outputs[0].token_ids)
+                                info[rx1].r2_react_num += 1
                         else:#rx1 not finished,store the rx0 until the rx1 finished
                             if rx1 not in finished_reqs:
                                 fin_req = FinishReq(rx0, rx1, output_text, output_text_len,now)
@@ -352,7 +353,30 @@ def with_agent_optimized(args, prompts):
                                 if rx1 in finished_reqs:
                                     finished_reqs.pop(rx1)
 
-            elif request_output.finished and is_terminate:
+            # elif request_output.finished and is_terminate:
+            #     if req_num_act % 2 == 0 and req_id == terminate_rid:
+            #         print(f"13 rid2 finish the application req_num_act:{req_num_act} and num_act:{num_act} and terminate_rid:{terminate_rid}")
+            #         info[rx1].total_duration += now - info[rx1].arr2
+            #         info[rx1].total_token += len(request_output.outputs[0].token_ids)
+            #         finished.append({
+            #             "request_id": rid,
+            #             "total_duration": info[rid1].total_duration,
+            #             "total_token": info[rid1].total_token
+            #         })
+            #         print(f"14 finished[-1]:{finished[-1]} and rid:{rid} and terminate_rid:{terminate_rid} ")
+            #     elif req_num_act % 2 == 1 and req_id == terminate_rid:
+            #         info[rx0].total_duration += now - info[rx0].arr1
+            #         info[rx0].total_token += len(request_output.outputs[0].token_ids)
+            #         print(f"15 rid1 finish the application req_num_act:{req_num_act} and num_act:{num_act} and terminate_rid:{terminate_rid} ")
+            #         finished.append({
+            #             "request_id": rid,
+            #             "total_duration": info[rid1].total_duration,
+            #             "total_token": info[rid1].total_token
+            #         })
+            #         print(f"16 finished[-1]:{finished[-1]} and rid:{rid}")
+            
+            if request_output.finished and req_num_act == num_act:
+                #finish the application
                 if req_num_act % 2 == 0 and req_id == terminate_rid:
                     print(f"13 rid2 finish the application req_num_act:{req_num_act} and num_act:{num_act} and terminate_rid:{terminate_rid}")
                     info[rx1].total_duration += now - info[rx1].arr2
