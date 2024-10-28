@@ -129,6 +129,7 @@ def with_agent(args, prompts):
             rid1 = info[req_id].rid1
             rid2 = info[req_id].rid2
             rid = rid1[:-2]
+            finish_rid = None
             #TODO(xiao): one bug here, assume we prefill+decode for r1 and agent parallelism for r2,
             #then the req_id maybe rid2, so we need to skip this request because it's still in the prefill 
             #also assume we prefill+decode for r2 and agent parallelism for r1, then the req_id maybe rid1
@@ -137,6 +138,8 @@ def with_agent(args, prompts):
             req_num_act = req_acts[rid1] + req_acts[rid2]
             output_text_len = len(request_output.outputs[0].token_ids)
             output_text = request_output.outputs[0].text
+            if req_num_act == num_act:
+                finish_rid = rid
             print(f"1.3 req_num_act:{req_num_act} and num_act:{num_act}")
             if not request_output.finished and req_num_act != num_act:
                 #use agent parallelism 
@@ -154,14 +157,14 @@ def with_agent(args, prompts):
                         print(f"1.5 rid1:{rid1} prefill+decode and rid2:{rid2} agent prefill")
             elif request_output.finished and req_num_act != num_act:
                 #also use agent parallelism 
-                if req_num_act % 2 == 0:#r2 finished 
+                if req_num_act % 2 == 0 and req_id == rid2:#r2 finished 
                     #r2 decode+prefill, r1 only prefill
                     reqs.append([rid1, info[rid1].r2_user_prompt + output_text])
                     info[rid1].total_duration += now - info[req_id].arr2
                     info[rid1].total_token += len(request_output.outputs[0].token_ids)
                     info[rid1].r1_user_prompt = info[rid1].r2_user_prompt + output_text
                     req_acts[rid1] += 1
-                else: #r1 finished
+                elif req_id == rid1: #r1 finished
                     #r1 decode+prefill, r2 only prefill
                     reqs.append([rid2, info[rid2].r1_user_prompt + output_text])
                     info[rid1].total_duration += now - info[req_id].arr1
@@ -169,10 +172,10 @@ def with_agent(args, prompts):
                     info[rid1].r2_user_prompt = info[rid1].r1_user_prompt + output_text
                     req_acts[rid2] += 1
             elif request_output.finished and req_num_act == num_act: #finish the react application
-                if req_num_act % 2 == 0:
+                if req_num_act % 2 == 0 and req_id == rid2:
                     info[rid1].total_duration += now - info[rid1].arr2
                     info[rid1].total_token += len(request_output.outputs[0].token_ids)
-                else:
+                elif req_num_act % 2 == 1 and req_id == rid1:
                     info[rid1].total_duration += now - info[rid1].arr1
                     info[rid1].total_token += len(request_output.outputs[0].token_ids)
                 finished.append({
