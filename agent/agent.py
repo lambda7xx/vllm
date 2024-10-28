@@ -116,64 +116,64 @@ def with_agent(args, prompts):
             print(f"1.1 with_agent engine has add request")
         try:
             request_outputs = engine.step()
-            print(f"1.2 with_agent, len(request_outputs):{len(request_outputs)}")
+            print(f"1.15 with_agent, len(request_outputs):{len(request_outputs)}")
         except Exception as e:
             print(f"error: {e}")
        
-            for request_output in request_outputs:
-                req_id = request_output.request_id
-                rid1 = info[req_id].rid1
-                rid2 = info[req_id].rid2
-                #TODO(xiao): one bug here, assume we prefill+decode for r1 and agent parallelism for r2,
-                #then the req_id maybe rid2, so we need to skip this request because it's still in the prefill 
-                #also assume we prefill+decode for r2 and agent parallelism for r1, then the req_id maybe rid1
-                #so we need to skip this request because it's still in the prefill
-                print(f"1.2 with_agent, req_id:{req_id} and rid1:{rid1} and rid2:{rid2}")
-                req_num_act = req_acts[rid1] + req_acts[rid2]
-                output_text_len = len(request_output.outputs[0].token_ids)
-                output_text = request_output.outputs[0].text
-                print(f"1.3 req_num_act:{req_num_act} and num_act:{num_act}")
-                if not request_output.finished and req_num_act != num_act:
-                    #use agent parallelism 
-                    if req_num_act % 2 == 0 and req_id == rid2:
-                        #req1 agent prefill, req2 prefill+ decode
-                        if output_text_len % agent_tokens == 0:
-                            #add rid1 into the engine
-                            reqs.append([rid1, info[rid1].r2_user_prompt + output_text])
-                    elif req_num_act % 2 == 1 and req_id == rid1:
-                        #req2 agent prefill, req1 prefill+decode
-                        if output_text_len % agent_tokens == 0:
-                            #add rid2 into the engine
-                            reqs.append([rid2, info[rid2].r1_user_prompt + output_text])
-                elif request_output.finished and req_num_act == num_act:
-                    #also use agent parallelism 
-                    if req_num_act % 2 == 0:#r2 finished 
-                        #r2 decode+prefill, r1 only prefill
+        for request_output in request_outputs:
+            req_id = request_output.request_id
+            rid1 = info[req_id].rid1
+            rid2 = info[req_id].rid2
+            #TODO(xiao): one bug here, assume we prefill+decode for r1 and agent parallelism for r2,
+            #then the req_id maybe rid2, so we need to skip this request because it's still in the prefill 
+            #also assume we prefill+decode for r2 and agent parallelism for r1, then the req_id maybe rid1
+            #so we need to skip this request because it's still in the prefill
+            print(f"1.2 with_agent, req_id:{req_id} and rid1:{rid1} and rid2:{rid2}")
+            req_num_act = req_acts[rid1] + req_acts[rid2]
+            output_text_len = len(request_output.outputs[0].token_ids)
+            output_text = request_output.outputs[0].text
+            print(f"1.3 req_num_act:{req_num_act} and num_act:{num_act}")
+            if not request_output.finished and req_num_act != num_act:
+                #use agent parallelism 
+                if req_num_act % 2 == 0 and req_id == rid2:
+                    #req1 agent prefill, req2 prefill+ decode
+                    if output_text_len % agent_tokens == 0:
+                        #add rid1 into the engine
                         reqs.append([rid1, info[rid1].r2_user_prompt + output_text])
-                        info[rid1].total_duration += now - info[req_id].arr2
-                        info[rid1].total_token += len(request_output.outputs[0].token_ids)
-                        info[rid1].r1_user_prompt = info[rid1].r2_user_prompt + output_text
-                        req_acts[rid1] += 1
-                    else: #r1 finished
-                        #r1 decode+prefill, r2 only prefill
+                elif req_num_act % 2 == 1 and req_id == rid1:
+                    #req2 agent prefill, req1 prefill+decode
+                    if output_text_len % agent_tokens == 0:
+                        #add rid2 into the engine
                         reqs.append([rid2, info[rid2].r1_user_prompt + output_text])
-                        info[rid1].total_duration += now - info[req_id].arr1
-                        info[rid1].total_token += len(request_output.outputs[0].token_ids)
-                        info[rid1].r2_user_prompt = info[rid1].r1_user_prompt + output_text
-                        req_acts[rid2] += 1
-                elif request_output.finished and req_num_act == num_act: #finish the react application
-                    if req_num_act % 2 == 0:
-                        info[rid1].total_duration += now - info[rid1].arr2
-                        info[rid1].total_token += len(request_output.outputs[0].token_ids)
-                    else:
-                        info[rid1].total_duration += now - info[rid1].arr1
-                        info[rid1].total_token += len(request_output.outputs[0].token_ids)
-                    finished.append({
-                        "request_id": rid,
-                        "total_duration": info[rid1].total_duration,
-                        "total_token": info[rid1].total_token
-                    })
-                    print(f"finished[-1]:{finished[-1]} and rid:{rid}")
+            elif request_output.finished and req_num_act == num_act:
+                #also use agent parallelism 
+                if req_num_act % 2 == 0:#r2 finished 
+                    #r2 decode+prefill, r1 only prefill
+                    reqs.append([rid1, info[rid1].r2_user_prompt + output_text])
+                    info[rid1].total_duration += now - info[req_id].arr2
+                    info[rid1].total_token += len(request_output.outputs[0].token_ids)
+                    info[rid1].r1_user_prompt = info[rid1].r2_user_prompt + output_text
+                    req_acts[rid1] += 1
+                else: #r1 finished
+                    #r1 decode+prefill, r2 only prefill
+                    reqs.append([rid2, info[rid2].r1_user_prompt + output_text])
+                    info[rid1].total_duration += now - info[req_id].arr1
+                    info[rid1].total_token += len(request_output.outputs[0].token_ids)
+                    info[rid1].r2_user_prompt = info[rid1].r1_user_prompt + output_text
+                    req_acts[rid2] += 1
+            elif request_output.finished and req_num_act == num_act: #finish the react application
+                if req_num_act % 2 == 0:
+                    info[rid1].total_duration += now - info[rid1].arr2
+                    info[rid1].total_token += len(request_output.outputs[0].token_ids)
+                else:
+                    info[rid1].total_duration += now - info[rid1].arr1
+                    info[rid1].total_token += len(request_output.outputs[0].token_ids)
+                finished.append({
+                    "request_id": rid,
+                    "total_duration": info[rid1].total_duration,
+                    "total_token": info[rid1].total_token
+                })
+                print(f"finished[-1]:{finished[-1]} and rid:{rid}")
         if not (reqs or engine.has_unfinished_requests()):
             break
         # print(f"2 engine has unfinished requests:{engine.has_unfinished_requests()}")    

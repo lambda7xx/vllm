@@ -847,7 +847,7 @@ class Scheduler:
         curr_loras: Optional[Set[int]],
         enable_chunking: bool = False,
     ) -> SchedulerPrefillOutputs:
-        print(f"1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is {enable_chunking}")
+        #print(f"1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is {enable_chunking}")
         """Schedule sequence groups that are in prefill stage.
 
         Note that the current scheduler treats PREEMPTED_FOR_RECOMPUTE
