@@ -187,8 +187,8 @@ def with_agent_optimized(args, prompts):
             req_num_act = info[rx0].get_react_num()
                         
             output_text_len = len(request_output.outputs[0].token_ids)
-            is_terminate = info[rid1].terminate_application()
-            final_terminate = info[rid1].final_terminate()
+            is_terminate = info[rx0].terminate_application()
+            final_terminate = info[rx1].final_terminate()
             output_text = request_output.outputs[0].text
             print(f"5 with_agent, req_id:{req_id} and rx0:{rx0} and rx1:{rx1} and req_num_act:{req_num_act} and req.finished:{request_output.finished} and o_len:{output_text_len} and is_terminate:{is_terminate}")
             #if req_num_act % 2 == 1, rx0 prefill+decode, rx1 only prefill,
@@ -287,6 +287,7 @@ def with_agent_optimized(args, prompts):
                             fin_req = FinishReq(rx0, rx1, output_text, output_text_len,now)
                             finished_reqs[rx1] = fin_req
                             finished_reqs[rx0] = fin_req 
+                            info[rx0].r1_react_num += 1 #TODO(xiao):this may have bug 
 
                     elif req_id == rx1:#rx1 finished
                         if marked[rx1] == False:
@@ -351,7 +352,7 @@ def with_agent_optimized(args, prompts):
                                 finished_reqs[rx1].r1_finished = True
                                 print(f"12.1 req_id:{req_id} and rx0:{rx0} prefill and rx1:{rx1} prefill + decode and rx0 in finished_reqs")
                     elif req_id == rx0:#r0 finished
-                        #print(f"12.5 req_id:{req_id} and rx0:{rx0} agent prefill done and rx1:{rx1} prefill + decode and marked[rx0]:{marked[rx0]}")
+                        print(f"12.5 req_id:{req_id} and rx0:{rx0} agent prefill done and rx1:{rx1} prefill + decode and marked[rx0]:{marked[rx0]}")
                         if marked[rx0] == False:
                             marked[rx0] = True
                         #rx1  finished
@@ -362,16 +363,16 @@ def with_agent_optimized(args, prompts):
                                     reqs.append([rx0, info[rx1].r2_user_prompt + output_text])
                                     #print(f"12.7 req_id:{req_id} rx0:{rx0} convert prefill+decode and rx1:{rx1} may convert agent prefill")
                                 marked[rx1] = False
-                                #print(f"12.75 req_id:{req_id} rx0:{rx0} prefill done and rx1:{rx1} prefill + decode done and and info[rx0].total_duration:{info[rx0].total_duration} and info[rx0].total_token:{info[rx0].total_token} ")
+                                print(f"12.75 req_id:{req_id} rx0:{rx0} prefill done and rx1:{rx1} prefill + decode done and and info[rx0].total_duration:{info[rx0].total_duration} and info[rx0].total_token:{info[rx0].total_token} ")
                                 info[rx0].total_duration += now - info[rx0].arr2
                                 info[rx0].total_token += fin_req.output_len
                                 info[rx0].r1_user_prompt = info[rx0].r2_user_prompt + output_text
                                 info[rx0].r1_react_num += 1
                                 #print(f"12.8 req_id:{req_id} rx0:{rx0} prefill done and rx1:{rx1} prefill + decode done and info[rx0].total_duration:{info[rx0].total_duration} and info[rx0].total_token:{info[rx0].total_token}")
-                                if rx0 in finished_reqs:
-                                    finished_reqs.pop(rx0)
-                                if rx1 in finished_reqs:
-                                    finished_reqs.pop(rx1)
+                                # if rx0 in finished_reqs:
+                                #     finished_reqs.pop(rx0)
+                                # if rx1 in finished_reqs:
+                                #     finished_reqs.pop(rx1)
                 elif request_output.finished and is_terminate:
                     print(f"13 with_agent, req_id:{req_id} and rx0:{rx0} and rx1:{rx1} and req_num_act:{req_num_act} and req.finished:{request_output.finished} and o_len:{output_text_len} and terminate_rid:{terminate_rid}")
                     if req_num_act % 2 == 1:
@@ -393,11 +394,12 @@ def with_agent_optimized(args, prompts):
                 terminate_rid = rx0
             req_num_act = info[rx0].get_react_num()
             print(f"17 with_agent, req_id:{req_id} and rx0:{rx0} and rx1:{rx1} and req_num_act:{req_num_act} and req.finished:{request_output.finished} and o_len:{output_text_len} and terminate_rid:{terminate_rid}")
-            if request_output.finished and req_num_act == num_act:
+            if request_output.finished and req_num_act == num_act+1:
                 #finish the application
                 if req_num_act % 2 == 0 and req_id == terminate_rid and rid not in maked_id:
                     print(f"13 rid2 finish the application req_num_act:{req_num_act} and num_act:{num_act} and terminate_rid:{terminate_rid}")
-                    info[rx1].total_duration += now - info[rx1].arr2 #TODO(bug)
+                    fin_req = finished_reqs[rx0]
+                    info[rx1].total_duration += fin_req.now - info[rx1].arr1 #TODO(bug)
                     info[rx1].total_token += len(request_output.outputs[0].token_ids)
                     finished.append({
                         "request_id": rid,
@@ -408,7 +410,7 @@ def with_agent_optimized(args, prompts):
                     print(f"14 finished[-1]:{finished[-1]} and rid:{rid} and terminate_rid:{terminate_rid} ")
                 elif req_num_act % 2 == 1 and req_id == terminate_rid and rid not in maked_id:
                     fin_req = finished_reqs[rx0]
-                    info[rx0].total_duration += fin_req.now - info[rx0].arr1 #TODO(bug)
+                    info[rx0].total_duration += fin_req.now - info[rx0].arr2 #TODO(bug)
                     info[rx0].total_token += len(request_output.outputs[0].token_ids)
                     print(f"15 rid1 finish the application req_num_act:{req_num_act} and num_act:{num_act} and terminate_rid:{terminate_rid} ")
                     finished.append({
