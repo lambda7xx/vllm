@@ -25,7 +25,7 @@ class ReactReq:
         self.r2_react_num = 0
         self.react_num = num_react 
     def terminate_application(self):
-        return self.r1_react_num == self.need_r1_react_num and self.r2_react_num == self.need_r2_react_num
+        return self.r1_react_num + self.r2_react_num <= self.react_num
     
     def get_react_num(self):
         return self.r1_react_num + self.r2_react_num
