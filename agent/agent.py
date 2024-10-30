@@ -495,10 +495,12 @@ def with_agent_optimized_v3(args, prompts):
     finished = [] 
     print(f"1 with agent len(reqs):{len(reqs)}")
     time.sleep(5)
+    durations = [] 
     marked = dict()
     maked_id = dict()
     counter = dict()
     my_marked = dict()
+    perf_counter= dict()
     while True:
         now = time.time()
         while reqs:
@@ -551,7 +553,7 @@ def with_agent_optimized_v3(args, prompts):
             start = time.time()
             request_outputs = engine.step()
             end = time.time()
-            print(f"4.2 one step time:{end-start}")
+            #print(f"4.2 one step time:{end-start}")
         except Exception as e:
             print(f"error: {e}")
 
@@ -566,12 +568,13 @@ def with_agent_optimized_v3(args, prompts):
             rx1 = info[req_id].rid2
             rid = rx0[:-2]
             init_id = req_id[:-2]
-            #print(f"0 with_agent, req_id:{req_id} and rx0:{rx0} and rx1:{rx1} and rid:{rid} and init_id:{init_id}")
+            req_num_act = info[rx0].get_react_num()
+            #print(f"2 with_agent, req_id:{req_id} and rx0:{rx0} and rx1:{rx1} and rid:{rid} and req_num_act:{req_num_act} ")
             if num_act % 2 == 0:
                 terminate_rid = rx1
             else:
                 terminate_rid = rx0
-            req_num_act = info[rx0].get_react_num()
+            
             is_terminate = info[rx0].terminate_application()
             final_terminate = info[rx1].final_terminate()
             output_text = request_output.outputs[0].text
@@ -589,15 +592,22 @@ def with_agent_optimized_v3(args, prompts):
                             info[rx0].total_token += len(request_output.outputs[0].token_ids)#Note: finish the r1 prefill+decode, statistics the token
                             print(f"9 ****application id:{init_id} finish the r0:{rx0} for prefill+decode and r1:{rx1} for agent prefill  and the duration:{ now - info[req_id].arr1} and the token:{len(request_output.outputs[0].token_ids)} and total_duration:{info[rx1].total_duration} and info[rx1].total_token:{info[rx1].total_token} " )
                             #info[rx1].r2_react_num += 1 #Note: finish the r1 prefill +decode and r2 agent prefill, now start to do r1 agent prefill and r2 prefill+decode
+                            if rx0 not in perf_counter:
+                                perf_counter[init_id] = 1
                             my_marked[rx0] = True
                             counter[init_id] = 1
                             print(f"9.5 rx0:{rx0} and rx1:{rx1} and my_marked[rx0]:{my_marked[rx0]} and counter[init_id]:{counter[init_id]}")
                         elif req_num_act == num_act:#finish the application
-                            info[rx0].total_duration += now - info[rx0].arr1 #Note: finish the r1 prefill+decode, statistics the duration
-                            info[rx0].total_token += len(request_output.outputs[0].token_ids)#Note: finish the r1 prefill+decode, statistics the token
+                            if perf_counter[init_id] != 3:
+                                info[rx0].total_duration += now - info[rx0].arr1 #Note: finish the r1 prefill+decode, statistics the duration
+                                info[rx0].total_token += len(request_output.outputs[0].token_ids)#Note: finish the r1 prefill+decode, statistics the token
                             #info[rx0].r1_react_num += 1 #TODO(xiao):this may have bug, bc it can only work when the num_act is even
                             print(f"10 ****application id:{init_id} finish the r0:{rx0} for prefill+decode  and the duration:{ now - info[req_id].arr1} and the token:{len(request_output.outputs[0].token_ids)} and total_duration:{info[rx1].total_duration} and info[rx1].total_token:{info[rx1].total_token} " )
+                            if perf_counter[init_id] != 3:
+                                perf_counter[init_id] += 1 
                             need_inc_react = True
+                            my_marked[rx1] = True
+                            counter[init_id] = 0
                 elif req_num_act %2 == 0:#r0 prefill, rx1 prefill + decode
                     if req_id == rx1:#r1 prefill+decode finished
                         if req_num_act != num_act:#r0 prefill finished, r1 prefill+decode finished
@@ -607,13 +617,17 @@ def with_agent_optimized_v3(args, prompts):
                             info[rx0].total_token += len(request_output.outputs[0].token_ids)
                             my_marked[rx1] = True
                             counter[init_id] = 0
+                            perf_counter[init_id] += 1
                             print(f"11 ****application id:{init_id} finish the r0:{rx0} for agent prefill and r1:{rx1} for prefill+ decode and the duration:{ now - info[req_id].arr2} and the token:{len(request_output.outputs[0].token_ids)} and total_duration:{info[rx1].total_duration} and info[rx1].total_token:{info[rx1].total_token} " )
                         else:
                             info[rx0].total_duration += now - info[rx0].arr2
                             info[rx0].total_token += len(request_output.outputs[0].token_ids)
                             print(f"12 ****application id:{init_id} finish  r1:{rx1} for prefill+ decode and the duration:{ now - info[req_id].arr2} and the token:{len(request_output.outputs[0].token_ids)} and total_duration:{info[rx1].total_duration} and info[rx1].total_token:{info[rx1].total_token} " )
                             need_inc_react = True
+                            my_marked[rx1] = True
+                            counter[init_id] = 0
                                 #print(f"12.1 req_id:{req_id} and rx0:{rx0} prefill and rx1:{rx1} prefill + decode and rx0 in finished_reqs")
+        st = time.time()
         for request_output in request_outputs:
             req_id = request_output.request_id
             rx0 = info[req_id].rid1
@@ -621,26 +635,29 @@ def with_agent_optimized_v3(args, prompts):
             init_id = req_id[:-2]
             #print(f"13 with_agent, req_id:{req_id} and rx0:{rx0} and rx1:{rx1} and init_id:{init_id} and my_marked:{my_marked} and counter:{counter}")
             if request_output.finished:
-                print(f"13 with_agent, req_id:{req_id} and rx0:{rx0} and rx1:{rx1} and init_id:{init_id} and my_marked:{my_marked} and counter:{counter}")
+                #print(f"13 with_agent, req_id:{req_id} and rx0:{rx0} and rx1:{rx1} and init_id:{init_id} and my_marked:{my_marked} and counter:{counter}")
                 if init_id in counter:
                     if counter[init_id] % 2 == 1:#act is even
-                        if rx0 in my_marked and  my_marked[rx0]:
+                        if rx0 in my_marked and  my_marked[rx0] and not need_inc_react:
                             info[rx0].r2_react_num += 1
                             my_marked.pop(rx0)
                             counter.pop(init_id)
                         if need_inc_react:
                             info[rx0].r1_react_num += 1
                             need_inc_react = False
-                        
+                            my_marked.pop(rx0)
+                            counter.pop(init_id)
                     else:
-                        if rx1 in my_marked and my_marked[rx1]:
+                        if rx1 in my_marked and my_marked[rx1] and not need_inc_react:
                             info[rx0].r1_react_num += 1
                             my_marked.pop(rx1)
                             counter.pop(init_id)
                         if need_inc_react:
                             info[rx0].r2_react_num += 1
                             need_inc_react = False
-
+                            my_marked.pop(rx1)
+                            counter.pop(init_id)
+            
         for request_output in request_outputs:
             req_id = request_output.request_id
             rx0 = info[req_id].rid1
@@ -672,23 +689,34 @@ def with_agent_optimized_v3(args, prompts):
                     })
                     maked_id[rid] = True
                     print(f"16 finished[-1]:{finished[-1]} and rid:{rid}")
-
+        end = time.time()
+        duration = end - now
+        # print(f"durations:{duration}")
+        durations.append(duration)
         if not (reqs or engine.has_unfinished_requests()):
             break
         # print(f"2 engine has unfinished requests:{engine.has_unfinished_requests()}")    
-    latencies = 0
-    total_tokens = 0
-    print(f"len(finished):{len(finished)} and bs:{bs}")
-    normizliaed = 0 
+    latencies = []
+    total_waster = sum(durations)
+    print(f"len(finished):{len(finished)} and bs:{bs} and total_waster:{total_waster}")
+    finished.sort(key=lambda x: x["request_id"])
+    agent_normalized = []
     i = 0 
     for d in finished:
-        if d["total_token"] != 0:
-            latencies += d["total_duration"]
-            total_tokens += d["total_token"]
-            normizliaed += d["total_duration"]/d["total_token"]
-            i += 1
-    normalized_latency = normizliaed/i
-    avg_latency = latencies/i
+        rid = d["request_id"]
+        total_duration = d["total_duration"]
+        total_token = d["total_token"]
+        agent_normalized_latency = (total_duration - total_waster)/total_token
+        agent_normalized.append(agent_normalized_latency)
+        latencies.append(total_duration)
+        print(f"rid:{rid} and agent_normalized_latency:{agent_normalized_latency} and total_duration:{total_duration} and total_token:{total_token}")
+        # if d["total_token"] != 0:
+        #     latencies += d["total_duration"] - total_waster
+        #     total_tokens += d["total_token"] 
+        #     normizliaed +=(d["total_duration"] - - total_waster)/d["total_token"]
+        #     i += 1
+    normalized_latency = sum(agent_normalized)/len(agent_normalized)
+    avg_latency = sum(latencies)/len(latencies)
     print(f"batch:{bs} and normalized_latency:{normalized_latency}")
     print(f"batch:{bs} and avg e2e latency:{avg_latency}")
 
@@ -1020,7 +1048,7 @@ def with_agent_optimized_v1(args, prompts):
                     elif req_num_act % 2 ==0:
                         if req_id == rx1:
                             info[rx0].r2_react_num += 1
-
+        st = time.time()
         for request_output in request_outputs:
             req_id = request_output.request_id
             rx0 = info[req_id].rid1
@@ -1058,6 +1086,7 @@ def with_agent_optimized_v1(args, prompts):
                     })
                     maked_id[rid] = True
                     print(f"16 finished[-1]:{finished[-1]} and rid:{rid}")
+        end = time.time()
 
         if not (reqs or engine.has_unfinished_requests()):
             break
@@ -1561,11 +1590,14 @@ def without_agent(args,prompts):
                         info[rid].total_duration += now - info[rid].arr1
                         info[rid].total_token += output_len
                         print(f"5 ****application id:{init_rid} finish the r0:{rid1} for prefill+decode and r1:{rid2} and the duration:{ now - info[rid].arr1} and the token:{output_len} and total_duration:{info[rid].total_duration} and info[rx1].total_token:{info[rid].total_token} " )
-
+                        my_marked[rid1] = True
+                        counter[init_rid] = 1
                     else:
                         info[rid].total_duration += now - info[rid].arr2
                         info[rid].total_token += output_len
                         print(f"6 ****application id:{init_rid} finish the r0:{rid1}  and r1:{rid2} prefil+decode and the duration:{ now - info[rid].arr2} and the token:{output_len} and total_duration:{info[rid].total_duration} and info[rx1].total_token:{info[rid].total_token} " )
+                        my_marked[rid2] = True
+                        counter[init_rid] = 0
                     finished.append({
                         "request_id": init_rid,
                         "total_duration": info[rid].total_duration,
@@ -1602,21 +1634,22 @@ def without_agent(args,prompts):
             break
         #print(f"2 engine has unfinished requests:{engine.has_unfinished_requests()}")
     print(f"len(finished):{len(finished)}")
-    latencies = 0
-    total_tokens = 0
-    normizliaed =0
     i = 0
+    agent_latency = [] 
+    finished.sort(key=lambda x: x["request_id"])
+    total_latency = []
     for d in finished:
-        if d["total_token"] != 0:
-            normizliaed += d["total_duration"]/d["total_token"]
-            latencies += d["total_duration"]
-            i += 1
-    if i !=0:
-        normalized_latency = normizliaed /i
-        avg_latency = latencies/i
-        print(f"batch:{bs} and normalized_latency:{normalized_latency}")
-        print(f"batch:{bs} and avg e2e latency:{avg_latency}")
-
+        rid = d["request_id"]
+        total_duration = d["total_duration"]
+        total_latency.append(total_duration)
+        total_token = d["total_token"]
+        agent_normalized = total_duration/total_token
+        agent_latency.append(agent_normalized)
+        print(f"rid:{rid} and total_duration:{total_duration} and total_token:{total_token} and agent_normalized:{agent_normalized}")
+    agent_normalized_latency = sum(agent_latency)/len(agent_latency)
+    avg_jct = sum(total_latency)/len(total_latency)
+    print(f"without_agent and bs:{bs} and agent_normalized_latency:{agent_normalized_latency}")
+    print(f"without_agent and bs:{bs} and avg_jct:{avg_jct}")
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='benchmark.')
