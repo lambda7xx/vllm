@@ -183,7 +183,8 @@ def with_agent_optimized(args, prompts):
             rx0 = info[req_id].rid1
             rx1 = info[req_id].rid2
             rid = rx0[:-2]
-            init_id = rid1[:-2]
+            init_id = req_id[:-2]
+            print(f"0 with_agent, req_id:{req_id} and rx0:{rx0} and rx1:{rx1} and rid:{rid} and init_id:{init_id}")
             if num_act % 2 == 0:
                 terminate_rid = rx1
             else:
