@@ -1,0 +1,526 @@
+['/opt/conda/envs/vllm-new/lib/python3.10/site-packages/ray/thirdparty_files', '/home/xiaoxiang/vllm/profile', '/opt/conda/envs/vllm-new/lib/python310.zip', '/opt/conda/envs/vllm-new/lib/python3.10', '/opt/conda/envs/vllm-new/lib/python3.10/lib-dynload', '/opt/conda/envs/vllm-new/lib/python3.10/site-packages', '/home/xiaoxiang/agentix-frontend', '/opt/conda/envs/vllm-new/lib/python3.10/site-packages/setuptools/_vendor']
+0 vllm/config.py scheduler_config.py __init__ max_num_batched_tokens: None
+3 vllm/config.py scheduler_config.py __init__ max_num_batched_tokens: 1024
+INFO 10-22 02:31:06 config.py:1061] Chunked prefill is enabled with max_num_batched_tokens=1024.
+INFO 10-22 02:31:06 llm_engine.py:238] Initializing an LLM engine (v0.6.3.post2.dev36+g855e0e6f) with config: model='/home/xiaoxiang/data/Llama-3.1-8B', speculative_config=None, tokenizer='/home/xiaoxiang/data/Llama-3.1-8B', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, rope_scaling=None, rope_theta=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=131072, download_dir=None, load_format=LoadFormat.AUTO, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto, quantization_param_path=None, device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='outlines'), observability_config=ObservabilityConfig(otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=0, served_model_name=/home/xiaoxiang/data/Llama-3.1-8B, num_scheduler_steps=1, chunked_prefill_enabled=True multi_step_stream_outputs=True, enable_prefix_caching=False, use_async_output_proc=True, use_cached_outputs=False, mm_processor_kwargs=None)
+INFO 10-22 02:31:09 model_runner.py:1055] Starting to load model /home/xiaoxiang/data/Llama-3.1-8B...
+
+Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
+
+Loading safetensors checkpoint shards:  25% Completed | 1/4 [00:01<00:04,  1.49s/it]
+
+Loading safetensors checkpoint shards:  50% Completed | 2/4 [00:03<00:03,  1.57s/it]
+
+Loading safetensors checkpoint shards:  75% Completed | 3/4 [00:04<00:01,  1.61s/it]
+
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:05<00:00,  1.18s/it]
+
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:05<00:00,  1.32s/it]
+
+INFO 10-22 02:31:15 model_runner.py:1066] Loading model weights took 14.9888 GB
+INFO 10-22 02:31:16 worker.py:260] Memory profiling results: total_gpu_memory=79.15GiB initial_memory_usage=15.50GiB peak_torch_memory=16.17GiB memory_usage_post_profile=15.53Gib non_torch_memory=0.54GiB kv_cache_size=54.53GiB gpu_memory_utilization=0.90
+INFO 10-22 02:31:16 gpu_executor.py:122] # GPU blocks: 27919, # CPU blocks: 2048
+INFO 10-22 02:31:16 gpu_executor.py:126] Maximum concurrency for 131072 tokens per request: 3.41x
+INFO 10-22 02:31:18 model_runner.py:1394] Capturing the model for CUDA graphs. This may lead to unexpected consequences if the model is not static. To run the model in eager mode, set 'enforce_eager=True' or use '--enforce-eager' in the CLI.
+INFO 10-22 02:31:18 model_runner.py:1398] CUDA graphs can take additional 1~3 GiB memory per GPU. If you are running out of memory, consider decreasing `gpu_memory_utilization` or enforcing eager mode. You can also reduce the `max_num_seqs` as needed to decrease memory usage.
+INFO 10-22 02:31:32 model_runner.py:1522] Graph capturing finished in 14 secs.
+1 prompt length: 2063
+3 prompt length: 2063
+
+Processed prompts:   0%|          | 0/1 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]one token start time:1729564293.130375
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 2063
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1024
+one token end time:1729564293.1656494
+token generate duration:0.035274505615234375
+one token start time:1729564293.1656637
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1039
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1024
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564293.245694
+token generate duration:0.08003020286560059
+one token start time:1729564293.245708
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 15
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 15
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564293.3305407
+token generate duration:0.08483266830444336
+one token start time:1729564293.3305557
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564293.3438456
+token generate duration:0.013289928436279297
+one token start time:1729564293.3438685
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564293.3569772
+token generate duration:0.01310873031616211
+one token start time:1729564293.356988
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564293.3700395
+token generate duration:0.013051509857177734
+one token start time:1729564293.3700502
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564293.383012
+token generate duration:0.012961864471435547
+one token start time:1729564293.3830223
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564293.3959303
+token generate duration:0.012907981872558594
+one token start time:1729564293.3959413
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564293.4084096
+token generate duration:0.012468338012695312
+one token start time:1729564293.40842
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564293.4209623
+token generate duration:0.012542247772216797
+one token start time:1729564293.4209728
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564293.433498
+token generate duration:0.012525081634521484
+one token start time:1729564293.4335084
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564293.4459515
+token generate duration:0.012443065643310547
+one token start time:1729564293.4459617
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564293.4583883
+token generate duration:0.012426614761352539
+one token start time:1729564293.4583986
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564293.4708426
+token generate duration:0.012444019317626953
+one token start time:1729564293.4708529
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564293.4832916
+token generate duration:0.012438774108886719
+one token start time:1729564293.4833024
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564293.4957712
+token generate duration:0.012468814849853516
+one token start time:1729564293.4957817
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564293.5082
+token generate duration:0.012418270111083984
+one token start time:1729564293.5082104
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564293.520729
+token generate duration:0.012518644332885742
+one token start time:1729564293.5207393
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564293.5332358
+token generate duration:0.012496471405029297
+one token start time:1729564293.5332463
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+
+Processed prompts: 100%|██████████| 1/1 [00:00<00:00,  2.21it/s, est. speed input: 4554.10 toks/s, output: 44.15 toks/s]
+Processed prompts: 100%|██████████| 1/1 [00:00<00:00,  2.21it/s, est. speed input: 4554.10 toks/s, output: 44.15 toks/s]
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564293.5457735
+token generate duration:0.012527227401733398
+one token start time:1729564293.545784
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564293.558245
+token generate duration:0.012460947036743164
+one token start time:1729564293.5582552
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564293.5707126
+token generate duration:0.01245737075805664
+one token start time:1729564293.5707242
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564293.5832775
+token generate duration:0.012553215026855469
+
+Processed prompts:   0%|          | 0/1 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]one token start time:1729564293.588964
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 2063
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1024
+one token end time:1729564293.6184902
+token generate duration:0.029526233673095703
+one token start time:1729564293.6185005
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1039
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1024
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564293.685531
+token generate duration:0.06703042984008789
+one token start time:1729564293.6855438
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 15
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 15
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564293.7603486
+token generate duration:0.07480478286743164
+one token start time:1729564293.760365
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564293.7732434
+token generate duration:0.01287841796875
+one token start time:1729564293.7732546
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564293.7859874
+token generate duration:0.012732744216918945
+one token start time:1729564293.7859986
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564293.798629
+token generate duration:0.012630462646484375
+one token start time:1729564293.798645
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564293.8111184
+token generate duration:0.012473344802856445
+one token start time:1729564293.811129
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564293.8236248
+token generate duration:0.012495756149291992
+one token start time:1729564293.823644
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564293.836131
+token generate duration:0.012487173080444336
+one token start time:1729564293.8361416
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564293.8487594
+token generate duration:0.012617826461791992
+one token start time:1729564293.8487735
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564293.8613536
+token generate duration:0.012580156326293945
+one token start time:1729564293.861364
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564293.8738487
+token generate duration:0.01248478889465332
+one token start time:1729564293.8738585
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564293.8863177
+token generate duration:0.012459278106689453
+one token start time:1729564293.8863277
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564293.898778
+token generate duration:0.012450218200683594
+one token start time:1729564293.8987882
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564293.9112346
+token generate duration:0.012446403503417969
+one token start time:1729564293.911245
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564293.9236875
+token generate duration:0.012442350387573242
+one token start time:1729564293.9236982
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564293.9361188
+token generate duration:0.012420654296875
+one token start time:1729564293.9361293
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564293.948577
+token generate duration:0.012447595596313477
+one token start time:1729564293.9485872
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564293.961044
+token generate duration:0.012456893920898438
+one token start time:1729564293.9610548
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+
+Processed prompts: 100%|██████████| 1/1 [00:00<00:00,  2.37it/s, est. speed input: 4883.71 toks/s, output: 47.34 toks/s]
+Processed prompts: 100%|██████████| 1/1 [00:00<00:00,  2.37it/s, est. speed input: 4883.71 toks/s, output: 47.34 toks/s]
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564293.9736273
+token generate duration:0.012572526931762695
+one token start time:1729564293.9736438
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564293.98616
+token generate duration:0.012516260147094727
+one token start time:1729564293.9861722
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564293.9986975
+token generate duration:0.012525320053100586
+one token start time:1729564293.9987106
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564294.0112994
+token generate duration:0.012588739395141602
+*********finished warm up**********
+start time: 1729564294.0118515
+
+Processed prompts:   0%|          | 0/1 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]one token start time:1729564294.016989
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 2063
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1024
+one token end time:1729564294.0478404
+token generate duration:0.030851364135742188
+one token start time:1729564294.047851
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1039
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1024
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564294.114858
+token generate duration:0.06700682640075684
+one token start time:1729564294.114874
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 15
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 15
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564294.1877642
+token generate duration:0.0728902816772461
+one token start time:1729564294.187783
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564294.2005937
+token generate duration:0.012810707092285156
+one token start time:1729564294.2006075
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564294.2132845
+token generate duration:0.01267695426940918
+one token start time:1729564294.2132955
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564294.225841
+token generate duration:0.012545585632324219
+one token start time:1729564294.225852
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564294.2383354
+token generate duration:0.012483358383178711
+one token start time:1729564294.2383466
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564294.2508416
+token generate duration:0.012495040893554688
+one token start time:1729564294.250856
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564294.2633433
+token generate duration:0.012487411499023438
+one token start time:1729564294.263354
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564294.275809
+token generate duration:0.012454986572265625
+one token start time:1729564294.2758195
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564294.2882886
+token generate duration:0.012469053268432617
+one token start time:1729564294.288299
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564294.3008187
+token generate duration:0.012519598007202148
+one token start time:1729564294.3008292
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564294.313313
+token generate duration:0.012483835220336914
+one token start time:1729564294.313324
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564294.3257515
+token generate duration:0.012427568435668945
+one token start time:1729564294.325762
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564294.3382423
+token generate duration:0.01248025894165039
+one token start time:1729564294.3382525
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564294.3506875
+token generate duration:0.012434959411621094
+one token start time:1729564294.350698
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564294.3631742
+token generate duration:0.012476205825805664
+one token start time:1729564294.3631852
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564294.375616
+token generate duration:0.012430906295776367
+one token start time:1729564294.375627
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564294.38808
+token generate duration:0.012452840805053711
+one token start time:1729564294.3880904
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+
+Processed prompts: 100%|██████████| 1/1 [00:00<00:00,  2.37it/s, est. speed input: 4894.34 toks/s, output: 47.45 toks/s]
+Processed prompts: 100%|██████████| 1/1 [00:00<00:00,  2.37it/s, est. speed input: 4894.34 toks/s, output: 47.45 toks/s]
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564294.40074
+token generate duration:0.0126495361328125
+one token start time:1729564294.4007514
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564294.413293
+token generate duration:0.012541532516479492
+one token start time:1729564294.4133043
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564294.4257836
+token generate duration:0.012479305267333984
+one token start time:1729564294.4257956
+0 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _get_num_new_tokens, the remaining_token_budget is 1024
+5 vllm/core/scheduler.py _get_num_new_tokens, the num_new_tokens is 1
+1 vllm/core/scheduler.py _schedule_prefills, the enable_chunking is True
+one token end time:1729564294.438405
+token generate duration:0.012609481811523438
+Time elapsed: 0.42707157135009766

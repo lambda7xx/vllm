@@ -1,0 +1,101 @@
+['/opt/conda/envs/vllm-new/lib/python3.10/site-packages/ray/thirdparty_files', '/home/xiaoxiang/vllm/profile', '/opt/conda/envs/vllm-new/lib/python310.zip', '/opt/conda/envs/vllm-new/lib/python3.10', '/opt/conda/envs/vllm-new/lib/python3.10/lib-dynload', '/opt/conda/envs/vllm-new/lib/python3.10/site-packages', '/home/xiaoxiang/agentix-frontend', '/opt/conda/envs/vllm-new/lib/python3.10/site-packages/setuptools/_vendor']
+0 vllm/config.py scheduler_config.py __init__ max_num_batched_tokens: None
+3 vllm/config.py scheduler_config.py __init__ max_num_batched_tokens: 128
+INFO 10-22 03:18:09 config.py:1061] Chunked prefill is enabled with max_num_batched_tokens=128.
+INFO 10-22 03:18:09 llm_engine.py:238] Initializing an LLM engine (v0.6.3.post2.dev36+g855e0e6f) with config: model='/home/xiaoxiang/data/Llama-3.1-8B', speculative_config=None, tokenizer='/home/xiaoxiang/data/Llama-3.1-8B', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, rope_scaling=None, rope_theta=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=131072, download_dir=None, load_format=LoadFormat.AUTO, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto, quantization_param_path=None, device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='outlines'), observability_config=ObservabilityConfig(otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=0, served_model_name=/home/xiaoxiang/data/Llama-3.1-8B, num_scheduler_steps=1, chunked_prefill_enabled=True multi_step_stream_outputs=True, enable_prefix_caching=False, use_async_output_proc=True, use_cached_outputs=False, mm_processor_kwargs=None)
+INFO 10-22 03:18:12 model_runner.py:1055] Starting to load model /home/xiaoxiang/data/Llama-3.1-8B...
+Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards:  25% Completed | 1/4 [00:01<00:04,  1.54s/it]
+Loading safetensors checkpoint shards:  50% Completed | 2/4 [00:03<00:03,  1.61s/it]
+Loading safetensors checkpoint shards:  75% Completed | 3/4 [00:04<00:01,  1.65s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:05<00:00,  1.21s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:05<00:00,  1.36s/it]
+
+INFO 10-22 03:18:18 model_runner.py:1066] Loading model weights took 14.9888 GB
+INFO 10-22 03:18:18 model_runner_base.py:120] Writing input of failed execution to /tmp/err_execute_model_input_20241022-031818.pkl...
+INFO 10-22 03:18:18 model_runner_base.py:149] Completed writing input of failed execution to /tmp/err_execute_model_input_20241022-031818.pkl.
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/home/xiaoxiang/vllm/vllm/worker/model_runner_base.py", line 116, in _wrapper
+[rank0]:     return func(*args, **kwargs)
+[rank0]:   File "/home/xiaoxiang/vllm/vllm/worker/model_runner.py", line 1657, in execute_model
+[rank0]:     hidden_or_intermediate_states = model_executable(
+[rank0]:   File "/opt/conda/envs/vllm-new/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/opt/conda/envs/vllm-new/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/home/xiaoxiang/vllm/vllm/model_executor/models/llama.py", line 558, in forward
+[rank0]:     model_output = self.model(input_ids, positions, kv_caches,
+[rank0]:   File "/opt/conda/envs/vllm-new/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/opt/conda/envs/vllm-new/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/home/xiaoxiang/vllm/vllm/model_executor/models/llama.py", line 347, in forward
+[rank0]:     hidden_states, residual = layer(positions, hidden_states,
+[rank0]:   File "/opt/conda/envs/vllm-new/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/opt/conda/envs/vllm-new/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/home/xiaoxiang/vllm/vllm/model_executor/models/llama.py", line 259, in forward
+[rank0]:     hidden_states = self.self_attn(positions=positions,
+[rank0]:   File "/opt/conda/envs/vllm-new/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/opt/conda/envs/vllm-new/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/home/xiaoxiang/vllm/vllm/model_executor/models/llama.py", line 189, in forward
+[rank0]:     attn_output = self.attn(q, k, v, kv_cache, attn_metadata)
+[rank0]:   File "/opt/conda/envs/vllm-new/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1553, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:   File "/opt/conda/envs/vllm-new/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1562, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:   File "/home/xiaoxiang/vllm/vllm/attention/layer.py", line 99, in forward
+[rank0]:     return self.impl.forward(query,
+[rank0]:   File "/home/xiaoxiang/vllm/vllm/attention/backends/flash_attn.py", line 578, in forward
+[rank0]:     output = torch.ops.vllm.unified_flash_attention(
+[rank0]:   File "/opt/conda/envs/vllm-new/lib/python3.10/site-packages/torch/_ops.py", line 1061, in __call__
+[rank0]:     return self_._op(*args, **(kwargs or {}))
+[rank0]:   File "/opt/conda/envs/vllm-new/lib/python3.10/site-packages/torch/_library/custom_ops.py", line 236, in backend_impl
+[rank0]:     result = self._backend_fns[device_type](*args, **kwargs)
+[rank0]:   File "/home/xiaoxiang/vllm/vllm/attention/backends/flash_attn.py", line 673, in unified_flash_attention
+[rank0]:     prefill_output = flash_attn_varlen_func(
+[rank0]:   File "/home/xiaoxiang/vllm/vllm/vllm_flash_attn/flash_attn_interface.py", line 1155, in flash_attn_varlen_func
+[rank0]:     return FlashAttnVarlenFunc.apply(
+[rank0]:   File "/opt/conda/envs/vllm-new/lib/python3.10/site-packages/torch/autograd/function.py", line 574, in apply
+[rank0]:     return super().apply(*args, **kwargs)  # type: ignore[misc]
+[rank0]:   File "/home/xiaoxiang/vllm/vllm/vllm_flash_attn/flash_attn_interface.py", line 633, in forward
+[rank0]:     out, q, k, v, out_padded, softmax_lse, S_dmask, rng_state = _flash_attn_varlen_forward(
+[rank0]:   File "/home/xiaoxiang/vllm/vllm/vllm_flash_attn/flash_attn_interface.py", line 91, in _flash_attn_varlen_forward
+[rank0]:     out, q, k, v, out_padded, softmax_lse, S_dmask, rng_state = torch.ops.vllm_flash_attn_c.varlen_fwd(
+[rank0]:   File "/opt/conda/envs/vllm-new/lib/python3.10/site-packages/torch/_ops.py", line 1061, in __call__
+[rank0]:     return self_._op(*args, **(kwargs or {}))
+[rank0]: RuntimeError: shape '[256, 8, 4, 128]' is invalid for input of size 524288
+
+[rank0]: The above exception was the direct cause of the following exception:
+
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "/home/xiaoxiang/vllm/profile/pro.py", line 15, in <module>
+[rank0]:     llm = LLM(model=model_name, enable_chunked_prefill = True)
+[rank0]:   File "/home/xiaoxiang/vllm/vllm/utils.py", line 1073, in inner
+[rank0]:     return fn(*args, **kwargs)
+[rank0]:   File "/home/xiaoxiang/vllm/vllm/entrypoints/llm.py", line 194, in __init__
+[rank0]:     self.llm_engine = LLMEngine.from_engine_args(
+[rank0]:   File "/home/xiaoxiang/vllm/vllm/engine/llm_engine.py", line 574, in from_engine_args
+[rank0]:     engine = cls(
+[rank0]:   File "/home/xiaoxiang/vllm/vllm/engine/llm_engine.py", line 349, in __init__
+[rank0]:     self._initialize_kv_caches()
+[rank0]:   File "/home/xiaoxiang/vllm/vllm/engine/llm_engine.py", line 484, in _initialize_kv_caches
+[rank0]:     self.model_executor.determine_num_available_blocks())
+[rank0]:   File "/home/xiaoxiang/vllm/vllm/executor/gpu_executor.py", line 114, in determine_num_available_blocks
+[rank0]:     return self.driver_worker.determine_num_available_blocks()
+[rank0]:   File "/opt/conda/envs/vllm-new/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+[rank0]:     return func(*args, **kwargs)
+[rank0]:   File "/home/xiaoxiang/vllm/vllm/worker/worker.py", line 223, in determine_num_available_blocks
+[rank0]:     self.model_runner.profile_run()
+[rank0]:   File "/opt/conda/envs/vllm-new/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+[rank0]:     return func(*args, **kwargs)
+[rank0]:   File "/home/xiaoxiang/vllm/vllm/worker/model_runner.py", line 1304, in profile_run
+[rank0]:     self.execute_model(model_input, kv_caches, intermediate_tensors)
+[rank0]:   File "/opt/conda/envs/vllm-new/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+[rank0]:     return func(*args, **kwargs)
+[rank0]:   File "/home/xiaoxiang/vllm/vllm/worker/model_runner_base.py", line 152, in _wrapper
+[rank0]:     raise type(err)(
+[rank0]: RuntimeError: Error in model execution (input dumped to /tmp/err_execute_model_input_20241022-031818.pkl): shape '[256, 8, 4, 128]' is invalid for input of size 524288

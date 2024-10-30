@@ -1,0 +1,251 @@
+['/opt/conda/envs/vllm-new/lib/python3.10/site-packages/ray/thirdparty_files', '/home/xiaoxiang/vllm/profile', '/opt/conda/envs/vllm-new/lib/python310.zip', '/opt/conda/envs/vllm-new/lib/python3.10', '/opt/conda/envs/vllm-new/lib/python3.10/lib-dynload', '/opt/conda/envs/vllm-new/lib/python3.10/site-packages', '/opt/conda/envs/vllm-new/lib/python3.10/site-packages/setuptools/_vendor']
+WARNING 10-21 04:08:27 arg_utils.py:972] Chunked prefill is enabled by default for models with max_model_len > 32K. Currently, chunked prefill might not work with some features or models. If you encounter any issues, please disable chunked prefill by setting --enable-chunked-prefill=False.
+INFO 10-21 04:08:27 config.py:1056] Chunked prefill is enabled with max_num_batched_tokens=512.
+INFO 10-21 04:08:27 llm_engine.py:238] Initializing an LLM engine (v0.6.3.post2.dev36+g855e0e6f) with config: model='/home/xiaoxiang/data/Llama-3.1-8B', speculative_config=None, tokenizer='/home/xiaoxiang/data/Llama-3.1-8B', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, rope_scaling=None, rope_theta=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=131072, download_dir=None, load_format=LoadFormat.AUTO, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto, quantization_param_path=None, device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='outlines'), observability_config=ObservabilityConfig(otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=0, served_model_name=/home/xiaoxiang/data/Llama-3.1-8B, num_scheduler_steps=1, chunked_prefill_enabled=True multi_step_stream_outputs=True, enable_prefix_caching=False, use_async_output_proc=True, use_cached_outputs=False, mm_processor_kwargs=None)
+INFO 10-21 04:08:30 model_runner.py:1055] Starting to load model /home/xiaoxiang/data/Llama-3.1-8B...
+Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards:  25% Completed | 1/4 [00:01<00:04,  1.52s/it]
+Loading safetensors checkpoint shards:  50% Completed | 2/4 [00:03<00:03,  1.59s/it]
+Loading safetensors checkpoint shards:  75% Completed | 3/4 [00:04<00:01,  1.63s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:05<00:00,  1.19s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:05<00:00,  1.34s/it]
+
+INFO 10-21 04:08:35 model_runner.py:1066] Loading model weights took 14.9888 GB
+INFO 10-21 04:08:36 worker.py:260] Memory profiling results: total_gpu_memory=79.15GiB initial_memory_usage=15.50GiB peak_torch_memory=16.16GiB memory_usage_post_profile=15.53Gib non_torch_memory=0.54GiB kv_cache_size=54.53GiB gpu_memory_utilization=0.90
+INFO 10-21 04:08:36 gpu_executor.py:122] # GPU blocks: 27921, # CPU blocks: 2048
+INFO 10-21 04:08:36 gpu_executor.py:126] Maximum concurrency for 131072 tokens per request: 3.41x
+INFO 10-21 04:08:39 model_runner.py:1394] Capturing the model for CUDA graphs. This may lead to unexpected consequences if the model is not static. To run the model in eager mode, set 'enforce_eager=True' or use '--enforce-eager' in the CLI.
+INFO 10-21 04:08:39 model_runner.py:1398] CUDA graphs can take additional 1~3 GiB memory per GPU. If you are running out of memory, consider decreasing `gpu_memory_utilization` or enforcing eager mode. You can also reduce the `max_num_seqs` as needed to decrease memory usage.
+INFO 10-21 04:08:52 model_runner.py:1522] Graph capturing finished in 13 secs.
+prompt length: 2063
+Processed prompts:   0%|          | 0/1 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]Processed prompts: 100%|██████████| 1/1 [00:00<00:00,  2.15it/s, est. speed input: 4429.85 toks/s, output: 42.94 toks/s]Processed prompts: 100%|██████████| 1/1 [00:00<00:00,  2.15it/s, est. speed input: 4429.85 toks/s, output: 42.94 toks/s]
+one token start time:1729483732.7217836
+one token end time:1729483732.7554796
+token generate duration:0.03369593620300293
+one token start time:1729483732.755493
+one token end time:1729483732.7981517
+token generate duration:0.04265880584716797
+one token start time:1729483732.7981632
+one token end time:1729483732.842345
+token generate duration:0.04418182373046875
+one token start time:1729483732.8423553
+one token end time:1729483732.8876586
+token generate duration:0.0453033447265625
+one token start time:1729483732.8876696
+one token end time:1729483732.936143
+token generate duration:0.048473358154296875
+one token start time:1729483732.9361537
+one token end time:1729483732.949306
+token generate duration:0.013152360916137695
+one token start time:1729483732.9493172
+one token end time:1729483732.9623125
+token generate duration:0.012995243072509766
+one token start time:1729483732.9623227
+one token end time:1729483732.9752414
+token generate duration:0.012918710708618164
+one token start time:1729483732.9752517
+one token end time:1729483732.9879968
+token generate duration:0.012745141983032227
+one token start time:1729483732.988007
+one token end time:1729483733.000505
+token generate duration:0.012497901916503906
+one token start time:1729483733.000515
+one token end time:1729483733.0130022
+token generate duration:0.012487173080444336
+one token start time:1729483733.0130198
+one token end time:1729483733.0254729
+token generate duration:0.012453079223632812
+one token start time:1729483733.0254827
+one token end time:1729483733.0379052
+token generate duration:0.012422561645507812
+one token start time:1729483733.0379167
+one token end time:1729483733.050346
+token generate duration:0.012429237365722656
+one token start time:1729483733.0503561
+one token end time:1729483733.062777
+token generate duration:0.012420892715454102
+one token start time:1729483733.0627868
+one token end time:1729483733.075217
+token generate duration:0.012430191040039062
+one token start time:1729483733.0752287
+one token end time:1729483733.0876203
+token generate duration:0.01239156723022461
+one token start time:1729483733.0876303
+one token end time:1729483733.100068
+token generate duration:0.012437820434570312
+one token start time:1729483733.1000783
+one token end time:1729483733.1124995
+token generate duration:0.012421131134033203
+one token start time:1729483733.1125095
+one token end time:1729483733.1249561
+token generate duration:0.01244664192199707
+one token start time:1729483733.1249661
+one token end time:1729483733.1374285
+token generate duration:0.012462377548217773
+one token start time:1729483733.1374388
+one token end time:1729483733.1498356
+token generate duration:0.012396812438964844
+one token start time:1729483733.1498463
+one token end time:1729483733.1622884
+token generate duration:0.01244211196899414
+one token start time:1729483733.1622984
+one token end time:1729483733.1747327
+token generate duration:0.012434244155883789
+one token start time:1729483733.1747427
+one token end time:1729483733.1873913
+token generate duration:0.012648582458496094
+Processed prompts:   0%|          | 0/1 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]Processed prompts: 100%|██████████| 1/1 [00:00<00:00,  2.32it/s, est. speed input: 4786.02 toks/s, output: 46.40 toks/s]Processed prompts: 100%|██████████| 1/1 [00:00<00:00,  2.32it/s, est. speed input: 4786.02 toks/s, output: 46.40 toks/s]
+one token start time:1729483733.1931243
+one token end time:1729483733.2218573
+token generate duration:0.028733015060424805
+one token start time:1729483733.221868
+one token end time:1729483733.2573004
+token generate duration:0.03543233871459961
+one token start time:1729483733.2573118
+one token end time:1729483733.2950468
+token generate duration:0.0377349853515625
+one token start time:1729483733.2950573
+one token end time:1729483733.3372207
+token generate duration:0.04216337203979492
+one token start time:1729483733.3372324
+one token end time:1729483733.3751302
+token generate duration:0.03789782524108887
+one token start time:1729483733.3751419
+one token end time:1729483733.3877342
+token generate duration:0.012592315673828125
+one token start time:1729483733.3877447
+one token end time:1729483733.4002683
+token generate duration:0.012523651123046875
+one token start time:1729483733.40028
+one token end time:1729483733.412754
+token generate duration:0.01247406005859375
+one token start time:1729483733.4127653
+one token end time:1729483733.42525
+token generate duration:0.01248478889465332
+one token start time:1729483733.425261
+one token end time:1729483733.437677
+token generate duration:0.012415885925292969
+one token start time:1729483733.4376874
+one token end time:1729483733.450137
+token generate duration:0.012449502944946289
+one token start time:1729483733.4501479
+one token end time:1729483733.4626062
+token generate duration:0.012458324432373047
+one token start time:1729483733.4626162
+one token end time:1729483733.4750402
+token generate duration:0.012423992156982422
+one token start time:1729483733.4750512
+one token end time:1729483733.4874568
+token generate duration:0.012405633926391602
+one token start time:1729483733.4874673
+one token end time:1729483733.4998796
+token generate duration:0.012412309646606445
+one token start time:1729483733.4998903
+one token end time:1729483733.5122616
+token generate duration:0.012371301651000977
+one token start time:1729483733.5122726
+one token end time:1729483733.524694
+token generate duration:0.012421369552612305
+one token start time:1729483733.524704
+one token end time:1729483733.5371091
+token generate duration:0.012405157089233398
+one token start time:1729483733.5371192
+one token end time:1729483733.5495555
+token generate duration:0.012436389923095703
+one token start time:1729483733.5495656
+one token end time:1729483733.561946
+token generate duration:0.012380361557006836
+one token start time:1729483733.5619562
+one token end time:1729483733.5743515
+token generate duration:0.012395381927490234
+one token start time:1729483733.5743616
+one token end time:1729483733.5867596
+token generate duration:0.012398004531860352
+one token start time:1729483733.5867698
+one token end time:1729483733.5991988
+token generate duration:0.012428998947143555
+one token start time:1729483733.5992086
+one token end time:1729483733.6115987
+token generate duration:0.01239013671875
+one token start time:1729483733.6116085
+one token end time:1729483733.62409
+token generate duration:0.012481451034545898
+*********finished warm up**********
+start time: 1729483733.6246064
+Processed prompts:   0%|          | 0/1 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]Processed prompts: 100%|██████████| 1/1 [00:00<00:00,  2.33it/s, est. speed input: 4807.52 toks/s, output: 46.60 toks/s]Processed prompts: 100%|██████████| 1/1 [00:00<00:00,  2.33it/s, est. speed input: 4807.52 toks/s, output: 46.60 toks/s]
+one token start time:1729483733.6294165
+one token end time:1729483733.6583064
+token generate duration:0.028889894485473633
+one token start time:1729483733.6583176
+one token end time:1729483733.6935213
+token generate duration:0.03520369529724121
+one token start time:1729483733.6935325
+one token end time:1729483733.731214
+token generate duration:0.03768157958984375
+one token start time:1729483733.7312243
+one token end time:1729483733.770075
+token generate duration:0.03885078430175781
+one token start time:1729483733.7700853
+one token end time:1729483733.809873
+token generate duration:0.03978776931762695
+one token start time:1729483733.8098834
+one token end time:1729483733.822374
+token generate duration:0.01249074935913086
+one token start time:1729483733.8223848
+one token end time:1729483733.8348792
+token generate duration:0.012494325637817383
+one token start time:1729483733.8348901
+one token end time:1729483733.8473074
+token generate duration:0.012417316436767578
+one token start time:1729483733.8473175
+one token end time:1729483733.8597405
+token generate duration:0.012423038482666016
+one token start time:1729483733.859751
+one token end time:1729483733.8721704
+token generate duration:0.012419462203979492
+one token start time:1729483733.8721807
+one token end time:1729483733.8846476
+token generate duration:0.012466907501220703
+one token start time:1729483733.8846583
+one token end time:1729483733.8970976
+token generate duration:0.012439250946044922
+one token start time:1729483733.8971076
+one token end time:1729483733.9095142
+token generate duration:0.012406587600708008
+one token start time:1729483733.909526
+one token end time:1729483733.9219038
+token generate duration:0.012377738952636719
+one token start time:1729483733.921914
+one token end time:1729483733.9342914
+token generate duration:0.012377262115478516
+one token start time:1729483733.9343014
+one token end time:1729483733.946681
+token generate duration:0.012379646301269531
+one token start time:1729483733.9466918
+one token end time:1729483733.9591045
+token generate duration:0.012412786483764648
+one token start time:1729483733.9591148
+one token end time:1729483733.9714923
+token generate duration:0.012377500534057617
+one token start time:1729483733.9715023
+one token end time:1729483733.9838946
+token generate duration:0.012392282485961914
+one token start time:1729483733.9839046
+one token end time:1729483733.9962776
+token generate duration:0.012372970581054688
+one token start time:1729483733.9962876
+one token end time:1729483734.0086958
+token generate duration:0.012408256530761719
+one token start time:1729483734.0087059
+one token end time:1729483734.0211217
+token generate duration:0.012415885925292969
+one token start time:1729483734.0211363
+one token end time:1729483734.0335462
+token generate duration:0.01240992546081543
+one token start time:1729483734.0335565
+one token end time:1729483734.0459404
+token generate duration:0.01238393783569336
+one token start time:1729483734.0459504
+one token end time:1729483734.05844
+token generate duration:0.012489557266235352
+Time elapsed: 0.4343447685241699
