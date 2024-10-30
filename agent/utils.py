@@ -8,6 +8,8 @@ from openai.types.chat.chat_completion_chunk import (
 )
 import tiktoken
 
+from transformers import AutoTokenizer
+
 def _num_token_from_text(text: str, model: str = "gpt-3.5-turbo-0613"):
     """Return the number of tokens used by a string."""
     try:
