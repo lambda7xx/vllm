@@ -532,30 +532,20 @@ def with_agent_optimized_v3(args, prompts):
                 elif req_num_act % 2 == 0:
                     info[rid1].arr2 = now
                     info[rid2].arr2 = now
-
-
             is_terminate = info[rid1].terminate_application()
             final_terminate = info[rid1].final_terminate()
-            #print(f"1.5 with_agent rid:{rid} and req_num_act:{req_num_act} rid1={rid1} and rid2={rid2} ")
-            #print(f"2 with_agent req_num_act:{req_num_act} and num_act:{num_act} and rid1={rid1} and rid2={rid2} and is_terminate:{is_terminate} and final_terminate:{final_terminate}")
             if req_num_act % 2 == 1 and not is_terminate:
                 #do prefill+docode for req1
                 engine.add_request(request_id = rid1, inputs = sp1+ prompt, params = sampling_params, arrival_time = now)
                 # do prefill for req2 
                 if not final_terminate:
                     engine.add_request(request_id = rid2, inputs = sp2+ prompt, params = discard_sampling_params, arrival_time = now)
-                    #print(f"3 rid1:{rid1} is agent prefill and rid2:{rid2} is prefill+decode")
-                    marked[rid2] = False 
 
             elif req_num_act % 2 == 0  and not is_terminate:
                 #do prefill+decode for req2
                 engine.add_request(request_id = rid2, inputs = sp2+ prompt, params = sampling_params, arrival_time = now)
-                #do prefill for req1
-                #info[rid1].r2_react_num += 1
                 if not final_terminate:
                     engine.add_request(request_id = rid1, inputs = sp1+ prompt, params = discard_sampling_params, arrival_time = now)
-                    #print(f"4 rid1:{rid1} is agent parallelism and rid2:{rid2} is prefill+decode")
-                    marked[rid1] = False
        
         try:
             start = time.time()
@@ -582,8 +572,6 @@ def with_agent_optimized_v3(args, prompts):
             else:
                 terminate_rid = rx0
             req_num_act = info[rx0].get_react_num()
-                        
-            output_text_len = len(request_output.outputs[0].token_ids)
             is_terminate = info[rx0].terminate_application()
             final_terminate = info[rx1].final_terminate()
             output_text = request_output.outputs[0].text
@@ -593,7 +581,6 @@ def with_agent_optimized_v3(args, prompts):
                 #print(f"9 with_agent, req_id:{req_id} and rx0:{rx0} and rx1:{rx1} and req_num_act:{req_num_act} and request_output.finished and not is_terminate")
                 if req_num_act % 2 == 1:#rx0 prefill + decode, r1 prefill
                     if req_id == rx0:#rx0 prefill+decode finished
-                        #print(f"10 req_id:{req_id} and rx0:{rx0} prefill + decode done and rx1:{rx1} prefill and marked[rx1]:{marked[rx1]} and req_num_act:{req_num_act} and num_act:{num_act}")
                         if req_num_act != num_act:#rx0 finished prefill+done, rx1 finished  prefill
                             #print(f"10.02 req_id:{req_id} and rx0:{rx0} ******* prefill+decode done and rx1:{rx1} agent prefill *****done")
                             reqs.append([rx1, info[rx0].r1_user_prompt + output_text])                            
@@ -614,7 +601,7 @@ def with_agent_optimized_v3(args, prompts):
                 elif req_num_act %2 == 0:#r0 prefill, rx1 prefill + decode
                     if req_id == rx1:#r1 prefill+decode finished
                         if req_num_act != num_act:#r0 prefill finished, r1 prefill+decode finished
-                            reqs.append([rx1, info[rx0].r2_user_prompt + output_text])
+                            reqs.append([rx0, info[rx0].r2_user_prompt + output_text])
                             info[rx0].r1_user_prompt = info[rx0].r2_user_prompt + output_text
                             info[rx0].total_duration += now - info[rx0].arr2
                             info[rx0].total_token += len(request_output.outputs[0].token_ids)
@@ -632,26 +619,27 @@ def with_agent_optimized_v3(args, prompts):
             rx0 = info[req_id].rid1
             rx1 = info[req_id].rid2
             init_id = req_id[:-2]
-            # print(f"0 with_agent, req_id:{req_id} and rx0:{rx0} and rx1:{rx1} and init_id:{init_id} and my_marked:{my_marked} and counter:{counter}")
+            #print(f"13 with_agent, req_id:{req_id} and rx0:{rx0} and rx1:{rx1} and init_id:{init_id} and my_marked:{my_marked} and counter:{counter}")
             if request_output.finished:
+                print(f"13 with_agent, req_id:{req_id} and rx0:{rx0} and rx1:{rx1} and init_id:{init_id} and my_marked:{my_marked} and counter:{counter}")
                 if init_id in counter:
                     if counter[init_id] % 2 == 1:#act is even
                         if rx0 in my_marked and  my_marked[rx0]:
                             info[rx0].r2_react_num += 1
                             my_marked.pop(rx0)
+                            counter.pop(init_id)
                         if need_inc_react:
                             info[rx0].r1_react_num += 1
                             need_inc_react = False
-                        counter[init_id] = -1
+                        
                     else:
                         if rx1 in my_marked and my_marked[rx1]:
                             info[rx0].r1_react_num += 1
                             my_marked.pop(rx1)
+                            counter.pop(init_id)
                         if need_inc_react:
                             info[rx0].r2_react_num += 1
                             need_inc_react = False
-                        counter[init_id] = -1
-
 
         for request_output in request_outputs:
             req_id = request_output.request_id
@@ -1547,7 +1535,6 @@ def without_agent(args,prompts):
                 output_text = request_output.outputs[0].text
                 rid_num_act = info[rid].get_react_num() 
                 output_len = len(request_output.outputs[0].token_ids)
-                
                 print(f"2 rid:{rid} and rid1:{rid1} and rid2:{rid2} and id_num_act:{rid_num_act} and num_act:{num_act} and output_len:{output_len}")
                 if rid_num_act != num_act:
                     if rid_num_act % 2 == 1: #rid == rid1
