@@ -1,0 +1,408 @@
+args.agent_parallelism:True
+start with agent
+start with agent
+model:/home/xiaoxiang/data/Llama-3.1-8B
+0 vllm/config.py scheduler_config.py __init__ max_num_batched_tokens: None
+3 vllm/config.py scheduler_config.py __init__ max_num_batched_tokens: 1024
+INFO 10-30 10:38:28 config.py:1061] Chunked prefill is enabled with max_num_batched_tokens=1024.
+INFO 10-30 10:38:28 llm_engine.py:238] Initializing an LLM engine (v0.6.3.post2.dev36+g855e0e6f) with config: model='/home/xiaoxiang/data/Llama-3.1-8B', speculative_config=None, tokenizer='/home/xiaoxiang/data/Llama-3.1-8B', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, rope_scaling=None, rope_theta=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=131072, download_dir=None, load_format=LoadFormat.AUTO, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto, quantization_param_path=None, device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='outlines'), observability_config=ObservabilityConfig(otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=0, served_model_name=/home/xiaoxiang/data/Llama-3.1-8B, num_scheduler_steps=1, chunked_prefill_enabled=True multi_step_stream_outputs=True, enable_prefix_caching=True, use_async_output_proc=True, use_cached_outputs=False, mm_processor_kwargs=None)
+INFO 10-30 10:38:31 model_runner.py:1055] Starting to load model /home/xiaoxiang/data/Llama-3.1-8B...
+Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards:  25% Completed | 1/4 [00:01<00:04,  1.53s/it]
+Loading safetensors checkpoint shards:  50% Completed | 2/4 [00:03<00:03,  1.59s/it]
+Loading safetensors checkpoint shards:  75% Completed | 3/4 [00:04<00:01,  1.62s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:05<00:00,  1.19s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:05<00:00,  1.34s/it]
+
+INFO 10-30 10:38:37 model_runner.py:1066] Loading model weights took 14.9888 GB
+INFO 10-30 10:38:37 worker.py:260] Memory profiling results: total_gpu_memory=79.15GiB initial_memory_usage=15.50GiB peak_torch_memory=16.17GiB memory_usage_post_profile=15.53Gib non_torch_memory=0.54GiB kv_cache_size=54.53GiB gpu_memory_utilization=0.90
+INFO 10-30 10:38:38 gpu_executor.py:122] # GPU blocks: 27919, # CPU blocks: 2048
+INFO 10-30 10:38:38 gpu_executor.py:126] Maximum concurrency for 131072 tokens per request: 3.41x
+INFO 10-30 10:38:40 model_runner.py:1394] Capturing the model for CUDA graphs. This may lead to unexpected consequences if the model is not static. To run the model in eager mode, set 'enforce_eager=True' or use '--enforce-eager' in the CLI.
+INFO 10-30 10:38:40 model_runner.py:1398] CUDA graphs can take additional 1~3 GiB memory per GPU. If you are running out of memory, consider decreasing `gpu_memory_utilization` or enforcing eager mode. You can also reduce the `max_num_seqs` as needed to decrease memory usage.
+INFO 10-30 10:38:53 model_runner.py:1522] Graph capturing finished in 13 secs.
+/home/xiaoxiang/vllm/agent/agent.py:474: DeprecationWarning: The keyword arguments {'inputs'} are deprecated and will be removed in a future update. Please use the 'prompt' parameter instead.
+  warm_up(engine)
+/home/xiaoxiang/vllm/agent/agent.py:1668: DeprecationWarning: The keyword arguments {'inputs'} are deprecated and will be removed in a future update. Please use the 'prompt' parameter instead.
+  with_agent_optimized_v3(args, prompts)
+len(prompt):118
+start warm up
+finish warm up
+max_token:256 and agent_tokens:64
+1 with agent len(reqs):32
+INFO 10-30 10:39:00 metrics.py:363] Avg prompt throughput: 170.7 tokens/s, Avg generation throughput: 4.3 tokens/s, Running: 3 reqs, Swapped: 0 reqs, Pending: 60 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 10-30 10:39:00 metrics.py:379] Prefix cache hit rate: GPU: 1.43%, CPU: 0.00%
+9 ****application id:31 finish the r0:31i0 for prefill+decode and r1:31i1 for agent prefill  and the duration:0.28594088554382324 and the token:1 and total_duration:0.28594088554382324 and info[rx1].total_token:1 
+9.5 rx0:31i0 and rx1:31i1 and my_marked[rx0]:True and counter[init_id]:1
+11 ****application id:31 finish the r0:31i0 for agent prefill and r1:31i1 for prefill+ decode and the duration:0.0808413028717041 and the token:1 and total_duration:0.36678218841552734 and info[rx1].total_token:2 
+9 ****application id:29 finish the r0:29i0 for prefill+decode and r1:29i1 for agent prefill  and the duration:0.4364132881164551 and the token:1 and total_duration:0.4364132881164551 and info[rx1].total_token:1 
+9.5 rx0:29i0 and rx1:29i1 and my_marked[rx0]:True and counter[init_id]:1
+9 ****application id:28 finish the r0:28i0 for prefill+decode and r1:28i1 for agent prefill  and the duration:0.5100162029266357 and the token:1 and total_duration:0.5100162029266357 and info[rx1].total_token:1 
+9.5 rx0:28i0 and rx1:28i1 and my_marked[rx0]:True and counter[init_id]:1
+11 ****application id:29 finish the r0:29i0 for agent prefill and r1:29i1 for prefill+ decode and the duration:0.07688212394714355 and the token:1 and total_duration:0.5132954120635986 and info[rx1].total_token:2 
+9 ****application id:30 finish the r0:30i0 for prefill+decode and r1:30i1 for agent prefill  and the duration:0.5169057846069336 and the token:3 and total_duration:0.5169057846069336 and info[rx1].total_token:3 
+9.5 rx0:30i0 and rx1:30i1 and my_marked[rx0]:True and counter[init_id]:1
+11 ****application id:28 finish the r0:28i0 for agent prefill and r1:28i1 for prefill+ decode and the duration:0.07810401916503906 and the token:1 and total_duration:0.5881202220916748 and info[rx1].total_token:2 
+9 ****application id:27 finish the r0:27i0 for prefill+decode and r1:27i1 for agent prefill  and the duration:0.6682894229888916 and the token:1 and total_duration:0.6682894229888916 and info[rx1].total_token:1 
+9.5 rx0:27i0 and rx1:27i1 and my_marked[rx0]:True and counter[init_id]:1
+9 ****application id:26 finish the r0:26i0 for prefill+decode and r1:26i1 for agent prefill  and the duration:0.7412517070770264 and the token:1 and total_duration:0.7412517070770264 and info[rx1].total_token:1 
+9.5 rx0:26i0 and rx1:26i1 and my_marked[rx0]:True and counter[init_id]:1
+9 ****application id:25 finish the r0:25i0 for prefill+decode and r1:25i1 for agent prefill  and the duration:0.8149821758270264 and the token:1 and total_duration:0.8149821758270264 and info[rx1].total_token:1 
+9.5 rx0:25i0 and rx1:25i1 and my_marked[rx0]:True and counter[init_id]:1
+9 ****application id:24 finish the r0:24i0 for prefill+decode and r1:24i1 for agent prefill  and the duration:0.8894238471984863 and the token:1 and total_duration:0.8894238471984863 and info[rx1].total_token:1 
+9.5 rx0:24i0 and rx1:24i1 and my_marked[rx0]:True and counter[init_id]:1
+11 ****application id:25 finish the r0:25i0 for agent prefill and r1:25i1 for prefill+ decode and the duration:0.07802033424377441 and the token:1 and total_duration:0.8930025100708008 and info[rx1].total_token:2 
+9 ****application id:23 finish the r0:23i0 for prefill+decode and r1:23i1 for agent prefill  and the duration:0.9667131900787354 and the token:1 and total_duration:0.9667131900787354 and info[rx1].total_token:1 
+9.5 rx0:23i0 and rx1:23i1 and my_marked[rx0]:True and counter[init_id]:1
+11 ****application id:24 finish the r0:24i0 for agent prefill and r1:24i1 for prefill+ decode and the duration:0.07675385475158691 and the token:1 and total_duration:0.9661777019500732 and info[rx1].total_token:2 
+9 ****application id:22 finish the r0:22i0 for prefill+decode and r1:22i1 for agent prefill  and the duration:1.0442421436309814 and the token:1 and total_duration:1.0442421436309814 and info[rx1].total_token:1 
+9.5 rx0:22i0 and rx1:22i1 and my_marked[rx0]:True and counter[init_id]:1
+11 ****application id:23 finish the r0:23i0 for agent prefill and r1:23i1 for prefill+ decode and the duration:0.0768740177154541 and the token:1 and total_duration:1.0435872077941895 and info[rx1].total_token:2 
+9 ****application id:21 finish the r0:21i0 for prefill+decode and r1:21i1 for agent prefill  and the duration:1.121028184890747 and the token:1 and total_duration:1.121028184890747 and info[rx1].total_token:1 
+9.5 rx0:21i0 and rx1:21i1 and my_marked[rx0]:True and counter[init_id]:1
+11 ****application id:22 finish the r0:22i0 for agent prefill and r1:22i1 for prefill+ decode and the duration:0.0767672061920166 and the token:1 and total_duration:1.121009349822998 and info[rx1].total_token:2 
+9 ****application id:20 finish the r0:20i0 for prefill+decode and r1:20i1 for agent prefill  and the duration:1.197636365890503 and the token:1 and total_duration:1.197636365890503 and info[rx1].total_token:1 
+9.5 rx0:20i0 and rx1:20i1 and my_marked[rx0]:True and counter[init_id]:1
+11 ****application id:21 finish the r0:21i0 for agent prefill and r1:21i1 for prefill+ decode and the duration:0.07664203643798828 and the token:1 and total_duration:1.1976702213287354 and info[rx1].total_token:2 
+11 ****application id:20 finish the r0:20i0 for agent prefill and r1:20i1 for prefill+ decode and the duration:0.07767200469970703 and the token:1 and total_duration:1.27530837059021 and info[rx1].total_token:2 
+9 ****application id:19 finish the r0:19i0 for prefill+decode and r1:19i1 for agent prefill  and the duration:1.3543720245361328 and the token:1 and total_duration:1.3543720245361328 and info[rx1].total_token:1 
+9.5 rx0:19i0 and rx1:19i1 and my_marked[rx0]:True and counter[init_id]:1
+9 ****application id:18 finish the r0:18i0 for prefill+decode and r1:18i1 for agent prefill  and the duration:1.428612232208252 and the token:1 and total_duration:1.428612232208252 and info[rx1].total_token:1 
+9.5 rx0:18i0 and rx1:18i1 and my_marked[rx0]:True and counter[init_id]:1
+9 ****application id:17 finish the r0:17i0 for prefill+decode and r1:17i1 for agent prefill  and the duration:1.502765417098999 and the token:1 and total_duration:1.502765417098999 and info[rx1].total_token:1 
+9.5 rx0:17i0 and rx1:17i1 and my_marked[rx0]:True and counter[init_id]:1
+9 ****application id:16 finish the r0:16i0 for prefill+decode and r1:16i1 for agent prefill  and the duration:1.576322317123413 and the token:1 and total_duration:1.576322317123413 and info[rx1].total_token:1 
+9.5 rx0:16i0 and rx1:16i1 and my_marked[rx0]:True and counter[init_id]:1
+9 ****application id:15 finish the r0:15i0 for prefill+decode and r1:15i1 for agent prefill  and the duration:1.6503045558929443 and the token:1 and total_duration:1.6503045558929443 and info[rx1].total_token:1 
+9.5 rx0:15i0 and rx1:15i1 and my_marked[rx0]:True and counter[init_id]:1
+9 ****application id:14 finish the r0:14i0 for prefill+decode and r1:14i1 for agent prefill  and the duration:1.7256684303283691 and the token:1 and total_duration:1.7256684303283691 and info[rx1].total_token:1 
+9.5 rx0:14i0 and rx1:14i1 and my_marked[rx0]:True and counter[init_id]:1
+11 ****application id:15 finish the r0:15i0 for agent prefill and r1:15i1 for prefill+ decode and the duration:0.07854127883911133 and the token:1 and total_duration:1.7288458347320557 and info[rx1].total_token:2 
+9 ****application id:13 finish the r0:13i0 for prefill+decode and r1:13i1 for agent prefill  and the duration:1.8037121295928955 and the token:1 and total_duration:1.8037121295928955 and info[rx1].total_token:1 
+9.5 rx0:13i0 and rx1:13i1 and my_marked[rx0]:True and counter[init_id]:1
+11 ****application id:14 finish the r0:14i0 for agent prefill and r1:14i1 for prefill+ decode and the duration:0.077178955078125 and the token:1 and total_duration:1.8028473854064941 and info[rx1].total_token:2 
+11 ****application id:13 finish the r0:13i0 for agent prefill and r1:13i1 for prefill+ decode and the duration:0.07788300514221191 and the token:1 and total_duration:1.8815951347351074 and info[rx1].total_token:2 
+9 ****application id:12 finish the r0:12i0 for prefill+decode and r1:12i1 for agent prefill  and the duration:1.9602398872375488 and the token:1 and total_duration:1.9602398872375488 and info[rx1].total_token:1 
+9.5 rx0:12i0 and rx1:12i1 and my_marked[rx0]:True and counter[init_id]:1
+9 ****application id:10 finish the r0:10i0 for prefill+decode and r1:10i1 for agent prefill  and the duration:2.1080563068389893 and the token:1 and total_duration:2.1080563068389893 and info[rx1].total_token:1 
+9.5 rx0:10i0 and rx1:10i1 and my_marked[rx0]:True and counter[init_id]:1
+9 ****application id:9 finish the r0:9i0 for prefill+decode and r1:9i1 for agent prefill  and the duration:2.1838603019714355 and the token:1 and total_duration:2.1838603019714355 and info[rx1].total_token:1 
+9.5 rx0:9i0 and rx1:9i1 and my_marked[rx0]:True and counter[init_id]:1
+9 ****application id:8 finish the r0:8i0 for prefill+decode and r1:8i1 for agent prefill  and the duration:2.2590911388397217 and the token:1 and total_duration:2.2590911388397217 and info[rx1].total_token:1 
+9.5 rx0:8i0 and rx1:8i1 and my_marked[rx0]:True and counter[init_id]:1
+11 ****application id:9 finish the r0:9i0 for agent prefill and r1:9i1 for prefill+ decode and the duration:0.07834935188293457 and the token:1 and total_duration:2.26220965385437 and info[rx1].total_token:2 
+11 ****application id:8 finish the r0:8i0 for agent prefill and r1:8i1 for prefill+ decode and the duration:0.08057951927185059 and the token:1 and total_duration:2.3396706581115723 and info[rx1].total_token:2 
+9 ****application id:6 finish the r0:6i0 for prefill+decode and r1:6i1 for agent prefill  and the duration:2.4146101474761963 and the token:1 and total_duration:2.4146101474761963 and info[rx1].total_token:1 
+9.5 rx0:6i0 and rx1:6i1 and my_marked[rx0]:True and counter[init_id]:1
+9 ****application id:5 finish the r0:5i0 for prefill+decode and r1:5i1 for agent prefill  and the duration:2.489074230194092 and the token:1 and total_duration:2.489074230194092 and info[rx1].total_token:1 
+9.5 rx0:5i0 and rx1:5i1 and my_marked[rx0]:True and counter[init_id]:1
+11 ****application id:6 finish the r0:6i0 for agent prefill and r1:6i1 for prefill+ decode and the duration:0.0778350830078125 and the token:1 and total_duration:2.492445230484009 and info[rx1].total_token:2 
+11 ****application id:5 finish the r0:5i0 for agent prefill and r1:5i1 for prefill+ decode and the duration:0.07736063003540039 and the token:1 and total_duration:2.566434860229492 and info[rx1].total_token:2 
+9 ****application id:4 finish the r0:4i0 for prefill+decode and r1:4i1 for agent prefill  and the duration:2.645637035369873 and the token:1 and total_duration:2.645637035369873 and info[rx1].total_token:1 
+9.5 rx0:4i0 and rx1:4i1 and my_marked[rx0]:True and counter[init_id]:1
+9 ****application id:3 finish the r0:3i0 for prefill+decode and r1:3i1 for agent prefill  and the duration:2.7218332290649414 and the token:1 and total_duration:2.7218332290649414 and info[rx1].total_token:1 
+9.5 rx0:3i0 and rx1:3i1 and my_marked[rx0]:True and counter[init_id]:1
+9 ****application id:1 finish the r0:1i0 for prefill+decode and r1:1i1 for agent prefill  and the duration:2.867324113845825 and the token:1 and total_duration:2.867324113845825 and info[rx1].total_token:1 
+9.5 rx0:1i0 and rx1:1i1 and my_marked[rx0]:True and counter[init_id]:1
+11 ****application id:1 finish the r0:1i0 for agent prefill and r1:1i1 for prefill+ decode and the duration:0.04259943962097168 and the token:1 and total_duration:2.909923553466797 and info[rx1].total_token:2 
+INFO 10-30 10:39:03 model_runner_base.py:120] Writing input of failed execution to /tmp/err_execute_model_input_20241030-103903.pkl...
+WARNING 10-30 10:39:03 model_runner_base.py:143] Failed to pickle inputs of failed execution: Can't pickle local object 'weak_bind.<locals>.weak_bound'
+error: Error in model execution: Counters can only be incremented by non-negative amounts.
+9 ****application id:31 finish the r0:31i0 for prefill+decode and r1:31i1 for agent prefill  and the duration:2.72747540473938 and the token:1 and total_duration:3.0942575931549072 and info[rx1].total_token:3 
+9.5 rx0:31i0 and rx1:31i1 and my_marked[rx0]:True and counter[init_id]:1
+9 ****application id:31 finish the r0:31i0 for prefill+decode and r1:31i1 for agent prefill  and the duration:2.72747540473938 and the token:1 and total_duration:5.821732997894287 and info[rx1].total_token:4 
+9.5 rx0:31i0 and rx1:31i1 and my_marked[rx0]:True and counter[init_id]:1
+9 ****application id:29 finish the r0:29i0 for prefill+decode and r1:29i1 for agent prefill  and the duration:2.6412861347198486 and the token:1 and total_duration:3.1545815467834473 and info[rx1].total_token:3 
+9.5 rx0:29i0 and rx1:29i1 and my_marked[rx0]:True and counter[init_id]:1
+INFO 10-30 10:39:03 model_runner_base.py:120] Writing input of failed execution to /tmp/err_execute_model_input_20241030-103903.pkl...
+WARNING 10-30 10:39:03 model_runner_base.py:143] Failed to pickle inputs of failed execution: Can't pickle local object 'weak_bind.<locals>.weak_bound'
+error: Error in model execution: Counters can only be incremented by non-negative amounts.
+11 ****application id:30 finish the r0:30i0 for agent prefill and r1:30i1 for prefill+ decode and the duration:2.6845767498016357 and the token:1 and total_duration:3.2014825344085693 and info[rx1].total_token:4 
+12 ****application id:29 finish  r1:29i1 for prefill+ decode and the duration:0.11636900901794434 and the token:1 and total_duration:3.2709505558013916 and info[rx1].total_token:4 
+16 finished[-1]:{'request_id': '29', 'total_duration': 3.2709505558013916, 'total_token': 4} and rid:29
+INFO 10-30 10:39:03 model_runner_base.py:120] Writing input of failed execution to /tmp/err_execute_model_input_20241030-103903.pkl...
+WARNING 10-30 10:39:03 model_runner_base.py:143] Failed to pickle inputs of failed execution: Can't pickle local object 'weak_bind.<locals>.weak_bound'
+error: Error in model execution: Counters can only be incremented by non-negative amounts.
+9 ****application id:28 finish the r0:28i0 for prefill+decode and r1:28i1 for agent prefill  and the duration:2.713109016418457 and the token:1 and total_duration:3.301229238510132 and info[rx1].total_token:3 
+9.5 rx0:28i0 and rx1:28i1 and my_marked[rx0]:True and counter[init_id]:1
+12 ****application id:28 finish  r1:28i1 for prefill+ decode and the duration:0.07139015197753906 and the token:1 and total_duration:3.372619390487671 and info[rx1].total_token:4 
+11 ****application id:27 finish the r0:27i0 for agent prefill and r1:27i1 for prefill+ decode and the duration:2.7070577144622803 and the token:1 and total_duration:3.375347137451172 and info[rx1].total_token:2 
+9 ****application id:11 finish the r0:11i0 for prefill+decode and r1:11i1 for agent prefill  and the duration:3.319765567779541 and the token:20 and total_duration:3.319765567779541 and info[rx1].total_token:20 
+9.5 rx0:11i0 and rx1:11i1 and my_marked[rx0]:True and counter[init_id]:1
+16 finished[-1]:{'request_id': '28', 'total_duration': 3.372619390487671, 'total_token': 4} and rid:28
+11 ****application id:26 finish the r0:26i0 for agent prefill and r1:26i1 for prefill+ decode and the duration:2.6724050045013428 and the token:1 and total_duration:3.413656711578369 and info[rx1].total_token:2 
+INFO 10-30 10:39:03 model_runner_base.py:120] Writing input of failed execution to /tmp/err_execute_model_input_20241030-103903.pkl...
+WARNING 10-30 10:39:03 model_runner_base.py:143] Failed to pickle inputs of failed execution: Can't pickle local object 'weak_bind.<locals>.weak_bound'
+error: Error in model execution: Counters can only be incremented by non-negative amounts.
+9 ****application id:25 finish the r0:25i0 for prefill+decode and r1:25i1 for agent prefill  and the duration:2.5932319164276123 and the token:1 and total_duration:3.486234426498413 and info[rx1].total_token:3 
+9.5 rx0:25i0 and rx1:25i1 and my_marked[rx0]:True and counter[init_id]:1
+9 ****application id:25 finish the r0:25i0 for prefill+decode and r1:25i1 for agent prefill  and the duration:2.5932319164276123 and the token:1 and total_duration:6.079466342926025 and info[rx1].total_token:4 
+9.5 rx0:25i0 and rx1:25i1 and my_marked[rx0]:True and counter[init_id]:1
+INFO 10-30 10:39:03 model_runner_base.py:120] Writing input of failed execution to /tmp/err_execute_model_input_20241030-103903.pkl...
+WARNING 10-30 10:39:03 model_runner_base.py:143] Failed to pickle inputs of failed execution: Can't pickle local object 'weak_bind.<locals>.weak_bound'
+error: Error in model execution: Counters can only be incremented by non-negative amounts.
+9 ****application id:24 finish the r0:24i0 for prefill+decode and r1:24i1 for agent prefill  and the duration:2.589402914047241 and the token:1 and total_duration:3.5555806159973145 and info[rx1].total_token:3 
+9.5 rx0:24i0 and rx1:24i1 and my_marked[rx0]:True and counter[init_id]:1
+9 ****application id:24 finish the r0:24i0 for prefill+decode and r1:24i1 for agent prefill  and the duration:2.589402914047241 and the token:1 and total_duration:6.144983530044556 and info[rx1].total_token:4 
+9.5 rx0:24i0 and rx1:24i1 and my_marked[rx0]:True and counter[init_id]:1
+INFO 10-30 10:39:04 model_runner_base.py:120] Writing input of failed execution to /tmp/err_execute_model_input_20241030-103904.pkl...
+WARNING 10-30 10:39:04 model_runner_base.py:143] Failed to pickle inputs of failed execution: Can't pickle local object 'weak_bind.<locals>.weak_bound'
+error: Error in model execution: Counters can only be incremented by non-negative amounts.
+9 ****application id:23 finish the r0:23i0 for prefill+decode and r1:23i1 for agent prefill  and the duration:2.5821473598480225 and the token:1 and total_duration:3.625734567642212 and info[rx1].total_token:3 
+9.5 rx0:23i0 and rx1:23i1 and my_marked[rx0]:True and counter[init_id]:1
+12 ****application id:23 finish  r1:23i1 for prefill+ decode and the duration:0.06341242790222168 and the token:1 and total_duration:3.6891469955444336 and info[rx1].total_token:4 
+16 finished[-1]:{'request_id': '23', 'total_duration': 3.6891469955444336, 'total_token': 4} and rid:23
+INFO 10-30 10:39:04 model_runner_base.py:120] Writing input of failed execution to /tmp/err_execute_model_input_20241030-103904.pkl...
+WARNING 10-30 10:39:04 model_runner_base.py:143] Failed to pickle inputs of failed execution: Can't pickle local object 'weak_bind.<locals>.weak_bound'
+error: Error in model execution: Counters can only be incremented by non-negative amounts.
+9 ****application id:22 finish the r0:22i0 for prefill+decode and r1:22i1 for agent prefill  and the duration:2.601040840148926 and the token:1 and total_duration:3.722050189971924 and info[rx1].total_token:3 
+9.5 rx0:22i0 and rx1:22i1 and my_marked[rx0]:True and counter[init_id]:1
+INFO 10-30 10:39:04 model_runner_base.py:120] Writing input of failed execution to /tmp/err_execute_model_input_20241030-103904.pkl...
+WARNING 10-30 10:39:04 model_runner_base.py:143] Failed to pickle inputs of failed execution: Can't pickle local object 'weak_bind.<locals>.weak_bound'
+error: Error in model execution: Counters can only be incremented by non-negative amounts.
+12 ****application id:22 finish  r1:22i1 for prefill+ decode and the duration:0.07286357879638672 and the token:1 and total_duration:3.7949137687683105 and info[rx1].total_token:4 
+12 ****application id:22 finish  r1:22i1 for prefill+ decode and the duration:0.07286357879638672 and the token:1 and total_duration:3.8677773475646973 and info[rx1].total_token:5 
+16 finished[-1]:{'request_id': '22', 'total_duration': 3.8677773475646973, 'total_token': 5} and rid:22
+INFO 10-30 10:39:04 model_runner_base.py:120] Writing input of failed execution to /tmp/err_execute_model_input_20241030-103904.pkl...
+WARNING 10-30 10:39:04 model_runner_base.py:143] Failed to pickle inputs of failed execution: Can't pickle local object 'weak_bind.<locals>.weak_bound'
+error: Error in model execution: Counters can only be incremented by non-negative amounts.
+9 ****application id:21 finish the r0:21i0 for prefill+decode and r1:21i1 for agent prefill  and the duration:2.663987636566162 and the token:1 and total_duration:3.8616578578948975 and info[rx1].total_token:3 
+9.5 rx0:21i0 and rx1:21i1 and my_marked[rx0]:True and counter[init_id]:1
+9 ****application id:21 finish the r0:21i0 for prefill+decode and r1:21i1 for agent prefill  and the duration:2.663987636566162 and the token:1 and total_duration:6.52564549446106 and info[rx1].total_token:4 
+9.5 rx0:21i0 and rx1:21i1 and my_marked[rx0]:True and counter[init_id]:1
+INFO 10-30 10:39:04 model_runner_base.py:120] Writing input of failed execution to /tmp/err_execute_model_input_20241030-103904.pkl...
+WARNING 10-30 10:39:04 model_runner_base.py:143] Failed to pickle inputs of failed execution: Can't pickle local object 'weak_bind.<locals>.weak_bound'
+error: Error in model execution: Counters can only be incremented by non-negative amounts.
+9 ****application id:20 finish the r0:20i0 for prefill+decode and r1:20i1 for agent prefill  and the duration:2.6547391414642334 and the token:1 and total_duration:3.9300475120544434 and info[rx1].total_token:3 
+9.5 rx0:20i0 and rx1:20i1 and my_marked[rx0]:True and counter[init_id]:1
+12 ****application id:20 finish  r1:20i1 for prefill+ decode and the duration:0.06804108619689941 and the token:1 and total_duration:3.9980885982513428 and info[rx1].total_token:4 
+16 finished[-1]:{'request_id': '20', 'total_duration': 3.9980885982513428, 'total_token': 4} and rid:20
+11 ****application id:19 finish the r0:19i0 for agent prefill and r1:19i1 for prefill+ decode and the duration:2.6773934364318848 and the token:1 and total_duration:4.031765460968018 and info[rx1].total_token:2 
+11 ****application id:18 finish the r0:18i0 for agent prefill and r1:18i1 for prefill+ decode and the duration:2.6372902393341064 and the token:1 and total_duration:4.065902471542358 and info[rx1].total_token:2 
+11 ****application id:17 finish the r0:17i0 for agent prefill and r1:17i1 for prefill+ decode and the duration:2.5974502563476562 and the token:1 and total_duration:4.100215673446655 and info[rx1].total_token:2 
+9 ****application id:18 finish the r0:18i0 for prefill+decode and r1:18i1 for agent prefill  and the duration:0.0377042293548584 and the token:1 and total_duration:4.103606700897217 and info[rx1].total_token:3 
+9.5 rx0:18i0 and rx1:18i1 and my_marked[rx0]:True and counter[init_id]:1
+11 ****application id:16 finish the r0:16i0 for agent prefill and r1:16i1 for prefill+ decode and the duration:2.560723066329956 and the token:1 and total_duration:4.137045383453369 and info[rx1].total_token:2 
+9 ****application id:17 finish the r0:17i0 for prefill+decode and r1:17i1 for agent prefill  and the duration:0.03871726989746094 and the token:1 and total_duration:4.138932943344116 and info[rx1].total_token:3 
+9.5 rx0:17i0 and rx1:17i1 and my_marked[rx0]:True and counter[init_id]:1
+9 ****application id:16 finish the r0:16i0 for prefill+decode and r1:16i1 for agent prefill  and the duration:0.03825831413269043 and the token:1 and total_duration:4.17530369758606 and info[rx1].total_token:3 
+9.5 rx0:16i0 and rx1:16i1 and my_marked[rx0]:True and counter[init_id]:1
+INFO 10-30 10:39:04 model_runner_base.py:120] Writing input of failed execution to /tmp/err_execute_model_input_20241030-103904.pkl...
+WARNING 10-30 10:39:04 model_runner_base.py:143] Failed to pickle inputs of failed execution: Can't pickle local object 'weak_bind.<locals>.weak_bound'
+error: Error in model execution: Counters can only be incremented by non-negative amounts.
+9 ****application id:15 finish the r0:15i0 for prefill+decode and r1:15i1 for agent prefill  and the duration:2.4838953018188477 and the token:1 and total_duration:4.212741136550903 and info[rx1].total_token:3 
+9.5 rx0:15i0 and rx1:15i1 and my_marked[rx0]:True and counter[init_id]:1
+9 ****application id:15 finish the r0:15i0 for prefill+decode and r1:15i1 for agent prefill  and the duration:2.4838953018188477 and the token:1 and total_duration:6.696636438369751 and info[rx1].total_token:4 
+9.5 rx0:15i0 and rx1:15i1 and my_marked[rx0]:True and counter[init_id]:1
+INFO 10-30 10:39:04 model_runner_base.py:120] Writing input of failed execution to /tmp/err_execute_model_input_20241030-103904.pkl...
+WARNING 10-30 10:39:04 model_runner_base.py:143] Failed to pickle inputs of failed execution: Can't pickle local object 'weak_bind.<locals>.weak_bound'
+error: Error in model execution: Counters can only be incremented by non-negative amounts.
+12 ****application id:15 finish  r1:15i1 for prefill+ decode and the duration:0.07024669647216797 and the token:1 and total_duration:6.766883134841919 and info[rx1].total_token:5 
+9 ****application id:14 finish the r0:14i0 for prefill+decode and r1:14i1 for agent prefill  and the duration:2.474836587905884 and the token:1 and total_duration:4.277683973312378 and info[rx1].total_token:3 
+9.5 rx0:14i0 and rx1:14i1 and my_marked[rx0]:True and counter[init_id]:1
+16 finished[-1]:{'request_id': '15', 'total_duration': 6.766883134841919, 'total_token': 5} and rid:15
+12 ****application id:14 finish  r1:14i1 for prefill+ decode and the duration:0.06858110427856445 and the token:1 and total_duration:4.346265077590942 and info[rx1].total_token:4 
+16 finished[-1]:{'request_id': '14', 'total_duration': 4.346265077590942, 'total_token': 4} and rid:14
+INFO 10-30 10:39:04 model_runner_base.py:120] Writing input of failed execution to /tmp/err_execute_model_input_20241030-103904.pkl...
+WARNING 10-30 10:39:04 model_runner_base.py:143] Failed to pickle inputs of failed execution: Can't pickle local object 'weak_bind.<locals>.weak_bound'
+error: Error in model execution: Counters can only be incremented by non-negative amounts.
+9 ****application id:13 finish the r0:13i0 for prefill+decode and r1:13i1 for agent prefill  and the duration:2.4998109340667725 and the token:1 and total_duration:4.38140606880188 and info[rx1].total_token:3 
+9.5 rx0:13i0 and rx1:13i1 and my_marked[rx0]:True and counter[init_id]:1
+12 ****application id:13 finish  r1:13i1 for prefill+ decode and the duration:0.07104301452636719 and the token:1 and total_duration:4.452449083328247 and info[rx1].total_token:4 
+11 ****application id:12 finish the r0:12i0 for agent prefill and r1:12i1 for prefill+ decode and the duration:2.4924793243408203 and the token:1 and total_duration:4.452719211578369 and info[rx1].total_token:2 
+9 ****application id:0 finish the r0:0i0 for prefill+decode and r1:0i1 for agent prefill  and the duration:4.411962985992432 and the token:28 and total_duration:4.411962985992432 and info[rx1].total_token:28 
+9.5 rx0:0i0 and rx1:0i1 and my_marked[rx0]:True and counter[init_id]:1
+16 finished[-1]:{'request_id': '13', 'total_duration': 4.452449083328247, 'total_token': 4} and rid:13
+11 ****application id:10 finish the r0:10i0 for agent prefill and r1:10i1 for prefill+ decode and the duration:2.3789608478546143 and the token:1 and total_duration:4.4870171546936035 and info[rx1].total_token:2 
+INFO 10-30 10:39:05 model_runner_base.py:120] Writing input of failed execution to /tmp/err_execute_model_input_20241030-103905.pkl...
+WARNING 10-30 10:39:05 model_runner_base.py:143] Failed to pickle inputs of failed execution: Can't pickle local object 'weak_bind.<locals>.weak_bound'
+error: Error in model execution: Counters can only be incremented by non-negative amounts.
+9 ****application id:9 finish the r0:9i0 for prefill+decode and r1:9i1 for agent prefill  and the duration:2.298384428024292 and the token:1 and total_duration:4.560594081878662 and info[rx1].total_token:3 
+9.5 rx0:9i0 and rx1:9i1 and my_marked[rx0]:True and counter[init_id]:1
+9 ****application id:9 finish the r0:9i0 for prefill+decode and r1:9i1 for agent prefill  and the duration:2.298384428024292 and the token:1 and total_duration:6.858978509902954 and info[rx1].total_token:4 
+9.5 rx0:9i0 and rx1:9i1 and my_marked[rx0]:True and counter[init_id]:1
+INFO 10-30 10:39:05 model_runner_base.py:120] Writing input of failed execution to /tmp/err_execute_model_input_20241030-103905.pkl...
+WARNING 10-30 10:39:05 model_runner_base.py:143] Failed to pickle inputs of failed execution: Can't pickle local object 'weak_bind.<locals>.weak_bound'
+error: Error in model execution: Counters can only be incremented by non-negative amounts.
+9 ****application id:8 finish the r0:8i0 for prefill+decode and r1:8i1 for agent prefill  and the duration:2.2864809036254883 and the token:1 and total_duration:4.6261515617370605 and info[rx1].total_token:3 
+9.5 rx0:8i0 and rx1:8i1 and my_marked[rx0]:True and counter[init_id]:1
+9 ****application id:8 finish the r0:8i0 for prefill+decode and r1:8i1 for agent prefill  and the duration:2.2864809036254883 and the token:1 and total_duration:6.912632465362549 and info[rx1].total_token:4 
+9.5 rx0:8i0 and rx1:8i1 and my_marked[rx0]:True and counter[init_id]:1
+INFO 10-30 10:39:05 model_runner_base.py:120] Writing input of failed execution to /tmp/err_execute_model_input_20241030-103905.pkl...
+WARNING 10-30 10:39:05 model_runner_base.py:143] Failed to pickle inputs of failed execution: Can't pickle local object 'weak_bind.<locals>.weak_bound'
+error: Error in model execution: Counters can only be incremented by non-negative amounts.
+9 ****application id:6 finish the r0:6i0 for prefill+decode and r1:6i1 for agent prefill  and the duration:2.2036821842193604 and the token:1 and total_duration:4.696127414703369 and info[rx1].total_token:3 
+9.5 rx0:6i0 and rx1:6i1 and my_marked[rx0]:True and counter[init_id]:1
+12 ****application id:6 finish  r1:6i1 for prefill+ decode and the duration:0.06325006484985352 and the token:1 and total_duration:4.759377479553223 and info[rx1].total_token:4 
+16 finished[-1]:{'request_id': '6', 'total_duration': 4.759377479553223, 'total_token': 4} and rid:6
+INFO 10-30 10:39:05 model_runner_base.py:120] Writing input of failed execution to /tmp/err_execute_model_input_20241030-103905.pkl...
+WARNING 10-30 10:39:05 model_runner_base.py:143] Failed to pickle inputs of failed execution: Can't pickle local object 'weak_bind.<locals>.weak_bound'
+error: Error in model execution: Counters can only be incremented by non-negative amounts.
+9 ****application id:5 finish the r0:5i0 for prefill+decode and r1:5i1 for agent prefill  and the duration:2.221290111541748 and the token:1 and total_duration:4.78772497177124 and info[rx1].total_token:3 
+9.5 rx0:5i0 and rx1:5i1 and my_marked[rx0]:True and counter[init_id]:1
+INFO 10-30 10:39:05 model_runner_base.py:120] Writing input of failed execution to /tmp/err_execute_model_input_20241030-103905.pkl...
+WARNING 10-30 10:39:05 model_runner_base.py:143] Failed to pickle inputs of failed execution: Can't pickle local object 'weak_bind.<locals>.weak_bound'
+error: Error in model execution: Counters can only be incremented by non-negative amounts.
+11 ****application id:4 finish the r0:4i0 for agent prefill and r1:4i1 for prefill+ decode and the duration:2.2141640186309814 and the token:1 and total_duration:4.8598010540008545 and info[rx1].total_token:2 
+12 ****application id:5 finish  r1:5i1 for prefill+ decode and the duration:0.07109761238098145 and the token:1 and total_duration:4.858822584152222 and info[rx1].total_token:4 
+12 ****application id:5 finish  r1:5i1 for prefill+ decode and the duration:0.07109761238098145 and the token:1 and total_duration:4.929920196533203 and info[rx1].total_token:5 
+16 finished[-1]:{'request_id': '5', 'total_duration': 4.929920196533203, 'total_token': 5} and rid:5
+9 ****application id:4 finish the r0:4i0 for prefill+decode and r1:4i1 for agent prefill  and the duration:0.069976806640625 and the token:1 and total_duration:4.9297778606414795 and info[rx1].total_token:3 
+9.5 rx0:4i0 and rx1:4i1 and my_marked[rx0]:True and counter[init_id]:1
+11 ****application id:3 finish the r0:3i0 for agent prefill and r1:3i1 for prefill+ decode and the duration:2.2050817012786865 and the token:1 and total_duration:4.926914930343628 and info[rx1].total_token:2 
+9 ****application id:3 finish the r0:3i0 for prefill+decode and r1:3i1 for agent prefill  and the duration:0.03927111625671387 and the token:1 and total_duration:4.966186046600342 and info[rx1].total_token:3 
+9.5 rx0:3i0 and rx1:3i1 and my_marked[rx0]:True and counter[init_id]:1
+INFO 10-30 10:39:05 model_runner_base.py:120] Writing input of failed execution to /tmp/err_execute_model_input_20241030-103905.pkl...
+WARNING 10-30 10:39:05 model_runner_base.py:143] Failed to pickle inputs of failed execution: Can't pickle local object 'weak_bind.<locals>.weak_bound'
+error: Error in model execution: Counters can only be incremented by non-negative amounts.
+9 ****application id:1 finish the r0:1i0 for prefill+decode and r1:1i1 for agent prefill  and the duration:2.088660955429077 and the token:1 and total_duration:4.998584508895874 and info[rx1].total_token:3 
+9.5 rx0:1i0 and rx1:1i1 and my_marked[rx0]:True and counter[init_id]:1
+INFO 10-30 10:39:05 model_runner_base.py:120] Writing input of failed execution to /tmp/err_execute_model_input_20241030-103905.pkl...
+WARNING 10-30 10:39:05 model_runner_base.py:143] Failed to pickle inputs of failed execution: Can't pickle local object 'weak_bind.<locals>.weak_bound'
+error: Error in model execution: Counters can only be incremented by non-negative amounts.
+12 ****application id:1 finish  r1:1i1 for prefill+ decode and the duration:0.07251334190368652 and the token:1 and total_duration:5.0710978507995605 and info[rx1].total_token:4 
+12 ****application id:31 finish  r1:31i1 for prefill+ decode and the duration:2.079432249069214 and the token:1 and total_duration:7.901165246963501 and info[rx1].total_token:5 
+12 ****application id:31 finish  r1:31i1 for prefill+ decode and the duration:2.079432249069214 and the token:1 and total_duration:9.980597496032715 and info[rx1].total_token:6 
+16 finished[-1]:{'request_id': '1', 'total_duration': 5.0710978507995605, 'total_token': 4} and rid:1
+16 finished[-1]:{'request_id': '31', 'total_duration': 9.980597496032715, 'total_token': 6} and rid:31
+INFO 10-30 10:39:05 metrics.py:363] Avg prompt throughput: 18004.6 tokens/s, Avg generation throughput: -2529.1 tokens/s, Running: 5 reqs, Swapped: 0 reqs, Pending: 48 reqs, GPU KV cache usage: 0.7%, CPU KV cache usage: 0.0%.
+INFO 10-30 10:39:05 metrics.py:379] Prefix cache hit rate: GPU: 61.21%, CPU: 0.00%
+9 ****application id:30 finish the r0:30i0 for prefill+decode and r1:30i1 for agent prefill  and the duration:2.036200761795044 and the token:1 and total_duration:5.237683296203613 and info[rx1].total_token:5 
+9.5 rx0:30i0 and rx1:30i1 and my_marked[rx0]:True and counter[init_id]:1
+12 ****application id:30 finish  r1:30i1 for prefill+ decode and the duration:0.036501407623291016 and the token:1 and total_duration:5.274184703826904 and info[rx1].total_token:6 
+16 finished[-1]:{'request_id': '30', 'total_duration': 5.274184703826904, 'total_token': 6} and rid:30
+11 ****application id:11 finish the r0:11i0 for agent prefill and r1:11i1 for prefill+ decode and the duration:1.9220056533813477 and the token:1 and total_duration:5.241771221160889 and info[rx1].total_token:21 
+9 ****application id:27 finish the r0:27i0 for prefill+decode and r1:27i1 for agent prefill  and the duration:1.9560847282409668 and the token:1 and total_duration:5.331431865692139 and info[rx1].total_token:3 
+9.5 rx0:27i0 and rx1:27i1 and my_marked[rx0]:True and counter[init_id]:1
+9 ****application id:26 finish the r0:26i0 for prefill+decode and r1:26i1 for agent prefill  and the duration:1.9548628330230713 and the token:1 and total_duration:5.36851954460144 and info[rx1].total_token:3 
+9.5 rx0:26i0 and rx1:26i1 and my_marked[rx0]:True and counter[init_id]:1
+12 ****application id:27 finish  r1:27i1 for prefill+ decode and the duration:0.036896467208862305 and the token:1 and total_duration:5.368328332901001 and info[rx1].total_token:4 
+16 finished[-1]:{'request_id': '27', 'total_duration': 5.368328332901001, 'total_token': 4} and rid:27
+INFO 10-30 10:39:05 model_runner_base.py:120] Writing input of failed execution to /tmp/err_execute_model_input_20241030-103905.pkl...
+WARNING 10-30 10:39:05 model_runner_base.py:143] Failed to pickle inputs of failed execution: Can't pickle local object 'weak_bind.<locals>.weak_bound'
+error: Error in model execution: Counters can only be incremented by non-negative amounts.
+12 ****application id:25 finish  r1:25i1 for prefill+ decode and the duration:1.9155299663543701 and the token:1 and total_duration:7.9949963092803955 and info[rx1].total_token:5 
+12 ****application id:26 finish  r1:26i1 for prefill+ decode and the duration:0.038587093353271484 and the token:1 and total_duration:5.407106637954712 and info[rx1].total_token:4 
+16 finished[-1]:{'request_id': '25', 'total_duration': 7.9949963092803955, 'total_token': 5} and rid:25
+16 finished[-1]:{'request_id': '26', 'total_duration': 5.407106637954712, 'total_token': 4} and rid:26
+INFO 10-30 10:39:05 model_runner_base.py:120] Writing input of failed execution to /tmp/err_execute_model_input_20241030-103905.pkl...
+WARNING 10-30 10:39:05 model_runner_base.py:143] Failed to pickle inputs of failed execution: Can't pickle local object 'weak_bind.<locals>.weak_bound'
+error: Error in model execution: Counters can only be incremented by non-negative amounts.
+12 ****application id:24 finish  r1:24i1 for prefill+ decode and the duration:1.906569242477417 and the token:1 and total_duration:8.051552772521973 and info[rx1].total_token:5 
+16 finished[-1]:{'request_id': '24', 'total_duration': 8.051552772521973, 'total_token': 5} and rid:24
+INFO 10-30 10:39:06 model_runner_base.py:120] Writing input of failed execution to /tmp/err_execute_model_input_20241030-103906.pkl...
+WARNING 10-30 10:39:06 model_runner_base.py:143] Failed to pickle inputs of failed execution: Can't pickle local object 'weak_bind.<locals>.weak_bound'
+error: Error in model execution: Counters can only be incremented by non-negative amounts.
+12 ****application id:21 finish  r1:21i1 for prefill+ decode and the duration:1.694105863571167 and the token:1 and total_duration:8.219751358032227 and info[rx1].total_token:5 
+16 finished[-1]:{'request_id': '21', 'total_duration': 8.219751358032227, 'total_token': 5} and rid:21
+9 ****application id:19 finish the r0:19i0 for prefill+decode and r1:19i1 for agent prefill  and the duration:1.6224164962768555 and the token:1 and total_duration:5.654181957244873 and info[rx1].total_token:3 
+9.5 rx0:19i0 and rx1:19i1 and my_marked[rx0]:True and counter[init_id]:1
+INFO 10-30 10:39:06 model_runner_base.py:120] Writing input of failed execution to /tmp/err_execute_model_input_20241030-103906.pkl...
+WARNING 10-30 10:39:06 model_runner_base.py:143] Failed to pickle inputs of failed execution: Can't pickle local object 'weak_bind.<locals>.weak_bound'
+error: Error in model execution: Counters can only be incremented by non-negative amounts.
+12 ****application id:18 finish  r1:18i1 for prefill+ decode and the duration:1.5855426788330078 and the token:1 and total_duration:5.689149379730225 and info[rx1].total_token:4 
+16 finished[-1]:{'request_id': '18', 'total_duration': 5.689149379730225, 'total_token': 4} and rid:18
+12 ****application id:17 finish  r1:17i1 for prefill+ decode and the duration:1.645698070526123 and the token:1 and total_duration:5.784631013870239 and info[rx1].total_token:4 
+16 finished[-1]:{'request_id': '17', 'total_duration': 5.784631013870239, 'total_token': 4} and rid:17
+INFO 10-30 10:39:06 model_runner_base.py:120] Writing input of failed execution to /tmp/err_execute_model_input_20241030-103906.pkl...
+WARNING 10-30 10:39:06 model_runner_base.py:143] Failed to pickle inputs of failed execution: Can't pickle local object 'weak_bind.<locals>.weak_bound'
+error: Error in model execution: Counters can only be incremented by non-negative amounts.
+12 ****application id:16 finish  r1:16i1 for prefill+ decode and the duration:1.6429576873779297 and the token:1 and total_duration:5.818261384963989 and info[rx1].total_token:4 
+16 finished[-1]:{'request_id': '16', 'total_duration': 5.818261384963989, 'total_token': 4} and rid:16
+INFO 10-30 10:39:06 model_runner_base.py:120] Writing input of failed execution to /tmp/err_execute_model_input_20241030-103906.pkl...
+WARNING 10-30 10:39:06 model_runner_base.py:143] Failed to pickle inputs of failed execution: Can't pickle local object 'weak_bind.<locals>.weak_bound'
+error: Error in model execution: Counters can only be incremented by non-negative amounts.
+11 ****application id:0 finish the r0:0i0 for agent prefill and r1:0i1 for prefill+ decode and the duration:1.5223655700683594 and the token:1 and total_duration:5.934328556060791 and info[rx1].total_token:29 
+9 ****application id:12 finish the r0:12i0 for prefill+decode and r1:12i1 for agent prefill  and the duration:1.5565807819366455 and the token:1 and total_duration:6.009299993515015 and info[rx1].total_token:3 
+9.5 rx0:12i0 and rx1:12i1 and my_marked[rx0]:True and counter[init_id]:1
+9 ****application id:0 finish the r0:0i0 for prefill+decode and r1:0i1 for agent prefill  and the duration:0.038368940353393555 and the token:1 and total_duration:5.972697496414185 and info[rx1].total_token:30 
+9.5 rx0:0i0 and rx1:0i1 and my_marked[rx0]:True and counter[init_id]:1
+12 ****application id:12 finish  r1:12i1 for prefill+ decode and the duration:0.035819053649902344 and the token:1 and total_duration:6.045119047164917 and info[rx1].total_token:4 
+16 finished[-1]:{'request_id': '12', 'total_duration': 6.045119047164917, 'total_token': 4} and rid:12
+9 ****application id:10 finish the r0:10i0 for prefill+decode and r1:10i1 for agent prefill  and the duration:1.5923054218292236 and the token:1 and total_duration:6.079322576522827 and info[rx1].total_token:3 
+9.5 rx0:10i0 and rx1:10i1 and my_marked[rx0]:True and counter[init_id]:1
+INFO 10-30 10:39:06 model_runner_base.py:120] Writing input of failed execution to /tmp/err_execute_model_input_20241030-103906.pkl...
+WARNING 10-30 10:39:06 model_runner_base.py:143] Failed to pickle inputs of failed execution: Can't pickle local object 'weak_bind.<locals>.weak_bound'
+error: Error in model execution: Counters can only be incremented by non-negative amounts.
+12 ****application id:9 finish  r1:9i1 for prefill+ decode and the duration:1.554466724395752 and the token:1 and total_duration:8.413445234298706 and info[rx1].total_token:5 
+12 ****application id:8 finish  r1:8i1 for prefill+ decode and the duration:1.481766939163208 and the token:1 and total_duration:8.394399404525757 and info[rx1].total_token:5 
+12 ****application id:9 finish  r1:9i1 for prefill+ decode and the duration:1.554466724395752 and the token:1 and total_duration:9.967911958694458 and info[rx1].total_token:6 
+16 finished[-1]:{'request_id': '9', 'total_duration': 9.967911958694458, 'total_token': 6} and rid:9
+16 finished[-1]:{'request_id': '8', 'total_duration': 8.394399404525757, 'total_token': 5} and rid:8
+12 ****application id:4 finish  r1:4i1 for prefill+ decode and the duration:1.3051416873931885 and the token:1 and total_duration:6.234919548034668 and info[rx1].total_token:4 
+16 finished[-1]:{'request_id': '4', 'total_duration': 6.234919548034668, 'total_token': 4} and rid:4
+INFO 10-30 10:39:06 model_runner_base.py:120] Writing input of failed execution to /tmp/err_execute_model_input_20241030-103906.pkl...
+WARNING 10-30 10:39:06 model_runner_base.py:143] Failed to pickle inputs of failed execution: Can't pickle local object 'weak_bind.<locals>.weak_bound'
+error: Error in model execution: Counters can only be incremented by non-negative amounts.
+12 ****application id:3 finish  r1:3i1 for prefill+ decode and the duration:1.305713415145874 and the token:1 and total_duration:6.271899461746216 and info[rx1].total_token:4 
+12 ****application id:3 finish  r1:3i1 for prefill+ decode and the duration:1.305713415145874 and the token:1 and total_duration:7.57761287689209 and info[rx1].total_token:5 
+16 finished[-1]:{'request_id': '3', 'total_duration': 7.57761287689209, 'total_token': 5} and rid:3
+9 ****application id:11 finish the r0:11i0 for prefill+decode and r1:11i1 for agent prefill  and the duration:1.1567792892456055 and the token:1 and total_duration:6.398550510406494 and info[rx1].total_token:22 
+9.5 rx0:11i0 and rx1:11i1 and my_marked[rx0]:True and counter[init_id]:1
+12 ****application id:19 finish  r1:19i1 for prefill+ decode and the duration:0.8427178859710693 and the token:1 and total_duration:6.496899843215942 and info[rx1].total_token:4 
+16 finished[-1]:{'request_id': '19', 'total_duration': 6.496899843215942, 'total_token': 4} and rid:19
+INFO 10-30 10:39:06 model_runner_base.py:120] Writing input of failed execution to /tmp/err_execute_model_input_20241030-103906.pkl...
+WARNING 10-30 10:39:06 model_runner_base.py:143] Failed to pickle inputs of failed execution: Can't pickle local object 'weak_bind.<locals>.weak_bound'
+error: Error in model execution: Counters can only be incremented by non-negative amounts.
+12 ****application id:0 finish  r1:0i1 for prefill+ decode and the duration:0.49504709243774414 and the token:1 and total_duration:6.467744588851929 and info[rx1].total_token:31 
+16 finished[-1]:{'request_id': '0', 'total_duration': 6.467744588851929, 'total_token': 31} and rid:0
+12 ****application id:11 finish  r1:11i1 for prefill+ decode and the duration:0.18407011032104492 and the token:1 and total_duration:6.582620620727539 and info[rx1].total_token:23 
+12 ****application id:10 finish  r1:10i1 for prefill+ decode and the duration:0.49979686737060547 and the token:1 and total_duration:6.579119443893433 and info[rx1].total_token:4 
+16 finished[-1]:{'request_id': '11', 'total_duration': 6.582620620727539, 'total_token': 23} and rid:11
+16 finished[-1]:{'request_id': '10', 'total_duration': 6.579119443893433, 'total_token': 4} and rid:10
+9 ****application id:7 finish the r0:7i0 for prefill+decode and r1:7i1 for agent prefill  and the duration:8.764262199401855 and the token:256 and total_duration:8.764262199401855 and info[rx1].total_token:256 
+9.5 rx0:7i0 and rx1:7i1 and my_marked[rx0]:True and counter[init_id]:1
+9 ****application id:2 finish the r0:2i0 for prefill+decode and r1:2i1 for agent prefill  and the duration:8.87589979171753 and the token:256 and total_duration:8.87589979171753 and info[rx1].total_token:256 
+9.5 rx0:2i0 and rx1:2i1 and my_marked[rx0]:True and counter[init_id]:1
+INFO 10-30 10:39:10 metrics.py:363] Avg prompt throughput: 7884.8 tokens/s, Avg generation throughput: -675.3 tokens/s, Running: 2 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 10-30 10:39:10 metrics.py:379] Prefix cache hit rate: GPU: 72.17%, CPU: 0.00%
+11 ****application id:2 finish the r0:2i0 for agent prefill and r1:2i1 for prefill+ decode and the duration:1.4610013961791992 and the token:112 and total_duration:10.336901187896729 and info[rx1].total_token:368 
+9 ****application id:2 finish the r0:2i0 for prefill+decode and r1:2i1 for agent prefill  and the duration:0.07730793952941895 and the token:1 and total_duration:10.414209127426147 and info[rx1].total_token:369 
+9.5 rx0:2i0 and rx1:2i1 and my_marked[rx0]:True and counter[init_id]:1
+12 ****application id:2 finish  r1:2i1 for prefill+ decode and the duration:0.03611254692077637 and the token:1 and total_duration:10.450321674346924 and info[rx1].total_token:370 
+16 finished[-1]:{'request_id': '2', 'total_duration': 10.450321674346924, 'total_token': 370} and rid:2
+INFO 10-30 10:39:10 model_runner_base.py:120] Writing input of failed execution to /tmp/err_execute_model_input_20241030-103910.pkl...
+WARNING 10-30 10:39:10 model_runner_base.py:143] Failed to pickle inputs of failed execution: Can't pickle local object 'weak_bind.<locals>.weak_bound'
+error: Error in model execution: Counters can only be incremented by non-negative amounts.
+11 ****application id:7 finish the r0:7i0 for agent prefill and r1:7i1 for prefill+ decode and the duration:3.394564390182495 and the token:256 and total_duration:12.15882658958435 and info[rx1].total_token:512 
+INFO 10-30 10:39:15 metrics.py:363] Avg prompt throughput: 1017.7 tokens/s, Avg generation throughput: -108.1 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 10-30 10:39:15 metrics.py:379] Prefix cache hit rate: GPU: 72.95%, CPU: 0.00%
+9 ****application id:7 finish the r0:7i0 for prefill+decode and r1:7i1 for agent prefill  and the duration:3.2751970291137695 and the token:256 and total_duration:15.43402361869812 and info[rx1].total_token:768 
+9.5 rx0:7i0 and rx1:7i1 and my_marked[rx0]:True and counter[init_id]:1
+12 ****application id:7 finish  r1:7i1 for prefill+ decode and the duration:3.25936222076416 and the token:256 and total_duration:18.69338583946228 and info[rx1].total_token:1024 
+16 finished[-1]:{'request_id': '7', 'total_duration': 18.69338583946228, 'total_token': 1024} and rid:7
+len(finished):32 and bs:32 and total_waster:0.014874696731567383
+rid:0 and agent_normalized_latency:0.2081570932942052 and total_duration:6.467744588851929 and total_token:31
+rid:1 and agent_normalized_latency:1.2640557885169983 and total_duration:5.0710978507995605 and total_token:4
+rid:10 and agent_normalized_latency:1.6410611867904663 and total_duration:6.579119443893433 and total_token:4
+rid:11 and agent_normalized_latency:0.2855541706085205 and total_duration:6.582620620727539 and total_token:23
+rid:12 and agent_normalized_latency:1.5075610876083374 and total_duration:6.045119047164917 and total_token:4
+rid:13 and agent_normalized_latency:1.10939359664917 and total_duration:4.452449083328247 and total_token:4
+rid:14 and agent_normalized_latency:1.0828475952148438 and total_duration:4.346265077590942 and total_token:4
+rid:15 and agent_normalized_latency:1.3504016876220704 and total_duration:6.766883134841919 and total_token:5
+rid:16 and agent_normalized_latency:1.4508466720581055 and total_duration:5.818261384963989 and total_token:4
+rid:17 and agent_normalized_latency:1.442439079284668 and total_duration:5.784631013870239 and total_token:4
+rid:18 and agent_normalized_latency:1.4185686707496643 and total_duration:5.689149379730225 and total_token:4
+rid:19 and agent_normalized_latency:1.6205062866210938 and total_duration:6.496899843215942 and total_token:4
+rid:2 and agent_normalized_latency:0.028203910750311773 and total_duration:10.450321674346924 and total_token:370
+rid:20 and agent_normalized_latency:0.9958034753799438 and total_duration:3.9980885982513428 and total_token:4
+rid:21 and agent_normalized_latency:1.640975332260132 and total_duration:8.219751358032227 and total_token:5
+rid:22 and agent_normalized_latency:0.770580530166626 and total_duration:3.8677773475646973 and total_token:5
+rid:23 and agent_normalized_latency:0.9185680747032166 and total_duration:3.6891469955444336 and total_token:4
+rid:24 and agent_normalized_latency:1.607335615158081 and total_duration:8.051552772521973 and total_token:5
+rid:25 and agent_normalized_latency:1.5960243225097657 and total_duration:7.9949963092803955 and total_token:5
+rid:26 and agent_normalized_latency:1.3480579853057861 and total_duration:5.407106637954712 and total_token:4
+rid:27 and agent_normalized_latency:1.3383634090423584 and total_duration:5.368328332901001 and total_token:4
+rid:28 and agent_normalized_latency:0.8394361734390259 and total_duration:3.372619390487671 and total_token:4
+rid:29 and agent_normalized_latency:0.814018964767456 and total_duration:3.2709505558013916 and total_token:4
+rid:3 and agent_normalized_latency:1.5125476360321044 and total_duration:7.57761287689209 and total_token:5
+rid:30 and agent_normalized_latency:0.8765516678492228 and total_duration:5.274184703826904 and total_token:6
+rid:31 and agent_normalized_latency:1.6609537998835247 and total_duration:9.980597496032715 and total_token:6
+rid:4 and agent_normalized_latency:1.5550112128257751 and total_duration:6.234919548034668 and total_token:4
+rid:5 and agent_normalized_latency:0.9830090999603271 and total_duration:4.929920196533203 and total_token:5
+rid:6 and agent_normalized_latency:1.1861256957054138 and total_duration:4.759377479553223 and total_token:4
+rid:7 and agent_normalized_latency:0.018240733537822962 and total_duration:18.69338583946228 and total_token:1024
+rid:8 and agent_normalized_latency:1.6759049415588378 and total_duration:8.394399404525757 and total_token:5
+rid:9 and agent_normalized_latency:1.6588395436604817 and total_duration:9.967911958694458 and total_token:6
+batch:32 and normalized_latency:1.1689357824848239
+batch:32 and avg e2e latency:6.550099685788155
