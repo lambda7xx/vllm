@@ -7,7 +7,6 @@ import argparse
 from vllm import EngineArgs, LLMEngine, RequestOutput, SamplingParams
 import json 
 import time 
-from transformers import AutoTokenizer
 from multiprocessing import Process, Manager
 import zmq 
 import os 
@@ -29,7 +28,6 @@ def load_prompt(bs, pr_len):
         path = path_1000
     elif pr_len == 2000:
         path = path_2000
-    new_prompts = [] 
     with open(path, "r") as f:
         prompts = json.load(f)
     # for i in range(1,bs+1):
@@ -210,7 +208,7 @@ def agentA(react_num, reactA, comm_args, args):
                 output_text = req.output_text
                 prompt = req.prompt + output_text
                 output_text_len = req.output_text_len
-                info[rid].total_duration += now - info[rid].arr
+                info[rid].total_duration += now - info[rid].send_time
                 info[rid].total_token += output_text_len
                 info[rid].send_time = None
                 reqs[i] = [rid, prompt]
