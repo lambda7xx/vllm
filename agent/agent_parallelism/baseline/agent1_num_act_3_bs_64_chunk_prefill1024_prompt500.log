@@ -1,0 +1,395 @@
+agentA bs:64 and max_token:256 and model:/home/xiaoxiang/data/Llama-3.1-8B
+0 vllm/config.py scheduler_config.py __init__ max_num_batched_tokens: None
+3 vllm/config.py scheduler_config.py __init__ max_num_batched_tokens: 1024
+INFO 11-04 04:18:02 config.py:1061] Chunked prefill is enabled with max_num_batched_tokens=1024.
+INFO 11-04 04:18:02 llm_engine.py:238] Initializing an LLM engine (v0.6.3.post2.dev36+g855e0e6f) with config: model='/home/xiaoxiang/data/Llama-3.1-8B', speculative_config=None, tokenizer='/home/xiaoxiang/data/Llama-3.1-8B', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, rope_scaling=None, rope_theta=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=131072, download_dir=None, load_format=LoadFormat.AUTO, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto, quantization_param_path=None, device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='outlines'), observability_config=ObservabilityConfig(otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=0, served_model_name=/home/xiaoxiang/data/Llama-3.1-8B, num_scheduler_steps=1, chunked_prefill_enabled=True multi_step_stream_outputs=True, enable_prefix_caching=True, use_async_output_proc=True, use_cached_outputs=False, mm_processor_kwargs=None)
+INFO 11-04 04:18:04 model_runner.py:1055] Starting to load model /home/xiaoxiang/data/Llama-3.1-8B...
+Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards:  25% Completed | 1/4 [00:01<00:04,  1.47s/it]
+Loading safetensors checkpoint shards:  50% Completed | 2/4 [00:03<00:03,  1.56s/it]
+Loading safetensors checkpoint shards:  75% Completed | 3/4 [00:04<00:01,  1.65s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:05<00:00,  1.21s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:05<00:00,  1.35s/it]
+
+INFO 11-04 04:18:10 model_runner.py:1066] Loading model weights took 14.9888 GB
+INFO 11-04 04:18:11 worker.py:260] Memory profiling results: total_gpu_memory=79.15GiB initial_memory_usage=15.50GiB peak_torch_memory=16.17GiB memory_usage_post_profile=15.53Gib non_torch_memory=0.54GiB kv_cache_size=54.53GiB gpu_memory_utilization=0.90
+INFO 11-04 04:18:11 gpu_executor.py:122] # GPU blocks: 27919, # CPU blocks: 2048
+INFO 11-04 04:18:11 gpu_executor.py:126] Maximum concurrency for 131072 tokens per request: 3.41x
+INFO 11-04 04:18:14 model_runner.py:1394] Capturing the model for CUDA graphs. This may lead to unexpected consequences if the model is not static. To run the model in eager mode, set 'enforce_eager=True' or use '--enforce-eager' in the CLI.
+INFO 11-04 04:18:14 model_runner.py:1398] CUDA graphs can take additional 1~3 GiB memory per GPU. If you are running out of memory, consider decreasing `gpu_memory_utilization` or enforcing eager mode. You can also reduce the `max_num_seqs` as needed to decrease memory usage.
+INFO 11-04 04:18:29 model_runner.py:1522] Graph capturing finished in 15 secs.
+start warm up
+start warm up
+finish warm up
+recv data from B:{'agentB': 'ok'}
+warm up finished
+2 agentA rid:63 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:63 to B and reactA[rid]:1 and a_need_rect:2
+5 agentA send data to B and len(send_data):1
+2 agentA rid:61 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:61 to B and reactA[rid]:1 and a_need_rect:2
+2 agentA rid:62 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:62 to B and reactA[rid]:1 and a_need_rect:2
+5 agentA send data to B and len(send_data):2
+2 agentA rid:59 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:59 to B and reactA[rid]:1 and a_need_rect:2
+5 agentA send data to B and len(send_data):1
+2 agentA rid:57 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:57 to B and reactA[rid]:1 and a_need_rect:2
+2 agentA rid:58 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:58 to B and reactA[rid]:1 and a_need_rect:2
+5 agentA send data to B and len(send_data):2
+2 agentA rid:55 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:55 to B and reactA[rid]:1 and a_need_rect:2
+5 agentA send data to B and len(send_data):1
+2 agentA rid:54 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:54 to B and reactA[rid]:1 and a_need_rect:2
+5 agentA send data to B and len(send_data):1
+2 agentA rid:52 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:52 to B and reactA[rid]:1 and a_need_rect:2
+2 agentA rid:53 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:53 to B and reactA[rid]:1 and a_need_rect:2
+5 agentA send data to B and len(send_data):2
+2 agentA rid:51 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:51 to B and reactA[rid]:1 and a_need_rect:2
+5 agentA send data to B and len(send_data):1
+2 agentA rid:48 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:48 to B and reactA[rid]:1 and a_need_rect:2
+5 agentA send data to B and len(send_data):1
+1 agentA recv data from B rid:63
+2 agentA rid:50 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:50 to B and reactA[rid]:1 and a_need_rect:2
+5 agentA send data to B and len(send_data):1
+1 agentA recv data from B rid:62
+1 agentA recv data from B rid:61
+2 agentA rid:41 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:41 to B and reactA[rid]:1 and a_need_rect:2
+2 agentA rid:42 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:42 to B and reactA[rid]:1 and a_need_rect:2
+5 agentA send data to B and len(send_data):2
+1 agentA recv data from B rid:59
+1 agentA recv data from B rid:58
+2 agentA rid:38 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:38 to B and reactA[rid]:1 and a_need_rect:2
+2 agentA rid:39 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:39 to B and reactA[rid]:1 and a_need_rect:2
+5 agentA send data to B and len(send_data):2
+1 agentA recv data from B rid:57
+2 agentA rid:37 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:37 to B and reactA[rid]:1 and a_need_rect:2
+5 agentA send data to B and len(send_data):1
+1 agentA recv data from B rid:50
+1 agentA recv data from B rid:55
+2 agentA rid:36 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:36 to B and reactA[rid]:1 and a_need_rect:2
+5 agentA send data to B and len(send_data):1
+1 agentA recv data from B rid:54
+2 agentA rid:33 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:33 to B and reactA[rid]:1 and a_need_rect:2
+5 agentA send data to B and len(send_data):1
+1 agentA recv data from B rid:53
+2 agentA rid:31 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:31 to B and reactA[rid]:1 and a_need_rect:2
+2 agentA rid:60 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:60 to B and reactA[rid]:1 and a_need_rect:2
+5 agentA send data to B and len(send_data):2
+1 agentA recv data from B rid:52
+2 agentA rid:29 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:29 to B and reactA[rid]:1 and a_need_rect:2
+2 agentA rid:47 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:47 to B and reactA[rid]:1 and a_need_rect:2
+5 agentA send data to B and len(send_data):2
+1 agentA recv data from B rid:42
+1 agentA recv data from B rid:51
+2 agentA rid:27 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:27 to B and reactA[rid]:1 and a_need_rect:2
+2 agentA rid:28 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:28 to B and reactA[rid]:1 and a_need_rect:2
+5 agentA send data to B and len(send_data):2
+1 agentA recv data from B rid:41
+2 agentA rid:25 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:25 to B and reactA[rid]:1 and a_need_rect:2
+2 agentA rid:26 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:26 to B and reactA[rid]:1 and a_need_rect:2
+2 agentA rid:30 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:30 to B and reactA[rid]:1 and a_need_rect:2
+5 agentA send data to B and len(send_data):3
+1 agentA recv data from B rid:48
+2 agentA rid:24 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:24 to B and reactA[rid]:1 and a_need_rect:2
+5 agentA send data to B and len(send_data):1
+1 agentA recv data from B rid:39
+2 agentA rid:22 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:22 to B and reactA[rid]:1 and a_need_rect:2
+2 agentA rid:23 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:23 to B and reactA[rid]:1 and a_need_rect:2
+5 agentA send data to B and len(send_data):2
+1 agentA recv data from B rid:38
+2 agentA rid:20 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:20 to B and reactA[rid]:1 and a_need_rect:2
+2 agentA rid:21 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:21 to B and reactA[rid]:1 and a_need_rect:2
+5 agentA send data to B and len(send_data):2
+1 agentA recv data from B rid:37
+2 agentA rid:18 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:18 to B and reactA[rid]:1 and a_need_rect:2
+2 agentA rid:19 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:19 to B and reactA[rid]:1 and a_need_rect:2
+2 agentA rid:32 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:32 to B and reactA[rid]:1 and a_need_rect:2
+5 agentA send data to B and len(send_data):3
+1 agentA recv data from B rid:36
+2 agentA rid:16 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:16 to B and reactA[rid]:1 and a_need_rect:2
+2 agentA rid:17 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:17 to B and reactA[rid]:1 and a_need_rect:2
+5 agentA send data to B and len(send_data):2
+1 agentA recv data from B rid:33
+2 agentA rid:15 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:15 to B and reactA[rid]:1 and a_need_rect:2
+5 agentA send data to B and len(send_data):1
+1 agentA recv data from B rid:60
+2 agentA rid:13 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:13 to B and reactA[rid]:1 and a_need_rect:2
+2 agentA rid:14 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:14 to B and reactA[rid]:1 and a_need_rect:2
+2 agentA rid:46 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:46 to B and reactA[rid]:1 and a_need_rect:2
+2 agentA rid:34 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:34 to B and reactA[rid]:1 and a_need_rect:2
+5 agentA send data to B and len(send_data):4
+1 agentA recv data from B rid:31
+2 agentA rid:12 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:12 to B and reactA[rid]:1 and a_need_rect:2
+5 agentA send data to B and len(send_data):1
+1 agentA recv data from B rid:47
+2 agentA rid:9 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:9 to B and reactA[rid]:1 and a_need_rect:2
+2 agentA rid:10 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:10 to B and reactA[rid]:1 and a_need_rect:2
+5 agentA send data to B and len(send_data):2
+1 agentA recv data from B rid:29
+2 agentA rid:8 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:8 to B and reactA[rid]:1 and a_need_rect:2
+5 agentA send data to B and len(send_data):1
+1 agentA recv data from B rid:28
+2 agentA rid:6 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:6 to B and reactA[rid]:1 and a_need_rect:2
+5 agentA send data to B and len(send_data):1
+1 agentA recv data from B rid:27
+2 agentA rid:4 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:4 to B and reactA[rid]:1 and a_need_rect:2
+2 agentA rid:5 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:5 to B and reactA[rid]:1 and a_need_rect:2
+5 agentA send data to B and len(send_data):2
+1 agentA recv data from B rid:30
+2 agentA rid:3 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:3 to B and reactA[rid]:1 and a_need_rect:2
+5 agentA send data to B and len(send_data):1
+1 agentA recv data from B rid:25
+1 agentA recv data from B rid:26
+2 agentA rid:1 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:1 to B and reactA[rid]:1 and a_need_rect:2
+5 agentA send data to B and len(send_data):1
+1 agentA recv data from B rid:24
+2 agentA rid:63 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:63 is finished
+1 agentA recv data from B rid:23
+2 agentA rid:61 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:61 is finished
+2 agentA rid:62 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:62 is finished
+2 agentA rid:35 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:35 to B and reactA[rid]:1 and a_need_rect:2
+5 agentA send data to B and len(send_data):1
+1 agentA recv data from B rid:22
+2 agentA rid:59 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:59 is finished
+1 agentA recv data from B rid:21
+2 agentA rid:57 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:57 is finished
+2 agentA rid:58 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:58 is finished
+1 agentA recv data from B rid:20
+2 agentA rid:50 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:50 is finished
+2 agentA rid:55 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:55 is finished
+1 agentA recv data from B rid:32
+2 agentA rid:54 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:54 is finished
+1 agentA recv data from B rid:18
+1 agentA recv data from B rid:19
+2 agentA rid:52 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:52 is finished
+2 agentA rid:53 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:53 is finished
+1 agentA recv data from B rid:17
+2 agentA rid:42 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:42 is finished
+2 agentA rid:51 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:51 is finished
+1 agentA recv data from B rid:16
+2 agentA rid:41 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:41 is finished
+1 agentA recv data from B rid:15
+2 agentA rid:39 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:39 is finished
+2 agentA rid:48 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:48 is finished
+1 agentA recv data from B rid:34
+2 agentA rid:37 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:37 is finished
+2 agentA rid:38 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:38 is finished
+1 agentA recv data from B rid:14
+2 agentA rid:36 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:36 is finished
+1 agentA recv data from B rid:13
+2 agentA rid:60 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:60 is finished
+2 agentA rid:33 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:33 is finished
+2 agentA rid:11 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:11 to B and reactA[rid]:1 and a_need_rect:2
+5 agentA send data to B and len(send_data):1
+1 agentA recv data from B rid:12
+2 agentA rid:47 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:47 is finished
+2 agentA rid:31 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:31 is finished
+1 agentA recv data from B rid:10
+2 agentA rid:29 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:29 is finished
+1 agentA recv data from B rid:9
+2 agentA rid:27 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:27 is finished
+2 agentA rid:28 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:28 is finished
+1 agentA recv data from B rid:8
+2 agentA rid:26 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:26 is finished
+2 agentA rid:30 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:30 is finished
+1 agentA recv data from B rid:6
+2 agentA rid:25 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:25 is finished
+1 agentA recv data from B rid:5
+2 agentA rid:23 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:23 is finished
+2 agentA rid:24 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:24 is finished
+1 agentA recv data from B rid:4
+1 agentA recv data from B rid:46
+2 agentA rid:21 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:21 is finished
+2 agentA rid:22 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:22 is finished
+1 agentA recv data from B rid:3
+2 agentA rid:20 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:20 is finished
+1 agentA recv data from B rid:1
+2 agentA rid:19 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:19 is finished
+2 agentA rid:32 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:32 is finished
+1 agentA recv data from B rid:35
+2 agentA rid:17 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:17 is finished
+2 agentA rid:18 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:18 is finished
+1 agentA recv data from B rid:11
+2 agentA rid:16 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:16 is finished
+2 agentA rid:34 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:34 is finished
+2 agentA rid:15 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:15 is finished
+2 agentA rid:13 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:13 is finished
+2 agentA rid:14 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:14 is finished
+2 agentA rid:12 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:12 is finished
+2 agentA rid:9 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:9 is finished
+2 agentA rid:10 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:10 is finished
+2 agentA rid:0 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:0 to B and reactA[rid]:1 and a_need_rect:2
+5 agentA send data to B and len(send_data):1
+2 agentA rid:8 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:8 is finished
+2 agentA rid:5 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:5 is finished
+2 agentA rid:6 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:6 is finished
+2 agentA rid:4 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:4 is finished
+2 agentA rid:46 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:46 is finished
+2 agentA rid:1 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:1 is finished
+2 agentA rid:3 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:3 is finished
+2 agentA rid:44 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:44 to B and reactA[rid]:1 and a_need_rect:2
+5 agentA send data to B and len(send_data):1
+2 agentA rid:35 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:35 is finished
+2 agentA rid:11 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:11 is finished
+2 agentA rid:45 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:45 to B and reactA[rid]:1 and a_need_rect:2
+5 agentA send data to B and len(send_data):1
+1 agentA recv data from B rid:0
+2 agentA rid:0 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:0 is finished
+2 agentA rid:56 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:56 to B and reactA[rid]:1 and a_need_rect:2
+5 agentA send data to B and len(send_data):1
+1 agentA recv data from B rid:44
+INFO 11-04 04:18:35 metrics.py:363] Avg prompt throughput: 14230.2 tokens/s, Avg generation throughput: 173.5 tokens/s, Running: 6 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.9%, CPU KV cache usage: 0.0%.
+INFO 11-04 04:18:35 metrics.py:379] Prefix cache hit rate: GPU: 50.02%, CPU: 0.00%
+2 agentA rid:43 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:43 to B and reactA[rid]:1 and a_need_rect:2
+5 agentA send data to B and len(send_data):1
+2 agentA rid:40 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:40 to B and reactA[rid]:1 and a_need_rect:2
+5 agentA send data to B and len(send_data):1
+1 agentA recv data from B rid:40
+2 agentA rid:40 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:40 is finished
+2 agentA rid:49 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:49 to B and reactA[rid]:1 and a_need_rect:2
+5 agentA send data to B and len(send_data):1
+1 agentA recv data from B rid:43
+2 agentA rid:7 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:7 to B and reactA[rid]:1 and a_need_rect:2
+5 agentA send data to B and len(send_data):1
+2 agentA rid:2 is finished and reactA[rid]:1 and a_need_rect:2
+4 agentA will send rid:2 to B and reactA[rid]:1 and a_need_rect:2
+5 agentA send data to B and len(send_data):1
+1 agentA recv data from B rid:45
+1 agentA recv data from B rid:56
+2 agentA rid:44 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:44 is finished
+1 agentA recv data from B rid:49
+2 agentA rid:43 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:43 is finished
+INFO 11-04 04:18:40 metrics.py:363] Avg prompt throughput: 1436.9 tokens/s, Avg generation throughput: 281.5 tokens/s, Running: 3 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.6%, CPU KV cache usage: 0.0%.
+INFO 11-04 04:18:40 metrics.py:379] Prefix cache hit rate: GPU: 52.84%, CPU: 0.00%
+1 agentA recv data from B rid:7
+1 agentA recv data from B rid:2
+2 agentA rid:45 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:45 is finished
+2 agentA rid:56 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:56 is finished
+2 agentA rid:49 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:49 is finished
+2 agentA rid:7 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:7 is finished
+2 agentA rid:2 is finished and reactA[rid]:2 and a_need_rect:2
+3 agentA application rid:2 is finished
+len(info):64 and bs:64
+baseline bs:64 and avg_normalized_latency:1.2695057043782765 and avg_latency:7.729482378810644

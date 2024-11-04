@@ -1,0 +1,1458 @@
+agentB bs:256 and max_token:256 and model:/home/xiaoxiang/data/Llama-3.1-8B
+0 vllm/config.py scheduler_config.py __init__ max_num_batched_tokens: None
+3 vllm/config.py scheduler_config.py __init__ max_num_batched_tokens: 1024
+INFO 11-04 04:24:51 config.py:1061] Chunked prefill is enabled with max_num_batched_tokens=1024.
+INFO 11-04 04:24:51 llm_engine.py:238] Initializing an LLM engine (v0.6.3.post2.dev36+g855e0e6f) with config: model='/home/xiaoxiang/data/Llama-3.1-8B', speculative_config=None, tokenizer='/home/xiaoxiang/data/Llama-3.1-8B', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, rope_scaling=None, rope_theta=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=131072, download_dir=None, load_format=LoadFormat.AUTO, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto, quantization_param_path=None, device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='outlines'), observability_config=ObservabilityConfig(otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=0, served_model_name=/home/xiaoxiang/data/Llama-3.1-8B, num_scheduler_steps=1, chunked_prefill_enabled=True multi_step_stream_outputs=True, enable_prefix_caching=True, use_async_output_proc=True, use_cached_outputs=False, mm_processor_kwargs=None)
+INFO 11-04 04:24:52 model_runner.py:1055] Starting to load model /home/xiaoxiang/data/Llama-3.1-8B...
+Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards:  25% Completed | 1/4 [00:01<00:04,  1.55s/it]
+Loading safetensors checkpoint shards:  50% Completed | 2/4 [00:03<00:03,  1.61s/it]
+Loading safetensors checkpoint shards:  75% Completed | 3/4 [00:04<00:01,  1.62s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:05<00:00,  1.19s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:05<00:00,  1.34s/it]
+
+INFO 11-04 04:24:58 model_runner.py:1066] Loading model weights took 14.9888 GB
+INFO 11-04 04:24:59 worker.py:260] Memory profiling results: total_gpu_memory=79.15GiB initial_memory_usage=15.50GiB peak_torch_memory=16.17GiB memory_usage_post_profile=15.53Gib non_torch_memory=0.54GiB kv_cache_size=54.53GiB gpu_memory_utilization=0.90
+INFO 11-04 04:24:59 gpu_executor.py:122] # GPU blocks: 27919, # CPU blocks: 2048
+INFO 11-04 04:24:59 gpu_executor.py:126] Maximum concurrency for 131072 tokens per request: 3.41x
+INFO 11-04 04:25:02 model_runner.py:1394] Capturing the model for CUDA graphs. This may lead to unexpected consequences if the model is not static. To run the model in eager mode, set 'enforce_eager=True' or use '--enforce-eager' in the CLI.
+INFO 11-04 04:25:02 model_runner.py:1398] CUDA graphs can take additional 1~3 GiB memory per GPU. If you are running out of memory, consider decreasing `gpu_memory_utilization` or enforcing eager mode. You can also reduce the `max_num_seqs` as needed to decrease memory usage.
+INFO 11-04 04:25:17 model_runner.py:1522] Graph capturing finished in 15 secs.
+start warm up
+finish warm up
+recv data from A:{'agentb': True}
+agentB start
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:255
+1 agentB rid:255 is added to engine
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:253
+1 agentB rid:253 is added to engine
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:252
+1 agentB rid:252 is added to engine
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:249
+1 agentB recv data from A the rid:250
+1 agentB rid:250 is added to engine
+1 agentB rid:249 is added to engine
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:247
+1 agentB recv data from A the rid:248
+1 agentB rid:248 is added to engine
+1 agentB rid:247 is added to engine
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:246
+1 agentB rid:246 is added to engine
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:244
+1 agentB rid:244 is added to engine
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:242
+1 agentB rid:242 is added to engine
+2 agentB rid:255 is finished
+2agentB will send data to A rid:255
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:240
+1 agentB rid:240 is added to engine
+2 agentB rid:253 is finished
+2agentB will send data to A rid:253
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:239
+1 agentB rid:239 is added to engine
+2 agentB rid:239 is finished
+2agentB will send data to A rid:239
+2 agentB rid:252 is finished
+2agentB will send data to A rid:252
+3 agentB send data to A
+2 agentB rid:250 is finished
+2agentB will send data to A rid:250
+3 agentB send data to A
+2 agentB rid:249 is finished
+2agentB will send data to A rid:249
+3 agentB send data to A
+2 agentB rid:248 is finished
+2agentB will send data to A rid:248
+3 agentB send data to A
+2 agentB rid:247 is finished
+2agentB will send data to A rid:247
+3 agentB send data to A
+2 agentB rid:246 is finished
+2agentB will send data to A rid:246
+3 agentB send data to A
+2 agentB rid:244 is finished
+2agentB will send data to A rid:244
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:233
+1 agentB rid:233 is added to engine
+2 agentB rid:233 is finished
+2agentB will send data to A rid:233
+2 agentB rid:242 is finished
+2agentB will send data to A rid:242
+3 agentB send data to A
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:231
+1 agentB recv data from A the rid:232
+1 agentB rid:232 is added to engine
+1 agentB rid:231 is added to engine
+2 agentB rid:240 is finished
+2agentB will send data to A rid:240
+3 agentB send data to A
+2 agentB rid:232 is finished
+2agentB will send data to A rid:232
+3 agentB send data to A
+2 agentB rid:231 is finished
+2agentB will send data to A rid:231
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:229
+1 agentB rid:229 is added to engine
+2 agentB rid:229 is finished
+2agentB will send data to A rid:229
+3 agentB send data to A
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:226
+1 agentB recv data from A the rid:227
+1 agentB rid:227 is added to engine
+1 agentB rid:226 is added to engine
+2 agentB rid:227 is finished
+2agentB will send data to A rid:227
+3 agentB send data to A
+2 agentB rid:226 is finished
+2agentB will send data to A rid:226
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:224
+1 agentB rid:224 is added to engine
+2 agentB rid:224 is finished
+2agentB will send data to A rid:224
+3 agentB send data to A
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:222
+1 agentB recv data from A the rid:223
+1 agentB rid:223 is added to engine
+1 agentB rid:222 is added to engine
+2 agentB rid:223 is finished
+2agentB will send data to A rid:223
+3 agentB send data to A
+2 agentB rid:222 is finished
+2agentB will send data to A rid:222
+3 agentB send data to A
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:219
+1 agentB recv data from A the rid:220
+1 agentB rid:220 is added to engine
+1 agentB rid:219 is added to engine
+2 agentB rid:220 is finished
+2agentB will send data to A rid:220
+3 agentB send data to A
+2 agentB rid:219 is finished
+2agentB will send data to A rid:219
+3 agentB send data to A
+0 agentB recv data from A, data:3
+1 agentB recv data from A the rid:215
+1 agentB recv data from A the rid:216
+1 agentB recv data from A the rid:217
+1 agentB rid:217 is added to engine
+1 agentB rid:216 is added to engine
+1 agentB rid:215 is added to engine
+2 agentB rid:217 is finished
+2agentB will send data to A rid:217
+3 agentB send data to A
+2 agentB rid:215 is finished
+2agentB will send data to A rid:215
+2 agentB rid:216 is finished
+2agentB will send data to A rid:216
+3 agentB send data to A
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:212
+1 agentB recv data from A the rid:230
+1 agentB rid:230 is added to engine
+1 agentB rid:212 is added to engine
+2 agentB rid:230 is finished
+2agentB will send data to A rid:230
+3 agentB send data to A
+2 agentB rid:212 is finished
+2agentB will send data to A rid:212
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:211
+1 agentB rid:211 is added to engine
+2 agentB rid:211 is finished
+2agentB will send data to A rid:211
+3 agentB send data to A
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:206
+1 agentB recv data from A the rid:210
+1 agentB rid:210 is added to engine
+1 agentB rid:206 is added to engine
+2 agentB rid:210 is finished
+2agentB will send data to A rid:210
+3 agentB send data to A
+2 agentB rid:206 is finished
+2agentB will send data to A rid:206
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:205
+1 agentB rid:205 is added to engine
+2 agentB rid:205 is finished
+2agentB will send data to A rid:205
+3 agentB send data to A
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:203
+1 agentB recv data from A the rid:204
+1 agentB rid:204 is added to engine
+1 agentB rid:203 is added to engine
+2 agentB rid:204 is finished
+2agentB will send data to A rid:204
+3 agentB send data to A
+2 agentB rid:203 is finished
+2agentB will send data to A rid:203
+3 agentB send data to A
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:201
+1 agentB recv data from A the rid:202
+1 agentB rid:202 is added to engine
+1 agentB rid:201 is added to engine
+2 agentB rid:202 is finished
+2agentB will send data to A rid:202
+3 agentB send data to A
+2 agentB rid:201 is finished
+2agentB will send data to A rid:201
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:200
+1 agentB rid:200 is added to engine
+2 agentB rid:200 is finished
+2agentB will send data to A rid:200
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:199
+1 agentB rid:199 is added to engine
+2 agentB rid:199 is finished
+2agentB will send data to A rid:199
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:195
+1 agentB rid:195 is added to engine
+2 agentB rid:195 is finished
+2agentB will send data to A rid:195
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:193
+1 agentB rid:193 is added to engine
+2 agentB rid:193 is finished
+2agentB will send data to A rid:193
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:192
+1 agentB rid:192 is added to engine
+2 agentB rid:192 is finished
+2agentB will send data to A rid:192
+3 agentB send data to A
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:189
+1 agentB recv data from A the rid:241
+1 agentB rid:241 is added to engine
+1 agentB rid:189 is added to engine
+2 agentB rid:241 is finished
+2agentB will send data to A rid:241
+3 agentB send data to A
+2 agentB rid:189 is finished
+2agentB will send data to A rid:189
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:214
+1 agentB rid:214 is added to engine
+2 agentB rid:214 is finished
+2agentB will send data to A rid:214
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:185
+1 agentB rid:185 is added to engine
+2 agentB rid:185 is finished
+2agentB will send data to A rid:185
+3 agentB send data to A
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:183
+1 agentB recv data from A the rid:237
+1 agentB rid:237 is added to engine
+1 agentB rid:183 is added to engine
+2 agentB rid:183 is finished
+2agentB will send data to A rid:183
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:181
+1 agentB rid:181 is added to engine
+INFO 11-04 04:25:23 metrics.py:363] Avg prompt throughput: 5753.1 tokens/s, Avg generation throughput: 67.3 tokens/s, Running: 2 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.2%, CPU KV cache usage: 0.0%.
+INFO 11-04 04:25:23 metrics.py:379] Prefix cache hit rate: GPU: 97.67%, CPU: 0.00%
+2 agentB rid:181 is finished
+2agentB will send data to A rid:181
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:179
+1 agentB rid:179 is added to engine
+2 agentB rid:179 is finished
+2agentB will send data to A rid:179
+3 agentB send data to A
+0 agentB recv data from A, data:3
+1 agentB recv data from A the rid:177
+1 agentB recv data from A the rid:178
+1 agentB recv data from A the rid:207
+1 agentB rid:207 is added to engine
+1 agentB rid:178 is added to engine
+1 agentB rid:177 is added to engine
+2 agentB rid:177 is finished
+2agentB will send data to A rid:177
+2 agentB rid:178 is finished
+2agentB will send data to A rid:178
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:174
+1 agentB rid:174 is added to engine
+2 agentB rid:174 is finished
+2agentB will send data to A rid:174
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:172
+1 agentB rid:172 is added to engine
+2 agentB rid:172 is finished
+2agentB will send data to A rid:172
+3 agentB send data to A
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:170
+1 agentB recv data from A the rid:191
+1 agentB rid:191 is added to engine
+1 agentB rid:170 is added to engine
+2 agentB rid:191 is finished
+2agentB will send data to A rid:191
+3 agentB send data to A
+2 agentB rid:170 is finished
+2agentB will send data to A rid:170
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:184
+1 agentB rid:184 is added to engine
+2 agentB rid:184 is finished
+2agentB will send data to A rid:184
+3 agentB send data to A
+2 agentB rid:207 is finished
+2agentB will send data to A rid:207
+3 agentB send data to A
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:165
+1 agentB recv data from A the rid:166
+1 agentB rid:166 is added to engine
+1 agentB rid:165 is added to engine
+2 agentB rid:166 is finished
+2agentB will send data to A rid:166
+3 agentB send data to A
+2 agentB rid:165 is finished
+2agentB will send data to A rid:165
+3 agentB send data to A
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:163
+1 agentB recv data from A the rid:164
+1 agentB rid:164 is added to engine
+1 agentB rid:163 is added to engine
+2 agentB rid:164 is finished
+2agentB will send data to A rid:164
+3 agentB send data to A
+2 agentB rid:163 is finished
+2agentB will send data to A rid:163
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:162
+1 agentB rid:162 is added to engine
+2 agentB rid:162 is finished
+2agentB will send data to A rid:162
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:186
+1 agentB rid:186 is added to engine
+2 agentB rid:186 is finished
+2agentB will send data to A rid:186
+3 agentB send data to A
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:158
+1 agentB recv data from A the rid:159
+1 agentB rid:159 is added to engine
+1 agentB rid:158 is added to engine
+2 agentB rid:159 is finished
+2agentB will send data to A rid:159
+3 agentB send data to A
+2 agentB rid:158 is finished
+2agentB will send data to A rid:158
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:157
+1 agentB rid:157 is added to engine
+2 agentB rid:157 is finished
+2agentB will send data to A rid:157
+3 agentB send data to A
+0 agentB recv data from A, data:3
+1 agentB recv data from A the rid:198
+1 agentB recv data from A the rid:190
+1 agentB recv data from A the rid:156
+1 agentB rid:156 is added to engine
+1 agentB rid:190 is added to engine
+1 agentB rid:198 is added to engine
+2 agentB rid:156 is finished
+2agentB will send data to A rid:156
+3 agentB send data to A
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:153
+1 agentB recv data from A the rid:154
+1 agentB rid:154 is added to engine
+1 agentB rid:153 is added to engine
+2 agentB rid:198 is finished
+2agentB will send data to A rid:198
+2 agentB rid:190 is finished
+2agentB will send data to A rid:190
+3 agentB send data to A
+2 agentB rid:154 is finished
+2agentB will send data to A rid:154
+3 agentB send data to A
+2 agentB rid:153 is finished
+2agentB will send data to A rid:153
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:152
+1 agentB rid:152 is added to engine
+2 agentB rid:152 is finished
+2agentB will send data to A rid:152
+3 agentB send data to A
+0 agentB recv data from A, data:3
+1 agentB recv data from A the rid:149
+1 agentB recv data from A the rid:150
+1 agentB recv data from A the rid:173
+1 agentB rid:173 is added to engine
+1 agentB rid:150 is added to engine
+1 agentB rid:149 is added to engine
+2 agentB rid:173 is finished
+2agentB will send data to A rid:173
+3 agentB send data to A
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:147
+1 agentB recv data from A the rid:148
+1 agentB rid:148 is added to engine
+1 agentB rid:147 is added to engine
+2 agentB rid:148 is finished
+2agentB will send data to A rid:148
+3 agentB send data to A
+2 agentB rid:147 is finished
+2agentB will send data to A rid:147
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:146
+1 agentB rid:146 is added to engine
+2 agentB rid:146 is finished
+2agentB will send data to A rid:146
+3 agentB send data to A
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:144
+1 agentB recv data from A the rid:145
+1 agentB rid:145 is added to engine
+1 agentB rid:144 is added to engine
+2 agentB rid:145 is finished
+2agentB will send data to A rid:145
+3 agentB send data to A
+2 agentB rid:144 is finished
+2agentB will send data to A rid:144
+3 agentB send data to A
+0 agentB recv data from A, data:4
+1 agentB recv data from A the rid:140
+1 agentB recv data from A the rid:141
+1 agentB recv data from A the rid:182
+1 agentB recv data from A the rid:142
+1 agentB rid:142 is added to engine
+1 agentB rid:182 is added to engine
+1 agentB rid:141 is added to engine
+1 agentB rid:140 is added to engine
+2 agentB rid:142 is finished
+2agentB will send data to A rid:142
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:139
+1 agentB rid:139 is added to engine
+2 agentB rid:141 is finished
+2agentB will send data to A rid:141
+3 agentB send data to A
+2 agentB rid:140 is finished
+2agentB will send data to A rid:140
+3 agentB send data to A
+2 agentB rid:139 is finished
+2agentB will send data to A rid:139
+3 agentB send data to A
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:135
+1 agentB recv data from A the rid:136
+1 agentB rid:136 is added to engine
+1 agentB rid:135 is added to engine
+2 agentB rid:136 is finished
+2agentB will send data to A rid:136
+3 agentB send data to A
+2 agentB rid:135 is finished
+2agentB will send data to A rid:135
+3 agentB send data to A
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:133
+1 agentB recv data from A the rid:134
+1 agentB rid:134 is added to engine
+1 agentB rid:133 is added to engine
+2 agentB rid:182 is finished
+2agentB will send data to A rid:182
+3 agentB send data to A
+2 agentB rid:134 is finished
+2agentB will send data to A rid:134
+3 agentB send data to A
+0 agentB recv data from A, data:3
+1 agentB recv data from A the rid:131
+1 agentB recv data from A the rid:132
+1 agentB recv data from A the rid:188
+1 agentB rid:188 is added to engine
+1 agentB rid:132 is added to engine
+1 agentB rid:131 is added to engine
+2 agentB rid:133 is finished
+2agentB will send data to A rid:133
+3 agentB send data to A
+2 agentB rid:131 is finished
+2agentB will send data to A rid:131
+2 agentB rid:132 is finished
+2agentB will send data to A rid:132
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:129
+1 agentB rid:129 is added to engine
+2 agentB rid:129 is finished
+2agentB will send data to A rid:129
+3 agentB send data to A
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:126
+1 agentB recv data from A the rid:127
+1 agentB rid:127 is added to engine
+1 agentB rid:126 is added to engine
+2 agentB rid:127 is finished
+2agentB will send data to A rid:127
+3 agentB send data to A
+2 agentB rid:126 is finished
+2agentB will send data to A rid:126
+3 agentB send data to A
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:124
+1 agentB recv data from A the rid:221
+1 agentB rid:221 is added to engine
+1 agentB rid:124 is added to engine
+2 agentB rid:221 is finished
+2agentB will send data to A rid:221
+3 agentB send data to A
+2 agentB rid:124 is finished
+2agentB will send data to A rid:124
+3 agentB send data to A
+0 agentB recv data from A, data:3
+1 agentB recv data from A the rid:123
+1 agentB recv data from A the rid:180
+1 agentB recv data from A the rid:176
+1 agentB rid:176 is added to engine
+1 agentB rid:180 is added to engine
+1 agentB rid:123 is added to engine
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:122
+1 agentB recv data from A the rid:138
+1 agentB rid:138 is added to engine
+1 agentB rid:122 is added to engine
+2 agentB rid:138 is finished
+2agentB will send data to A rid:138
+3 agentB send data to A
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:119
+1 agentB recv data from A the rid:120
+1 agentB rid:120 is added to engine
+1 agentB rid:119 is added to engine
+2 agentB rid:122 is finished
+2agentB will send data to A rid:122
+3 agentB send data to A
+2 agentB rid:120 is finished
+2agentB will send data to A rid:120
+3 agentB send data to A
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:118
+1 agentB recv data from A the rid:161
+1 agentB rid:161 is added to engine
+1 agentB rid:118 is added to engine
+2 agentB rid:119 is finished
+2agentB will send data to A rid:119
+3 agentB send data to A
+2 agentB rid:118 is finished
+2agentB will send data to A rid:118
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:116
+1 agentB rid:116 is added to engine
+2 agentB rid:116 is finished
+2agentB will send data to A rid:116
+3 agentB send data to A
+0 agentB recv data from A, data:3
+1 agentB recv data from A the rid:114
+1 agentB recv data from A the rid:115
+1 agentB recv data from A the rid:137
+1 agentB rid:137 is added to engine
+1 agentB rid:115 is added to engine
+1 agentB rid:114 is added to engine
+2 agentB rid:137 is finished
+2agentB will send data to A rid:137
+3 agentB send data to A
+2 agentB rid:114 is finished
+2agentB will send data to A rid:114
+2 agentB rid:115 is finished
+2agentB will send data to A rid:115
+3 agentB send data to A
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:112
+1 agentB recv data from A the rid:113
+1 agentB rid:113 is added to engine
+1 agentB rid:112 is added to engine
+2 agentB rid:113 is finished
+2agentB will send data to A rid:113
+3 agentB send data to A
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:110
+1 agentB recv data from A the rid:111
+1 agentB rid:111 is added to engine
+1 agentB rid:110 is added to engine
+2 agentB rid:112 is finished
+2agentB will send data to A rid:112
+3 agentB send data to A
+2 agentB rid:111 is finished
+2agentB will send data to A rid:111
+3 agentB send data to A
+2 agentB rid:110 is finished
+2agentB will send data to A rid:110
+3 agentB send data to A
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:108
+1 agentB recv data from A the rid:109
+1 agentB rid:109 is added to engine
+1 agentB rid:108 is added to engine
+2 agentB rid:109 is finished
+2agentB will send data to A rid:109
+3 agentB send data to A
+2 agentB rid:108 is finished
+2agentB will send data to A rid:108
+2 agentB rid:161 is finished
+2agentB will send data to A rid:161
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:125
+1 agentB rid:125 is added to engine
+2 agentB rid:125 is finished
+2agentB will send data to A rid:125
+3 agentB send data to A
+2 agentB rid:176 is finished
+2agentB will send data to A rid:176
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:102
+1 agentB rid:102 is added to engine
+2 agentB rid:102 is finished
+2agentB will send data to A rid:102
+3 agentB send data to A
+0 agentB recv data from A, data:3
+1 agentB recv data from A the rid:100
+1 agentB recv data from A the rid:101
+1 agentB recv data from A the rid:167
+1 agentB rid:167 is added to engine
+1 agentB rid:101 is added to engine
+1 agentB rid:100 is added to engine
+2 agentB rid:167 is finished
+2agentB will send data to A rid:167
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:99
+1 agentB rid:99 is added to engine
+2 agentB rid:100 is finished
+2agentB will send data to A rid:100
+2 agentB rid:101 is finished
+2agentB will send data to A rid:101
+3 agentB send data to A
+2 agentB rid:99 is finished
+2agentB will send data to A rid:99
+3 agentB send data to A
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:96
+1 agentB recv data from A the rid:97
+1 agentB rid:97 is added to engine
+1 agentB rid:96 is added to engine
+2 agentB rid:97 is finished
+2agentB will send data to A rid:97
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:95
+1 agentB rid:95 is added to engine
+2 agentB rid:96 is finished
+2agentB will send data to A rid:96
+3 agentB send data to A
+2 agentB rid:95 is finished
+2agentB will send data to A rid:95
+3 agentB send data to A
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:93
+1 agentB recv data from A the rid:94
+1 agentB rid:94 is added to engine
+1 agentB rid:93 is added to engine
+2 agentB rid:94 is finished
+2agentB will send data to A rid:94
+3 agentB send data to A
+2 agentB rid:93 is finished
+2agentB will send data to A rid:93
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:91
+1 agentB rid:91 is added to engine
+2 agentB rid:91 is finished
+2agentB will send data to A rid:91
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:106
+1 agentB rid:106 is added to engine
+2 agentB rid:106 is finished
+2agentB will send data to A rid:106
+3 agentB send data to A
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:88
+1 agentB recv data from A the rid:89
+1 agentB rid:89 is added to engine
+1 agentB rid:88 is added to engine
+2 agentB rid:89 is finished
+2agentB will send data to A rid:89
+3 agentB send data to A
+2 agentB rid:88 is finished
+2agentB will send data to A rid:88
+3 agentB send data to A
+0 agentB recv data from A, data:3
+1 agentB recv data from A the rid:86
+1 agentB recv data from A the rid:87
+1 agentB recv data from A the rid:92
+1 agentB rid:92 is added to engine
+1 agentB rid:87 is added to engine
+1 agentB rid:86 is added to engine
+2 agentB rid:92 is finished
+2agentB will send data to A rid:92
+3 agentB send data to A
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:84
+1 agentB recv data from A the rid:85
+1 agentB rid:85 is added to engine
+1 agentB rid:84 is added to engine
+2 agentB rid:86 is finished
+2agentB will send data to A rid:86
+2 agentB rid:87 is finished
+2agentB will send data to A rid:87
+3 agentB send data to A
+2 agentB rid:85 is finished
+2agentB will send data to A rid:85
+3 agentB send data to A
+2 agentB rid:84 is finished
+2agentB will send data to A rid:84
+3 agentB send data to A
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:83
+1 agentB recv data from A the rid:103
+1 agentB rid:103 is added to engine
+1 agentB rid:83 is added to engine
+2 agentB rid:103 is finished
+2agentB will send data to A rid:103
+3 agentB send data to A
+2 agentB rid:83 is finished
+2agentB will send data to A rid:83
+3 agentB send data to A
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:81
+1 agentB recv data from A the rid:82
+1 agentB rid:82 is added to engine
+1 agentB rid:81 is added to engine
+2 agentB rid:82 is finished
+2agentB will send data to A rid:82
+3 agentB send data to A
+2 agentB rid:81 is finished
+2agentB will send data to A rid:81
+2 agentB rid:188 is finished
+2agentB will send data to A rid:188
+3 agentB send data to A
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:79
+1 agentB recv data from A the rid:80
+1 agentB rid:80 is added to engine
+1 agentB rid:79 is added to engine
+2 agentB rid:80 is finished
+2agentB will send data to A rid:80
+3 agentB send data to A
+2 agentB rid:79 is finished
+2agentB will send data to A rid:79
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:76
+1 agentB rid:76 is added to engine
+2 agentB rid:76 is finished
+2agentB will send data to A rid:76
+3 agentB send data to A
+INFO 11-04 04:25:28 metrics.py:363] Avg prompt throughput: 12222.9 tokens/s, Avg generation throughput: 202.4 tokens/s, Running: 5 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 11-04 04:25:28 metrics.py:379] Prefix cache hit rate: GPU: 98.86%, CPU: 0.00%
+0 agentB recv data from A, data:3
+1 agentB recv data from A the rid:72
+1 agentB recv data from A the rid:73
+1 agentB recv data from A the rid:74
+1 agentB rid:74 is added to engine
+1 agentB rid:73 is added to engine
+1 agentB rid:72 is added to engine
+2 agentB rid:74 is finished
+2agentB will send data to A rid:74
+3 agentB send data to A
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:70
+1 agentB recv data from A the rid:71
+1 agentB rid:71 is added to engine
+1 agentB rid:70 is added to engine
+2 agentB rid:72 is finished
+2agentB will send data to A rid:72
+2 agentB rid:73 is finished
+2agentB will send data to A rid:73
+3 agentB send data to A
+2 agentB rid:71 is finished
+2agentB will send data to A rid:71
+3 agentB send data to A
+2 agentB rid:70 is finished
+2agentB will send data to A rid:70
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:67
+1 agentB rid:67 is added to engine
+2 agentB rid:67 is finished
+2agentB will send data to A rid:67
+3 agentB send data to A
+2 agentB rid:237 is finished
+2agentB will send data to A rid:237
+3 agentB send data to A
+0 agentB recv data from A, data:3
+1 agentB recv data from A the rid:65
+1 agentB recv data from A the rid:66
+1 agentB recv data from A the rid:238
+1 agentB rid:238 is added to engine
+1 agentB rid:66 is added to engine
+1 agentB rid:65 is added to engine
+2 agentB rid:238 is finished
+2agentB will send data to A rid:238
+3 agentB send data to A
+2 agentB rid:65 is finished
+2agentB will send data to A rid:65
+2 agentB rid:66 is finished
+2agentB will send data to A rid:66
+3 agentB send data to A
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:63
+1 agentB recv data from A the rid:104
+1 agentB rid:104 is added to engine
+1 agentB rid:63 is added to engine
+2 agentB rid:63 is finished
+2agentB will send data to A rid:63
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:62
+1 agentB rid:62 is added to engine
+2 agentB rid:62 is finished
+2agentB will send data to A rid:62
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:61
+1 agentB rid:61 is added to engine
+0 agentB recv data from A, data:3
+1 agentB recv data from A the rid:58
+1 agentB recv data from A the rid:59
+1 agentB recv data from A the rid:90
+1 agentB rid:90 is added to engine
+1 agentB rid:59 is added to engine
+1 agentB rid:58 is added to engine
+2 agentB rid:90 is finished
+2agentB will send data to A rid:90
+3 agentB send data to A
+2 agentB rid:58 is finished
+2agentB will send data to A rid:58
+2 agentB rid:59 is finished
+2agentB will send data to A rid:59
+3 agentB send data to A
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:57
+1 agentB recv data from A the rid:75
+1 agentB rid:75 is added to engine
+1 agentB rid:57 is added to engine
+2 agentB rid:75 is finished
+2agentB will send data to A rid:75
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:55
+1 agentB rid:55 is added to engine
+2 agentB rid:57 is finished
+2agentB will send data to A rid:57
+3 agentB send data to A
+2 agentB rid:55 is finished
+2agentB will send data to A rid:55
+3 agentB send data to A
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:53
+1 agentB recv data from A the rid:54
+1 agentB rid:54 is added to engine
+1 agentB rid:53 is added to engine
+2 agentB rid:54 is finished
+2agentB will send data to A rid:54
+3 agentB send data to A
+2 agentB rid:53 is finished
+2agentB will send data to A rid:53
+3 agentB send data to A
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:51
+1 agentB recv data from A the rid:52
+1 agentB rid:52 is added to engine
+1 agentB rid:51 is added to engine
+2 agentB rid:52 is finished
+2agentB will send data to A rid:52
+3 agentB send data to A
+2 agentB rid:51 is finished
+2agentB will send data to A rid:51
+3 agentB send data to A
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:48
+1 agentB recv data from A the rid:160
+1 agentB rid:160 is added to engine
+1 agentB rid:48 is added to engine
+2 agentB rid:48 is finished
+2agentB will send data to A rid:48
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:50
+1 agentB rid:50 is added to engine
+2 agentB rid:50 is finished
+2agentB will send data to A rid:50
+3 agentB send data to A
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:41
+1 agentB recv data from A the rid:42
+1 agentB rid:42 is added to engine
+1 agentB rid:41 is added to engine
+2 agentB rid:42 is finished
+2agentB will send data to A rid:42
+3 agentB send data to A
+2 agentB rid:41 is finished
+2agentB will send data to A rid:41
+3 agentB send data to A
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:39
+1 agentB recv data from A the rid:213
+1 agentB rid:213 is added to engine
+1 agentB rid:39 is added to engine
+2 agentB rid:39 is finished
+2agentB will send data to A rid:39
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:38
+1 agentB rid:38 is added to engine
+2 agentB rid:38 is finished
+2agentB will send data to A rid:38
+3 agentB send data to A
+2 agentB rid:61 is finished
+2agentB will send data to A rid:61
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:37
+1 agentB rid:37 is added to engine
+2 agentB rid:37 is finished
+2agentB will send data to A rid:37
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:36
+1 agentB rid:36 is added to engine
+2 agentB rid:36 is finished
+2agentB will send data to A rid:36
+3 agentB send data to A
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:33
+1 agentB recv data from A the rid:60
+1 agentB rid:60 is added to engine
+1 agentB rid:33 is added to engine
+2 agentB rid:60 is finished
+2agentB will send data to A rid:60
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:31
+1 agentB rid:31 is added to engine
+2 agentB rid:33 is finished
+2agentB will send data to A rid:33
+3 agentB send data to A
+2 agentB rid:31 is finished
+2agentB will send data to A rid:31
+2 agentB rid:150 is finished
+2agentB will send data to A rid:150
+2 agentB rid:149 is finished
+2agentB will send data to A rid:149
+3 agentB send data to A
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:29
+1 agentB recv data from A the rid:47
+1 agentB rid:47 is added to engine
+1 agentB rid:29 is added to engine
+2 agentB rid:47 is finished
+2agentB will send data to A rid:47
+3 agentB send data to A
+2 agentB rid:29 is finished
+2agentB will send data to A rid:29
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:28
+1 agentB rid:28 is added to engine
+2 agentB rid:28 is finished
+2agentB will send data to A rid:28
+3 agentB send data to A
+0 agentB recv data from A, data:4
+1 agentB recv data from A the rid:26
+1 agentB recv data from A the rid:27
+1 agentB recv data from A the rid:78
+1 agentB recv data from A the rid:30
+1 agentB rid:30 is added to engine
+1 agentB rid:78 is added to engine
+1 agentB rid:27 is added to engine
+1 agentB rid:26 is added to engine
+2 agentB rid:30 is finished
+2agentB will send data to A rid:30
+3 agentB send data to A
+2 agentB rid:27 is finished
+2agentB will send data to A rid:27
+3 agentB send data to A
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:24
+1 agentB recv data from A the rid:25
+1 agentB rid:25 is added to engine
+1 agentB rid:24 is added to engine
+2 agentB rid:26 is finished
+2agentB will send data to A rid:26
+3 agentB send data to A
+2 agentB rid:25 is finished
+2agentB will send data to A rid:25
+3 agentB send data to A
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:22
+1 agentB recv data from A the rid:23
+1 agentB rid:23 is added to engine
+1 agentB rid:22 is added to engine
+2 agentB rid:24 is finished
+2agentB will send data to A rid:24
+3 agentB send data to A
+2 agentB rid:23 is finished
+2agentB will send data to A rid:23
+3 agentB send data to A
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:21
+1 agentB recv data from A the rid:187
+1 agentB rid:187 is added to engine
+1 agentB rid:21 is added to engine
+2 agentB rid:22 is finished
+2agentB will send data to A rid:22
+3 agentB send data to A
+2 agentB rid:21 is finished
+2agentB will send data to A rid:21
+3 agentB send data to A
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:19
+1 agentB recv data from A the rid:20
+1 agentB rid:20 is added to engine
+1 agentB rid:19 is added to engine
+2 agentB rid:20 is finished
+2agentB will send data to A rid:20
+2 agentB rid:160 is finished
+2agentB will send data to A rid:160
+3 agentB send data to A
+0 agentB recv data from A, data:3
+1 agentB recv data from A the rid:17
+1 agentB recv data from A the rid:18
+1 agentB recv data from A the rid:32
+1 agentB rid:32 is added to engine
+1 agentB rid:18 is added to engine
+1 agentB rid:17 is added to engine
+2 agentB rid:19 is finished
+2agentB will send data to A rid:19
+3 agentB send data to A
+2 agentB rid:32 is finished
+2agentB will send data to A rid:32
+3 agentB send data to A
+2 agentB rid:17 is finished
+2agentB will send data to A rid:17
+2 agentB rid:18 is finished
+2agentB will send data to A rid:18
+3 agentB send data to A
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:16
+1 agentB recv data from A the rid:46
+1 agentB rid:46 is added to engine
+1 agentB rid:16 is added to engine
+2 agentB rid:16 is finished
+2agentB will send data to A rid:16
+3 agentB send data to A
+0 agentB recv data from A, data:3
+1 agentB recv data from A the rid:14
+1 agentB recv data from A the rid:15
+1 agentB recv data from A the rid:34
+1 agentB rid:34 is added to engine
+1 agentB rid:15 is added to engine
+1 agentB rid:14 is added to engine
+2 agentB rid:34 is finished
+2agentB will send data to A rid:34
+3 agentB send data to A
+2 agentB rid:14 is finished
+2agentB will send data to A rid:14
+2 agentB rid:15 is finished
+2agentB will send data to A rid:15
+3 agentB send data to A
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:12
+1 agentB recv data from A the rid:13
+1 agentB rid:13 is added to engine
+1 agentB rid:12 is added to engine
+2 agentB rid:13 is finished
+2agentB will send data to A rid:13
+3 agentB send data to A
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:10
+1 agentB recv data from A the rid:69
+1 agentB rid:69 is added to engine
+1 agentB rid:10 is added to engine
+2 agentB rid:12 is finished
+2agentB will send data to A rid:12
+3 agentB send data to A
+2 agentB rid:69 is finished
+2agentB will send data to A rid:69
+3 agentB send data to A
+2 agentB rid:10 is finished
+2agentB will send data to A rid:10
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:9
+1 agentB rid:9 is added to engine
+2 agentB rid:104 is finished
+2agentB will send data to A rid:104
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:8
+1 agentB rid:8 is added to engine
+2 agentB rid:8 is finished
+2agentB will send data to A rid:8
+3 agentB send data to A
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:5
+1 agentB recv data from A the rid:6
+1 agentB rid:6 is added to engine
+1 agentB rid:5 is added to engine
+2 agentB rid:6 is finished
+2agentB will send data to A rid:6
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:4
+1 agentB rid:4 is added to engine
+2 agentB rid:5 is finished
+2agentB will send data to A rid:5
+3 agentB send data to A
+2 agentB rid:4 is finished
+2agentB will send data to A rid:4
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:3
+1 agentB rid:3 is added to engine
+2 agentB rid:3 is finished
+2agentB will send data to A rid:3
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:1
+1 agentB rid:1 is added to engine
+2 agentB rid:180 is finished
+2agentB will send data to A rid:180
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:35
+1 agentB rid:35 is added to engine
+2 agentB rid:1 is finished
+2agentB will send data to A rid:1
+2 agentB rid:123 is finished
+2agentB will send data to A rid:123
+3 agentB send data to A
+2 agentB rid:35 is finished
+2agentB will send data to A rid:35
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:143
+1 agentB rid:143 is added to engine
+2 agentB rid:143 is finished
+2agentB will send data to A rid:143
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:11
+1 agentB rid:11 is added to engine
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:209
+1 agentB rid:209 is added to engine
+2 agentB rid:209 is finished
+2agentB will send data to A rid:209
+3 agentB send data to A
+2 agentB rid:46 is finished
+2agentB will send data to A rid:46
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:0
+1 agentB rid:0 is added to engine
+2 agentB rid:0 is finished
+2agentB will send data to A rid:0
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:155
+1 agentB rid:155 is added to engine
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:44
+1 agentB rid:44 is added to engine
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:45
+1 agentB rid:45 is added to engine
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:151
+1 agentB rid:151 is added to engine
+2 agentB rid:151 is finished
+2agentB will send data to A rid:151
+3 agentB send data to A
+2 agentB rid:155 is finished
+2agentB will send data to A rid:155
+3 agentB send data to A
+INFO 11-04 04:25:33 metrics.py:363] Avg prompt throughput: 10330.0 tokens/s, Avg generation throughput: 319.1 tokens/s, Running: 7 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 11-04 04:25:33 metrics.py:379] Prefix cache hit rate: GPU: 98.29%, CPU: 0.00%
+2 agentB rid:11 is finished
+2agentB will send data to A rid:11
+3 agentB send data to A
+2 agentB rid:44 is finished
+2agentB will send data to A rid:44
+3 agentB send data to A
+2 agentB rid:78 is finished
+2agentB will send data to A rid:78
+3 agentB send data to A
+2 agentB rid:187 is finished
+2agentB will send data to A rid:187
+3 agentB send data to A
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:243
+1 agentB recv data from A the rid:56
+1 agentB rid:56 is added to engine
+1 agentB rid:243 is added to engine
+2 agentB rid:56 is finished
+2agentB will send data to A rid:56
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:64
+1 agentB rid:64 is added to engine
+2 agentB rid:64 is finished
+2agentB will send data to A rid:64
+3 agentB send data to A
+2 agentB rid:213 is finished
+2agentB will send data to A rid:213
+3 agentB send data to A
+2 agentB rid:9 is finished
+2agentB will send data to A rid:9
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:107
+1 agentB rid:107 is added to engine
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:254
+1 agentB rid:254 is added to engine
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:251
+1 agentB rid:251 is added to engine
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:245
+1 agentB rid:245 is added to engine
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:236
+1 agentB recv data from A the rid:235
+1 agentB rid:235 is added to engine
+1 agentB rid:236 is added to engine
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:234
+1 agentB rid:234 is added to engine
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:43
+1 agentB rid:43 is added to engine
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:228
+1 agentB rid:228 is added to engine
+2 agentB rid:45 is finished
+2agentB will send data to A rid:45
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:225
+1 agentB rid:225 is added to engine
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:218
+1 agentB rid:218 is added to engine
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:208
+1 agentB rid:208 is added to engine
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:40
+1 agentB rid:40 is added to engine
+2 agentB rid:40 is finished
+2agentB will send data to A rid:40
+3 agentB send data to A
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:197
+1 agentB recv data from A the rid:196
+1 agentB rid:196 is added to engine
+1 agentB rid:197 is added to engine
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:194
+1 agentB rid:194 is added to engine
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:49
+1 agentB rid:49 is added to engine
+2 agentB rid:49 is finished
+2agentB will send data to A rid:49
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:175
+1 agentB rid:175 is added to engine
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:171
+1 agentB rid:171 is added to engine
+0 agentB recv data from A, data:2
+1 agentB recv data from A the rid:169
+1 agentB recv data from A the rid:168
+1 agentB rid:168 is added to engine
+1 agentB rid:169 is added to engine
+2 agentB rid:243 is finished
+2agentB will send data to A rid:243
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:121
+1 agentB rid:121 is added to engine
+INFO 11-04 04:25:38 metrics.py:363] Avg prompt throughput: 7520.2 tokens/s, Avg generation throughput: 334.9 tokens/s, Running: 20 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 1.9%, CPU KV cache usage: 0.0%.
+INFO 11-04 04:25:38 metrics.py:379] Prefix cache hit rate: GPU: 95.02%, CPU: 0.00%
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:130
+1 agentB rid:130 is added to engine
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:128
+1 agentB rid:128 is added to engine
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:77
+1 agentB rid:77 is added to engine
+2 agentB rid:43 is finished
+2agentB will send data to A rid:43
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:117
+1 agentB rid:117 is added to engine
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:105
+1 agentB rid:105 is added to engine
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:98
+1 agentB rid:98 is added to engine
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:68
+1 agentB rid:68 is added to engine
+2 agentB rid:121 is finished
+2agentB will send data to A rid:121
+3 agentB send data to A
+2 agentB rid:228 is finished
+2agentB will send data to A rid:228
+3 agentB send data to A
+2 agentB rid:77 is finished
+2agentB will send data to A rid:77
+3 agentB send data to A
+2 agentB rid:168 is finished
+2agentB will send data to A rid:168
+3 agentB send data to A
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:7
+1 agentB rid:7 is added to engine
+0 agentB recv data from A, data:1
+1 agentB recv data from A the rid:2
+1 agentB rid:2 is added to engine
+2 agentB rid:107 is finished
+2agentB will send data to A rid:107
+3 agentB send data to A
+2 agentB rid:128 is finished
+2agentB will send data to A rid:128
+3 agentB send data to A
+2 agentB rid:254 is finished
+2agentB will send data to A rid:254
+3 agentB send data to A
+2 agentB rid:251 is finished
+2agentB will send data to A rid:251
+3 agentB send data to A
+2 agentB rid:245 is finished
+2agentB will send data to A rid:245
+3 agentB send data to A
+2 agentB rid:235 is finished
+2agentB will send data to A rid:235
+3 agentB send data to A
+2 agentB rid:236 is finished
+2agentB will send data to A rid:236
+3 agentB send data to A
+2 agentB rid:234 is finished
+2agentB will send data to A rid:234
+3 agentB send data to A
+2 agentB rid:225 is finished
+2agentB will send data to A rid:225
+3 agentB send data to A
+2 agentB rid:169 is finished
+2agentB will send data to A rid:169
+3 agentB send data to A
+2 agentB rid:218 is finished
+2agentB will send data to A rid:218
+3 agentB send data to A
+2 agentB rid:208 is finished
+2agentB will send data to A rid:208
+3 agentB send data to A
+2 agentB rid:196 is finished
+2agentB will send data to A rid:196
+3 agentB send data to A
+2 agentB rid:197 is finished
+2agentB will send data to A rid:197
+3 agentB send data to A
+2 agentB rid:194 is finished
+2agentB will send data to A rid:194
+3 agentB send data to A
+INFO 11-04 04:25:43 metrics.py:363] Avg prompt throughput: 5817.4 tokens/s, Avg generation throughput: 994.5 tokens/s, Running: 9 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 1.6%, CPU KV cache usage: 0.0%.
+INFO 11-04 04:25:43 metrics.py:379] Prefix cache hit rate: GPU: 94.50%, CPU: 0.00%
+2 agentB rid:175 is finished
+2agentB will send data to A rid:175
+3 agentB send data to A
+2 agentB rid:171 is finished
+2agentB will send data to A rid:171
+3 agentB send data to A
+2 agentB rid:130 is finished
+2agentB will send data to A rid:130
+3 agentB send data to A
+2 agentB rid:117 is finished
+2agentB will send data to A rid:117
+3 agentB send data to A
+2 agentB rid:105 is finished
+2agentB will send data to A rid:105
+3 agentB send data to A
+2 agentB rid:98 is finished
+2agentB will send data to A rid:98
+3 agentB send data to A
+2 agentB rid:68 is finished
+2agentB will send data to A rid:68
+3 agentB send data to A
+2 agentB rid:7 is finished
+2agentB will send data to A rid:7
+3 agentB send data to A
+2 agentB rid:2 is finished
+2agentB will send data to A rid:2
+3 agentB send data to A

@@ -1,0 +1,86 @@
+args.agent_parallelism:False
+without_agent start with agent
+model:/home/xiaoxiang/data/Llama-3.1-8B
+0 vllm/config.py scheduler_config.py __init__ max_num_batched_tokens: None
+3 vllm/config.py scheduler_config.py __init__ max_num_batched_tokens: 1024
+INFO 10-30 09:57:10 config.py:1061] Chunked prefill is enabled with max_num_batched_tokens=1024.
+INFO 10-30 09:57:10 llm_engine.py:238] Initializing an LLM engine (v0.6.3.post2.dev36+g855e0e6f) with config: model='/home/xiaoxiang/data/Llama-3.1-8B', speculative_config=None, tokenizer='/home/xiaoxiang/data/Llama-3.1-8B', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, rope_scaling=None, rope_theta=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=131072, download_dir=None, load_format=LoadFormat.AUTO, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto, quantization_param_path=None, device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='outlines'), observability_config=ObservabilityConfig(otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=0, served_model_name=/home/xiaoxiang/data/Llama-3.1-8B, num_scheduler_steps=1, chunked_prefill_enabled=True multi_step_stream_outputs=True, enable_prefix_caching=True, use_async_output_proc=True, use_cached_outputs=False, mm_processor_kwargs=None)
+INFO 10-30 09:57:13 model_runner.py:1055] Starting to load model /home/xiaoxiang/data/Llama-3.1-8B...
+Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards:  25% Completed | 1/4 [00:01<00:04,  1.53s/it]
+Loading safetensors checkpoint shards:  50% Completed | 2/4 [00:03<00:03,  1.59s/it]
+Loading safetensors checkpoint shards:  75% Completed | 3/4 [00:04<00:01,  1.63s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:05<00:00,  1.19s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:05<00:00,  1.34s/it]
+
+INFO 10-30 09:57:18 model_runner.py:1066] Loading model weights took 14.9888 GB
+INFO 10-30 09:57:19 worker.py:260] Memory profiling results: total_gpu_memory=79.15GiB initial_memory_usage=15.50GiB peak_torch_memory=16.17GiB memory_usage_post_profile=15.53Gib non_torch_memory=0.54GiB kv_cache_size=54.53GiB gpu_memory_utilization=0.90
+INFO 10-30 09:57:20 gpu_executor.py:122] # GPU blocks: 27919, # CPU blocks: 2048
+INFO 10-30 09:57:20 gpu_executor.py:126] Maximum concurrency for 131072 tokens per request: 3.41x
+INFO 10-30 09:57:22 model_runner.py:1394] Capturing the model for CUDA graphs. This may lead to unexpected consequences if the model is not static. To run the model in eager mode, set 'enforce_eager=True' or use '--enforce-eager' in the CLI.
+INFO 10-30 09:57:22 model_runner.py:1398] CUDA graphs can take additional 1~3 GiB memory per GPU. If you are running out of memory, consider decreasing `gpu_memory_utilization` or enforcing eager mode. You can also reduce the `max_num_seqs` as needed to decrease memory usage.
+INFO 10-30 09:57:35 model_runner.py:1522] Graph capturing finished in 14 secs.
+/home/xiaoxiang/vllm/agent/agent.py:1487: DeprecationWarning: The keyword arguments {'inputs'} are deprecated and will be removed in a future update. Please use the 'prompt' parameter instead.
+  warm_up(engine)
+/home/xiaoxiang/vllm/agent/agent.py:1670: DeprecationWarning: The keyword arguments {'inputs'} are deprecated and will be removed in a future update. Please use the 'prompt' parameter instead.
+  without_agent( args, prompts)
+len(prompt):118
+start warm up
+finish warm up
+without_agent max_token:256 
+1 without agent len(reqs):2
+1 rid:1 and rid1:1i0 and rid2:1i1 and req_num_act:1
+1 rid:0 and rid1:0i0 and rid2:0i1 and req_num_act:1
+one step time:0.07214760780334473
+one step time:0.03245258331298828
+2 rid:1i0 and rid1:1i0 and rid2:1i1 and id_num_act:1 and num_act:2 and output_len:1
+3 ****application id:1 finish the r0:1i0 for prefill+decode and r1:1i1 and the duration:0.10909724235534668 and the token:1 and total_duration:0.10909724235534668 and info[rx1].total_token:1 
+0 without_agent, req_id:1i0 and rx0:1i0 and rx1:1i1 and rid:1i0 and init_id:1  and req_num_act:1  and my_marked:{'1i0': True} and counter:{'1': 1}
+1 rid:1i1 and rid1:1i0 and rid2:1i1 and req_num_act:2
+one step time:0.05079197883605957
+one step time:0.0125732421875
+2 rid:1i1 and rid1:1i0 and rid2:1i1 and id_num_act:2 and num_act:2 and output_len:1
+6 ****application id:1 finish the r0:1i0  and r1:1i1 prefil+decode and the duration:0.06506705284118652 and the token:1 and total_duration:0.1741642951965332 and info[rx1].total_token:2 
+finished[-1]:{'request_id': '1', 'total_duration': 0.1741642951965332, 'total_token': 2} and rid:1i1
+0 without_agent, req_id:1i1 and rx0:1i0 and rx1:1i1 and rid:1i1 and init_id:1  and req_num_act:2  and my_marked:{'1i1': True} and counter:{'1': 0}
+one step time:0.01249551773071289
+one step time:0.012464046478271484
+one step time:0.012411355972290039
+one step time:0.01245880126953125
+one step time:0.012717485427856445
+one step time:0.012474298477172852
+one step time:0.01248025894165039
+one step time:0.012420177459716797
+one step time:0.012374639511108398
+one step time:0.012390375137329102
+one step time:0.012395381927490234
+one step time:0.012363672256469727
+one step time:0.012351751327514648
+one step time:0.012360811233520508
+one step time:0.012744426727294922
+one step time:0.012586832046508789
+one step time:0.012387275695800781
+one step time:0.012375593185424805
+one step time:0.012391328811645508
+one step time:0.012380599975585938
+one step time:0.012369871139526367
+one step time:0.012407064437866211
+one step time:0.012347698211669922
+one step time:0.012348175048828125
+one step time:0.012371063232421875
+one step time:0.012539386749267578
+2 rid:0i0 and rid1:0i0 and rid2:0i1 and id_num_act:1 and num_act:2 and output_len:28
+3 ****application id:0 finish the r0:0i0 for prefill+decode and r1:0i1 and the duration:0.49555420875549316 and the token:28 and total_duration:0.49555420875549316 and info[rx1].total_token:28 
+0 without_agent, req_id:0i0 and rx0:0i0 and rx1:0i1 and rid:0i0 and init_id:0  and req_num_act:1  and my_marked:{'0i0': True} and counter:{'1': 0, '0': 1}
+1 rid:0i1 and rid1:0i0 and rid2:0i1 and req_num_act:2
+one step time:0.04858756065368652
+one step time:0.012648344039916992
+2 rid:0i1 and rid1:0i0 and rid2:0i1 and id_num_act:2 and num_act:2 and output_len:1
+6 ****application id:0 finish the r0:0i0  and r1:0i1 prefil+decode and the duration:0.06327533721923828 and the token:1 and total_duration:0.5588295459747314 and info[rx1].total_token:29 
+finished[-1]:{'request_id': '0', 'total_duration': 0.5588295459747314, 'total_token': 29} and rid:0i1
+0 without_agent, req_id:0i1 and rx0:0i0 and rx1:0i1 and rid:0i1 and init_id:0  and req_num_act:2  and my_marked:{'0i1': True} and counter:{'1': 0, '0': 0}
+len(finished):2
+rid:0 and total_duration:0.5588295459747314 and total_token:29 and agent_normalized:0.019269984343956256
+rid:1 and total_duration:0.1741642951965332 and total_token:2 and agent_normalized:0.0870821475982666
+without_agent and bs:2 and agent_normalized_latency:0.05317606597111143
+without_agent and bs:2 and avg_jct:0.3664969205856323

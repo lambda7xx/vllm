@@ -1,0 +1,80 @@
+args.agent_parallelism:True
+start with agent
+start with agent
+model:/home/xiaoxiang/data/Llama-3.1-8B
+0 vllm/config.py scheduler_config.py __init__ max_num_batched_tokens: None
+3 vllm/config.py scheduler_config.py __init__ max_num_batched_tokens: 512
+INFO 10-28 15:00:14 config.py:1061] Chunked prefill is enabled with max_num_batched_tokens=512.
+INFO 10-28 15:00:14 llm_engine.py:238] Initializing an LLM engine (v0.6.3.post2.dev36+g855e0e6f) with config: model='/home/xiaoxiang/data/Llama-3.1-8B', speculative_config=None, tokenizer='/home/xiaoxiang/data/Llama-3.1-8B', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, rope_scaling=None, rope_theta=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=131072, download_dir=None, load_format=LoadFormat.AUTO, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto, quantization_param_path=None, device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='outlines'), observability_config=ObservabilityConfig(otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=0, served_model_name=/home/xiaoxiang/data/Llama-3.1-8B, num_scheduler_steps=1, chunked_prefill_enabled=True multi_step_stream_outputs=True, enable_prefix_caching=True, use_async_output_proc=True, use_cached_outputs=False, mm_processor_kwargs=None)
+INFO 10-28 15:00:17 model_runner.py:1055] Starting to load model /home/xiaoxiang/data/Llama-3.1-8B...
+Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards:  25% Completed | 1/4 [00:01<00:04,  1.50s/it]
+Loading safetensors checkpoint shards:  50% Completed | 2/4 [00:03<00:03,  1.58s/it]
+Loading safetensors checkpoint shards:  75% Completed | 3/4 [00:04<00:01,  1.62s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:05<00:00,  1.19s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:05<00:00,  1.33s/it]
+
+INFO 10-28 15:00:23 model_runner.py:1066] Loading model weights took 14.9888 GB
+INFO 10-28 15:00:24 worker.py:260] Memory profiling results: total_gpu_memory=79.15GiB initial_memory_usage=15.50GiB peak_torch_memory=16.16GiB memory_usage_post_profile=15.53Gib non_torch_memory=0.54GiB kv_cache_size=54.53GiB gpu_memory_utilization=0.90
+INFO 10-28 15:00:24 gpu_executor.py:122] # GPU blocks: 27921, # CPU blocks: 2048
+INFO 10-28 15:00:24 gpu_executor.py:126] Maximum concurrency for 131072 tokens per request: 3.41x
+INFO 10-28 15:00:26 model_runner.py:1394] Capturing the model for CUDA graphs. This may lead to unexpected consequences if the model is not static. To run the model in eager mode, set 'enforce_eager=True' or use '--enforce-eager' in the CLI.
+INFO 10-28 15:00:26 model_runner.py:1398] CUDA graphs can take additional 1~3 GiB memory per GPU. If you are running out of memory, consider decreasing `gpu_memory_utilization` or enforcing eager mode. You can also reduce the `max_num_seqs` as needed to decrease memory usage.
+INFO 10-28 15:00:39 model_runner.py:1522] Graph capturing finished in 13 secs.
+/home/xiaoxiang/vllm/agent/agent.py:84: DeprecationWarning: The keyword arguments {'inputs'} are deprecated and will be removed in a future update. Please use the 'prompt' parameter instead.
+  warm_up(engine)
+/home/xiaoxiang/vllm/agent/agent.py:771: DeprecationWarning: The keyword arguments {'inputs'} are deprecated and will be removed in a future update. Please use the 'prompt' parameter instead.
+  with_agent_optimized(args, prompts)
+len(prompt):118
+start warm up
+finish warm up
+max_token:256 and agent_tokens:64
+1 with agent len(reqs):2
+need_r1_react_num:2 and need_r2_react_num:1
+need_r1_react_num:2 and need_r2_react_num:1
+4.2 one step time:0.032015323638916016
+INFO 10-28 15:00:46 metrics.py:363] Avg prompt throughput: 98.1 tokens/s, Avg generation throughput: 4.6 tokens/s, Running: 2 reqs, Swapped: 0 reqs, Pending: 2 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 10-28 15:00:46 metrics.py:379] Prefix cache hit rate: GPU: 0.00%, CPU: 0.00%
+4.2 one step time:0.06082463264465332
+4.2 one step time:0.04765152931213379
+4.2 one step time:0.04732394218444824
+4.2 one step time:0.03730583190917969
+4.2 one step time:0.0320737361907959
+4.2 one step time:0.03156757354736328
+4.2 one step time:0.012511253356933594
+4.2 one step time:0.03211855888366699
+4.2 one step time:0.03149271011352539
+4.2 one step time:0.012416362762451172
+14 finished[-1]:{'request_id': '1', 'total_duration': 0.3908236026763916, 'total_token': 3} and rid:1 and terminate_rid:1i0 
+4.2 one step time:0.012397050857543945
+4.2 one step time:0.012362480163574219
+4.2 one step time:0.012404918670654297
+4.2 one step time:0.01234889030456543
+4.2 one step time:0.012376785278320312
+4.2 one step time:0.012371540069580078
+4.2 one step time:0.012375354766845703
+4.2 one step time:0.012405633926391602
+4.2 one step time:0.012421369552612305
+4.2 one step time:0.012343168258666992
+4.2 one step time:0.012358427047729492
+4.2 one step time:0.012347698211669922
+4.2 one step time:0.01237034797668457
+4.2 one step time:0.012338876724243164
+4.2 one step time:0.012349605560302734
+4.2 one step time:0.012388944625854492
+4.2 one step time:0.012399435043334961
+4.2 one step time:0.012388944625854492
+4.2 one step time:0.012394189834594727
+4.2 one step time:0.012379646301269531
+4.2 one step time:0.01265859603881836
+4.2 one step time:0.03347015380859375
+4.2 one step time:0.028964519500732422
+4.2 one step time:0.03318071365356445
+4.2 one step time:0.012582540512084961
+4.2 one step time:0.02900838851928711
+4.2 one step time:0.02745985984802246
+4.2 one step time:0.012613534927368164
+14 finished[-1]:{'request_id': '0', 'total_duration': 0.8297812938690186, 'total_token': 30} and rid:0 and terminate_rid:0i0 
+len(finished):2 and bs:2
+batch:2 and normalized_latency:0.07896695534388225
+batch:2 and avg e2e latency:0.6103024482727051

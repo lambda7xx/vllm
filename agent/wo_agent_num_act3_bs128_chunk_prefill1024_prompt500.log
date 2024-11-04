@@ -1,0 +1,1394 @@
+args.agent_parallelism:False
+without_agent start with agent
+model:/home/xiaoxiang/data/Llama-3.1-8B
+0 vllm/config.py scheduler_config.py __init__ max_num_batched_tokens: None
+3 vllm/config.py scheduler_config.py __init__ max_num_batched_tokens: 1024
+INFO 10-30 03:31:41 config.py:1061] Chunked prefill is enabled with max_num_batched_tokens=1024.
+INFO 10-30 03:31:41 llm_engine.py:238] Initializing an LLM engine (v0.6.3.post2.dev36+g855e0e6f) with config: model='/home/xiaoxiang/data/Llama-3.1-8B', speculative_config=None, tokenizer='/home/xiaoxiang/data/Llama-3.1-8B', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, rope_scaling=None, rope_theta=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=131072, download_dir=None, load_format=LoadFormat.AUTO, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto, quantization_param_path=None, device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='outlines'), observability_config=ObservabilityConfig(otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=0, served_model_name=/home/xiaoxiang/data/Llama-3.1-8B, num_scheduler_steps=1, chunked_prefill_enabled=True multi_step_stream_outputs=True, enable_prefix_caching=True, use_async_output_proc=True, use_cached_outputs=False, mm_processor_kwargs=None)
+INFO 10-30 03:31:44 model_runner.py:1055] Starting to load model /home/xiaoxiang/data/Llama-3.1-8B...
+Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards:  25% Completed | 1/4 [00:01<00:04,  1.54s/it]
+Loading safetensors checkpoint shards:  50% Completed | 2/4 [00:03<00:03,  1.59s/it]
+Loading safetensors checkpoint shards:  75% Completed | 3/4 [00:04<00:01,  1.63s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:05<00:00,  1.19s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:05<00:00,  1.34s/it]
+
+INFO 10-30 03:31:49 model_runner.py:1066] Loading model weights took 14.9888 GB
+INFO 10-30 03:31:50 worker.py:260] Memory profiling results: total_gpu_memory=79.15GiB initial_memory_usage=15.50GiB peak_torch_memory=16.17GiB memory_usage_post_profile=15.53Gib non_torch_memory=0.54GiB kv_cache_size=54.53GiB gpu_memory_utilization=0.90
+INFO 10-30 03:31:51 gpu_executor.py:122] # GPU blocks: 27919, # CPU blocks: 2048
+INFO 10-30 03:31:51 gpu_executor.py:126] Maximum concurrency for 131072 tokens per request: 3.41x
+INFO 10-30 03:31:53 model_runner.py:1394] Capturing the model for CUDA graphs. This may lead to unexpected consequences if the model is not static. To run the model in eager mode, set 'enforce_eager=True' or use '--enforce-eager' in the CLI.
+INFO 10-30 03:31:53 model_runner.py:1398] CUDA graphs can take additional 1~3 GiB memory per GPU. If you are running out of memory, consider decreasing `gpu_memory_utilization` or enforcing eager mode. You can also reduce the `max_num_seqs` as needed to decrease memory usage.
+INFO 10-30 03:32:06 model_runner.py:1522] Graph capturing finished in 13 secs.
+/home/xiaoxiang/vllm/agent/agent.py:635: DeprecationWarning: The keyword arguments {'inputs'} are deprecated and will be removed in a future update. Please use the 'prompt' parameter instead.
+  warm_up(engine)
+/home/xiaoxiang/vllm/agent/agent.py:781: DeprecationWarning: The keyword arguments {'inputs'} are deprecated and will be removed in a future update. Please use the 'prompt' parameter instead.
+  without_agent( args, prompts)
+len(prompt):118
+start warm up
+finish warm up
+without_agent max_token:256 
+1 without agent len(reqs):128
+0 rid:127 and rid1:127i0 and rid2:127i1
+0 rid:126 and rid1:126i0 and rid2:126i1
+0 rid:125 and rid1:125i0 and rid2:125i1
+0 rid:124 and rid1:124i0 and rid2:124i1
+0 rid:123 and rid1:123i0 and rid2:123i1
+0 rid:122 and rid1:122i0 and rid2:122i1
+0 rid:121 and rid1:121i0 and rid2:121i1
+0 rid:120 and rid1:120i0 and rid2:120i1
+0 rid:119 and rid1:119i0 and rid2:119i1
+0 rid:118 and rid1:118i0 and rid2:118i1
+0 rid:117 and rid1:117i0 and rid2:117i1
+0 rid:116 and rid1:116i0 and rid2:116i1
+0 rid:115 and rid1:115i0 and rid2:115i1
+0 rid:114 and rid1:114i0 and rid2:114i1
+0 rid:113 and rid1:113i0 and rid2:113i1
+0 rid:112 and rid1:112i0 and rid2:112i1
+0 rid:111 and rid1:111i0 and rid2:111i1
+0 rid:110 and rid1:110i0 and rid2:110i1
+0 rid:109 and rid1:109i0 and rid2:109i1
+0 rid:108 and rid1:108i0 and rid2:108i1
+0 rid:107 and rid1:107i0 and rid2:107i1
+0 rid:106 and rid1:106i0 and rid2:106i1
+0 rid:105 and rid1:105i0 and rid2:105i1
+0 rid:104 and rid1:104i0 and rid2:104i1
+0 rid:103 and rid1:103i0 and rid2:103i1
+0 rid:102 and rid1:102i0 and rid2:102i1
+0 rid:101 and rid1:101i0 and rid2:101i1
+0 rid:100 and rid1:100i0 and rid2:100i1
+0 rid:99 and rid1:99i0 and rid2:99i1
+0 rid:98 and rid1:98i0 and rid2:98i1
+0 rid:97 and rid1:97i0 and rid2:97i1
+0 rid:96 and rid1:96i0 and rid2:96i1
+0 rid:95 and rid1:95i0 and rid2:95i1
+0 rid:94 and rid1:94i0 and rid2:94i1
+0 rid:93 and rid1:93i0 and rid2:93i1
+0 rid:92 and rid1:92i0 and rid2:92i1
+0 rid:91 and rid1:91i0 and rid2:91i1
+0 rid:90 and rid1:90i0 and rid2:90i1
+0 rid:89 and rid1:89i0 and rid2:89i1
+0 rid:88 and rid1:88i0 and rid2:88i1
+0 rid:87 and rid1:87i0 and rid2:87i1
+0 rid:86 and rid1:86i0 and rid2:86i1
+0 rid:85 and rid1:85i0 and rid2:85i1
+0 rid:84 and rid1:84i0 and rid2:84i1
+0 rid:83 and rid1:83i0 and rid2:83i1
+0 rid:82 and rid1:82i0 and rid2:82i1
+0 rid:81 and rid1:81i0 and rid2:81i1
+0 rid:80 and rid1:80i0 and rid2:80i1
+0 rid:79 and rid1:79i0 and rid2:79i1
+0 rid:78 and rid1:78i0 and rid2:78i1
+0 rid:77 and rid1:77i0 and rid2:77i1
+0 rid:76 and rid1:76i0 and rid2:76i1
+0 rid:75 and rid1:75i0 and rid2:75i1
+0 rid:74 and rid1:74i0 and rid2:74i1
+0 rid:73 and rid1:73i0 and rid2:73i1
+0 rid:72 and rid1:72i0 and rid2:72i1
+0 rid:71 and rid1:71i0 and rid2:71i1
+0 rid:70 and rid1:70i0 and rid2:70i1
+0 rid:69 and rid1:69i0 and rid2:69i1
+0 rid:68 and rid1:68i0 and rid2:68i1
+0 rid:67 and rid1:67i0 and rid2:67i1
+0 rid:66 and rid1:66i0 and rid2:66i1
+0 rid:65 and rid1:65i0 and rid2:65i1
+0 rid:64 and rid1:64i0 and rid2:64i1
+0 rid:63 and rid1:63i0 and rid2:63i1
+0 rid:62 and rid1:62i0 and rid2:62i1
+0 rid:61 and rid1:61i0 and rid2:61i1
+0 rid:60 and rid1:60i0 and rid2:60i1
+0 rid:59 and rid1:59i0 and rid2:59i1
+0 rid:58 and rid1:58i0 and rid2:58i1
+0 rid:57 and rid1:57i0 and rid2:57i1
+0 rid:56 and rid1:56i0 and rid2:56i1
+0 rid:55 and rid1:55i0 and rid2:55i1
+0 rid:54 and rid1:54i0 and rid2:54i1
+0 rid:53 and rid1:53i0 and rid2:53i1
+0 rid:52 and rid1:52i0 and rid2:52i1
+0 rid:51 and rid1:51i0 and rid2:51i1
+0 rid:50 and rid1:50i0 and rid2:50i1
+0 rid:49 and rid1:49i0 and rid2:49i1
+0 rid:48 and rid1:48i0 and rid2:48i1
+0 rid:47 and rid1:47i0 and rid2:47i1
+0 rid:46 and rid1:46i0 and rid2:46i1
+0 rid:45 and rid1:45i0 and rid2:45i1
+0 rid:44 and rid1:44i0 and rid2:44i1
+0 rid:43 and rid1:43i0 and rid2:43i1
+0 rid:42 and rid1:42i0 and rid2:42i1
+0 rid:41 and rid1:41i0 and rid2:41i1
+0 rid:40 and rid1:40i0 and rid2:40i1
+0 rid:39 and rid1:39i0 and rid2:39i1
+0 rid:38 and rid1:38i0 and rid2:38i1
+0 rid:37 and rid1:37i0 and rid2:37i1
+0 rid:36 and rid1:36i0 and rid2:36i1
+0 rid:35 and rid1:35i0 and rid2:35i1
+0 rid:34 and rid1:34i0 and rid2:34i1
+0 rid:33 and rid1:33i0 and rid2:33i1
+0 rid:32 and rid1:32i0 and rid2:32i1
+0 rid:31 and rid1:31i0 and rid2:31i1
+0 rid:30 and rid1:30i0 and rid2:30i1
+0 rid:29 and rid1:29i0 and rid2:29i1
+0 rid:28 and rid1:28i0 and rid2:28i1
+0 rid:27 and rid1:27i0 and rid2:27i1
+0 rid:26 and rid1:26i0 and rid2:26i1
+0 rid:25 and rid1:25i0 and rid2:25i1
+0 rid:24 and rid1:24i0 and rid2:24i1
+0 rid:23 and rid1:23i0 and rid2:23i1
+0 rid:22 and rid1:22i0 and rid2:22i1
+0 rid:21 and rid1:21i0 and rid2:21i1
+0 rid:20 and rid1:20i0 and rid2:20i1
+0 rid:19 and rid1:19i0 and rid2:19i1
+0 rid:18 and rid1:18i0 and rid2:18i1
+0 rid:17 and rid1:17i0 and rid2:17i1
+0 rid:16 and rid1:16i0 and rid2:16i1
+0 rid:15 and rid1:15i0 and rid2:15i1
+0 rid:14 and rid1:14i0 and rid2:14i1
+0 rid:13 and rid1:13i0 and rid2:13i1
+0 rid:12 and rid1:12i0 and rid2:12i1
+0 rid:11 and rid1:11i0 and rid2:11i1
+0 rid:10 and rid1:10i0 and rid2:10i1
+0 rid:9 and rid1:9i0 and rid2:9i1
+0 rid:8 and rid1:8i0 and rid2:8i1
+0 rid:7 and rid1:7i0 and rid2:7i1
+0 rid:6 and rid1:6i0 and rid2:6i1
+0 rid:5 and rid1:5i0 and rid2:5i1
+0 rid:4 and rid1:4i0 and rid2:4i1
+0 rid:3 and rid1:3i0 and rid2:3i1
+0 rid:2 and rid1:2i0 and rid2:2i1
+0 rid:1 and rid1:1i0 and rid2:1i1
+0 rid:0 and rid1:0i0 and rid2:0i1
+one step time:0.07390117645263672
+one step time:0.07400250434875488
+0 rid:127i1 and rid1:127i0 and rid2:127i1
+one step time:0.07501721382141113
+0 rid:126i1 and rid1:126i0 and rid2:126i1
+one step time:0.07436013221740723
+0 rid:124i1 and rid1:124i0 and rid2:124i1
+0 rid:123i1 and rid1:123i0 and rid2:123i1
+one step time:0.07412266731262207
+0 rid:122i1 and rid1:122i0 and rid2:122i1
+one step time:0.07360482215881348
+0 rid:120i1 and rid1:120i0 and rid2:120i1
+0 rid:119i1 and rid1:119i0 and rid2:119i1
+one step time:0.07381200790405273
+0 rid:118i1 and rid1:118i0 and rid2:118i1
+one step time:0.07376265525817871
+0 rid:116i1 and rid1:116i0 and rid2:116i1
+one step time:0.07457089424133301
+0 rid:115i1 and rid1:115i0 and rid2:115i1
+0 rid:114i1 and rid1:114i0 and rid2:114i1
+one step time:0.07402253150939941
+0 rid:113i1 and rid1:113i0 and rid2:113i1
+0 rid:112i1 and rid1:112i0 and rid2:112i1
+one step time:0.07532835006713867
+0 rid:111i1 and rid1:111i0 and rid2:111i1
+0 rid:110i1 and rid1:110i0 and rid2:110i1
+one step time:0.07381844520568848
+0 rid:109i1 and rid1:109i0 and rid2:109i1
+0 rid:108i1 and rid1:108i0 and rid2:108i1
+one step time:0.07417798042297363
+one step time:0.0747530460357666
+one step time:0.0749354362487793
+one step time:0.07491636276245117
+0 rid:102i1 and rid1:102i0 and rid2:102i1
+0 rid:101i1 and rid1:101i0 and rid2:101i1
+one step time:0.07471632957458496
+0 rid:100i1 and rid1:100i0 and rid2:100i1
+0 rid:99i1 and rid1:99i0 and rid2:99i1
+one step time:0.07580065727233887
+one step time:0.07596802711486816
+0 rid:97i1 and rid1:97i0 and rid2:97i1
+0 rid:96i1 and rid1:96i0 and rid2:96i1
+one step time:0.07580971717834473
+0 rid:95i1 and rid1:95i0 and rid2:95i1
+0 rid:94i1 and rid1:94i0 and rid2:94i1
+one step time:0.07424736022949219
+0 rid:93i1 and rid1:93i0 and rid2:93i1
+one step time:0.07519006729125977
+0 rid:106i1 and rid1:106i0 and rid2:106i1
+0 rid:125i1 and rid1:125i0 and rid2:125i1
+0 rid:91i1 and rid1:91i0 and rid2:91i1
+one step time:0.07503533363342285
+0 rid:89i1 and rid1:89i0 and rid2:89i1
+one step time:0.07519960403442383
+0 rid:92i1 and rid1:92i0 and rid2:92i1
+0 rid:88i1 and rid1:88i0 and rid2:88i1
+0 rid:87i1 and rid1:87i0 and rid2:87i1
+one step time:0.07425236701965332
+0 rid:86i1 and rid1:86i0 and rid2:86i1
+0 rid:85i1 and rid1:85i0 and rid2:85i1
+one step time:0.0748751163482666
+0 rid:84i1 and rid1:84i0 and rid2:84i1
+one step time:0.07494521141052246
+0 rid:103i1 and rid1:103i0 and rid2:103i1
+0 rid:83i1 and rid1:83i0 and rid2:83i1
+0 rid:82i1 and rid1:82i0 and rid2:82i1
+one step time:0.0751655101776123
+0 rid:81i1 and rid1:81i0 and rid2:81i1
+0 rid:80i1 and rid1:80i0 and rid2:80i1
+one step time:0.07501792907714844
+0 rid:79i1 and rid1:79i0 and rid2:79i1
+one step time:0.0745992660522461
+0 rid:76i1 and rid1:76i0 and rid2:76i1
+one step time:0.07525110244750977
+one step time:0.07607793807983398
+0 rid:73i1 and rid1:73i0 and rid2:73i1
+one step time:0.07564330101013184
+0 rid:74i1 and rid1:74i0 and rid2:74i1
+0 rid:72i1 and rid1:72i0 and rid2:72i1
+0 rid:71i1 and rid1:71i0 and rid2:71i1
+one step time:0.07494044303894043
+0 rid:70i1 and rid1:70i0 and rid2:70i1
+one step time:0.07461953163146973
+0 rid:67i1 and rid1:67i0 and rid2:67i1
+one step time:0.07543587684631348
+0 rid:66i1 and rid1:66i0 and rid2:66i1
+one step time:0.07612991333007812
+0 rid:65i1 and rid1:65i0 and rid2:65i1
+one step time:0.07602643966674805
+0 rid:104i1 and rid1:104i0 and rid2:104i1
+0 rid:63i1 and rid1:63i0 and rid2:63i1
+0 rid:62i1 and rid1:62i0 and rid2:62i1
+one step time:0.07459735870361328
+0 rid:61i1 and rid1:61i0 and rid2:61i1
+one step time:0.07546687126159668
+0 rid:59i1 and rid1:59i0 and rid2:59i1
+one step time:0.07588005065917969
+0 rid:58i1 and rid1:58i0 and rid2:58i1
+0 rid:57i1 and rid1:57i0 and rid2:57i1
+one step time:0.07617592811584473
+0 rid:55i1 and rid1:55i0 and rid2:55i1
+one step time:0.07538938522338867
+0 rid:75i1 and rid1:75i0 and rid2:75i1
+0 rid:90i1 and rid1:90i0 and rid2:90i1
+0 rid:54i1 and rid1:54i0 and rid2:54i1
+0 rid:53i1 and rid1:53i0 and rid2:53i1
+one step time:0.07566213607788086
+0 rid:52i1 and rid1:52i0 and rid2:52i1
+one step time:0.07646965980529785
+0 rid:51i1 and rid1:51i0 and rid2:51i1
+one step time:0.07604312896728516
+0 rid:48i1 and rid1:48i0 and rid2:48i1
+one step time:0.07643890380859375
+one step time:0.0760798454284668
+0 rid:50i1 and rid1:50i0 and rid2:50i1
+one step time:0.0760810375213623
+one step time:0.07616162300109863
+0 rid:42i1 and rid1:42i0 and rid2:42i1
+0 rid:41i1 and rid1:41i0 and rid2:41i1
+one step time:0.07592988014221191
+0 rid:39i1 and rid1:39i0 and rid2:39i1
+one step time:0.07636141777038574
+0 rid:38i1 and rid1:38i0 and rid2:38i1
+one step time:0.07667207717895508
+0 rid:37i1 and rid1:37i0 and rid2:37i1
+one step time:0.07632017135620117
+0 rid:36i1 and rid1:36i0 and rid2:36i1
+one step time:0.07623410224914551
+0 rid:60i1 and rid1:60i0 and rid2:60i1
+0 rid:33i1 and rid1:33i0 and rid2:33i1
+one step time:0.07555246353149414
+0 rid:31i1 and rid1:31i0 and rid2:31i1
+one step time:0.0764625072479248
+0 rid:47i1 and rid1:47i0 and rid2:47i1
+0 rid:29i1 and rid1:29i0 and rid2:29i1
+INFO 10-30 03:32:12 metrics.py:363] Avg prompt throughput: 11369.4 tokens/s, Avg generation throughput: 139.0 tokens/s, Running: 23 reqs, Swapped: 0 reqs, Pending: 102 reqs, GPU KV cache usage: 3.0%, CPU KV cache usage: 0.0%.
+INFO 10-30 03:32:12 metrics.py:379] Prefix cache hit rate: GPU: 2.84%, CPU: 0.00%
+one step time:0.07713961601257324
+0 rid:30i1 and rid1:30i0 and rid2:30i1
+0 rid:28i1 and rid1:28i0 and rid2:28i1
+0 rid:27i1 and rid1:27i0 and rid2:27i1
+one step time:0.07624697685241699
+0 rid:78i1 and rid1:78i0 and rid2:78i1
+0 rid:26i1 and rid1:26i0 and rid2:26i1
+0 rid:25i1 and rid1:25i0 and rid2:25i1
+one step time:0.07524442672729492
+0 rid:24i1 and rid1:24i0 and rid2:24i1
+0 rid:23i1 and rid1:23i0 and rid2:23i1
+one step time:0.07622671127319336
+0 rid:22i1 and rid1:22i0 and rid2:22i1
+one step time:0.07666206359863281
+0 rid:21i1 and rid1:21i0 and rid2:21i1
+0 rid:20i1 and rid1:20i0 and rid2:20i1
+one step time:0.07700157165527344
+0 rid:32i1 and rid1:32i0 and rid2:32i1
+0 rid:19i1 and rid1:19i0 and rid2:19i1
+0 rid:18i1 and rid1:18i0 and rid2:18i1
+one step time:0.07567310333251953
+0 rid:17i1 and rid1:17i0 and rid2:17i1
+0 rid:16i1 and rid1:16i0 and rid2:16i1
+one step time:0.0762171745300293
+0 rid:46i1 and rid1:46i0 and rid2:46i1
+0 rid:15i1 and rid1:15i0 and rid2:15i1
+one step time:0.07631444931030273
+0 rid:34i1 and rid1:34i0 and rid2:34i1
+0 rid:14i1 and rid1:14i0 and rid2:14i1
+0 rid:13i1 and rid1:13i0 and rid2:13i1
+one step time:0.07594466209411621
+0 rid:12i1 and rid1:12i0 and rid2:12i1
+one step time:0.0757594108581543
+0 rid:69i1 and rid1:69i0 and rid2:69i1
+0 rid:10i1 and rid1:10i0 and rid2:10i1
+0 rid:9i1 and rid1:9i0 and rid2:9i1
+one step time:0.07601356506347656
+0 rid:8i1 and rid1:8i0 and rid2:8i1
+one step time:0.07617664337158203
+0 rid:6i1 and rid1:6i0 and rid2:6i1
+one step time:0.07697558403015137
+0 rid:5i1 and rid1:5i0 and rid2:5i1
+0 rid:4i1 and rid1:4i0 and rid2:4i1
+one step time:0.0759282112121582
+0 rid:3i1 and rid1:3i0 and rid2:3i1
+one step time:0.07731294631958008
+0 rid:1i1 and rid1:1i0 and rid2:1i1
+one step time:0.0765986442565918
+0 rid:127i0 and rid1:127i0 and rid2:127i1
+one step time:0.07683110237121582
+0 rid:35i1 and rid1:35i0 and rid2:35i1
+0 rid:126i0 and rid1:126i0 and rid2:126i1
+0 rid:124i0 and rid1:124i0 and rid2:124i1
+one step time:0.07579922676086426
+0 rid:123i0 and rid1:123i0 and rid2:123i1
+0 rid:122i0 and rid1:122i0 and rid2:122i1
+one step time:0.07663583755493164
+0 rid:120i0 and rid1:120i0 and rid2:120i1
+0 rid:119i0 and rid1:119i0 and rid2:119i1
+one step time:0.0761115550994873
+0 rid:118i0 and rid1:118i0 and rid2:118i1
+one step time:0.07680606842041016
+0 rid:116i0 and rid1:116i0 and rid2:116i1
+0 rid:115i0 and rid1:115i0 and rid2:115i1
+one step time:0.07702159881591797
+0 rid:114i0 and rid1:114i0 and rid2:114i1
+0 rid:113i0 and rid1:113i0 and rid2:113i1
+one step time:0.07584905624389648
+0 rid:112i0 and rid1:112i0 and rid2:112i1
+0 rid:111i0 and rid1:111i0 and rid2:111i1
+one step time:0.07664966583251953
+0 rid:110i0 and rid1:110i0 and rid2:110i1
+one step time:0.07724118232727051
+0 rid:109i0 and rid1:109i0 and rid2:109i1
+0 rid:108i0 and rid1:108i0 and rid2:108i1
+one step time:0.07622480392456055
+0 rid:102i0 and rid1:102i0 and rid2:102i1
+0 rid:101i0 and rid1:101i0 and rid2:101i1
+one step time:0.07581830024719238
+0 rid:100i0 and rid1:100i0 and rid2:100i1
+0 rid:99i0 and rid1:99i0 and rid2:99i1
+one step time:0.07669615745544434
+0 rid:11i1 and rid1:11i0 and rid2:11i1
+0 rid:97i0 and rid1:97i0 and rid2:97i1
+one step time:0.07712912559509277
+0 rid:96i0 and rid1:96i0 and rid2:96i1
+0 rid:95i0 and rid1:95i0 and rid2:95i1
+one step time:0.07565689086914062
+0 rid:94i0 and rid1:94i0 and rid2:94i1
+one step time:0.07665228843688965
+0 rid:106i0 and rid1:106i0 and rid2:106i1
+one step time:0.07719278335571289
+0 rid:125i0 and rid1:125i0 and rid2:125i1
+0 rid:91i0 and rid1:91i0 and rid2:91i1
+one step time:0.07637643814086914
+0 rid:89i0 and rid1:89i0 and rid2:89i1
+0 rid:92i0 and rid1:92i0 and rid2:92i1
+one step time:0.07625102996826172
+0 rid:88i0 and rid1:88i0 and rid2:88i1
+0 rid:87i0 and rid1:87i0 and rid2:87i1
+one step time:0.07672715187072754
+0 rid:86i0 and rid1:86i0 and rid2:86i1
+one step time:0.07688689231872559
+0 rid:85i0 and rid1:85i0 and rid2:85i1
+0 rid:84i0 and rid1:84i0 and rid2:84i1
+one step time:0.07745361328125
+0 rid:103i0 and rid1:103i0 and rid2:103i1
+0 rid:83i0 and rid1:83i0 and rid2:83i1
+one step time:0.07740354537963867
+0 rid:82i0 and rid1:82i0 and rid2:82i1
+0 rid:81i0 and rid1:81i0 and rid2:81i1
+one step time:0.07628226280212402
+0 rid:80i0 and rid1:80i0 and rid2:80i1
+one step time:0.07739520072937012
+0 rid:79i0 and rid1:79i0 and rid2:79i1
+0 rid:76i0 and rid1:76i0 and rid2:76i1
+one step time:0.07670736312866211
+0 rid:73i0 and rid1:73i0 and rid2:73i1
+0 rid:74i0 and rid1:74i0 and rid2:74i1
+one step time:0.07550978660583496
+0 rid:93i0 and rid1:93i0 and rid2:93i1
+0 rid:72i0 and rid1:72i0 and rid2:72i1
+0 rid:71i0 and rid1:71i0 and rid2:71i1
+one step time:0.07601451873779297
+0 rid:0i1 and rid1:0i0 and rid2:0i1
+0 rid:70i0 and rid1:70i0 and rid2:70i1
+one step time:0.07611680030822754
+0 rid:67i0 and rid1:67i0 and rid2:67i1
+0 rid:66i0 and rid1:66i0 and rid2:66i1
+one step time:0.07612228393554688
+0 rid:65i0 and rid1:65i0 and rid2:65i1
+0 rid:104i0 and rid1:104i0 and rid2:104i1
+one step time:0.07575368881225586
+0 rid:44i1 and rid1:44i0 and rid2:44i1
+0 rid:63i0 and rid1:63i0 and rid2:63i1
+0 rid:62i0 and rid1:62i0 and rid2:62i1
+one step time:0.07570838928222656
+0 rid:61i0 and rid1:61i0 and rid2:61i1
+one step time:0.07671952247619629
+0 rid:59i0 and rid1:59i0 and rid2:59i1
+0 rid:58i0 and rid1:58i0 and rid2:58i1
+one step time:0.07527971267700195
+0 rid:45i1 and rid1:45i0 and rid2:45i1
+0 rid:57i0 and rid1:57i0 and rid2:57i1
+0 rid:55i0 and rid1:55i0 and rid2:55i1
+one step time:0.07579159736633301
+0 rid:75i0 and rid1:75i0 and rid2:75i1
+one step time:0.07639932632446289
+0 rid:90i0 and rid1:90i0 and rid2:90i1
+0 rid:54i0 and rid1:54i0 and rid2:54i1
+one step time:0.07638669013977051
+0 rid:53i0 and rid1:53i0 and rid2:53i1
+0 rid:52i0 and rid1:52i0 and rid2:52i1
+one step time:0.07526063919067383
+0 rid:51i0 and rid1:51i0 and rid2:51i1
+0 rid:48i0 and rid1:48i0 and rid2:48i1
+one step time:0.07612156867980957
+0 rid:50i0 and rid1:50i0 and rid2:50i1
+one step time:0.07613015174865723
+0 rid:42i0 and rid1:42i0 and rid2:42i1
+0 rid:41i0 and rid1:41i0 and rid2:41i1
+one step time:0.07558441162109375
+0 rid:39i0 and rid1:39i0 and rid2:39i1
+0 rid:38i0 and rid1:38i0 and rid2:38i1
+one step time:0.0753941535949707
+0 rid:37i0 and rid1:37i0 and rid2:37i1
+0 rid:36i0 and rid1:36i0 and rid2:36i1
+one step time:0.0756831169128418
+0 rid:60i0 and rid1:60i0 and rid2:60i1
+one step time:0.07594728469848633
+0 rid:33i0 and rid1:33i0 and rid2:33i1
+0 rid:31i0 and rid1:31i0 and rid2:31i1
+one step time:0.07545590400695801
+0 rid:47i0 and rid1:47i0 and rid2:47i1
+0 rid:29i0 and rid1:29i0 and rid2:29i1
+one step time:0.07610869407653809
+0 rid:30i0 and rid1:30i0 and rid2:30i1
+one step time:0.07684922218322754
+0 rid:56i1 and rid1:56i0 and rid2:56i1
+0 rid:28i0 and rid1:28i0 and rid2:28i1
+0 rid:27i0 and rid1:27i0 and rid2:27i1
+INFO 10-30 03:32:17 metrics.py:363] Avg prompt throughput: 12555.1 tokens/s, Avg generation throughput: 232.7 tokens/s, Running: 15 reqs, Swapped: 0 reqs, Pending: 111 reqs, GPU KV cache usage: 2.2%, CPU KV cache usage: 0.0%.
+INFO 10-30 03:32:17 metrics.py:379] Prefix cache hit rate: GPU: 2.92%, CPU: 0.00%
+one step time:0.07554793357849121
+0 rid:78i0 and rid1:78i0 and rid2:78i1
+0 rid:26i0 and rid1:26i0 and rid2:26i1
+one step time:0.07620859146118164
+0 rid:25i0 and rid1:25i0 and rid2:25i1
+one step time:0.07642841339111328
+0 rid:24i0 and rid1:24i0 and rid2:24i1
+0 rid:23i0 and rid1:23i0 and rid2:23i1
+one step time:0.07686424255371094
+0 rid:22i0 and rid1:22i0 and rid2:22i1
+0 rid:21i0 and rid1:21i0 and rid2:21i1
+one step time:0.07640504837036133
+0 rid:20i0 and rid1:20i0 and rid2:20i1
+0 rid:32i0 and rid1:32i0 and rid2:32i1
+one step time:0.0749201774597168
+0 rid:19i0 and rid1:19i0 and rid2:19i1
+0 rid:18i0 and rid1:18i0 and rid2:18i1
+one step time:0.0759267807006836
+0 rid:17i0 and rid1:17i0 and rid2:17i1
+one step time:0.07582283020019531
+0 rid:16i0 and rid1:16i0 and rid2:16i1
+0 rid:46i0 and rid1:46i0 and rid2:46i1
+one step time:0.0752418041229248
+0 rid:15i0 and rid1:15i0 and rid2:15i1
+0 rid:34i0 and rid1:34i0 and rid2:34i1
+one step time:0.07596850395202637
+0 rid:64i1 and rid1:64i0 and rid2:64i1
+0 rid:14i0 and rid1:14i0 and rid2:14i1
+one step time:0.07618832588195801
+0 rid:13i0 and rid1:13i0 and rid2:13i1
+0 rid:12i0 and rid1:12i0 and rid2:12i1
+one step time:0.07672309875488281
+0 rid:69i0 and rid1:69i0 and rid2:69i1
+0 rid:10i0 and rid1:10i0 and rid2:10i1
+one step time:0.07547831535339355
+0 rid:9i0 and rid1:9i0 and rid2:9i1
+0 rid:8i0 and rid1:8i0 and rid2:8i1
+one step time:0.07678747177124023
+0 rid:6i0 and rid1:6i0 and rid2:6i1
+one step time:0.07120275497436523
+0 rid:5i0 and rid1:5i0 and rid2:5i1
+0 rid:4i0 and rid1:4i0 and rid2:4i1
+one step time:0.05303525924682617
+0 rid:3i0 and rid1:3i0 and rid2:3i1
+0 rid:1i0 and rid1:1i0 and rid2:1i1
+one step time:0.04101371765136719
+finished[-1]:{'request_id': '127', 'total_duration': 10.927213191986084, 'total_token': 3} and rid:127i0
+0 rid:35i0 and rid1:35i0 and rid2:35i1
+one step time:0.03605365753173828
+finished[-1]:{'request_id': '124', 'total_duration': 10.952951192855835, 'total_token': 3} and rid:124i0
+finished[-1]:{'request_id': '126', 'total_duration': 10.95897889137268, 'total_token': 3} and rid:126i0
+one step time:0.036151885986328125
+finished[-1]:{'request_id': '123', 'total_duration': 10.989116191864014, 'total_token': 3} and rid:123i0
+one step time:0.03658747673034668
+finished[-1]:{'request_id': '120', 'total_duration': 11.021889925003052, 'total_token': 3} and rid:120i0
+finished[-1]:{'request_id': '122', 'total_duration': 11.02370309829712, 'total_token': 3} and rid:122i0
+one step time:0.03659701347351074
+finished[-1]:{'request_id': '118', 'total_duration': 11.055367708206177, 'total_token': 3} and rid:118i0
+finished[-1]:{'request_id': '119', 'total_duration': 11.05410122871399, 'total_token': 3} and rid:119i0
+one step time:0.03609919548034668
+finished[-1]:{'request_id': '115', 'total_duration': 11.084089517593384, 'total_token': 3} and rid:115i0
+finished[-1]:{'request_id': '116', 'total_duration': 11.087615251541138, 'total_token': 3} and rid:116i0
+one step time:0.03584790229797363
+finished[-1]:{'request_id': '113', 'total_duration': 11.116786479949951, 'total_token': 3} and rid:113i0
+finished[-1]:{'request_id': '114', 'total_duration': 11.118258237838745, 'total_token': 3} and rid:114i0
+one step time:0.0359957218170166
+finished[-1]:{'request_id': '112', 'total_duration': 11.151196718215942, 'total_token': 3} and rid:112i0
+one step time:0.03617668151855469
+finished[-1]:{'request_id': '110', 'total_duration': 11.183924913406372, 'total_token': 3} and rid:110i0
+finished[-1]:{'request_id': '111', 'total_duration': 11.185688257217407, 'total_token': 3} and rid:111i0
+one step time:0.03656363487243652
+finished[-1]:{'request_id': '108', 'total_duration': 11.21600890159607, 'total_token': 3} and rid:108i0
+finished[-1]:{'request_id': '109', 'total_duration': 11.220832824707031, 'total_token': 3} and rid:109i0
+one step time:0.037096500396728516
+finished[-1]:{'request_id': '101', 'total_duration': 11.240767478942871, 'total_token': 3} and rid:101i0
+finished[-1]:{'request_id': '102', 'total_duration': 11.246456384658813, 'total_token': 3} and rid:102i0
+one step time:0.042001962661743164
+finished[-1]:{'request_id': '99', 'total_duration': 11.279814004898071, 'total_token': 3} and rid:99i0
+finished[-1]:{'request_id': '100', 'total_duration': 11.285065174102783, 'total_token': 3} and rid:100i0
+one step time:0.03598928451538086
+0 rid:11i0 and rid1:11i0 and rid2:11i1
+one step time:0.03635120391845703
+finished[-1]:{'request_id': '96', 'total_duration': 11.35074520111084, 'total_token': 3} and rid:96i0
+finished[-1]:{'request_id': '97', 'total_duration': 11.35254693031311, 'total_token': 3} and rid:97i0
+one step time:0.03611874580383301
+finished[-1]:{'request_id': '94', 'total_duration': 11.384010553359985, 'total_token': 3} and rid:94i0
+finished[-1]:{'request_id': '95', 'total_duration': 11.385730266571045, 'total_token': 3} and rid:95i0
+one step time:0.035650014877319336
+finished[-1]:{'request_id': '125', 'total_duration': 11.472745895385742, 'total_token': 22} and rid:125i0
+finished[-1]:{'request_id': '106', 'total_duration': 11.441575288772583, 'total_token': 12} and rid:106i0
+one step time:0.036063194274902344
+finished[-1]:{'request_id': '91', 'total_duration': 11.44668459892273, 'total_token': 3} and rid:91i0
+one step time:0.036585092544555664
+finished[-1]:{'request_id': '92', 'total_duration': 11.489051580429077, 'total_token': 6} and rid:92i0
+finished[-1]:{'request_id': '89', 'total_duration': 11.485578060150146, 'total_token': 3} and rid:89i0
+one step time:0.03641510009765625
+finished[-1]:{'request_id': '87', 'total_duration': 11.51319432258606, 'total_token': 3} and rid:87i0
+finished[-1]:{'request_id': '88', 'total_duration': 11.51848816871643, 'total_token': 3} and rid:88i0
+one step time:0.03552436828613281
+finished[-1]:{'request_id': '85', 'total_duration': 11.548573732376099, 'total_token': 3} and rid:85i0
+finished[-1]:{'request_id': '86', 'total_duration': 11.552118301391602, 'total_token': 3} and rid:86i0
+one step time:0.03580021858215332
+finished[-1]:{'request_id': '84', 'total_duration': 11.582689046859741, 'total_token': 3} and rid:84i0
+one step time:0.036641597747802734
+finished[-1]:{'request_id': '83', 'total_duration': 11.615809679031372, 'total_token': 3} and rid:83i0
+finished[-1]:{'request_id': '103', 'total_duration': 11.653681516647339, 'total_token': 15} and rid:103i0
+one step time:0.036704301834106445
+finished[-1]:{'request_id': '81', 'total_duration': 11.651482343673706, 'total_token': 3} and rid:81i0
+finished[-1]:{'request_id': '82', 'total_duration': 11.651407718658447, 'total_token': 3} and rid:82i0
+0 rid:107i1 and rid1:107i0 and rid2:107i1
+one step time:0.03603410720825195
+finished[-1]:{'request_id': '79', 'total_duration': 11.688145160675049, 'total_token': 3} and rid:79i0
+finished[-1]:{'request_id': '80', 'total_duration': 11.687697410583496, 'total_token': 3} and rid:80i0
+one step time:0.03923630714416504
+finished[-1]:{'request_id': '73', 'total_duration': 11.717471361160278, 'total_token': 3} and rid:73i0
+finished[-1]:{'request_id': '76', 'total_duration': 11.720516204833984, 'total_token': 3} and rid:76i0
+one step time:0.03645491600036621
+finished[-1]:{'request_id': '74', 'total_duration': 11.754236459732056, 'total_token': 4} and rid:74i0
+one step time:0.05331015586853027
+finished[-1]:{'request_id': '72', 'total_duration': 11.802234411239624, 'total_token': 3} and rid:72i0
+finished[-1]:{'request_id': '93', 'total_duration': 11.84120512008667, 'total_token': 15} and rid:93i0
+one step time:0.036972761154174805
+finished[-1]:{'request_id': '71', 'total_duration': 11.835151195526123, 'total_token': 3} and rid:71i0
+0 rid:0i0 and rid1:0i0 and rid2:0i1
+one step time:0.036046504974365234
+finished[-1]:{'request_id': '67', 'total_duration': 11.874116897583008, 'total_token': 3} and rid:67i0
+finished[-1]:{'request_id': '70', 'total_duration': 11.876920938491821, 'total_token': 3} and rid:70i0
+one step time:0.03693127632141113
+finished[-1]:{'request_id': '66', 'total_duration': 11.907852411270142, 'total_token': 3} and rid:66i0
+one step time:0.04168248176574707
+finished[-1]:{'request_id': '104', 'total_duration': 12.012164115905762, 'total_token': 26} and rid:104i0
+finished[-1]:{'request_id': '65', 'total_duration': 11.94945240020752, 'total_token': 3} and rid:65i0
+one step time:0.03568577766418457
+finished[-1]:{'request_id': '63', 'total_duration': 11.978209018707275, 'total_token': 3} and rid:63i0
+0 rid:44i0 and rid1:44i0 and rid2:44i1
+one step time:0.03590846061706543
+finished[-1]:{'request_id': '62', 'total_duration': 12.011775970458984, 'total_token': 3} and rid:62i0
+one step time:0.0520477294921875
+finished[-1]:{'request_id': '59', 'total_duration': 12.065936088562012, 'total_token': 3} and rid:59i0
+finished[-1]:{'request_id': '61', 'total_duration': 12.069182872772217, 'total_token': 3} and rid:61i0
+one step time:0.03633594512939453
+finished[-1]:{'request_id': '58', 'total_duration': 12.098731756210327, 'total_token': 3} and rid:58i0
+0 rid:45i0 and rid1:45i0 and rid2:45i1
+one step time:0.03588461875915527
+finished[-1]:{'request_id': '55', 'total_duration': 12.130572319030762, 'total_token': 3} and rid:55i0
+finished[-1]:{'request_id': '57', 'total_duration': 12.133024454116821, 'total_token': 3} and rid:57i0
+one step time:0.03559684753417969
+finished[-1]:{'request_id': '75', 'total_duration': 12.200950622558594, 'total_token': 15} and rid:75i0
+one step time:0.03624701499938965
+finished[-1]:{'request_id': '54', 'total_duration': 12.198267221450806, 'total_token': 3} and rid:54i0
+finished[-1]:{'request_id': '90', 'total_duration': 12.260863065719604, 'total_token': 23} and rid:90i0
+one step time:0.03675436973571777
+finished[-1]:{'request_id': '52', 'total_duration': 12.235577583312988, 'total_token': 3} and rid:52i0
+finished[-1]:{'request_id': '53', 'total_duration': 12.23396110534668, 'total_token': 3} and rid:53i0
+one step time:0.03560948371887207
+finished[-1]:{'request_id': '48', 'total_duration': 12.26420783996582, 'total_token': 3} and rid:48i0
+finished[-1]:{'request_id': '51', 'total_duration': 12.271117210388184, 'total_token': 3} and rid:51i0
+one step time:0.03534054756164551
+finished[-1]:{'request_id': '50', 'total_duration': 12.30463457107544, 'total_token': 6} and rid:50i0
+one step time:0.036187171936035156
+finished[-1]:{'request_id': '41', 'total_duration': 12.323085308074951, 'total_token': 3} and rid:41i0
+finished[-1]:{'request_id': '42', 'total_duration': 12.327946662902832, 'total_token': 3} and rid:42i0
+one step time:0.03597569465637207
+finished[-1]:{'request_id': '38', 'total_duration': 12.355839014053345, 'total_token': 3} and rid:38i0
+finished[-1]:{'request_id': '39', 'total_duration': 12.359037160873413, 'total_token': 3} and rid:39i0
+one step time:0.03538990020751953
+finished[-1]:{'request_id': '36', 'total_duration': 12.387513160705566, 'total_token': 4} and rid:36i0
+finished[-1]:{'request_id': '37', 'total_duration': 12.391188144683838, 'total_token': 3} and rid:37i0
+one step time:0.03552103042602539
+finished[-1]:{'request_id': '60', 'total_duration': 12.464505910873413, 'total_token': 19} and rid:60i0
+one step time:0.03593850135803223
+finished[-1]:{'request_id': '31', 'total_duration': 12.45087194442749, 'total_token': 3} and rid:31i0
+finished[-1]:{'request_id': '33', 'total_duration': 12.454301834106445, 'total_token': 3} and rid:33i0
+one step time:0.057715415954589844
+finished[-1]:{'request_id': '29', 'total_duration': 12.503505229949951, 'total_token': 3} and rid:29i0
+finished[-1]:{'request_id': '47', 'total_duration': 12.536678791046143, 'total_token': 13} and rid:47i0
+one step time:0.0391232967376709
+finished[-1]:{'request_id': '30', 'total_duration': 12.547726154327393, 'total_token': 5} and rid:30i0
+0 rid:56i0 and rid1:56i0 and rid2:56i1
+one step time:0.03601717948913574
+finished[-1]:{'request_id': '28', 'total_duration': 12.579293012619019, 'total_token': 3} and rid:28i0
+one step time:0.03622317314147949
+finished[-1]:{'request_id': '78', 'total_duration': 12.700783252716064, 'total_token': 33} and rid:78i0
+finished[-1]:{'request_id': '27', 'total_duration': 12.610213994979858, 'total_token': 3} and rid:27i0
+one step time:0.0361330509185791
+finished[-1]:{'request_id': '25', 'total_duration': 12.646918296813965, 'total_token': 3} and rid:25i0
+finished[-1]:{'request_id': '26', 'total_duration': 12.648495435714722, 'total_token': 3} and rid:26i0
+one step time:0.03565549850463867
+finished[-1]:{'request_id': '23', 'total_duration': 12.679396629333496, 'total_token': 3} and rid:23i0
+finished[-1]:{'request_id': '24', 'total_duration': 12.684314727783203, 'total_token': 3} and rid:24i0
+one step time:0.035980224609375
+finished[-1]:{'request_id': '22', 'total_duration': 12.717280387878418, 'total_token': 3} and rid:22i0
+one step time:0.03605008125305176
+finished[-1]:{'request_id': '20', 'total_duration': 12.74846363067627, 'total_token': 3} and rid:20i0
+finished[-1]:{'request_id': '21', 'total_duration': 12.750147342681885, 'total_token': 3} and rid:21i0
+one step time:0.03581666946411133
+finished[-1]:{'request_id': '19', 'total_duration': 12.782729387283325, 'total_token': 3} and rid:19i0
+finished[-1]:{'request_id': '32', 'total_duration': 12.804030656814575, 'total_token': 11} and rid:32i0
+one step time:0.03614354133605957
+finished[-1]:{'request_id': '17', 'total_duration': 12.81705093383789, 'total_token': 3} and rid:17i0
+finished[-1]:{'request_id': '18', 'total_duration': 12.81354570388794, 'total_token': 3} and rid:18i0
+one step time:0.03515172004699707
+finished[-1]:{'request_id': '46', 'total_duration': 12.898536682128906, 'total_token': 21} and rid:46i0
+finished[-1]:{'request_id': '16', 'total_duration': 12.848690748214722, 'total_token': 3} and rid:16i0
+one step time:0.05697131156921387
+finished[-1]:{'request_id': '15', 'total_duration': 12.904232501983643, 'total_token': 3} and rid:15i0
+one step time:0.03584456443786621
+finished[-1]:{'request_id': '34', 'total_duration': 12.971809387207031, 'total_token': 15} and rid:34i0
+0 rid:64i0 and rid1:64i0 and rid2:64i1
+one step time:0.0354154109954834
+finished[-1]:{'request_id': '13', 'total_duration': 12.97357988357544, 'total_token': 3} and rid:13i0
+finished[-1]:{'request_id': '14', 'total_duration': 12.974422693252563, 'total_token': 3} and rid:14i0
+one step time:0.03582191467285156
+finished[-1]:{'request_id': '12', 'total_duration': 13.009534120559692, 'total_token': 3} and rid:12i0
+one step time:0.03571605682373047
+finished[-1]:{'request_id': '10', 'total_duration': 13.03961181640625, 'total_token': 3} and rid:10i0
+finished[-1]:{'request_id': '69', 'total_duration': 13.140688419342041, 'total_token': 37} and rid:69i0
+one step time:0.03616666793823242
+finished[-1]:{'request_id': '8', 'total_duration': 13.074549198150635, 'total_token': 3} and rid:8i0
+finished[-1]:{'request_id': '9', 'total_duration': 13.074596166610718, 'total_token': 3} and rid:9i0
+one step time:0.03589034080505371
+finished[-1]:{'request_id': '5', 'total_duration': 13.107192277908325, 'total_token': 3} and rid:5i0
+finished[-1]:{'request_id': '6', 'total_duration': 13.108842372894287, 'total_token': 3} and rid:6i0
+one step time:0.035875558853149414
+finished[-1]:{'request_id': '4', 'total_duration': 13.137725591659546, 'total_token': 3} and rid:4i0
+0 rid:43i1 and rid1:43i0 and rid2:43i1
+one step time:0.03703641891479492
+finished[-1]:{'request_id': '1', 'total_duration': 13.17449426651001, 'total_token': 3} and rid:1i0
+finished[-1]:{'request_id': '3', 'total_duration': 13.179707050323486, 'total_token': 3} and rid:3i0
+one step time:0.04158377647399902
+finished[-1]:{'request_id': '11', 'total_duration': 13.234113216400146, 'total_token': 22} and rid:11i0
+finished[-1]:{'request_id': '35', 'total_duration': 13.273881912231445, 'total_token': 24} and rid:35i0
+one step time:0.0354456901550293
+0 rid:107i0 and rid1:107i0 and rid2:107i1
+one step time:0.035869598388671875
+finished[-1]:{'request_id': '44', 'total_duration': 13.362107276916504, 'total_token': 59} and rid:44i0
+finished[-1]:{'request_id': '0', 'total_duration': 13.289479494094849, 'total_token': 30} and rid:0i0
+one step time:0.0424039363861084
+finished[-1]:{'request_id': '56', 'total_duration': 13.42457890510559, 'total_token': 81} and rid:56i0
+finished[-1]:{'request_id': '45', 'total_duration': 13.406113147735596, 'total_token': 62} and rid:45i0
+one step time:0.036145687103271484
+finished[-1]:{'request_id': '64', 'total_duration': 13.473669052124023, 'total_token': 96} and rid:64i0
+one step time:0.014549493789672852
+finished[-1]:{'request_id': '107', 'total_duration': 13.559184074401855, 'total_token': 149} and rid:107i0
+0 rid:43i0 and rid1:43i0 and rid2:43i1
+one step time:0.03466176986694336
+one step time:0.01404881477355957
+finished[-1]:{'request_id': '43', 'total_duration': 13.504655122756958, 'total_token': 155} and rid:43i0
+one step time:0.013875007629394531
+0 rid:40i1 and rid1:40i0 and rid2:40i1
+one step time:0.057747840881347656
+one step time:0.014385700225830078
+0 rid:40i0 and rid1:40i0 and rid2:40i1
+one step time:0.03478550910949707
+one step time:0.014025688171386719
+finished[-1]:{'request_id': '40', 'total_duration': 13.640050172805786, 'total_token': 163} and rid:40i0
+one step time:0.01384735107421875
+one step time:0.013787984848022461
+one step time:0.013850688934326172
+one step time:0.014028310775756836
+one step time:0.013847589492797852
+one step time:0.01380610466003418
+one step time:0.013849496841430664
+0 rid:49i1 and rid1:49i0 and rid2:49i1
+one step time:0.0683283805847168
+one step time:0.01416325569152832
+0 rid:49i0 and rid1:49i0 and rid2:49i1
+one step time:0.035066843032836914
+one step time:0.013872146606445312
+finished[-1]:{'request_id': '49', 'total_duration': 13.887864828109741, 'total_token': 179} and rid:49i0
+one step time:0.013647317886352539
+one step time:0.013550996780395508
+one step time:0.013502359390258789
+one step time:0.013481378555297852
+one step time:0.013490438461303711
+one step time:0.013453960418701172
+one step time:0.013504981994628906
+one step time:0.013537168502807617
+one step time:0.013493061065673828
+one step time:0.01372528076171875
+one step time:0.013640642166137695
+0 rid:77i1 and rid1:77i0 and rid2:77i1
+one step time:0.06864118576049805
+one step time:0.013939857482910156
+0 rid:77i0 and rid1:77i0 and rid2:77i1
+one step time:0.03484320640563965
+one step time:0.013532161712646484
+finished[-1]:{'request_id': '77', 'total_duration': 14.218804121017456, 'total_token': 210} and rid:77i0
+one step time:0.01340484619140625
+one step time:0.013415813446044922
+one step time:0.013378381729125977
+one step time:0.013422966003417969
+one step time:0.013358354568481445
+one step time:0.013341426849365234
+one step time:0.013391256332397461
+one step time:0.013363122940063477
+0 rid:121i1 and rid1:121i0 and rid2:121i1
+one step time:0.06896424293518066
+one step time:0.013778209686279297
+0 rid:121i0 and rid1:121i0 and rid2:121i1
+one step time:0.03502321243286133
+one step time:0.013471841812133789
+finished[-1]:{'request_id': '121', 'total_duration': 14.536388635635376, 'total_token': 247} and rid:121i0
+one step time:0.013332128524780273
+one step time:0.013338804244995117
+one step time:0.01332235336303711
+one step time:0.013339996337890625
+one step time:0.013517141342163086
+one step time:0.013222694396972656
+one step time:0.013263463973999023
+one step time:0.013249635696411133
+one step time:0.0131988525390625
+one step time:0.013213157653808594
+0 rid:117i1 and rid1:117i0 and rid2:117i1
+INFO 10-30 03:32:22 metrics.py:363] Avg prompt throughput: 18723.7 tokens/s, Avg generation throughput: 313.7 tokens/s, Running: 6 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 1.1%, CPU KV cache usage: 0.0%.
+INFO 10-30 03:32:22 metrics.py:379] Prefix cache hit rate: GPU: 34.72%, CPU: 0.00%
+one step time:0.06835389137268066
+one step time:0.013741493225097656
+one step time:0.013429641723632812
+one step time:0.013331890106201172
+one step time:0.013323068618774414
+one step time:0.013360023498535156
+0 rid:105i1 and rid1:105i0 and rid2:105i1
+one step time:0.06928682327270508
+one step time:0.013756752014160156
+one step time:0.013419866561889648
+one step time:0.013302087783813477
+0 rid:98i1 and rid1:98i0 and rid2:98i1
+one step time:0.06845831871032715
+one step time:0.01365518569946289
+one step time:0.013303518295288086
+one step time:0.013283967971801758
+one step time:0.01330113410949707
+one step time:0.013261795043945312
+one step time:0.013322114944458008
+one step time:0.013283729553222656
+one step time:0.01324915885925293
+one step time:0.013295650482177734
+one step time:0.01323080062866211
+one step time:0.013301372528076172
+one step time:0.01325845718383789
+one step time:0.013252973556518555
+one step time:0.01322031021118164
+one step time:0.01327657699584961
+one step time:0.01323390007019043
+0 rid:68i1 and rid1:68i0 and rid2:68i1
+one step time:0.0680086612701416
+one step time:0.013630390167236328
+one step time:0.01330423355102539
+one step time:0.01330113410949707
+one step time:0.013257265090942383
+one step time:0.013285398483276367
+one step time:0.013247251510620117
+one step time:0.01323390007019043
+one step time:0.013251781463623047
+one step time:0.013274431228637695
+one step time:0.013261795043945312
+one step time:0.013253927230834961
+one step time:0.013328790664672852
+one step time:0.013227462768554688
+one step time:0.013206958770751953
+one step time:0.013250589370727539
+one step time:0.013247489929199219
+one step time:0.013211965560913086
+one step time:0.013235807418823242
+one step time:0.013230085372924805
+one step time:0.013265848159790039
+one step time:0.013283252716064453
+one step time:0.01323843002319336
+one step time:0.013222932815551758
+one step time:0.013218164443969727
+one step time:0.01324915885925293
+one step time:0.013278484344482422
+one step time:0.013187408447265625
+one step time:0.013309955596923828
+one step time:0.0132293701171875
+one step time:0.013283729553222656
+one step time:0.013611555099487305
+one step time:0.013224363327026367
+one step time:0.013222932815551758
+one step time:0.013236284255981445
+0 rid:7i1 and rid1:7i0 and rid2:7i1
+one step time:0.06905055046081543
+one step time:0.014177083969116211
+0 rid:2i1 and rid1:2i0 and rid2:2i1
+one step time:0.06854367256164551
+one step time:0.013594865798950195
+one step time:0.013459205627441406
+one step time:0.013323307037353516
+one step time:0.013339519500732422
+one step time:0.013264656066894531
+one step time:0.013266563415527344
+one step time:0.013297319412231445
+one step time:0.013293027877807617
+one step time:0.013281583786010742
+one step time:0.013277530670166016
+one step time:0.013253450393676758
+one step time:0.013213157653808594
+one step time:0.013283729553222656
+one step time:0.013341426849365234
+one step time:0.013314962387084961
+one step time:0.01329803466796875
+one step time:0.013258218765258789
+one step time:0.013228893280029297
+one step time:0.013213157653808594
+one step time:0.013308048248291016
+one step time:0.013206005096435547
+one step time:0.013221979141235352
+0 rid:98i0 and rid1:98i0 and rid2:98i1
+one step time:0.036737918853759766
+one step time:0.013377904891967773
+finished[-1]:{'request_id': '98', 'total_duration': 16.192677974700928, 'total_token': 333} and rid:98i0
+one step time:0.013115167617797852
+one step time:0.013103961944580078
+one step time:0.013167381286621094
+one step time:0.013187170028686523
+one step time:0.013169527053833008
+one step time:0.013165950775146484
+one step time:0.15369367599487305
+one step time:0.013853073120117188
+one step time:0.013210773468017578
+one step time:0.015045881271362305
+one step time:0.013132572174072266
+one step time:0.01308441162109375
+one step time:0.013105630874633789
+one step time:0.013176679611206055
+one step time:0.013122320175170898
+one step time:0.013191938400268555
+one step time:0.0131072998046875
+one step time:0.013147354125976562
+one step time:0.013117313385009766
+one step time:0.013164997100830078
+one step time:0.013222694396972656
+one step time:0.013173341751098633
+one step time:0.01313471794128418
+one step time:0.01322793960571289
+one step time:0.013123750686645508
+one step time:0.013156652450561523
+one step time:0.013166427612304688
+one step time:0.01313018798828125
+one step time:0.013139963150024414
+one step time:0.013127565383911133
+one step time:0.013146638870239258
+one step time:0.013116598129272461
+one step time:0.01310276985168457
+one step time:0.013143777847290039
+one step time:0.013141155242919922
+one step time:0.013154745101928711
+one step time:0.01316070556640625
+one step time:0.013248920440673828
+one step time:0.01329493522644043
+one step time:0.013572931289672852
+one step time:0.013373613357543945
+one step time:0.013093709945678711
+one step time:0.013115882873535156
+one step time:0.013124942779541016
+one step time:0.013125181198120117
+one step time:0.01312398910522461
+one step time:0.013149738311767578
+one step time:0.013174057006835938
+one step time:0.013127565383911133
+one step time:0.01312875747680664
+one step time:0.013107538223266602
+one step time:0.013156652450561523
+one step time:0.013155937194824219
+one step time:0.013199329376220703
+one step time:0.013229846954345703
+one step time:0.013225555419921875
+one step time:0.013120412826538086
+one step time:0.013204574584960938
+one step time:0.013110637664794922
+one step time:0.013132333755493164
+one step time:0.013107538223266602
+one step time:0.013170957565307617
+one step time:0.01311945915222168
+one step time:0.01310110092163086
+one step time:0.013161659240722656
+one step time:0.013144969940185547
+one step time:0.01315760612487793
+one step time:0.01319432258605957
+one step time:0.013166427612304688
+one step time:0.013188838958740234
+one step time:0.013234615325927734
+one step time:0.01324772834777832
+one step time:0.013156652450561523
+one step time:0.013079643249511719
+one step time:0.013144254684448242
+one step time:0.013159990310668945
+one step time:0.013087272644042969
+one step time:0.013127803802490234
+one step time:0.013191938400268555
+one step time:0.013132810592651367
+one step time:0.01312875747680664
+one step time:0.013143777847290039
+one step time:0.013186931610107422
+one step time:0.013194561004638672
+one step time:0.013179540634155273
+one step time:0.013143539428710938
+one step time:0.013193607330322266
+one step time:0.013148784637451172
+0 rid:2i0 and rid1:2i0 and rid2:2i1
+one step time:0.03678441047668457
+one step time:0.013199090957641602
+finished[-1]:{'request_id': '2', 'total_duration': 17.390540838241577, 'total_token': 369} and rid:2i0
+one step time:0.012910127639770508
+one step time:0.012816429138183594
+one step time:0.012838602066040039
+one step time:0.012861967086791992
+one step time:0.012763023376464844
+one step time:0.012862920761108398
+one step time:0.013095617294311523
+one step time:0.013104677200317383
+one step time:0.012802839279174805
+one step time:0.01279306411743164
+one step time:0.012804031372070312
+one step time:0.013044595718383789
+one step time:0.012916088104248047
+one step time:0.012862682342529297
+one step time:0.012853622436523438
+one step time:0.012820959091186523
+one step time:0.013128995895385742
+one step time:0.01302027702331543
+one step time:0.012798547744750977
+one step time:0.012805700302124023
+one step time:0.01282811164855957
+one step time:0.0128021240234375
+one step time:0.012741565704345703
+one step time:0.012833118438720703
+one step time:0.01277780532836914
+one step time:0.012835979461669922
+one step time:0.012814044952392578
+one step time:0.012852907180786133
+one step time:0.012862205505371094
+one step time:0.012818574905395508
+one step time:0.012847423553466797
+one step time:0.012807369232177734
+one step time:0.012817621231079102
+one step time:0.012799501419067383
+one step time:0.012833118438720703
+one step time:0.012871026992797852
+one step time:0.012952089309692383
+one step time:0.012784719467163086
+one step time:0.012825965881347656
+one step time:0.012805700302124023
+one step time:0.012836217880249023
+one step time:0.01279306411743164
+one step time:0.012831926345825195
+one step time:0.01287531852722168
+one step time:0.01290750503540039
+one step time:0.01286935806274414
+one step time:0.012805938720703125
+one step time:0.01280832290649414
+one step time:0.01282811164855957
+one step time:0.012856483459472656
+one step time:0.012755632400512695
+one step time:0.01278543472290039
+one step time:0.012761354446411133
+one step time:0.01284337043762207
+one step time:0.012864828109741211
+one step time:0.012760639190673828
+one step time:0.01280975341796875
+one step time:0.012833118438720703
+one step time:0.01283574104309082
+one step time:0.012865543365478516
+0 rid:105i0 and rid1:105i0 and rid2:105i1
+one step time:0.03599882125854492
+one step time:0.03418731689453125
+one step time:0.012867927551269531
+finished[-1]:{'request_id': '105', 'total_duration': 18.418710470199585, 'total_token': 489} and rid:105i0
+one step time:0.012753725051879883
+one step time:0.012722492218017578
+one step time:0.012663125991821289
+one step time:0.012702226638793945
+one step time:0.012678146362304688
+one step time:0.012658834457397461
+one step time:0.012725830078125
+one step time:0.01267862319946289
+one step time:0.012688398361206055
+one step time:0.012660980224609375
+one step time:0.012719869613647461
+one step time:0.01280522346496582
+one step time:0.012757062911987305
+one step time:0.012704610824584961
+one step time:0.012726068496704102
+0 rid:117i0 and rid1:117i0 and rid2:117i1
+one step time:0.035749197006225586
+one step time:0.034433841705322266
+one step time:0.01275324821472168
+one step time:0.012716531753540039
+one step time:0.012699365615844727
+one step time:0.012739181518554688
+one step time:0.012690544128417969
+one step time:0.012738943099975586
+one step time:0.012730836868286133
+one step time:0.012682437896728516
+one step time:0.0127410888671875
+one step time:0.012717485427856445
+one step time:0.012744426727294922
+one step time:0.012712955474853516
+one step time:0.012713909149169922
+one step time:0.012702465057373047
+one step time:0.01267099380493164
+one step time:0.012669563293457031
+one step time:0.01269674301147461
+one step time:0.012699365615844727
+one step time:0.012727737426757812
+one step time:0.012649297714233398
+one step time:0.012723207473754883
+one step time:0.01269841194152832
+one step time:0.01267862319946289
+one step time:0.012692451477050781
+one step time:0.012694597244262695
+0 rid:68i0 and rid1:68i0 and rid2:68i1
+one step time:0.03542661666870117
+one step time:0.033525705337524414
+one step time:0.012730598449707031
+one step time:0.012732982635498047
+one step time:0.012705326080322266
+one step time:0.012717723846435547
+one step time:0.012703895568847656
+one step time:0.012705326080322266
+one step time:0.012727499008178711
+one step time:0.01272892951965332
+one step time:0.012723445892333984
+one step time:0.012680292129516602
+one step time:0.01271963119506836
+one step time:0.012693643569946289
+one step time:0.012713193893432617
+one step time:0.012796640396118164
+one step time:0.012682676315307617
+one step time:0.012713432312011719
+one step time:0.012727022171020508
+one step time:0.012716531753540039
+one step time:0.012719154357910156
+one step time:0.012671232223510742
+one step time:0.012738943099975586
+one step time:0.012726783752441406
+one step time:0.012685298919677734
+one step time:0.012671232223510742
+one step time:0.012717247009277344
+one step time:0.012695789337158203
+one step time:0.012693405151367188
+one step time:0.012784957885742188
+one step time:0.012698888778686523
+one step time:0.012749195098876953
+one step time:0.012727499008178711
+one step time:0.012675285339355469
+one step time:0.012713193893432617
+0 rid:7i0 and rid1:7i0 and rid2:7i1
+one step time:0.03572988510131836
+one step time:0.0343937873840332
+one step time:0.012803792953491211
+one step time:0.012701749801635742
+one step time:0.012687206268310547
+one step time:0.012718677520751953
+one step time:0.0127105712890625
+one step time:0.012696027755737305
+one step time:0.012684822082519531
+one step time:0.01267552375793457
+one step time:0.012721538543701172
+INFO 10-30 03:32:27 metrics.py:363] Avg prompt throughput: 2252.0 tokens/s, Avg generation throughput: 296.3 tokens/s, Running: 3 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.8%, CPU KV cache usage: 0.0%.
+INFO 10-30 03:32:27 metrics.py:379] Prefix cache hit rate: GPU: 35.37%, CPU: 0.00%
+one step time:0.012789487838745117
+one step time:0.012777566909790039
+one step time:0.012747764587402344
+one step time:0.012695789337158203
+one step time:0.012691259384155273
+one step time:0.012664556503295898
+one step time:0.012732505798339844
+one step time:0.01272892951965332
+one step time:0.01269674301147461
+one step time:0.01274871826171875
+one step time:0.01292872428894043
+one step time:0.012713432312011719
+one step time:0.012721776962280273
+one step time:0.012712478637695312
+one step time:0.012732744216918945
+one step time:0.01278829574584961
+one step time:0.012753725051879883
+one step time:0.012790918350219727
+one step time:0.012755870819091797
+one step time:0.012692689895629883
+one step time:0.012715339660644531
+one step time:0.012737512588500977
+one step time:0.012724161148071289
+one step time:0.012728214263916016
+one step time:0.01270151138305664
+one step time:0.012752294540405273
+one step time:0.012696981430053711
+one step time:0.012697219848632812
+one step time:0.012724637985229492
+one step time:0.01272273063659668
+one step time:0.012788772583007812
+one step time:0.013019323348999023
+one step time:0.01300358772277832
+one step time:0.012727022171020508
+one step time:0.012675762176513672
+one step time:0.012698888778686523
+one step time:0.013422250747680664
+one step time:0.012708663940429688
+one step time:0.012765884399414062
+one step time:0.012748003005981445
+one step time:0.012737751007080078
+one step time:0.012694358825683594
+one step time:0.012735843658447266
+one step time:0.01273345947265625
+one step time:0.01269841194152832
+one step time:0.0126800537109375
+one step time:0.012724161148071289
+one step time:0.012806415557861328
+one step time:0.012854337692260742
+one step time:0.012787580490112305
+one step time:0.012709856033325195
+one step time:0.012709856033325195
+one step time:0.01267862319946289
+one step time:0.01276087760925293
+one step time:0.012698650360107422
+one step time:0.012733697891235352
+one step time:0.01270294189453125
+one step time:0.012691020965576172
+one step time:0.012733936309814453
+one step time:0.01296091079711914
+one step time:0.012697219848632812
+one step time:0.012695550918579102
+one step time:0.012685060501098633
+one step time:0.012752532958984375
+one step time:0.012751579284667969
+one step time:0.012765884399414062
+one step time:0.012693405151367188
+one step time:0.012730121612548828
+one step time:0.012732267379760742
+one step time:0.012743473052978516
+one step time:0.012728452682495117
+one step time:0.012668609619140625
+one step time:0.01274251937866211
+one step time:0.012708425521850586
+one step time:0.012673616409301758
+one step time:0.012756109237670898
+one step time:0.012737274169921875
+one step time:0.012684106826782227
+one step time:0.012664079666137695
+one step time:0.012776613235473633
+one step time:0.012743473052978516
+one step time:0.012739419937133789
+one step time:0.012832164764404297
+one step time:0.012778043746948242
+one step time:0.012723684310913086
+one step time:0.012733221054077148
+one step time:0.012761592864990234
+one step time:0.012711763381958008
+one step time:0.012753009796142578
+one step time:0.012699127197265625
+one step time:0.012742757797241211
+one step time:0.012740612030029297
+one step time:0.012736797332763672
+one step time:0.012698650360107422
+one step time:0.012744426727294922
+one step time:0.012737035751342773
+one step time:0.012762308120727539
+one step time:0.012758493423461914
+one step time:0.012691736221313477
+one step time:0.012724876403808594
+one step time:0.012726783752441406
+one step time:0.012744665145874023
+one step time:0.01471090316772461
+one step time:0.013814926147460938
+one step time:0.012737512588500977
+one step time:0.013056516647338867
+one step time:0.012741327285766602
+one step time:0.012728452682495117
+one step time:0.01273965835571289
+one step time:0.012736320495605469
+one step time:0.012796640396118164
+one step time:0.012883663177490234
+one step time:0.01278543472290039
+one step time:0.012818336486816406
+one step time:0.012734413146972656
+one step time:0.012703895568847656
+one step time:0.012694597244262695
+one step time:0.012760400772094727
+one step time:0.012815237045288086
+one step time:0.012738227844238281
+one step time:0.012665271759033203
+one step time:0.012711048126220703
+one step time:0.01272439956665039
+one step time:0.012723922729492188
+one step time:0.012721538543701172
+one step time:0.012741565704345703
+one step time:0.012731790542602539
+one step time:0.01274871826171875
+one step time:0.012961864471435547
+one step time:0.012804985046386719
+one step time:0.012711286544799805
+one step time:0.012715578079223633
+one step time:0.012722015380859375
+one step time:0.012733936309814453
+one step time:0.01276397705078125
+one step time:0.01273488998413086
+one step time:0.012727022171020508
+one step time:0.01274561882019043
+one step time:0.0127410888671875
+one step time:0.012815475463867188
+one step time:0.012724161148071289
+one step time:0.01279306411743164
+one step time:0.012726783752441406
+one step time:0.012755155563354492
+one step time:0.012771844863891602
+one step time:0.012801408767700195
+one step time:0.012754201889038086
+one step time:0.012769222259521484
+one step time:0.012753725051879883
+one step time:0.012790918350219727
+one step time:0.012794017791748047
+one step time:0.012913703918457031
+one step time:0.012742757797241211
+one step time:0.012742757797241211
+one step time:0.012747049331665039
+one step time:0.012747049331665039
+one step time:0.012779712677001953
+one step time:0.012758255004882812
+one step time:0.012742757797241211
+one step time:0.01283407211303711
+one step time:0.01286172866821289
+one step time:0.012796401977539062
+one step time:0.01272726058959961
+one step time:0.012753009796142578
+one step time:0.012804985046386719
+one step time:0.013051986694335938
+one step time:0.012979984283447266
+one step time:0.012964725494384766
+one step time:0.012775421142578125
+one step time:0.012752056121826172
+one step time:0.012742996215820312
+one step time:0.012744903564453125
+one step time:0.012766838073730469
+one step time:0.012719869613647461
+one step time:0.012969017028808594
+one step time:0.012800216674804688
+one step time:0.01279759407043457
+one step time:0.012766361236572266
+one step time:0.01272892951965332
+one step time:0.012763261795043945
+one step time:0.012773990631103516
+one step time:0.012765645980834961
+one step time:0.01275634765625
+one step time:0.012784719467163086
+one step time:0.012795209884643555
+finished[-1]:{'request_id': '117', 'total_duration': 22.06766366958618, 'total_token': 768} and rid:117i0
+one step time:0.012601137161254883
+one step time:0.013028383255004883
+one step time:0.012515783309936523
+one step time:0.012569665908813477
+one step time:0.012533426284790039
+one step time:0.012566566467285156
+one step time:0.01259922981262207
+one step time:0.012556314468383789
+one step time:0.012511730194091797
+one step time:0.012533903121948242
+one step time:0.0124969482421875
+one step time:0.012496232986450195
+one step time:0.012535810470581055
+one step time:0.012528181076049805
+one step time:0.012480735778808594
+one step time:0.012495756149291992
+one step time:0.01250004768371582
+one step time:0.012527227401733398
+one step time:0.012563705444335938
+one step time:0.012540578842163086
+one step time:0.012575387954711914
+one step time:0.012519359588623047
+one step time:0.012538909912109375
+one step time:0.012526988983154297
+one step time:0.012494087219238281
+one step time:0.012484550476074219
+one step time:0.012531280517578125
+finished[-1]:{'request_id': '68', 'total_duration': 22.325875759124756, 'total_token': 768} and rid:68i0
+one step time:0.01253056526184082
+one step time:0.01278996467590332
+one step time:0.012418031692504883
+one step time:0.012454509735107422
+one step time:0.012422800064086914
+one step time:0.012421607971191406
+one step time:0.012433767318725586
+one step time:0.012429475784301758
+one step time:0.012465238571166992
+one step time:0.01243138313293457
+one step time:0.012444019317626953
+one step time:0.012470483779907227
+one step time:0.012451887130737305
+one step time:0.012436866760253906
+one step time:0.012421131134033203
+one step time:0.012413501739501953
+one step time:0.012451410293579102
+one step time:0.01246953010559082
+one step time:0.012448310852050781
+one step time:0.012430191040039062
+one step time:0.012446403503417969
+one step time:0.012428045272827148
+one step time:0.012424707412719727
+one step time:0.012417316436767578
+one step time:0.012419462203979492
+one step time:0.012480735778808594
+one step time:0.01246500015258789
+one step time:0.012438297271728516
+one step time:0.01248025894165039
+one step time:0.012437820434570312
+one step time:0.012441873550415039
+one step time:0.012413740158081055
+one step time:0.012476444244384766
+one step time:0.012474775314331055
+one step time:0.012776374816894531
+finished[-1]:{'request_id': '7', 'total_duration': 22.66223955154419, 'total_token': 768} and rid:7i0
+len(finished):128
+batch:128 and normalized_latency:3.0094542161062527
+batch:128 and avg e2e latency:12.563998349010944

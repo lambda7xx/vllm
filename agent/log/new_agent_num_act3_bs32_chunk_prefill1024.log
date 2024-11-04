@@ -1,0 +1,199 @@
+args.agent_parallelism:True
+start with agent
+start with agent
+model:/home/xiaoxiang/data/Llama-3.1-8B
+0 vllm/config.py scheduler_config.py __init__ max_num_batched_tokens: None
+3 vllm/config.py scheduler_config.py __init__ max_num_batched_tokens: 1024
+INFO 10-30 10:04:59 config.py:1061] Chunked prefill is enabled with max_num_batched_tokens=1024.
+INFO 10-30 10:04:59 llm_engine.py:238] Initializing an LLM engine (v0.6.3.post2.dev36+g855e0e6f) with config: model='/home/xiaoxiang/data/Llama-3.1-8B', speculative_config=None, tokenizer='/home/xiaoxiang/data/Llama-3.1-8B', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, rope_scaling=None, rope_theta=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=131072, download_dir=None, load_format=LoadFormat.AUTO, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto, quantization_param_path=None, device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='outlines'), observability_config=ObservabilityConfig(otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=0, served_model_name=/home/xiaoxiang/data/Llama-3.1-8B, num_scheduler_steps=1, chunked_prefill_enabled=True multi_step_stream_outputs=True, enable_prefix_caching=True, use_async_output_proc=True, use_cached_outputs=False, mm_processor_kwargs=None)
+INFO 10-30 10:05:02 model_runner.py:1055] Starting to load model /home/xiaoxiang/data/Llama-3.1-8B...
+Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards:  25% Completed | 1/4 [00:01<00:04,  1.49s/it]
+Loading safetensors checkpoint shards:  50% Completed | 2/4 [00:03<00:03,  1.57s/it]
+Loading safetensors checkpoint shards:  75% Completed | 3/4 [00:04<00:01,  1.61s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:05<00:00,  1.18s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:05<00:00,  1.32s/it]
+
+INFO 10-30 10:05:07 model_runner.py:1066] Loading model weights took 14.9888 GB
+INFO 10-30 10:05:08 worker.py:260] Memory profiling results: total_gpu_memory=79.15GiB initial_memory_usage=15.50GiB peak_torch_memory=16.17GiB memory_usage_post_profile=15.53Gib non_torch_memory=0.54GiB kv_cache_size=54.53GiB gpu_memory_utilization=0.90
+INFO 10-30 10:05:08 gpu_executor.py:122] # GPU blocks: 27919, # CPU blocks: 2048
+INFO 10-30 10:05:08 gpu_executor.py:126] Maximum concurrency for 131072 tokens per request: 3.41x
+INFO 10-30 10:05:10 model_runner.py:1394] Capturing the model for CUDA graphs. This may lead to unexpected consequences if the model is not static. To run the model in eager mode, set 'enforce_eager=True' or use '--enforce-eager' in the CLI.
+INFO 10-30 10:05:10 model_runner.py:1398] CUDA graphs can take additional 1~3 GiB memory per GPU. If you are running out of memory, consider decreasing `gpu_memory_utilization` or enforcing eager mode. You can also reduce the `max_num_seqs` as needed to decrease memory usage.
+INFO 10-30 10:05:23 model_runner.py:1522] Graph capturing finished in 13 secs.
+/home/xiaoxiang/vllm/agent/agent.py:474: DeprecationWarning: The keyword arguments {'inputs'} are deprecated and will be removed in a future update. Please use the 'prompt' parameter instead.
+  warm_up(engine)
+/home/xiaoxiang/vllm/agent/agent.py:1668: DeprecationWarning: The keyword arguments {'inputs'} are deprecated and will be removed in a future update. Please use the 'prompt' parameter instead.
+  with_agent_optimized_v3(args, prompts)
+len(prompt):118
+start warm up
+finish warm up
+max_token:256 and agent_tokens:64
+1 with agent len(reqs):32
+INFO 10-30 10:05:30 metrics.py:363] Avg prompt throughput: 170.8 tokens/s, Avg generation throughput: 4.3 tokens/s, Running: 3 reqs, Swapped: 0 reqs, Pending: 60 reqs, GPU KV cache usage: 0.4%, CPU KV cache usage: 0.0%.
+INFO 10-30 10:05:30 metrics.py:379] Prefix cache hit rate: GPU: 1.43%, CPU: 0.00%
+9 ****application id:31 finish the r0:31i0 for prefill+decode and r1:31i1 for agent prefill  and the duration:0.2844278812408447 and the token:1 and total_duration:0.2844278812408447 and info[rx1].total_token:1 
+9.5 rx0:31i0 and rx1:31i1 and my_marked[rx0]:True and counter[init_id]:1
+12 ****application id:31 finish  r1:31i1 for prefill+ decode and the duration:0.08700966835021973 and the token:1 and total_duration:0.37143754959106445 and info[rx1].total_token:2 
+16 finished[-1]:{'request_id': '31', 'total_duration': 0.37143754959106445, 'total_token': 2} and rid:31
+9 ****application id:29 finish the r0:29i0 for prefill+decode and r1:29i1 for agent prefill  and the duration:0.44854140281677246 and the token:1 and total_duration:0.44854140281677246 and info[rx1].total_token:1 
+9.5 rx0:29i0 and rx1:29i1 and my_marked[rx0]:True and counter[init_id]:1
+9 ****application id:28 finish the r0:28i0 for prefill+decode and r1:28i1 for agent prefill  and the duration:0.5212051868438721 and the token:1 and total_duration:0.5212051868438721 and info[rx1].total_token:1 
+9.5 rx0:28i0 and rx1:28i1 and my_marked[rx0]:True and counter[init_id]:1
+12 ****application id:29 finish  r1:29i1 for prefill+ decode and the duration:0.07593631744384766 and the token:1 and total_duration:0.5244777202606201 and info[rx1].total_token:2 
+9 ****application id:30 finish the r0:30i0 for prefill+decode and r1:30i1 for agent prefill  and the duration:0.5280981063842773 and the token:3 and total_duration:0.5280981063842773 and info[rx1].total_token:3 
+9.5 rx0:30i0 and rx1:30i1 and my_marked[rx0]:True and counter[init_id]:1
+16 finished[-1]:{'request_id': '29', 'total_duration': 0.5244777202606201, 'total_token': 2} and rid:29
+12 ****application id:28 finish  r1:28i1 for prefill+ decode and the duration:0.07520365715026855 and the token:1 and total_duration:0.5964088439941406 and info[rx1].total_token:2 
+16 finished[-1]:{'request_id': '28', 'total_duration': 0.5964088439941406, 'total_token': 2} and rid:28
+9 ****application id:27 finish the r0:27i0 for prefill+decode and r1:27i1 for agent prefill  and the duration:0.6684892177581787 and the token:1 and total_duration:0.6684892177581787 and info[rx1].total_token:1 
+9.5 rx0:27i0 and rx1:27i1 and my_marked[rx0]:True and counter[init_id]:1
+9 ****application id:26 finish the r0:26i0 for prefill+decode and r1:26i1 for agent prefill  and the duration:0.739309549331665 and the token:1 and total_duration:0.739309549331665 and info[rx1].total_token:1 
+9.5 rx0:26i0 and rx1:26i1 and my_marked[rx0]:True and counter[init_id]:1
+9 ****application id:25 finish the r0:25i0 for prefill+decode and r1:25i1 for agent prefill  and the duration:0.8109531402587891 and the token:1 and total_duration:0.8109531402587891 and info[rx1].total_token:1 
+9.5 rx0:25i0 and rx1:25i1 and my_marked[rx0]:True and counter[init_id]:1
+9 ****application id:24 finish the r0:24i0 for prefill+decode and r1:24i1 for agent prefill  and the duration:0.8827977180480957 and the token:1 and total_duration:0.8827977180480957 and info[rx1].total_token:1 
+9.5 rx0:24i0 and rx1:24i1 and my_marked[rx0]:True and counter[init_id]:1
+12 ****application id:25 finish  r1:25i1 for prefill+ decode and the duration:0.07542228698730469 and the token:1 and total_duration:0.8863754272460938 and info[rx1].total_token:2 
+16 finished[-1]:{'request_id': '25', 'total_duration': 0.8863754272460938, 'total_token': 2} and rid:25
+9 ****application id:23 finish the r0:23i0 for prefill+decode and r1:23i1 for agent prefill  and the duration:0.9550940990447998 and the token:1 and total_duration:0.9550940990447998 and info[rx1].total_token:1 
+9.5 rx0:23i0 and rx1:23i1 and my_marked[rx0]:True and counter[init_id]:1
+12 ****application id:24 finish  r1:24i1 for prefill+ decode and the duration:0.0758976936340332 and the token:1 and total_duration:0.9586954116821289 and info[rx1].total_token:2 
+16 finished[-1]:{'request_id': '24', 'total_duration': 0.9586954116821289, 'total_token': 2} and rid:24
+9 ****application id:22 finish the r0:22i0 for prefill+decode and r1:22i1 for agent prefill  and the duration:1.0277204513549805 and the token:1 and total_duration:1.0277204513549805 and info[rx1].total_token:1 
+9.5 rx0:22i0 and rx1:22i1 and my_marked[rx0]:True and counter[init_id]:1
+12 ****application id:23 finish  r1:23i1 for prefill+ decode and the duration:0.07556366920471191 and the token:1 and total_duration:1.0306577682495117 and info[rx1].total_token:2 
+16 finished[-1]:{'request_id': '23', 'total_duration': 1.0306577682495117, 'total_token': 2} and rid:23
+9 ****application id:21 finish the r0:21i0 for prefill+decode and r1:21i1 for agent prefill  and the duration:1.0996840000152588 and the token:1 and total_duration:1.0996840000152588 and info[rx1].total_token:1 
+9.5 rx0:21i0 and rx1:21i1 and my_marked[rx0]:True and counter[init_id]:1
+12 ****application id:22 finish  r1:22i1 for prefill+ decode and the duration:0.07536935806274414 and the token:1 and total_duration:1.1030898094177246 and info[rx1].total_token:2 
+16 finished[-1]:{'request_id': '22', 'total_duration': 1.1030898094177246, 'total_token': 2} and rid:22
+9 ****application id:20 finish the r0:20i0 for prefill+decode and r1:20i1 for agent prefill  and the duration:1.1710731983184814 and the token:1 and total_duration:1.1710731983184814 and info[rx1].total_token:1 
+9.5 rx0:20i0 and rx1:20i1 and my_marked[rx0]:True and counter[init_id]:1
+12 ****application id:21 finish  r1:21i1 for prefill+ decode and the duration:0.07465529441833496 and the token:1 and total_duration:1.1743392944335938 and info[rx1].total_token:2 
+16 finished[-1]:{'request_id': '21', 'total_duration': 1.1743392944335938, 'total_token': 2} and rid:21
+12 ****application id:20 finish  r1:20i1 for prefill+ decode and the duration:0.07643246650695801 and the token:1 and total_duration:1.2475056648254395 and info[rx1].total_token:2 
+16 finished[-1]:{'request_id': '20', 'total_duration': 1.2475056648254395, 'total_token': 2} and rid:20
+9 ****application id:19 finish the r0:19i0 for prefill+decode and r1:19i1 for agent prefill  and the duration:1.3176946640014648 and the token:1 and total_duration:1.3176946640014648 and info[rx1].total_token:1 
+9.5 rx0:19i0 and rx1:19i1 and my_marked[rx0]:True and counter[init_id]:1
+9 ****application id:18 finish the r0:18i0 for prefill+decode and r1:18i1 for agent prefill  and the duration:1.389075756072998 and the token:1 and total_duration:1.389075756072998 and info[rx1].total_token:1 
+9.5 rx0:18i0 and rx1:18i1 and my_marked[rx0]:True and counter[init_id]:1
+9 ****application id:17 finish the r0:17i0 for prefill+decode and r1:17i1 for agent prefill  and the duration:1.4614405632019043 and the token:1 and total_duration:1.4614405632019043 and info[rx1].total_token:1 
+9.5 rx0:17i0 and rx1:17i1 and my_marked[rx0]:True and counter[init_id]:1
+9 ****application id:16 finish the r0:16i0 for prefill+decode and r1:16i1 for agent prefill  and the duration:1.5329937934875488 and the token:1 and total_duration:1.5329937934875488 and info[rx1].total_token:1 
+9.5 rx0:16i0 and rx1:16i1 and my_marked[rx0]:True and counter[init_id]:1
+9 ****application id:15 finish the r0:15i0 for prefill+decode and r1:15i1 for agent prefill  and the duration:1.6044132709503174 and the token:1 and total_duration:1.6044132709503174 and info[rx1].total_token:1 
+9.5 rx0:15i0 and rx1:15i1 and my_marked[rx0]:True and counter[init_id]:1
+9 ****application id:14 finish the r0:14i0 for prefill+decode and r1:14i1 for agent prefill  and the duration:1.6766526699066162 and the token:1 and total_duration:1.6766526699066162 and info[rx1].total_token:1 
+9.5 rx0:14i0 and rx1:14i1 and my_marked[rx0]:True and counter[init_id]:1
+12 ****application id:15 finish  r1:15i1 for prefill+ decode and the duration:0.07541441917419434 and the token:1 and total_duration:1.6798276901245117 and info[rx1].total_token:2 
+16 finished[-1]:{'request_id': '15', 'total_duration': 1.6798276901245117, 'total_token': 2} and rid:15
+9 ****application id:13 finish the r0:13i0 for prefill+decode and r1:13i1 for agent prefill  and the duration:1.7483930587768555 and the token:1 and total_duration:1.7483930587768555 and info[rx1].total_token:1 
+9.5 rx0:13i0 and rx1:13i1 and my_marked[rx0]:True and counter[init_id]:1
+12 ****application id:14 finish  r1:14i1 for prefill+ decode and the duration:0.07474756240844727 and the token:1 and total_duration:1.7514002323150635 and info[rx1].total_token:2 
+16 finished[-1]:{'request_id': '14', 'total_duration': 1.7514002323150635, 'total_token': 2} and rid:14
+12 ****application id:13 finish  r1:13i1 for prefill+ decode and the duration:0.07569694519042969 and the token:1 and total_duration:1.8240900039672852 and info[rx1].total_token:2 
+16 finished[-1]:{'request_id': '13', 'total_duration': 1.8240900039672852, 'total_token': 2} and rid:13
+9 ****application id:12 finish the r0:12i0 for prefill+decode and r1:12i1 for agent prefill  and the duration:1.894360065460205 and the token:1 and total_duration:1.894360065460205 and info[rx1].total_token:1 
+9.5 rx0:12i0 and rx1:12i1 and my_marked[rx0]:True and counter[init_id]:1
+9 ****application id:10 finish the r0:10i0 for prefill+decode and r1:10i1 for agent prefill  and the duration:2.03666615486145 and the token:1 and total_duration:2.03666615486145 and info[rx1].total_token:1 
+9.5 rx0:10i0 and rx1:10i1 and my_marked[rx0]:True and counter[init_id]:1
+9 ****application id:9 finish the r0:9i0 for prefill+decode and r1:9i1 for agent prefill  and the duration:2.109189510345459 and the token:1 and total_duration:2.109189510345459 and info[rx1].total_token:1 
+9.5 rx0:9i0 and rx1:9i1 and my_marked[rx0]:True and counter[init_id]:1
+9 ****application id:8 finish the r0:8i0 for prefill+decode and r1:8i1 for agent prefill  and the duration:2.1829371452331543 and the token:1 and total_duration:2.1829371452331543 and info[rx1].total_token:1 
+9.5 rx0:8i0 and rx1:8i1 and my_marked[rx0]:True and counter[init_id]:1
+12 ****application id:9 finish  r1:9i1 for prefill+ decode and the duration:0.07681608200073242 and the token:1 and total_duration:2.1860055923461914 and info[rx1].total_token:2 
+16 finished[-1]:{'request_id': '9', 'total_duration': 2.1860055923461914, 'total_token': 2} and rid:9
+12 ****application id:8 finish  r1:8i1 for prefill+ decode and the duration:0.07606935501098633 and the token:1 and total_duration:2.2590065002441406 and info[rx1].total_token:2 
+16 finished[-1]:{'request_id': '8', 'total_duration': 2.2590065002441406, 'total_token': 2} and rid:8
+9 ****application id:6 finish the r0:6i0 for prefill+decode and r1:6i1 for agent prefill  and the duration:2.32656192779541 and the token:1 and total_duration:2.32656192779541 and info[rx1].total_token:1 
+9.5 rx0:6i0 and rx1:6i1 and my_marked[rx0]:True and counter[init_id]:1
+9 ****application id:5 finish the r0:5i0 for prefill+decode and r1:5i1 for agent prefill  and the duration:2.398407459259033 and the token:1 and total_duration:2.398407459259033 and info[rx1].total_token:1 
+9.5 rx0:5i0 and rx1:5i1 and my_marked[rx0]:True and counter[init_id]:1
+12 ****application id:6 finish  r1:6i1 for prefill+ decode and the duration:0.07515954971313477 and the token:1 and total_duration:2.401721477508545 and info[rx1].total_token:2 
+16 finished[-1]:{'request_id': '6', 'total_duration': 2.401721477508545, 'total_token': 2} and rid:6
+12 ****application id:5 finish  r1:5i1 for prefill+ decode and the duration:0.07547807693481445 and the token:1 and total_duration:2.4738855361938477 and info[rx1].total_token:2 
+16 finished[-1]:{'request_id': '5', 'total_duration': 2.4738855361938477, 'total_token': 2} and rid:5
+9 ****application id:4 finish the r0:4i0 for prefill+decode and r1:4i1 for agent prefill  and the duration:2.5452260971069336 and the token:1 and total_duration:2.5452260971069336 and info[rx1].total_token:1 
+9.5 rx0:4i0 and rx1:4i1 and my_marked[rx0]:True and counter[init_id]:1
+9 ****application id:3 finish the r0:3i0 for prefill+decode and r1:3i1 for agent prefill  and the duration:2.6179840564727783 and the token:1 and total_duration:2.6179840564727783 and info[rx1].total_token:1 
+9.5 rx0:3i0 and rx1:3i1 and my_marked[rx0]:True and counter[init_id]:1
+9 ****application id:1 finish the r0:1i0 for prefill+decode and r1:1i1 for agent prefill  and the duration:2.7614474296569824 and the token:1 and total_duration:2.7614474296569824 and info[rx1].total_token:1 
+9.5 rx0:1i0 and rx1:1i1 and my_marked[rx0]:True and counter[init_id]:1
+12 ****application id:1 finish  r1:1i1 for prefill+ decode and the duration:0.03692436218261719 and the token:1 and total_duration:2.7983717918395996 and info[rx1].total_token:2 
+16 finished[-1]:{'request_id': '1', 'total_duration': 2.7983717918395996, 'total_token': 2} and rid:1
+12 ****application id:30 finish  r1:30i1 for prefill+ decode and the duration:2.439906358718872 and the token:1 and total_duration:2.9680044651031494 and info[rx1].total_token:4 
+16 finished[-1]:{'request_id': '30', 'total_duration': 2.9680044651031494, 'total_token': 4} and rid:30
+12 ****application id:26 finish  r1:26i1 for prefill+ decode and the duration:2.283167839050293 and the token:1 and total_duration:3.022477388381958 and info[rx1].total_token:2 
+12 ****application id:27 finish  r1:27i1 for prefill+ decode and the duration:2.3578109741210938 and the token:1 and total_duration:3.0263001918792725 and info[rx1].total_token:2 
+16 finished[-1]:{'request_id': '26', 'total_duration': 3.022477388381958, 'total_token': 2} and rid:26
+16 finished[-1]:{'request_id': '27', 'total_duration': 3.0263001918792725, 'total_token': 2} and rid:27
+9 ****application id:11 finish the r0:11i0 for prefill+decode and r1:11i1 for agent prefill  and the duration:3.0715205669403076 and the token:20 and total_duration:3.0715205669403076 and info[rx1].total_token:20 
+9.5 rx0:11i0 and rx1:11i1 and my_marked[rx0]:True and counter[init_id]:1
+12 ****application id:19 finish  r1:19i1 for prefill+ decode and the duration:1.8184781074523926 and the token:1 and total_duration:3.1361727714538574 and info[rx1].total_token:2 
+16 finished[-1]:{'request_id': '19', 'total_duration': 3.1361727714538574, 'total_token': 2} and rid:19
+12 ****application id:17 finish  r1:17i1 for prefill+ decode and the duration:1.7013850212097168 and the token:1 and total_duration:3.162825584411621 and info[rx1].total_token:2 
+12 ****application id:18 finish  r1:18i1 for prefill+ decode and the duration:1.7772181034088135 and the token:1 and total_duration:3.1662938594818115 and info[rx1].total_token:2 
+16 finished[-1]:{'request_id': '17', 'total_duration': 3.162825584411621, 'total_token': 2} and rid:17
+16 finished[-1]:{'request_id': '18', 'total_duration': 3.1662938594818115, 'total_token': 2} and rid:18
+12 ****application id:16 finish  r1:16i1 for prefill+ decode and the duration:1.663261890411377 and the token:1 and total_duration:3.196255683898926 and info[rx1].total_token:2 
+16 finished[-1]:{'request_id': '16', 'total_duration': 3.196255683898926, 'total_token': 2} and rid:16
+12 ****application id:12 finish  r1:12i1 for prefill+ decode and the duration:1.3569836616516113 and the token:1 and total_duration:3.2513437271118164 and info[rx1].total_token:2 
+16 finished[-1]:{'request_id': '12', 'total_duration': 3.2513437271118164, 'total_token': 2} and rid:12
+12 ****application id:10 finish  r1:10i1 for prefill+ decode and the duration:1.240814208984375 and the token:1 and total_duration:3.277480363845825 and info[rx1].total_token:2 
+16 finished[-1]:{'request_id': '10', 'total_duration': 3.277480363845825, 'total_token': 2} and rid:10
+12 ****application id:3 finish  r1:3i1 for prefill+ decode and the duration:0.7380590438842773 and the token:1 and total_duration:3.3560431003570557 and info[rx1].total_token:2 
+12 ****application id:4 finish  r1:4i1 for prefill+ decode and the duration:0.8137102127075195 and the token:1 and total_duration:3.358936309814453 and info[rx1].total_token:2 
+16 finished[-1]:{'request_id': '3', 'total_duration': 3.3560431003570557, 'total_token': 2} and rid:3
+16 finished[-1]:{'request_id': '4', 'total_duration': 3.358936309814453, 'total_token': 2} and rid:4
+12 ****application id:11 finish  r1:11i1 for prefill+ decode and the duration:0.32411932945251465 and the token:1 and total_duration:3.3956398963928223 and info[rx1].total_token:21 
+16 finished[-1]:{'request_id': '11', 'total_duration': 3.3956398963928223, 'total_token': 21} and rid:11
+9 ****application id:0 finish the r0:0i0 for prefill+decode and r1:0i1 for agent prefill  and the duration:3.4848082065582275 and the token:28 and total_duration:3.4848082065582275 and info[rx1].total_token:28 
+9.5 rx0:0i0 and rx1:0i1 and my_marked[rx0]:True and counter[init_id]:1
+12 ****application id:0 finish  r1:0i1 for prefill+ decode and the duration:0.04881000518798828 and the token:1 and total_duration:3.533618211746216 and info[rx1].total_token:29 
+16 finished[-1]:{'request_id': '0', 'total_duration': 3.533618211746216, 'total_token': 29} and rid:0
+INFO 10-30 10:05:35 metrics.py:363] Avg prompt throughput: 10629.6 tokens/s, Avg generation throughput: 93.4 tokens/s, Running: 2 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 10-30 10:05:35 metrics.py:379] Prefix cache hit rate: GPU: 33.86%, CPU: 0.00%
+9 ****application id:7 finish the r0:7i0 for prefill+decode and r1:7i1 for agent prefill  and the duration:6.2717695236206055 and the token:256 and total_duration:6.2717695236206055 and info[rx1].total_token:256 
+9.5 rx0:7i0 and rx1:7i1 and my_marked[rx0]:True and counter[init_id]:1
+9 ****application id:2 finish the r0:2i0 for prefill+decode and r1:2i1 for agent prefill  and the duration:6.489963054656982 and the token:256 and total_duration:6.489963054656982 and info[rx1].total_token:256 
+9.5 rx0:2i0 and rx1:2i1 and my_marked[rx0]:True and counter[init_id]:1
+12 ****application id:2 finish  r1:2i1 for prefill+ decode and the duration:1.3498029708862305 and the token:105 and total_duration:7.839766025543213 and info[rx1].total_token:361 
+16 finished[-1]:{'request_id': '2', 'total_duration': 7.839766025543213, 'total_token': 361} and rid:2
+12 ****application id:7 finish  r1:7i1 for prefill+ decode and the duration:3.3852691650390625 and the token:256 and total_duration:9.657038688659668 and info[rx1].total_token:512 
+16 finished[-1]:{'request_id': '7', 'total_duration': 9.657038688659668, 'total_token': 512} and rid:7
+len(finished):32 and bs:32 and total_waster:0.048479318618774414
+rid:0 and agent_normalized_latency:0.12017720321129108 and total_duration:3.533618211746216 and total_token:29
+rid:1 and agent_normalized_latency:1.3749462366104126 and total_duration:2.7983717918395996 and total_token:2
+rid:10 and agent_normalized_latency:1.6145005226135254 and total_duration:3.277480363845825 and total_token:2
+rid:11 and agent_normalized_latency:0.15938859894162133 and total_duration:3.3956398963928223 and total_token:21
+rid:12 and agent_normalized_latency:1.601432204246521 and total_duration:3.2513437271118164 and total_token:2
+rid:13 and agent_normalized_latency:0.8878053426742554 and total_duration:1.8240900039672852 and total_token:2
+rid:14 and agent_normalized_latency:0.8514604568481445 and total_duration:1.7514002323150635 and total_token:2
+rid:15 and agent_normalized_latency:0.8156741857528687 and total_duration:1.6798276901245117 and total_token:2
+rid:16 and agent_normalized_latency:1.5738881826400757 and total_duration:3.196255683898926 and total_token:2
+rid:17 and agent_normalized_latency:1.5571731328964233 and total_duration:3.162825584411621 and total_token:2
+rid:18 and agent_normalized_latency:1.5589072704315186 and total_duration:3.1662938594818115 and total_token:2
+rid:19 and agent_normalized_latency:1.5438467264175415 and total_duration:3.1361727714538574 and total_token:2
+rid:2 and agent_normalized_latency:0.0215825116535303 and total_duration:7.839766025543213 and total_token:361
+rid:20 and agent_normalized_latency:0.5995131731033325 and total_duration:1.2475056648254395 and total_token:2
+rid:21 and agent_normalized_latency:0.5629299879074097 and total_duration:1.1743392944335938 and total_token:2
+rid:22 and agent_normalized_latency:0.5273052453994751 and total_duration:1.1030898094177246 and total_token:2
+rid:23 and agent_normalized_latency:0.49108922481536865 and total_duration:1.0306577682495117 and total_token:2
+rid:24 and agent_normalized_latency:0.45510804653167725 and total_duration:0.9586954116821289 and total_token:2
+rid:25 and agent_normalized_latency:0.41894805431365967 and total_duration:0.8863754272460938 and total_token:2
+rid:26 and agent_normalized_latency:1.4869990348815918 and total_duration:3.022477388381958 and total_token:2
+rid:27 and agent_normalized_latency:1.488910436630249 and total_duration:3.0263001918792725 and total_token:2
+rid:28 and agent_normalized_latency:0.2739647626876831 and total_duration:0.5964088439941406 and total_token:2
+rid:29 and agent_normalized_latency:0.23799920082092285 and total_duration:0.5244777202606201 and total_token:2
+rid:3 and agent_normalized_latency:1.6537818908691406 and total_duration:3.3560431003570557 and total_token:2
+rid:30 and agent_normalized_latency:0.7298812866210938 and total_duration:2.9680044651031494 and total_token:4
+rid:31 and agent_normalized_latency:0.16147911548614502 and total_duration:0.37143754959106445 and total_token:2
+rid:4 and agent_normalized_latency:1.6552284955978394 and total_duration:3.358936309814453 and total_token:2
+rid:5 and agent_normalized_latency:1.2127031087875366 and total_duration:2.4738855361938477 and total_token:2
+rid:6 and agent_normalized_latency:1.1766210794448853 and total_duration:2.401721477508545 and total_token:2
+rid:7 and agent_normalized_latency:0.01876671751961112 and total_duration:9.657038688659668 and total_token:512
+rid:8 and agent_normalized_latency:1.105263590812683 and total_duration:2.2590065002441406 and total_token:2
+rid:9 and agent_normalized_latency:1.0687631368637085 and total_duration:2.1860055923461914 and total_token:2
+batch:32 and normalized_latency:0.906438692625992
+batch:32 and avg e2e latency:2.6442341431975365

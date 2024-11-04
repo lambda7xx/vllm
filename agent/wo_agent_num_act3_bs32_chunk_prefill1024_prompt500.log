@@ -1,0 +1,884 @@
+args.agent_parallelism:False
+without_agent start with agent
+model:/home/xiaoxiang/data/Llama-3.1-8B
+0 vllm/config.py scheduler_config.py __init__ max_num_batched_tokens: None
+3 vllm/config.py scheduler_config.py __init__ max_num_batched_tokens: 1024
+INFO 10-30 10:00:05 config.py:1061] Chunked prefill is enabled with max_num_batched_tokens=1024.
+INFO 10-30 10:00:05 llm_engine.py:238] Initializing an LLM engine (v0.6.3.post2.dev36+g855e0e6f) with config: model='/home/xiaoxiang/data/Llama-3.1-8B', speculative_config=None, tokenizer='/home/xiaoxiang/data/Llama-3.1-8B', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, rope_scaling=None, rope_theta=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=131072, download_dir=None, load_format=LoadFormat.AUTO, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto, quantization_param_path=None, device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='outlines'), observability_config=ObservabilityConfig(otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=0, served_model_name=/home/xiaoxiang/data/Llama-3.1-8B, num_scheduler_steps=1, chunked_prefill_enabled=True multi_step_stream_outputs=True, enable_prefix_caching=True, use_async_output_proc=True, use_cached_outputs=False, mm_processor_kwargs=None)
+INFO 10-30 10:00:08 model_runner.py:1055] Starting to load model /home/xiaoxiang/data/Llama-3.1-8B...
+Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards:  25% Completed | 1/4 [00:01<00:04,  1.48s/it]
+Loading safetensors checkpoint shards:  50% Completed | 2/4 [00:03<00:03,  1.56s/it]
+Loading safetensors checkpoint shards:  75% Completed | 3/4 [00:04<00:01,  1.60s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:05<00:00,  1.18s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:05<00:00,  1.32s/it]
+
+INFO 10-30 10:00:13 model_runner.py:1066] Loading model weights took 14.9888 GB
+INFO 10-30 10:00:14 worker.py:260] Memory profiling results: total_gpu_memory=79.15GiB initial_memory_usage=15.50GiB peak_torch_memory=16.17GiB memory_usage_post_profile=15.53Gib non_torch_memory=0.54GiB kv_cache_size=54.53GiB gpu_memory_utilization=0.90
+INFO 10-30 10:00:14 gpu_executor.py:122] # GPU blocks: 27919, # CPU blocks: 2048
+INFO 10-30 10:00:14 gpu_executor.py:126] Maximum concurrency for 131072 tokens per request: 3.41x
+INFO 10-30 10:00:16 model_runner.py:1394] Capturing the model for CUDA graphs. This may lead to unexpected consequences if the model is not static. To run the model in eager mode, set 'enforce_eager=True' or use '--enforce-eager' in the CLI.
+INFO 10-30 10:00:16 model_runner.py:1398] CUDA graphs can take additional 1~3 GiB memory per GPU. If you are running out of memory, consider decreasing `gpu_memory_utilization` or enforcing eager mode. You can also reduce the `max_num_seqs` as needed to decrease memory usage.
+INFO 10-30 10:00:29 model_runner.py:1522] Graph capturing finished in 13 secs.
+/home/xiaoxiang/vllm/agent/agent.py:1487: DeprecationWarning: The keyword arguments {'inputs'} are deprecated and will be removed in a future update. Please use the 'prompt' parameter instead.
+  warm_up(engine)
+/home/xiaoxiang/vllm/agent/agent.py:1670: DeprecationWarning: The keyword arguments {'inputs'} are deprecated and will be removed in a future update. Please use the 'prompt' parameter instead.
+  without_agent( args, prompts)
+len(prompt):118
+start warm up
+finish warm up
+without_agent max_token:256 
+1 without agent len(reqs):32
+1 rid:31 and rid1:31i0 and rid2:31i1 and req_num_act:1
+1 rid:30 and rid1:30i0 and rid2:30i1 and req_num_act:1
+1 rid:29 and rid1:29i0 and rid2:29i1 and req_num_act:1
+1 rid:28 and rid1:28i0 and rid2:28i1 and req_num_act:1
+1 rid:27 and rid1:27i0 and rid2:27i1 and req_num_act:1
+1 rid:26 and rid1:26i0 and rid2:26i1 and req_num_act:1
+1 rid:25 and rid1:25i0 and rid2:25i1 and req_num_act:1
+1 rid:24 and rid1:24i0 and rid2:24i1 and req_num_act:1
+1 rid:23 and rid1:23i0 and rid2:23i1 and req_num_act:1
+1 rid:22 and rid1:22i0 and rid2:22i1 and req_num_act:1
+1 rid:21 and rid1:21i0 and rid2:21i1 and req_num_act:1
+1 rid:20 and rid1:20i0 and rid2:20i1 and req_num_act:1
+1 rid:19 and rid1:19i0 and rid2:19i1 and req_num_act:1
+1 rid:18 and rid1:18i0 and rid2:18i1 and req_num_act:1
+1 rid:17 and rid1:17i0 and rid2:17i1 and req_num_act:1
+1 rid:16 and rid1:16i0 and rid2:16i1 and req_num_act:1
+1 rid:15 and rid1:15i0 and rid2:15i1 and req_num_act:1
+1 rid:14 and rid1:14i0 and rid2:14i1 and req_num_act:1
+1 rid:13 and rid1:13i0 and rid2:13i1 and req_num_act:1
+1 rid:12 and rid1:12i0 and rid2:12i1 and req_num_act:1
+1 rid:11 and rid1:11i0 and rid2:11i1 and req_num_act:1
+1 rid:10 and rid1:10i0 and rid2:10i1 and req_num_act:1
+1 rid:9 and rid1:9i0 and rid2:9i1 and req_num_act:1
+1 rid:8 and rid1:8i0 and rid2:8i1 and req_num_act:1
+1 rid:7 and rid1:7i0 and rid2:7i1 and req_num_act:1
+1 rid:6 and rid1:6i0 and rid2:6i1 and req_num_act:1
+1 rid:5 and rid1:5i0 and rid2:5i1 and req_num_act:1
+1 rid:4 and rid1:4i0 and rid2:4i1 and req_num_act:1
+1 rid:3 and rid1:3i0 and rid2:3i1 and req_num_act:1
+1 rid:2 and rid1:2i0 and rid2:2i1 and req_num_act:1
+1 rid:1 and rid1:1i0 and rid2:1i1 and req_num_act:1
+1 rid:0 and rid1:0i0 and rid2:0i1 and req_num_act:1
+one step time:0.07311391830444336
+one step time:0.07393002510070801
+2 rid:31i0 and rid1:31i0 and rid2:31i1 and id_num_act:1 and num_act:2 and output_len:1
+3 ****application id:31 finish the r0:31i0 for prefill+decode and r1:31i1 and the duration:0.20277667045593262 and the token:1 and total_duration:0.20277667045593262 and info[rx1].total_token:1 
+0 without_agent, req_id:31i0 and rx0:31i0 and rx1:31i1 and rid:31i0 and init_id:31  and req_num_act:1  and my_marked:{'31i0': True} and counter:{'31': 1}
+1 rid:31i1 and rid1:31i0 and rid2:31i1 and req_num_act:2
+one step time:0.07369542121887207
+2 rid:29i0 and rid1:29i0 and rid2:29i1 and id_num_act:1 and num_act:2 and output_len:1
+3 ****application id:29 finish the r0:29i0 for prefill+decode and r1:29i1 and the duration:0.27380847930908203 and the token:1 and total_duration:0.27380847930908203 and info[rx1].total_token:1 
+0 without_agent, req_id:29i0 and rx0:29i0 and rx1:29i1 and rid:29i0 and init_id:29  and req_num_act:1  and my_marked:{'29i0': True} and counter:{'31': 1, '29': 1}
+1 rid:29i1 and rid1:29i0 and rid2:29i1 and req_num_act:2
+one step time:0.07302570343017578
+2 rid:27i0 and rid1:27i0 and rid2:27i1 and id_num_act:1 and num_act:2 and output_len:1
+3 ****application id:27 finish the r0:27i0 for prefill+decode and r1:27i1 and the duration:0.3450305461883545 and the token:1 and total_duration:0.3450305461883545 and info[rx1].total_token:1 
+2 rid:28i0 and rid1:28i0 and rid2:28i1 and id_num_act:1 and num_act:2 and output_len:1
+3 ****application id:28 finish the r0:28i0 for prefill+decode and r1:28i1 and the duration:0.34694957733154297 and the token:1 and total_duration:0.34694957733154297 and info[rx1].total_token:1 
+0 without_agent, req_id:27i0 and rx0:27i0 and rx1:27i1 and rid:28i0 and init_id:28  and req_num_act:1  and my_marked:{'27i0': True, '28i0': True} and counter:{'31': 1, '29': 1, '27': 1, '28': 1}
+0 without_agent, req_id:28i0 and rx0:28i0 and rx1:28i1 and rid:28i0 and init_id:28  and req_num_act:1  and my_marked:{'28i0': True} and counter:{'31': 1, '29': 1, '27': 1, '28': 1}
+1 rid:28i1 and rid1:28i0 and rid2:28i1 and req_num_act:2
+1 rid:27i1 and rid1:27i0 and rid2:27i1 and req_num_act:2
+one step time:0.07416796684265137
+2 rid:26i0 and rid1:26i0 and rid2:26i1 and id_num_act:1 and num_act:2 and output_len:1
+3 ****application id:26 finish the r0:26i0 for prefill+decode and r1:26i1 and the duration:0.4209728240966797 and the token:1 and total_duration:0.4209728240966797 and info[rx1].total_token:1 
+2 rid:30i0 and rid1:30i0 and rid2:30i1 and id_num_act:1 and num_act:2 and output_len:3
+3 ****application id:30 finish the r0:30i0 for prefill+decode and r1:30i1 and the duration:0.4284539222717285 and the token:3 and total_duration:0.4284539222717285 and info[rx1].total_token:3 
+0 without_agent, req_id:26i0 and rx0:26i0 and rx1:26i1 and rid:30i0 and init_id:30  and req_num_act:1  and my_marked:{'26i0': True, '30i0': True} and counter:{'31': 1, '29': 1, '27': 1, '28': 1, '26': 1, '30': 1}
+0 without_agent, req_id:30i0 and rx0:30i0 and rx1:30i1 and rid:30i0 and init_id:30  and req_num_act:1  and my_marked:{'30i0': True} and counter:{'31': 1, '29': 1, '27': 1, '28': 1, '26': 1, '30': 1}
+1 rid:30i1 and rid1:30i0 and rid2:30i1 and req_num_act:2
+1 rid:26i1 and rid1:26i0 and rid2:26i1 and req_num_act:2
+one step time:0.0739288330078125
+2 rid:24i0 and rid1:24i0 and rid2:24i1 and id_num_act:1 and num_act:2 and output_len:1
+3 ****application id:24 finish the r0:24i0 for prefill+decode and r1:24i1 and the duration:0.4947497844696045 and the token:1 and total_duration:0.4947497844696045 and info[rx1].total_token:1 
+2 rid:25i0 and rid1:25i0 and rid2:25i1 and id_num_act:1 and num_act:2 and output_len:1
+3 ****application id:25 finish the r0:25i0 for prefill+decode and r1:25i1 and the duration:0.4965794086456299 and the token:1 and total_duration:0.4965794086456299 and info[rx1].total_token:1 
+0 without_agent, req_id:24i0 and rx0:24i0 and rx1:24i1 and rid:25i0 and init_id:25  and req_num_act:1  and my_marked:{'24i0': True, '25i0': True} and counter:{'31': 1, '29': 1, '27': 1, '28': 1, '26': 1, '30': 1, '24': 1, '25': 1}
+0 without_agent, req_id:25i0 and rx0:25i0 and rx1:25i1 and rid:25i0 and init_id:25  and req_num_act:1  and my_marked:{'25i0': True} and counter:{'31': 1, '29': 1, '27': 1, '28': 1, '26': 1, '30': 1, '24': 1, '25': 1}
+1 rid:25i1 and rid1:25i0 and rid2:25i1 and req_num_act:2
+1 rid:24i1 and rid1:24i0 and rid2:24i1 and req_num_act:2
+one step time:0.0732576847076416
+2 rid:22i0 and rid1:22i0 and rid2:22i1 and id_num_act:1 and num_act:2 and output_len:1
+3 ****application id:22 finish the r0:22i0 for prefill+decode and r1:22i1 and the duration:0.5683307647705078 and the token:1 and total_duration:0.5683307647705078 and info[rx1].total_token:1 
+2 rid:23i0 and rid1:23i0 and rid2:23i1 and id_num_act:1 and num_act:2 and output_len:1
+3 ****application id:23 finish the r0:23i0 for prefill+decode and r1:23i1 and the duration:0.5697617530822754 and the token:1 and total_duration:0.5697617530822754 and info[rx1].total_token:1 
+0 without_agent, req_id:22i0 and rx0:22i0 and rx1:22i1 and rid:23i0 and init_id:23  and req_num_act:1  and my_marked:{'22i0': True, '23i0': True} and counter:{'31': 1, '29': 1, '27': 1, '28': 1, '26': 1, '30': 1, '24': 1, '25': 1, '22': 1, '23': 1}
+0 without_agent, req_id:23i0 and rx0:23i0 and rx1:23i1 and rid:23i0 and init_id:23  and req_num_act:1  and my_marked:{'23i0': True} and counter:{'31': 1, '29': 1, '27': 1, '28': 1, '26': 1, '30': 1, '24': 1, '25': 1, '22': 1, '23': 1}
+1 rid:23i1 and rid1:23i0 and rid2:23i1 and req_num_act:2
+1 rid:22i1 and rid1:22i0 and rid2:22i1 and req_num_act:2
+one step time:0.07398295402526855
+2 rid:20i0 and rid1:20i0 and rid2:20i1 and id_num_act:1 and num_act:2 and output_len:1
+3 ****application id:20 finish the r0:20i0 for prefill+decode and r1:20i1 and the duration:0.6418907642364502 and the token:1 and total_duration:0.6418907642364502 and info[rx1].total_token:1 
+2 rid:21i0 and rid1:21i0 and rid2:21i1 and id_num_act:1 and num_act:2 and output_len:1
+3 ****application id:21 finish the r0:21i0 for prefill+decode and r1:21i1 and the duration:0.6436262130737305 and the token:1 and total_duration:0.6436262130737305 and info[rx1].total_token:1 
+0 without_agent, req_id:20i0 and rx0:20i0 and rx1:20i1 and rid:21i0 and init_id:21  and req_num_act:1  and my_marked:{'20i0': True, '21i0': True} and counter:{'31': 1, '29': 1, '27': 1, '28': 1, '26': 1, '30': 1, '24': 1, '25': 1, '22': 1, '23': 1, '20': 1, '21': 1}
+0 without_agent, req_id:21i0 and rx0:21i0 and rx1:21i1 and rid:21i0 and init_id:21  and req_num_act:1  and my_marked:{'21i0': True} and counter:{'31': 1, '29': 1, '27': 1, '28': 1, '26': 1, '30': 1, '24': 1, '25': 1, '22': 1, '23': 1, '20': 1, '21': 1}
+1 rid:21i1 and rid1:21i0 and rid2:21i1 and req_num_act:2
+1 rid:20i1 and rid1:20i0 and rid2:20i1 and req_num_act:2
+one step time:0.0731966495513916
+2 rid:18i0 and rid1:18i0 and rid2:18i1 and id_num_act:1 and num_act:2 and output_len:1
+3 ****application id:18 finish the r0:18i0 for prefill+decode and r1:18i1 and the duration:0.714747428894043 and the token:1 and total_duration:0.714747428894043 and info[rx1].total_token:1 
+2 rid:19i0 and rid1:19i0 and rid2:19i1 and id_num_act:1 and num_act:2 and output_len:1
+3 ****application id:19 finish the r0:19i0 for prefill+decode and r1:19i1 and the duration:0.7166392803192139 and the token:1 and total_duration:0.7166392803192139 and info[rx1].total_token:1 
+0 without_agent, req_id:18i0 and rx0:18i0 and rx1:18i1 and rid:19i0 and init_id:19  and req_num_act:1  and my_marked:{'18i0': True, '19i0': True} and counter:{'31': 1, '29': 1, '27': 1, '28': 1, '26': 1, '30': 1, '24': 1, '25': 1, '22': 1, '23': 1, '20': 1, '21': 1, '18': 1, '19': 1}
+0 without_agent, req_id:19i0 and rx0:19i0 and rx1:19i1 and rid:19i0 and init_id:19  and req_num_act:1  and my_marked:{'19i0': True} and counter:{'31': 1, '29': 1, '27': 1, '28': 1, '26': 1, '30': 1, '24': 1, '25': 1, '22': 1, '23': 1, '20': 1, '21': 1, '18': 1, '19': 1}
+1 rid:19i1 and rid1:19i0 and rid2:19i1 and req_num_act:2
+1 rid:18i1 and rid1:18i0 and rid2:18i1 and req_num_act:2
+one step time:0.07263660430908203
+2 rid:16i0 and rid1:16i0 and rid2:16i1 and id_num_act:1 and num_act:2 and output_len:1
+3 ****application id:16 finish the r0:16i0 for prefill+decode and r1:16i1 and the duration:0.7870883941650391 and the token:1 and total_duration:0.7870883941650391 and info[rx1].total_token:1 
+2 rid:17i0 and rid1:17i0 and rid2:17i1 and id_num_act:1 and num_act:2 and output_len:1
+3 ****application id:17 finish the r0:17i0 for prefill+decode and r1:17i1 and the duration:0.7891271114349365 and the token:1 and total_duration:0.7891271114349365 and info[rx1].total_token:1 
+0 without_agent, req_id:16i0 and rx0:16i0 and rx1:16i1 and rid:17i0 and init_id:17  and req_num_act:1  and my_marked:{'16i0': True, '17i0': True} and counter:{'31': 1, '29': 1, '27': 1, '28': 1, '26': 1, '30': 1, '24': 1, '25': 1, '22': 1, '23': 1, '20': 1, '21': 1, '18': 1, '19': 1, '16': 1, '17': 1}
+0 without_agent, req_id:17i0 and rx0:17i0 and rx1:17i1 and rid:17i0 and init_id:17  and req_num_act:1  and my_marked:{'17i0': True} and counter:{'31': 1, '29': 1, '27': 1, '28': 1, '26': 1, '30': 1, '24': 1, '25': 1, '22': 1, '23': 1, '20': 1, '21': 1, '18': 1, '19': 1, '16': 1, '17': 1}
+1 rid:17i1 and rid1:17i0 and rid2:17i1 and req_num_act:2
+1 rid:16i1 and rid1:16i0 and rid2:16i1 and req_num_act:2
+one step time:0.0738978385925293
+2 rid:15i0 and rid1:15i0 and rid2:15i1 and id_num_act:1 and num_act:2 and output_len:1
+3 ****application id:15 finish the r0:15i0 for prefill+decode and r1:15i1 and the duration:0.8627114295959473 and the token:1 and total_duration:0.8627114295959473 and info[rx1].total_token:1 
+0 without_agent, req_id:15i0 and rx0:15i0 and rx1:15i1 and rid:15i0 and init_id:15  and req_num_act:1  and my_marked:{'15i0': True} and counter:{'31': 1, '29': 1, '27': 1, '28': 1, '26': 1, '30': 1, '24': 1, '25': 1, '22': 1, '23': 1, '20': 1, '21': 1, '18': 1, '19': 1, '16': 1, '17': 1, '15': 1}
+1 rid:15i1 and rid1:15i0 and rid2:15i1 and req_num_act:2
+one step time:0.07333517074584961
+2 rid:13i0 and rid1:13i0 and rid2:13i1 and id_num_act:1 and num_act:2 and output_len:1
+3 ****application id:13 finish the r0:13i0 for prefill+decode and r1:13i1 and the duration:0.9345753192901611 and the token:1 and total_duration:0.9345753192901611 and info[rx1].total_token:1 
+2 rid:14i0 and rid1:14i0 and rid2:14i1 and id_num_act:1 and num_act:2 and output_len:1
+3 ****application id:14 finish the r0:14i0 for prefill+decode and r1:14i1 and the duration:0.936068058013916 and the token:1 and total_duration:0.936068058013916 and info[rx1].total_token:1 
+0 without_agent, req_id:13i0 and rx0:13i0 and rx1:13i1 and rid:14i0 and init_id:14  and req_num_act:1  and my_marked:{'13i0': True, '14i0': True} and counter:{'31': 1, '29': 1, '27': 1, '28': 1, '26': 1, '30': 1, '24': 1, '25': 1, '22': 1, '23': 1, '20': 1, '21': 1, '18': 1, '19': 1, '16': 1, '17': 1, '15': 1, '13': 1, '14': 1}
+0 without_agent, req_id:14i0 and rx0:14i0 and rx1:14i1 and rid:14i0 and init_id:14  and req_num_act:1  and my_marked:{'14i0': True} and counter:{'31': 1, '29': 1, '27': 1, '28': 1, '26': 1, '30': 1, '24': 1, '25': 1, '22': 1, '23': 1, '20': 1, '21': 1, '18': 1, '19': 1, '16': 1, '17': 1, '15': 1, '13': 1, '14': 1}
+1 rid:14i1 and rid1:14i0 and rid2:14i1 and req_num_act:2
+1 rid:13i1 and rid1:13i0 and rid2:13i1 and req_num_act:2
+one step time:0.07320451736450195
+2 rid:12i0 and rid1:12i0 and rid2:12i1 and id_num_act:1 and num_act:2 and output_len:1
+3 ****application id:12 finish the r0:12i0 for prefill+decode and r1:12i1 and the duration:1.009331226348877 and the token:1 and total_duration:1.009331226348877 and info[rx1].total_token:1 
+0 without_agent, req_id:12i0 and rx0:12i0 and rx1:12i1 and rid:12i0 and init_id:12  and req_num_act:1  and my_marked:{'12i0': True} and counter:{'31': 1, '29': 1, '27': 1, '28': 1, '26': 1, '30': 1, '24': 1, '25': 1, '22': 1, '23': 1, '20': 1, '21': 1, '18': 1, '19': 1, '16': 1, '17': 1, '15': 1, '13': 1, '14': 1, '12': 1}
+1 rid:12i1 and rid1:12i0 and rid2:12i1 and req_num_act:2
+one step time:0.07317876815795898
+2 rid:9i0 and rid1:9i0 and rid2:9i1 and id_num_act:1 and num_act:2 and output_len:1
+3 ****application id:9 finish the r0:9i0 for prefill+decode and r1:9i1 and the duration:1.0791912078857422 and the token:1 and total_duration:1.0791912078857422 and info[rx1].total_token:1 
+2 rid:10i0 and rid1:10i0 and rid2:10i1 and id_num_act:1 and num_act:2 and output_len:1
+3 ****application id:10 finish the r0:10i0 for prefill+decode and r1:10i1 and the duration:1.0808379650115967 and the token:1 and total_duration:1.0808379650115967 and info[rx1].total_token:1 
+0 without_agent, req_id:9i0 and rx0:9i0 and rx1:9i1 and rid:10i0 and init_id:10  and req_num_act:1  and my_marked:{'9i0': True, '10i0': True} and counter:{'31': 1, '29': 1, '27': 1, '28': 1, '26': 1, '30': 1, '24': 1, '25': 1, '22': 1, '23': 1, '20': 1, '21': 1, '18': 1, '19': 1, '16': 1, '17': 1, '15': 1, '13': 1, '14': 1, '12': 1, '9': 1, '10': 1}
+0 without_agent, req_id:10i0 and rx0:10i0 and rx1:10i1 and rid:10i0 and init_id:10  and req_num_act:1  and my_marked:{'10i0': True} and counter:{'31': 1, '29': 1, '27': 1, '28': 1, '26': 1, '30': 1, '24': 1, '25': 1, '22': 1, '23': 1, '20': 1, '21': 1, '18': 1, '19': 1, '16': 1, '17': 1, '15': 1, '13': 1, '14': 1, '12': 1, '9': 1, '10': 1}
+1 rid:10i1 and rid1:10i0 and rid2:10i1 and req_num_act:2
+1 rid:9i1 and rid1:9i0 and rid2:9i1 and req_num_act:2
+one step time:0.07364606857299805
+2 rid:8i0 and rid1:8i0 and rid2:8i1 and id_num_act:1 and num_act:2 and output_len:1
+3 ****application id:8 finish the r0:8i0 for prefill+decode and r1:8i1 and the duration:1.1545052528381348 and the token:1 and total_duration:1.1545052528381348 and info[rx1].total_token:1 
+0 without_agent, req_id:8i0 and rx0:8i0 and rx1:8i1 and rid:8i0 and init_id:8  and req_num_act:1  and my_marked:{'8i0': True} and counter:{'31': 1, '29': 1, '27': 1, '28': 1, '26': 1, '30': 1, '24': 1, '25': 1, '22': 1, '23': 1, '20': 1, '21': 1, '18': 1, '19': 1, '16': 1, '17': 1, '15': 1, '13': 1, '14': 1, '12': 1, '9': 1, '10': 1, '8': 1}
+1 rid:8i1 and rid1:8i0 and rid2:8i1 and req_num_act:2
+one step time:0.07442831993103027
+2 rid:6i0 and rid1:6i0 and rid2:6i1 and id_num_act:1 and num_act:2 and output_len:1
+3 ****application id:6 finish the r0:6i0 for prefill+decode and r1:6i1 and the duration:1.2268588542938232 and the token:1 and total_duration:1.2268588542938232 and info[rx1].total_token:1 
+0 without_agent, req_id:6i0 and rx0:6i0 and rx1:6i1 and rid:6i0 and init_id:6  and req_num_act:1  and my_marked:{'6i0': True} and counter:{'31': 1, '29': 1, '27': 1, '28': 1, '26': 1, '30': 1, '24': 1, '25': 1, '22': 1, '23': 1, '20': 1, '21': 1, '18': 1, '19': 1, '16': 1, '17': 1, '15': 1, '13': 1, '14': 1, '12': 1, '9': 1, '10': 1, '8': 1, '6': 1}
+1 rid:6i1 and rid1:6i0 and rid2:6i1 and req_num_act:2
+one step time:0.07408285140991211
+2 rid:4i0 and rid1:4i0 and rid2:4i1 and id_num_act:1 and num_act:2 and output_len:1
+3 ****application id:4 finish the r0:4i0 for prefill+decode and r1:4i1 and the duration:1.2995893955230713 and the token:1 and total_duration:1.2995893955230713 and info[rx1].total_token:1 
+2 rid:5i0 and rid1:5i0 and rid2:5i1 and id_num_act:1 and num_act:2 and output_len:1
+3 ****application id:5 finish the r0:5i0 for prefill+decode and r1:5i1 and the duration:1.3010942935943604 and the token:1 and total_duration:1.3010942935943604 and info[rx1].total_token:1 
+0 without_agent, req_id:4i0 and rx0:4i0 and rx1:4i1 and rid:5i0 and init_id:5  and req_num_act:1  and my_marked:{'4i0': True, '5i0': True} and counter:{'31': 1, '29': 1, '27': 1, '28': 1, '26': 1, '30': 1, '24': 1, '25': 1, '22': 1, '23': 1, '20': 1, '21': 1, '18': 1, '19': 1, '16': 1, '17': 1, '15': 1, '13': 1, '14': 1, '12': 1, '9': 1, '10': 1, '8': 1, '6': 1, '4': 1, '5': 1}
+0 without_agent, req_id:5i0 and rx0:5i0 and rx1:5i1 and rid:5i0 and init_id:5  and req_num_act:1  and my_marked:{'5i0': True} and counter:{'31': 1, '29': 1, '27': 1, '28': 1, '26': 1, '30': 1, '24': 1, '25': 1, '22': 1, '23': 1, '20': 1, '21': 1, '18': 1, '19': 1, '16': 1, '17': 1, '15': 1, '13': 1, '14': 1, '12': 1, '9': 1, '10': 1, '8': 1, '6': 1, '4': 1, '5': 1}
+1 rid:5i1 and rid1:5i0 and rid2:5i1 and req_num_act:2
+1 rid:4i1 and rid1:4i0 and rid2:4i1 and req_num_act:2
+one step time:0.07430863380432129
+2 rid:3i0 and rid1:3i0 and rid2:3i1 and id_num_act:1 and num_act:2 and output_len:1
+3 ****application id:3 finish the r0:3i0 for prefill+decode and r1:3i1 and the duration:1.3759148120880127 and the token:1 and total_duration:1.3759148120880127 and info[rx1].total_token:1 
+0 without_agent, req_id:3i0 and rx0:3i0 and rx1:3i1 and rid:3i0 and init_id:3  and req_num_act:1  and my_marked:{'3i0': True} and counter:{'31': 1, '29': 1, '27': 1, '28': 1, '26': 1, '30': 1, '24': 1, '25': 1, '22': 1, '23': 1, '20': 1, '21': 1, '18': 1, '19': 1, '16': 1, '17': 1, '15': 1, '13': 1, '14': 1, '12': 1, '9': 1, '10': 1, '8': 1, '6': 1, '4': 1, '5': 1, '3': 1}
+1 rid:3i1 and rid1:3i0 and rid2:3i1 and req_num_act:2
+one step time:0.0744333267211914
+2 rid:1i0 and rid1:1i0 and rid2:1i1 and id_num_act:1 and num_act:2 and output_len:1
+3 ****application id:1 finish the r0:1i0 for prefill+decode and r1:1i1 and the duration:1.4488184452056885 and the token:1 and total_duration:1.4488184452056885 and info[rx1].total_token:1 
+0 without_agent, req_id:1i0 and rx0:1i0 and rx1:1i1 and rid:1i0 and init_id:1  and req_num_act:1  and my_marked:{'1i0': True} and counter:{'31': 1, '29': 1, '27': 1, '28': 1, '26': 1, '30': 1, '24': 1, '25': 1, '22': 1, '23': 1, '20': 1, '21': 1, '18': 1, '19': 1, '16': 1, '17': 1, '15': 1, '13': 1, '14': 1, '12': 1, '9': 1, '10': 1, '8': 1, '6': 1, '4': 1, '5': 1, '3': 1, '1': 1}
+1 rid:1i1 and rid1:1i0 and rid2:1i1 and req_num_act:2
+one step time:0.07498979568481445
+2 rid:31i1 and rid1:31i0 and rid2:31i1 and id_num_act:2 and num_act:2 and output_len:1
+6 ****application id:31 finish the r0:31i0  and r1:31i1 prefil+decode and the duration:1.3749725818634033 and the token:1 and total_duration:1.577749252319336 and info[rx1].total_token:2 
+finished[-1]:{'request_id': '31', 'total_duration': 1.577749252319336, 'total_token': 2} and rid:31i1
+0 without_agent, req_id:31i1 and rx0:31i0 and rx1:31i1 and rid:31i1 and init_id:31  and req_num_act:2  and my_marked:{'31i1': True} and counter:{'31': 0, '29': 1, '27': 1, '28': 1, '26': 1, '30': 1, '24': 1, '25': 1, '22': 1, '23': 1, '20': 1, '21': 1, '18': 1, '19': 1, '16': 1, '17': 1, '15': 1, '13': 1, '14': 1, '12': 1, '9': 1, '10': 1, '8': 1, '6': 1, '4': 1, '5': 1, '3': 1, '1': 1}
+one step time:0.07509851455688477
+2 rid:28i1 and rid1:28i0 and rid2:28i1 and id_num_act:2 and num_act:2 and output_len:1
+6 ****application id:28 finish the r0:28i0  and r1:28i1 prefil+decode and the duration:1.2999317646026611 and the token:1 and total_duration:1.646881341934204 and info[rx1].total_token:2 
+finished[-1]:{'request_id': '28', 'total_duration': 1.646881341934204, 'total_token': 2} and rid:28i1
+2 rid:29i1 and rid1:29i0 and rid2:29i1 and id_num_act:2 and num_act:2 and output_len:1
+6 ****application id:29 finish the r0:29i0  and r1:29i1 prefil+decode and the duration:1.3747649192810059 and the token:1 and total_duration:1.648573398590088 and info[rx1].total_token:2 
+finished[-1]:{'request_id': '29', 'total_duration': 1.648573398590088, 'total_token': 2} and rid:29i1
+0 without_agent, req_id:28i1 and rx0:28i0 and rx1:28i1 and rid:29i1 and init_id:29  and req_num_act:2  and my_marked:{'28i1': True, '29i1': True} and counter:{'31': 0, '29': 0, '27': 1, '28': 0, '26': 1, '30': 1, '24': 1, '25': 1, '22': 1, '23': 1, '20': 1, '21': 1, '18': 1, '19': 1, '16': 1, '17': 1, '15': 1, '13': 1, '14': 1, '12': 1, '9': 1, '10': 1, '8': 1, '6': 1, '4': 1, '5': 1, '3': 1, '1': 1}
+0 without_agent, req_id:29i1 and rx0:29i0 and rx1:29i1 and rid:29i1 and init_id:29  and req_num_act:2  and my_marked:{'29i1': True} and counter:{'31': 0, '29': 0, '27': 1, '28': 0, '26': 1, '30': 1, '24': 1, '25': 1, '22': 1, '23': 1, '20': 1, '21': 1, '18': 1, '19': 1, '16': 1, '17': 1, '15': 1, '13': 1, '14': 1, '12': 1, '9': 1, '10': 1, '8': 1, '6': 1, '4': 1, '5': 1, '3': 1, '1': 1}
+one step time:0.07331275939941406
+2 rid:30i1 and rid1:30i0 and rid2:30i1 and id_num_act:2 and num_act:2 and output_len:1
+6 ****application id:30 finish the r0:30i0  and r1:30i1 prefil+decode and the duration:1.2954437732696533 and the token:1 and total_duration:1.7238976955413818 and info[rx1].total_token:4 
+finished[-1]:{'request_id': '30', 'total_duration': 1.7238976955413818, 'total_token': 4} and rid:30i1
+2 rid:27i1 and rid1:27i0 and rid2:27i1 and id_num_act:2 and num_act:2 and output_len:1
+6 ****application id:27 finish the r0:27i0  and r1:27i1 prefil+decode and the duration:1.3713524341583252 and the token:1 and total_duration:1.7163829803466797 and info[rx1].total_token:2 
+finished[-1]:{'request_id': '27', 'total_duration': 1.7163829803466797, 'total_token': 2} and rid:27i1
+0 without_agent, req_id:30i1 and rx0:30i0 and rx1:30i1 and rid:27i1 and init_id:27  and req_num_act:2  and my_marked:{'30i1': True, '27i1': True} and counter:{'31': 0, '29': 0, '27': 0, '28': 0, '26': 1, '30': 0, '24': 1, '25': 1, '22': 1, '23': 1, '20': 1, '21': 1, '18': 1, '19': 1, '16': 1, '17': 1, '15': 1, '13': 1, '14': 1, '12': 1, '9': 1, '10': 1, '8': 1, '6': 1, '4': 1, '5': 1, '3': 1, '1': 1}
+0 without_agent, req_id:27i1 and rx0:27i0 and rx1:27i1 and rid:27i1 and init_id:27  and req_num_act:2  and my_marked:{'27i1': True} and counter:{'31': 0, '29': 0, '27': 0, '28': 0, '26': 1, '30': 0, '24': 1, '25': 1, '22': 1, '23': 1, '20': 1, '21': 1, '18': 1, '19': 1, '16': 1, '17': 1, '15': 1, '13': 1, '14': 1, '12': 1, '9': 1, '10': 1, '8': 1, '6': 1, '4': 1, '5': 1, '3': 1, '1': 1}
+one step time:0.07446670532226562
+2 rid:26i1 and rid1:26i0 and rid2:26i1 and id_num_act:2 and num_act:2 and output_len:1
+6 ****application id:26 finish the r0:26i0  and r1:26i1 prefil+decode and the duration:1.368347406387329 and the token:1 and total_duration:1.7893202304840088 and info[rx1].total_token:2 
+finished[-1]:{'request_id': '26', 'total_duration': 1.7893202304840088, 'total_token': 2} and rid:26i1
+0 without_agent, req_id:26i1 and rx0:26i0 and rx1:26i1 and rid:26i1 and init_id:26  and req_num_act:2  and my_marked:{'26i1': True} and counter:{'31': 0, '29': 0, '27': 0, '28': 0, '26': 0, '30': 0, '24': 1, '25': 1, '22': 1, '23': 1, '20': 1, '21': 1, '18': 1, '19': 1, '16': 1, '17': 1, '15': 1, '13': 1, '14': 1, '12': 1, '9': 1, '10': 1, '8': 1, '6': 1, '4': 1, '5': 1, '3': 1, '1': 1}
+one step time:0.0756680965423584
+2 rid:24i1 and rid1:24i0 and rid2:24i1 and id_num_act:2 and num_act:2 and output_len:1
+6 ****application id:24 finish the r0:24i0  and r1:24i1 prefil+decode and the duration:1.3665990829467773 and the token:1 and total_duration:1.8613488674163818 and info[rx1].total_token:2 
+finished[-1]:{'request_id': '24', 'total_duration': 1.8613488674163818, 'total_token': 2} and rid:24i1
+2 rid:25i1 and rid1:25i0 and rid2:25i1 and id_num_act:2 and num_act:2 and output_len:1
+6 ****application id:25 finish the r0:25i0  and r1:25i1 prefil+decode and the duration:1.3684439659118652 and the token:1 and total_duration:1.8650233745574951 and info[rx1].total_token:2 
+finished[-1]:{'request_id': '25', 'total_duration': 1.8650233745574951, 'total_token': 2} and rid:25i1
+0 without_agent, req_id:24i1 and rx0:24i0 and rx1:24i1 and rid:25i1 and init_id:25  and req_num_act:2  and my_marked:{'24i1': True, '25i1': True} and counter:{'31': 0, '29': 0, '27': 0, '28': 0, '26': 0, '30': 0, '24': 0, '25': 0, '22': 1, '23': 1, '20': 1, '21': 1, '18': 1, '19': 1, '16': 1, '17': 1, '15': 1, '13': 1, '14': 1, '12': 1, '9': 1, '10': 1, '8': 1, '6': 1, '4': 1, '5': 1, '3': 1, '1': 1}
+0 without_agent, req_id:25i1 and rx0:25i0 and rx1:25i1 and rid:25i1 and init_id:25  and req_num_act:2  and my_marked:{'25i1': True} and counter:{'31': 0, '29': 0, '27': 0, '28': 0, '26': 0, '30': 0, '24': 0, '25': 0, '22': 1, '23': 1, '20': 1, '21': 1, '18': 1, '19': 1, '16': 1, '17': 1, '15': 1, '13': 1, '14': 1, '12': 1, '9': 1, '10': 1, '8': 1, '6': 1, '4': 1, '5': 1, '3': 1, '1': 1}
+one step time:0.07416200637817383
+2 rid:22i1 and rid1:22i0 and rid2:22i1 and id_num_act:2 and num_act:2 and output_len:1
+6 ****application id:22 finish the r0:22i0  and r1:22i1 prefil+decode and the duration:1.3644955158233643 and the token:1 and total_duration:1.932826280593872 and info[rx1].total_token:2 
+finished[-1]:{'request_id': '22', 'total_duration': 1.932826280593872, 'total_token': 2} and rid:22i1
+2 rid:23i1 and rid1:23i0 and rid2:23i1 and id_num_act:2 and num_act:2 and output_len:1
+6 ****application id:23 finish the r0:23i0  and r1:23i1 prefil+decode and the duration:1.365971326828003 and the token:1 and total_duration:1.9357330799102783 and info[rx1].total_token:2 
+finished[-1]:{'request_id': '23', 'total_duration': 1.9357330799102783, 'total_token': 2} and rid:23i1
+0 without_agent, req_id:22i1 and rx0:22i0 and rx1:22i1 and rid:23i1 and init_id:23  and req_num_act:2  and my_marked:{'22i1': True, '23i1': True} and counter:{'31': 0, '29': 0, '27': 0, '28': 0, '26': 0, '30': 0, '24': 0, '25': 0, '22': 0, '23': 0, '20': 1, '21': 1, '18': 1, '19': 1, '16': 1, '17': 1, '15': 1, '13': 1, '14': 1, '12': 1, '9': 1, '10': 1, '8': 1, '6': 1, '4': 1, '5': 1, '3': 1, '1': 1}
+0 without_agent, req_id:23i1 and rx0:23i0 and rx1:23i1 and rid:23i1 and init_id:23  and req_num_act:2  and my_marked:{'23i1': True} and counter:{'31': 0, '29': 0, '27': 0, '28': 0, '26': 0, '30': 0, '24': 0, '25': 0, '22': 0, '23': 0, '20': 1, '21': 1, '18': 1, '19': 1, '16': 1, '17': 1, '15': 1, '13': 1, '14': 1, '12': 1, '9': 1, '10': 1, '8': 1, '6': 1, '4': 1, '5': 1, '3': 1, '1': 1}
+one step time:0.07408428192138672
+2 rid:20i1 and rid1:20i0 and rid2:20i1 and id_num_act:2 and num_act:2 and output_len:1
+6 ****application id:20 finish the r0:20i0  and r1:20i1 prefil+decode and the duration:1.3614575862884521 and the token:1 and total_duration:2.0033483505249023 and info[rx1].total_token:2 
+finished[-1]:{'request_id': '20', 'total_duration': 2.0033483505249023, 'total_token': 2} and rid:20i1
+2 rid:21i1 and rid1:21i0 and rid2:21i1 and id_num_act:2 and num_act:2 and output_len:1
+6 ****application id:21 finish the r0:21i0  and r1:21i1 prefil+decode and the duration:1.363001823425293 and the token:1 and total_duration:2.0066280364990234 and info[rx1].total_token:2 
+finished[-1]:{'request_id': '21', 'total_duration': 2.0066280364990234, 'total_token': 2} and rid:21i1
+0 without_agent, req_id:20i1 and rx0:20i0 and rx1:20i1 and rid:21i1 and init_id:21  and req_num_act:2  and my_marked:{'20i1': True, '21i1': True} and counter:{'31': 0, '29': 0, '27': 0, '28': 0, '26': 0, '30': 0, '24': 0, '25': 0, '22': 0, '23': 0, '20': 0, '21': 0, '18': 1, '19': 1, '16': 1, '17': 1, '15': 1, '13': 1, '14': 1, '12': 1, '9': 1, '10': 1, '8': 1, '6': 1, '4': 1, '5': 1, '3': 1, '1': 1}
+0 without_agent, req_id:21i1 and rx0:21i0 and rx1:21i1 and rid:21i1 and init_id:21  and req_num_act:2  and my_marked:{'21i1': True} and counter:{'31': 0, '29': 0, '27': 0, '28': 0, '26': 0, '30': 0, '24': 0, '25': 0, '22': 0, '23': 0, '20': 0, '21': 0, '18': 1, '19': 1, '16': 1, '17': 1, '15': 1, '13': 1, '14': 1, '12': 1, '9': 1, '10': 1, '8': 1, '6': 1, '4': 1, '5': 1, '3': 1, '1': 1}
+one step time:0.07451248168945312
+2 rid:18i1 and rid1:18i0 and rid2:18i1 and id_num_act:2 and num_act:2 and output_len:1
+6 ****application id:18 finish the r0:18i0  and r1:18i1 prefil+decode and the duration:1.3593676090240479 and the token:1 and total_duration:2.074115037918091 and info[rx1].total_token:2 
+finished[-1]:{'request_id': '18', 'total_duration': 2.074115037918091, 'total_token': 2} and rid:18i1
+2 rid:19i1 and rid1:19i0 and rid2:19i1 and id_num_act:2 and num_act:2 and output_len:1
+6 ****application id:19 finish the r0:19i0  and r1:19i1 prefil+decode and the duration:1.3611812591552734 and the token:1 and total_duration:2.0778205394744873 and info[rx1].total_token:2 
+finished[-1]:{'request_id': '19', 'total_duration': 2.0778205394744873, 'total_token': 2} and rid:19i1
+0 without_agent, req_id:18i1 and rx0:18i0 and rx1:18i1 and rid:19i1 and init_id:19  and req_num_act:2  and my_marked:{'18i1': True, '19i1': True} and counter:{'31': 0, '29': 0, '27': 0, '28': 0, '26': 0, '30': 0, '24': 0, '25': 0, '22': 0, '23': 0, '20': 0, '21': 0, '18': 0, '19': 0, '16': 1, '17': 1, '15': 1, '13': 1, '14': 1, '12': 1, '9': 1, '10': 1, '8': 1, '6': 1, '4': 1, '5': 1, '3': 1, '1': 1}
+0 without_agent, req_id:19i1 and rx0:19i0 and rx1:19i1 and rid:19i1 and init_id:19  and req_num_act:2  and my_marked:{'19i1': True} and counter:{'31': 0, '29': 0, '27': 0, '28': 0, '26': 0, '30': 0, '24': 0, '25': 0, '22': 0, '23': 0, '20': 0, '21': 0, '18': 0, '19': 0, '16': 1, '17': 1, '15': 1, '13': 1, '14': 1, '12': 1, '9': 1, '10': 1, '8': 1, '6': 1, '4': 1, '5': 1, '3': 1, '1': 1}
+one step time:0.0742490291595459
+2 rid:17i1 and rid1:17i0 and rid2:17i1 and id_num_act:2 and num_act:2 and output_len:1
+6 ****application id:17 finish the r0:17i0  and r1:17i1 prefil+decode and the duration:1.3594465255737305 and the token:1 and total_duration:2.148573637008667 and info[rx1].total_token:2 
+finished[-1]:{'request_id': '17', 'total_duration': 2.148573637008667, 'total_token': 2} and rid:17i1
+0 without_agent, req_id:17i1 and rx0:17i0 and rx1:17i1 and rid:17i1 and init_id:17  and req_num_act:2  and my_marked:{'17i1': True} and counter:{'31': 0, '29': 0, '27': 0, '28': 0, '26': 0, '30': 0, '24': 0, '25': 0, '22': 0, '23': 0, '20': 0, '21': 0, '18': 0, '19': 0, '16': 1, '17': 0, '15': 1, '13': 1, '14': 1, '12': 1, '9': 1, '10': 1, '8': 1, '6': 1, '4': 1, '5': 1, '3': 1, '1': 1}
+one step time:0.07534337043762207
+2 rid:15i1 and rid1:15i0 and rid2:15i1 and id_num_act:2 and num_act:2 and output_len:1
+6 ****application id:15 finish the r0:15i0  and r1:15i1 prefil+decode and the duration:1.3575799465179443 and the token:1 and total_duration:2.2202913761138916 and info[rx1].total_token:2 
+finished[-1]:{'request_id': '15', 'total_duration': 2.2202913761138916, 'total_token': 2} and rid:15i1
+2 rid:16i1 and rid1:16i0 and rid2:16i1 and id_num_act:2 and num_act:2 and output_len:1
+6 ****application id:16 finish the r0:16i0  and r1:16i1 prefil+decode and the duration:1.4330923557281494 and the token:1 and total_duration:2.2201807498931885 and info[rx1].total_token:2 
+finished[-1]:{'request_id': '16', 'total_duration': 2.2201807498931885, 'total_token': 2} and rid:16i1
+0 without_agent, req_id:15i1 and rx0:15i0 and rx1:15i1 and rid:16i1 and init_id:16  and req_num_act:2  and my_marked:{'15i1': True, '16i1': True} and counter:{'31': 0, '29': 0, '27': 0, '28': 0, '26': 0, '30': 0, '24': 0, '25': 0, '22': 0, '23': 0, '20': 0, '21': 0, '18': 0, '19': 0, '16': 0, '17': 0, '15': 0, '13': 1, '14': 1, '12': 1, '9': 1, '10': 1, '8': 1, '6': 1, '4': 1, '5': 1, '3': 1, '1': 1}
+0 without_agent, req_id:16i1 and rx0:16i0 and rx1:16i1 and rid:16i1 and init_id:16  and req_num_act:2  and my_marked:{'16i1': True} and counter:{'31': 0, '29': 0, '27': 0, '28': 0, '26': 0, '30': 0, '24': 0, '25': 0, '22': 0, '23': 0, '20': 0, '21': 0, '18': 0, '19': 0, '16': 0, '17': 0, '15': 0, '13': 1, '14': 1, '12': 1, '9': 1, '10': 1, '8': 1, '6': 1, '4': 1, '5': 1, '3': 1, '1': 1}
+one step time:0.07401180267333984
+2 rid:13i1 and rid1:13i0 and rid2:13i1 and id_num_act:2 and num_act:2 and output_len:1
+6 ****application id:13 finish the r0:13i0  and r1:13i1 prefil+decode and the duration:1.3552474975585938 and the token:1 and total_duration:2.289822816848755 and info[rx1].total_token:2 
+finished[-1]:{'request_id': '13', 'total_duration': 2.289822816848755, 'total_token': 2} and rid:13i1
+2 rid:14i1 and rid1:14i0 and rid2:14i1 and id_num_act:2 and num_act:2 and output_len:1
+6 ****application id:14 finish the r0:14i0  and r1:14i1 prefil+decode and the duration:1.3567750453948975 and the token:1 and total_duration:2.2928431034088135 and info[rx1].total_token:2 
+finished[-1]:{'request_id': '14', 'total_duration': 2.2928431034088135, 'total_token': 2} and rid:14i1
+0 without_agent, req_id:13i1 and rx0:13i0 and rx1:13i1 and rid:14i1 and init_id:14  and req_num_act:2  and my_marked:{'13i1': True, '14i1': True} and counter:{'31': 0, '29': 0, '27': 0, '28': 0, '26': 0, '30': 0, '24': 0, '25': 0, '22': 0, '23': 0, '20': 0, '21': 0, '18': 0, '19': 0, '16': 0, '17': 0, '15': 0, '13': 0, '14': 0, '12': 1, '9': 1, '10': 1, '8': 1, '6': 1, '4': 1, '5': 1, '3': 1, '1': 1}
+0 without_agent, req_id:14i1 and rx0:14i0 and rx1:14i1 and rid:14i1 and init_id:14  and req_num_act:2  and my_marked:{'14i1': True} and counter:{'31': 0, '29': 0, '27': 0, '28': 0, '26': 0, '30': 0, '24': 0, '25': 0, '22': 0, '23': 0, '20': 0, '21': 0, '18': 0, '19': 0, '16': 0, '17': 0, '15': 0, '13': 0, '14': 0, '12': 1, '9': 1, '10': 1, '8': 1, '6': 1, '4': 1, '5': 1, '3': 1, '1': 1}
+one step time:0.07392382621765137
+2 rid:12i1 and rid1:12i0 and rid2:12i1 and id_num_act:2 and num_act:2 and output_len:1
+6 ****application id:12 finish the r0:12i0  and r1:12i1 prefil+decode and the duration:1.3544189929962158 and the token:1 and total_duration:2.3637502193450928 and info[rx1].total_token:2 
+finished[-1]:{'request_id': '12', 'total_duration': 2.3637502193450928, 'total_token': 2} and rid:12i1
+0 without_agent, req_id:12i1 and rx0:12i0 and rx1:12i1 and rid:12i1 and init_id:12  and req_num_act:2  and my_marked:{'12i1': True} and counter:{'31': 0, '29': 0, '27': 0, '28': 0, '26': 0, '30': 0, '24': 0, '25': 0, '22': 0, '23': 0, '20': 0, '21': 0, '18': 0, '19': 0, '16': 0, '17': 0, '15': 0, '13': 0, '14': 0, '12': 0, '9': 1, '10': 1, '8': 1, '6': 1, '4': 1, '5': 1, '3': 1, '1': 1}
+one step time:0.07465744018554688
+2 rid:9i1 and rid1:9i0 and rid2:9i1 and id_num_act:2 and num_act:2 and output_len:1
+6 ****application id:9 finish the r0:9i0  and r1:9i1 prefil+decode and the duration:1.35227632522583 and the token:1 and total_duration:2.4314675331115723 and info[rx1].total_token:2 
+finished[-1]:{'request_id': '9', 'total_duration': 2.4314675331115723, 'total_token': 2} and rid:9i1
+2 rid:10i1 and rid1:10i0 and rid2:10i1 and id_num_act:2 and num_act:2 and output_len:1
+6 ****application id:10 finish the r0:10i0  and r1:10i1 prefil+decode and the duration:1.353919267654419 and the token:1 and total_duration:2.4347572326660156 and info[rx1].total_token:2 
+finished[-1]:{'request_id': '10', 'total_duration': 2.4347572326660156, 'total_token': 2} and rid:10i1
+2 rid:11i0 and rid1:11i0 and rid2:11i1 and id_num_act:1 and num_act:2 and output_len:20
+3 ****application id:11 finish the r0:11i0 for prefill+decode and r1:11i1 and the duration:2.436471939086914 and the token:20 and total_duration:2.436471939086914 and info[rx1].total_token:20 
+0 without_agent, req_id:9i1 and rx0:9i0 and rx1:9i1 and rid:11i0 and init_id:11  and req_num_act:2  and my_marked:{'9i1': True, '10i1': True, '11i0': True} and counter:{'31': 0, '29': 0, '27': 0, '28': 0, '26': 0, '30': 0, '24': 0, '25': 0, '22': 0, '23': 0, '20': 0, '21': 0, '18': 0, '19': 0, '16': 0, '17': 0, '15': 0, '13': 0, '14': 0, '12': 0, '9': 0, '10': 0, '8': 1, '6': 1, '4': 1, '5': 1, '3': 1, '1': 1, '11': 1}
+0 without_agent, req_id:10i1 and rx0:10i0 and rx1:10i1 and rid:11i0 and init_id:11  and req_num_act:2  and my_marked:{'9i1': True, '10i1': True, '11i0': True} and counter:{'31': 0, '29': 0, '27': 0, '28': 0, '26': 0, '30': 0, '24': 0, '25': 0, '22': 0, '23': 0, '20': 0, '21': 0, '18': 0, '19': 0, '16': 0, '17': 0, '15': 0, '13': 0, '14': 0, '12': 0, '9': 0, '10': 0, '8': 1, '6': 1, '4': 1, '5': 1, '3': 1, '1': 1, '11': 1}
+0 without_agent, req_id:11i0 and rx0:11i0 and rx1:11i1 and rid:11i0 and init_id:11  and req_num_act:1  and my_marked:{'9i1': True, '10i1': True, '11i0': True} and counter:{'31': 0, '29': 0, '27': 0, '28': 0, '26': 0, '30': 0, '24': 0, '25': 0, '22': 0, '23': 0, '20': 0, '21': 0, '18': 0, '19': 0, '16': 0, '17': 0, '15': 0, '13': 0, '14': 0, '12': 0, '9': 0, '10': 0, '8': 1, '6': 1, '4': 1, '5': 1, '3': 1, '1': 1, '11': 1}
+1 rid:11i1 and rid1:11i0 and rid2:11i1 and req_num_act:2
+one step time:0.0742802619934082
+2 rid:6i1 and rid1:6i0 and rid2:6i1 and id_num_act:2 and num_act:2 and output_len:1
+6 ****application id:6 finish the r0:6i0  and r1:6i1 prefil+decode and the duration:1.2775018215179443 and the token:1 and total_duration:2.5043606758117676 and info[rx1].total_token:2 
+finished[-1]:{'request_id': '6', 'total_duration': 2.5043606758117676, 'total_token': 2} and rid:6i1
+2 rid:8i1 and rid1:8i0 and rid2:8i1 and id_num_act:2 and num_act:2 and output_len:1
+6 ****application id:8 finish the r0:8i0  and r1:8i1 prefil+decode and the duration:1.3535795211791992 and the token:1 and total_duration:2.508084774017334 and info[rx1].total_token:2 
+finished[-1]:{'request_id': '8', 'total_duration': 2.508084774017334, 'total_token': 2} and rid:8i1
+0 without_agent, req_id:6i1 and rx0:6i0 and rx1:6i1 and rid:8i1 and init_id:8  and req_num_act:2  and my_marked:{'9i1': True, '10i1': True, '6i1': True, '8i1': True} and counter:{'31': 0, '29': 0, '27': 0, '28': 0, '26': 0, '30': 0, '24': 0, '25': 0, '22': 0, '23': 0, '20': 0, '21': 0, '18': 0, '19': 0, '16': 0, '17': 0, '15': 0, '13': 0, '14': 0, '12': 0, '9': 0, '10': 0, '8': 0, '6': 0, '4': 1, '5': 1, '3': 1, '1': 1, '11': 1}
+0 without_agent, req_id:8i1 and rx0:8i0 and rx1:8i1 and rid:8i1 and init_id:8  and req_num_act:2  and my_marked:{'9i1': True, '10i1': True, '8i1': True} and counter:{'31': 0, '29': 0, '27': 0, '28': 0, '26': 0, '30': 0, '24': 0, '25': 0, '22': 0, '23': 0, '20': 0, '21': 0, '18': 0, '19': 0, '16': 0, '17': 0, '15': 0, '13': 0, '14': 0, '12': 0, '9': 0, '10': 0, '8': 0, '6': 0, '4': 1, '5': 1, '3': 1, '1': 1, '11': 1}
+one step time:0.07377815246582031
+2 rid:4i1 and rid1:4i0 and rid2:4i1 and id_num_act:2 and num_act:2 and output_len:1
+6 ****application id:4 finish the r0:4i0  and r1:4i1 prefil+decode and the duration:1.2735731601715088 and the token:1 and total_duration:2.57316255569458 and info[rx1].total_token:2 
+finished[-1]:{'request_id': '4', 'total_duration': 2.57316255569458, 'total_token': 2} and rid:4i1
+2 rid:5i1 and rid1:5i0 and rid2:5i1 and id_num_act:2 and num_act:2 and output_len:1
+6 ****application id:5 finish the r0:5i0  and r1:5i1 prefil+decode and the duration:1.275496482849121 and the token:1 and total_duration:2.5765907764434814 and info[rx1].total_token:2 
+finished[-1]:{'request_id': '5', 'total_duration': 2.5765907764434814, 'total_token': 2} and rid:5i1
+0 without_agent, req_id:4i1 and rx0:4i0 and rx1:4i1 and rid:5i1 and init_id:5  and req_num_act:2  and my_marked:{'9i1': True, '10i1': True, '4i1': True, '5i1': True} and counter:{'31': 0, '29': 0, '27': 0, '28': 0, '26': 0, '30': 0, '24': 0, '25': 0, '22': 0, '23': 0, '20': 0, '21': 0, '18': 0, '19': 0, '16': 0, '17': 0, '15': 0, '13': 0, '14': 0, '12': 0, '9': 0, '10': 0, '8': 0, '6': 0, '4': 0, '5': 0, '3': 1, '1': 1, '11': 1}
+0 without_agent, req_id:5i1 and rx0:5i0 and rx1:5i1 and rid:5i1 and init_id:5  and req_num_act:2  and my_marked:{'9i1': True, '10i1': True, '5i1': True} and counter:{'31': 0, '29': 0, '27': 0, '28': 0, '26': 0, '30': 0, '24': 0, '25': 0, '22': 0, '23': 0, '20': 0, '21': 0, '18': 0, '19': 0, '16': 0, '17': 0, '15': 0, '13': 0, '14': 0, '12': 0, '9': 0, '10': 0, '8': 0, '6': 0, '4': 0, '5': 0, '3': 1, '1': 1, '11': 1}
+one step time:0.05146002769470215
+2 rid:3i1 and rid1:3i0 and rid2:3i1 and id_num_act:2 and num_act:2 and output_len:1
+6 ****application id:3 finish the r0:3i0  and r1:3i1 prefil+decode and the duration:1.2493679523468018 and the token:1 and total_duration:2.6252827644348145 and info[rx1].total_token:2 
+finished[-1]:{'request_id': '3', 'total_duration': 2.6252827644348145, 'total_token': 2} and rid:3i1
+0 without_agent, req_id:3i1 and rx0:3i0 and rx1:3i1 and rid:3i1 and init_id:3  and req_num_act:2  and my_marked:{'9i1': True, '10i1': True, '3i1': True} and counter:{'31': 0, '29': 0, '27': 0, '28': 0, '26': 0, '30': 0, '24': 0, '25': 0, '22': 0, '23': 0, '20': 0, '21': 0, '18': 0, '19': 0, '16': 0, '17': 0, '15': 0, '13': 0, '14': 0, '12': 0, '9': 0, '10': 0, '8': 0, '6': 0, '4': 0, '5': 0, '3': 0, '1': 1, '11': 1}
+one step time:0.013258934020996094
+2 rid:11i1 and rid1:11i0 and rid2:11i1 and id_num_act:2 and num_act:2 and output_len:1
+6 ****application id:11 finish the r0:11i0  and r1:11i1 prefil+decode and the duration:0.21523571014404297 and the token:1 and total_duration:2.651707649230957 and info[rx1].total_token:21 
+finished[-1]:{'request_id': '11', 'total_duration': 2.651707649230957, 'total_token': 21} and rid:11i1
+2 rid:1i1 and rid1:1i0 and rid2:1i1 and id_num_act:2 and num_act:2 and output_len:1
+6 ****application id:1 finish the r0:1i0  and r1:1i1 prefil+decode and the duration:1.1865222454071045 and the token:1 and total_duration:2.635340690612793 and info[rx1].total_token:2 
+finished[-1]:{'request_id': '1', 'total_duration': 2.635340690612793, 'total_token': 2} and rid:1i1
+0 without_agent, req_id:11i1 and rx0:11i0 and rx1:11i1 and rid:1i1 and init_id:1  and req_num_act:2  and my_marked:{'9i1': True, '10i1': True, '11i1': True, '1i1': True} and counter:{'31': 0, '29': 0, '27': 0, '28': 0, '26': 0, '30': 0, '24': 0, '25': 0, '22': 0, '23': 0, '20': 0, '21': 0, '18': 0, '19': 0, '16': 0, '17': 0, '15': 0, '13': 0, '14': 0, '12': 0, '9': 0, '10': 0, '8': 0, '6': 0, '4': 0, '5': 0, '3': 0, '1': 0, '11': 0}
+0 without_agent, req_id:1i1 and rx0:1i0 and rx1:1i1 and rid:1i1 and init_id:1  and req_num_act:2  and my_marked:{'9i1': True, '10i1': True, '1i1': True} and counter:{'31': 0, '29': 0, '27': 0, '28': 0, '26': 0, '30': 0, '24': 0, '25': 0, '22': 0, '23': 0, '20': 0, '21': 0, '18': 0, '19': 0, '16': 0, '17': 0, '15': 0, '13': 0, '14': 0, '12': 0, '9': 0, '10': 0, '8': 0, '6': 0, '4': 0, '5': 0, '3': 0, '1': 0, '11': 0}
+one step time:0.012675046920776367
+one step time:0.01255035400390625
+one step time:0.012553691864013672
+one step time:0.012655496597290039
+one step time:0.012564897537231445
+one step time:0.012528657913208008
+one step time:0.01256418228149414
+one step time:0.012525796890258789
+one step time:0.012501239776611328
+one step time:0.012480020523071289
+one step time:0.012571096420288086
+2 rid:0i0 and rid1:0i0 and rid2:0i1 and id_num_act:1 and num_act:2 and output_len:28
+3 ****application id:0 finish the r0:0i0 for prefill+decode and r1:0i1 and the duration:2.771914482116699 and the token:28 and total_duration:2.771914482116699 and info[rx1].total_token:28 
+0 without_agent, req_id:0i0 and rx0:0i0 and rx1:0i1 and rid:0i0 and init_id:0  and req_num_act:1  and my_marked:{'9i1': True, '10i1': True, '0i0': True} and counter:{'31': 0, '29': 0, '27': 0, '28': 0, '26': 0, '30': 0, '24': 0, '25': 0, '22': 0, '23': 0, '20': 0, '21': 0, '18': 0, '19': 0, '16': 0, '17': 0, '15': 0, '13': 0, '14': 0, '12': 0, '9': 0, '10': 0, '8': 0, '6': 0, '4': 0, '5': 0, '3': 0, '1': 0, '11': 0, '0': 1}
+1 rid:0i1 and rid1:0i0 and rid2:0i1 and req_num_act:2
+one step time:0.04940080642700195
+one step time:0.012586355209350586
+2 rid:0i1 and rid1:0i0 and rid2:0i1 and id_num_act:2 and num_act:2 and output_len:1
+6 ****application id:0 finish the r0:0i0  and r1:0i1 prefil+decode and the duration:0.06415677070617676 and the token:1 and total_duration:2.836071252822876 and info[rx1].total_token:29 
+finished[-1]:{'request_id': '0', 'total_duration': 2.836071252822876, 'total_token': 29} and rid:0i1
+0 without_agent, req_id:0i1 and rx0:0i0 and rx1:0i1 and rid:0i1 and init_id:0  and req_num_act:2  and my_marked:{'9i1': True, '10i1': True, '0i1': True} and counter:{'31': 0, '29': 0, '27': 0, '28': 0, '26': 0, '30': 0, '24': 0, '25': 0, '22': 0, '23': 0, '20': 0, '21': 0, '18': 0, '19': 0, '16': 0, '17': 0, '15': 0, '13': 0, '14': 0, '12': 0, '9': 0, '10': 0, '8': 0, '6': 0, '4': 0, '5': 0, '3': 0, '1': 0, '11': 0, '0': 0}
+one step time:0.012555360794067383
+one step time:0.012455463409423828
+one step time:0.012358665466308594
+one step time:0.012401103973388672
+one step time:0.012401580810546875
+one step time:0.01238393783569336
+one step time:0.012384176254272461
+one step time:0.01247406005859375
+one step time:0.012404918670654297
+one step time:0.012386798858642578
+one step time:0.012427091598510742
+one step time:0.012382268905639648
+one step time:0.012397289276123047
+one step time:0.012387514114379883
+one step time:0.012378215789794922
+one step time:0.012396574020385742
+one step time:0.012356758117675781
+one step time:0.012424707412719727
+one step time:0.012424707412719727
+one step time:0.012411355972290039
+one step time:0.012419700622558594
+one step time:0.012529850006103516
+one step time:0.01239466667175293
+one step time:0.012398242950439453
+one step time:0.012384653091430664
+one step time:0.01240396499633789
+one step time:0.012470722198486328
+one step time:0.012415170669555664
+one step time:0.012641429901123047
+one step time:0.012690067291259766
+one step time:0.012425422668457031
+one step time:0.01241612434387207
+one step time:0.012355804443359375
+one step time:0.012405633926391602
+one step time:0.01246190071105957
+one step time:0.012691020965576172
+one step time:0.012728691101074219
+one step time:0.012467622756958008
+one step time:0.012391090393066406
+one step time:0.01241612434387207
+one step time:0.012392282485961914
+one step time:0.012354850769042969
+one step time:0.012382745742797852
+one step time:0.012436151504516602
+one step time:0.012469768524169922
+one step time:0.012418031692504883
+one step time:0.012418031692504883
+one step time:0.012390613555908203
+one step time:0.0124359130859375
+one step time:0.012404918670654297
+one step time:0.012391090393066406
+one step time:0.012409448623657227
+one step time:0.012427806854248047
+one step time:0.012444496154785156
+one step time:0.012450456619262695
+one step time:0.012449979782104492
+one step time:0.012407779693603516
+one step time:0.012384176254272461
+one step time:0.01240992546081543
+one step time:0.012395381927490234
+one step time:0.012415170669555664
+one step time:0.012359619140625
+one step time:0.01233673095703125
+one step time:0.012427091598510742
+one step time:0.012405872344970703
+one step time:0.012413978576660156
+one step time:0.01241922378540039
+one step time:0.012396574020385742
+one step time:0.012417793273925781
+one step time:0.012442350387573242
+one step time:0.012350082397460938
+one step time:0.012442827224731445
+one step time:0.01241612434387207
+one step time:0.012394905090332031
+one step time:0.012384653091430664
+one step time:0.01237630844116211
+one step time:0.012366294860839844
+one step time:0.012375116348266602
+one step time:0.012369871139526367
+one step time:0.012412786483764648
+one step time:0.012409687042236328
+one step time:0.012431144714355469
+one step time:0.01242208480834961
+one step time:0.012380361557006836
+one step time:0.012412309646606445
+one step time:0.012430906295776367
+one step time:0.012410163879394531
+one step time:0.012439727783203125
+one step time:0.012394428253173828
+one step time:0.012391090393066406
+one step time:0.012415409088134766
+one step time:0.012407064437866211
+one step time:0.01240229606628418
+one step time:0.012418746948242188
+one step time:0.012330770492553711
+one step time:0.012358427047729492
+one step time:0.012419462203979492
+one step time:0.012413978576660156
+one step time:0.012423276901245117
+one step time:0.012394905090332031
+one step time:0.012427568435668945
+one step time:0.012423276901245117
+one step time:0.012408256530761719
+one step time:0.012427091598510742
+one step time:0.012417078018188477
+one step time:0.012384176254272461
+one step time:0.01235198974609375
+one step time:0.012392997741699219
+one step time:0.012395143508911133
+one step time:0.012430906295776367
+one step time:0.01243734359741211
+one step time:0.012392997741699219
+one step time:0.012387990951538086
+one step time:0.012338876724243164
+one step time:0.01236724853515625
+one step time:0.012358903884887695
+one step time:0.012439966201782227
+one step time:0.012454032897949219
+one step time:0.012431144714355469
+one step time:0.01244664192199707
+one step time:0.01242971420288086
+one step time:0.012406110763549805
+one step time:0.01241159439086914
+one step time:0.01238250732421875
+one step time:0.01239633560180664
+one step time:0.012419462203979492
+one step time:0.012381792068481445
+one step time:0.012390613555908203
+one step time:0.012433290481567383
+one step time:0.012402534484863281
+one step time:0.012379884719848633
+one step time:0.012424468994140625
+one step time:0.012452125549316406
+one step time:0.012440919876098633
+one step time:0.012427330017089844
+one step time:0.012391805648803711
+one step time:0.012400150299072266
+one step time:0.012430429458618164
+one step time:0.012424945831298828
+one step time:0.012451887130737305
+one step time:0.01243448257446289
+INFO 10-30 10:00:35 metrics.py:363] Avg prompt throughput: 7125.3 tokens/s, Avg generation throughput: 96.5 tokens/s, Running: 2 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 10-30 10:00:35 metrics.py:379] Prefix cache hit rate: GPU: 2.77%, CPU: 0.00%
+one step time:0.012421131134033203
+one step time:0.012431144714355469
+one step time:0.012413740158081055
+one step time:0.01242208480834961
+one step time:0.012388944625854492
+one step time:0.012443304061889648
+one step time:0.012419700622558594
+one step time:0.012425661087036133
+one step time:0.012419462203979492
+one step time:0.01239156723022461
+one step time:0.012446403503417969
+one step time:0.012392759323120117
+one step time:0.012342453002929688
+one step time:0.012423992156982422
+one step time:0.012399911880493164
+one step time:0.012412786483764648
+one step time:0.012414693832397461
+one step time:0.012425422668457031
+one step time:0.012380838394165039
+one step time:0.012392759323120117
+one step time:0.012395620346069336
+one step time:0.012433528900146484
+one step time:0.012432336807250977
+one step time:0.01244807243347168
+one step time:0.012486934661865234
+one step time:0.012415647506713867
+one step time:0.01247406005859375
+one step time:0.012459278106689453
+one step time:0.012430191040039062
+one step time:0.012446403503417969
+one step time:0.012401342391967773
+one step time:0.012396097183227539
+one step time:0.012408733367919922
+one step time:0.01239323616027832
+one step time:0.012411117553710938
+one step time:0.012406349182128906
+one step time:0.012413501739501953
+one step time:0.012425422668457031
+one step time:0.012404203414916992
+one step time:0.012434720993041992
+one step time:0.012424468994140625
+one step time:0.012453317642211914
+one step time:0.01251673698425293
+one step time:0.012462854385375977
+one step time:0.012370824813842773
+one step time:0.012440919876098633
+one step time:0.012420177459716797
+one step time:0.01241922378540039
+one step time:0.012533187866210938
+one step time:0.012451887130737305
+one step time:0.012431144714355469
+one step time:0.012437105178833008
+one step time:0.012407541275024414
+one step time:0.012434244155883789
+one step time:0.012649774551391602
+one step time:0.012408971786499023
+one step time:0.012526273727416992
+one step time:0.012552499771118164
+one step time:0.01248478889465332
+one step time:0.012444496154785156
+one step time:0.012408256530761719
+one step time:0.012426376342773438
+one step time:0.012369871139526367
+one step time:0.012432336807250977
+one step time:0.012380838394165039
+one step time:0.012404918670654297
+one step time:0.012477874755859375
+one step time:0.012699127197265625
+one step time:0.012546777725219727
+one step time:0.012446880340576172
+one step time:0.012402057647705078
+one step time:0.012424945831298828
+one step time:0.012439727783203125
+one step time:0.01241922378540039
+one step time:0.012430906295776367
+one step time:0.01241445541381836
+one step time:0.012441635131835938
+one step time:0.012432098388671875
+one step time:0.01242518424987793
+one step time:0.012407779693603516
+one step time:0.012434959411621094
+2 rid:7i0 and rid1:7i0 and rid2:7i1 and id_num_act:1 and num_act:2 and output_len:256
+3 ****application id:7 finish the r0:7i0 for prefill+decode and r1:7i1 and the duration:5.609383821487427 and the token:256 and total_duration:5.609383821487427 and info[rx1].total_token:256 
+0 without_agent, req_id:7i0 and rx0:7i0 and rx1:7i1 and rid:7i0 and init_id:7  and req_num_act:1  and my_marked:{'9i1': True, '10i1': True, '7i0': True} and counter:{'31': 0, '29': 0, '27': 0, '28': 0, '26': 0, '30': 0, '24': 0, '25': 0, '22': 0, '23': 0, '20': 0, '21': 0, '18': 0, '19': 0, '16': 0, '17': 0, '15': 0, '13': 0, '14': 0, '12': 0, '9': 0, '10': 0, '8': 0, '6': 0, '4': 0, '5': 0, '3': 0, '1': 0, '11': 0, '0': 0, '7': 1}
+1 rid:7i1 and rid1:7i0 and rid2:7i1 and req_num_act:2
+one step time:0.0684506893157959
+one step time:0.012749433517456055
+2 rid:2i0 and rid1:2i0 and rid2:2i1 and id_num_act:1 and num_act:2 and output_len:256
+3 ****application id:2 finish the r0:2i0 for prefill+decode and r1:2i1 and the duration:5.685871362686157 and the token:256 and total_duration:5.685871362686157 and info[rx1].total_token:256 
+0 without_agent, req_id:2i0 and rx0:2i0 and rx1:2i1 and rid:2i0 and init_id:2  and req_num_act:1  and my_marked:{'9i1': True, '10i1': True, '2i0': True} and counter:{'31': 0, '29': 0, '27': 0, '28': 0, '26': 0, '30': 0, '24': 0, '25': 0, '22': 0, '23': 0, '20': 0, '21': 0, '18': 0, '19': 0, '16': 0, '17': 0, '15': 0, '13': 0, '14': 0, '12': 0, '9': 0, '10': 0, '8': 0, '6': 0, '4': 0, '5': 0, '3': 0, '1': 0, '11': 0, '0': 0, '7': 1, '2': 1}
+1 rid:2i1 and rid1:2i0 and rid2:2i1 and req_num_act:2
+one step time:0.0675351619720459
+one step time:0.012560129165649414
+one step time:0.01265096664428711
+one step time:0.012435197830200195
+one step time:0.012444019317626953
+one step time:0.012408971786499023
+one step time:0.012495994567871094
+one step time:0.012493371963500977
+one step time:0.012440204620361328
+one step time:0.012438297271728516
+one step time:0.012447834014892578
+one step time:0.012444496154785156
+one step time:0.012459754943847656
+one step time:0.0124969482421875
+one step time:0.012435436248779297
+one step time:0.012456893920898438
+one step time:0.012451171875
+one step time:0.01242208480834961
+one step time:0.012387752532958984
+one step time:0.01240992546081543
+one step time:0.012400627136230469
+one step time:0.01239013671875
+one step time:0.012393474578857422
+one step time:0.012387990951538086
+one step time:0.012440919876098633
+one step time:0.012404203414916992
+one step time:0.012359857559204102
+one step time:0.012408256530761719
+one step time:0.012416362762451172
+one step time:0.012440681457519531
+one step time:0.012447118759155273
+one step time:0.012484550476074219
+one step time:0.012441873550415039
+one step time:0.012439250946044922
+one step time:0.012483596801757812
+one step time:0.01241445541381836
+one step time:0.012407064437866211
+one step time:0.012363910675048828
+one step time:0.012373685836791992
+one step time:0.012398719787597656
+one step time:0.012444257736206055
+one step time:0.01241922378540039
+one step time:0.012440681457519531
+one step time:0.012502193450927734
+one step time:0.012476444244384766
+one step time:0.012471437454223633
+one step time:0.012425661087036133
+one step time:0.012435197830200195
+one step time:0.01244497299194336
+one step time:0.01236867904663086
+one step time:0.012443780899047852
+one step time:0.012434244155883789
+one step time:0.012433767318725586
+one step time:0.012419939041137695
+one step time:0.012399673461914062
+one step time:0.012431621551513672
+one step time:0.012402534484863281
+one step time:0.012381553649902344
+one step time:0.012411117553710938
+one step time:0.012402772903442383
+one step time:0.012408018112182617
+one step time:0.012462377548217773
+one step time:0.012474298477172852
+one step time:0.012452363967895508
+one step time:0.01244664192199707
+one step time:0.012392997741699219
+one step time:0.012394189834594727
+one step time:0.012424945831298828
+one step time:0.012447118759155273
+one step time:0.012427568435668945
+one step time:0.012426614761352539
+one step time:0.012435197830200195
+one step time:0.012410163879394531
+one step time:0.012429475784301758
+one step time:0.012454986572265625
+one step time:0.012414932250976562
+one step time:0.012421131134033203
+one step time:0.012493371963500977
+one step time:0.012425422668457031
+one step time:0.012475013732910156
+one step time:0.012441873550415039
+one step time:0.012430906295776367
+one step time:0.012438297271728516
+one step time:0.012444496154785156
+one step time:0.012400150299072266
+one step time:0.012406349182128906
+one step time:0.012373685836791992
+one step time:0.012418031692504883
+one step time:0.012439489364624023
+one step time:0.012412309646606445
+one step time:0.012421846389770508
+one step time:0.012403488159179688
+one step time:0.01243281364440918
+one step time:0.012488365173339844
+one step time:0.012424230575561523
+one step time:0.012510061264038086
+one step time:0.012438535690307617
+one step time:0.012439489364624023
+one step time:0.012419939041137695
+one step time:0.012423276901245117
+one step time:0.01242518424987793
+one step time:0.01241922378540039
+one step time:0.012545108795166016
+one step time:0.012556791305541992
+one step time:0.012427806854248047
+one step time:0.012459278106689453
+one step time:0.012448549270629883
+one step time:0.012430429458618164
+2 rid:2i1 and rid1:2i0 and rid2:2i1 and id_num_act:2 and num_act:2 and output_len:107
+6 ****application id:2 finish the r0:2i0  and r1:2i1 prefil+decode and the duration:1.40267014503479 and the token:107 and total_duration:7.088541507720947 and info[rx1].total_token:363 
+finished[-1]:{'request_id': '2', 'total_duration': 7.088541507720947, 'total_token': 363} and rid:2i1
+0 without_agent, req_id:2i1 and rx0:2i0 and rx1:2i1 and rid:2i1 and init_id:2  and req_num_act:2  and my_marked:{'9i1': True, '10i1': True, '2i1': True} and counter:{'31': 0, '29': 0, '27': 0, '28': 0, '26': 0, '30': 0, '24': 0, '25': 0, '22': 0, '23': 0, '20': 0, '21': 0, '18': 0, '19': 0, '16': 0, '17': 0, '15': 0, '13': 0, '14': 0, '12': 0, '9': 0, '10': 0, '8': 0, '6': 0, '4': 0, '5': 0, '3': 0, '1': 0, '11': 0, '0': 0, '7': 1, '2': 0}
+one step time:0.012433052062988281
+one step time:0.012351512908935547
+one step time:0.012498855590820312
+one step time:0.012403488159179688
+one step time:0.012364387512207031
+one step time:0.012368202209472656
+one step time:0.01239633560180664
+one step time:0.012422561645507812
+one step time:0.012376546859741211
+one step time:0.012363433837890625
+one step time:0.012373685836791992
+one step time:0.012369394302368164
+one step time:0.012370109558105469
+one step time:0.01235508918762207
+one step time:0.012403249740600586
+one step time:0.012373924255371094
+one step time:0.012483358383178711
+one step time:0.01268911361694336
+one step time:0.012653827667236328
+one step time:0.012676715850830078
+one step time:0.012592077255249023
+one step time:0.012649774551391602
+one step time:0.012455224990844727
+one step time:0.012408971786499023
+one step time:0.012387990951538086
+one step time:0.012379884719848633
+one step time:0.012379169464111328
+one step time:0.01238703727722168
+one step time:0.01239776611328125
+one step time:0.012375593185424805
+one step time:0.012406587600708008
+one step time:0.012393951416015625
+one step time:0.012388467788696289
+one step time:0.012393474578857422
+one step time:0.012382030487060547
+one step time:0.012412071228027344
+one step time:0.012378692626953125
+one step time:0.0123748779296875
+one step time:0.012382268905639648
+one step time:0.012362480163574219
+one step time:0.012379169464111328
+one step time:0.012378454208374023
+one step time:0.012371063232421875
+one step time:0.012389898300170898
+one step time:0.012366056442260742
+one step time:0.01237177848815918
+one step time:0.012378931045532227
+one step time:0.012360811233520508
+one step time:0.012368202209472656
+one step time:0.012356042861938477
+one step time:0.012380361557006836
+one step time:0.012424468994140625
+one step time:0.012400627136230469
+one step time:0.012400150299072266
+one step time:0.012374401092529297
+one step time:0.01237177848815918
+one step time:0.012359619140625
+one step time:0.01238107681274414
+one step time:0.01237630844116211
+one step time:0.012382268905639648
+one step time:0.01237177848815918
+one step time:0.012365102767944336
+one step time:0.012387514114379883
+one step time:0.012387514114379883
+one step time:0.012378931045532227
+one step time:0.012339353561401367
+one step time:0.012367010116577148
+one step time:0.012451648712158203
+one step time:0.012513399124145508
+one step time:0.01259756088256836
+one step time:0.012487649917602539
+one step time:0.012482404708862305
+one step time:0.012441396713256836
+one step time:0.012430667877197266
+one step time:0.01237630844116211
+one step time:0.012390613555908203
+one step time:0.012380123138427734
+one step time:0.012389659881591797
+one step time:0.012373685836791992
+one step time:0.01239013671875
+one step time:0.012391090393066406
+one step time:0.012430429458618164
+one step time:0.012422561645507812
+one step time:0.012439489364624023
+one step time:0.012387514114379883
+one step time:0.012362241744995117
+one step time:0.012383460998535156
+one step time:0.012352466583251953
+one step time:0.012382030487060547
+one step time:0.012382030487060547
+one step time:0.012415409088134766
+one step time:0.012421131134033203
+one step time:0.012394428253173828
+one step time:0.01237630844116211
+one step time:0.012376546859741211
+one step time:0.012370109558105469
+one step time:0.012389183044433594
+one step time:0.012426376342773438
+one step time:0.012410163879394531
+one step time:0.012434005737304688
+one step time:0.012410879135131836
+one step time:0.01244044303894043
+one step time:0.012372732162475586
+one step time:0.012427568435668945
+one step time:0.012469768524169922
+one step time:0.012421369552612305
+one step time:0.012390613555908203
+one step time:0.012388467788696289
+one step time:0.01235508918762207
+one step time:0.012402057647705078
+one step time:0.012389659881591797
+one step time:0.012398719787597656
+one step time:0.012366533279418945
+one step time:0.012391805648803711
+one step time:0.012405872344970703
+one step time:0.012428760528564453
+one step time:0.012364864349365234
+one step time:0.012376785278320312
+one step time:0.012368917465209961
+one step time:0.012380361557006836
+one step time:0.012376546859741211
+one step time:0.01239156723022461
+one step time:0.012351036071777344
+one step time:0.012373924255371094
+one step time:0.012376546859741211
+one step time:0.012345314025878906
+one step time:0.012356758117675781
+one step time:0.012352228164672852
+one step time:0.012368917465209961
+one step time:0.0123748779296875
+one step time:0.012396812438964844
+one step time:0.012427806854248047
+one step time:0.012352228164672852
+one step time:0.012385845184326172
+one step time:0.012386083602905273
+one step time:0.012403488159179688
+one step time:0.012382268905639648
+one step time:0.012364387512207031
+one step time:0.01238870620727539
+one step time:0.012375116348266602
+one step time:0.012401819229125977
+one step time:0.012404441833496094
+one step time:0.01237940788269043
+one step time:0.012383222579956055
+one step time:0.012361288070678711
+one step time:0.012352466583251953
+one step time:0.01259922981262207
+2 rid:7i1 and rid1:7i0 and rid2:7i1 and id_num_act:2 and num_act:2 and output_len:256
+6 ****application id:7 finish the r0:7i0  and r1:7i1 prefil+decode and the duration:3.3128626346588135 and the token:256 and total_duration:8.92224645614624 and info[rx1].total_token:512 
+finished[-1]:{'request_id': '7', 'total_duration': 8.92224645614624, 'total_token': 512} and rid:7i1
+0 without_agent, req_id:7i1 and rx0:7i0 and rx1:7i1 and rid:7i1 and init_id:7  and req_num_act:2  and my_marked:{'9i1': True, '10i1': True, '7i1': True} and counter:{'31': 0, '29': 0, '27': 0, '28': 0, '26': 0, '30': 0, '24': 0, '25': 0, '22': 0, '23': 0, '20': 0, '21': 0, '18': 0, '19': 0, '16': 0, '17': 0, '15': 0, '13': 0, '14': 0, '12': 0, '9': 0, '10': 0, '8': 0, '6': 0, '4': 0, '5': 0, '3': 0, '1': 0, '11': 0, '0': 0, '7': 0, '2': 0}
+len(finished):32
+rid:0 and total_duration:2.836071252822876 and total_token:29 and agent_normalized:0.09779556044216814
+rid:1 and total_duration:2.635340690612793 and total_token:2 and agent_normalized:1.3176703453063965
+rid:10 and total_duration:2.4347572326660156 and total_token:2 and agent_normalized:1.2173786163330078
+rid:11 and total_duration:2.651707649230957 and total_token:21 and agent_normalized:0.12627179282052176
+rid:12 and total_duration:2.3637502193450928 and total_token:2 and agent_normalized:1.1818751096725464
+rid:13 and total_duration:2.289822816848755 and total_token:2 and agent_normalized:1.1449114084243774
+rid:14 and total_duration:2.2928431034088135 and total_token:2 and agent_normalized:1.1464215517044067
+rid:15 and total_duration:2.2202913761138916 and total_token:2 and agent_normalized:1.1101456880569458
+rid:16 and total_duration:2.2201807498931885 and total_token:2 and agent_normalized:1.1100903749465942
+rid:17 and total_duration:2.148573637008667 and total_token:2 and agent_normalized:1.0742868185043335
+rid:18 and total_duration:2.074115037918091 and total_token:2 and agent_normalized:1.0370575189590454
+rid:19 and total_duration:2.0778205394744873 and total_token:2 and agent_normalized:1.0389102697372437
+rid:2 and total_duration:7.088541507720947 and total_token:363 and agent_normalized:0.019527662555705087
+rid:20 and total_duration:2.0033483505249023 and total_token:2 and agent_normalized:1.0016741752624512
+rid:21 and total_duration:2.0066280364990234 and total_token:2 and agent_normalized:1.0033140182495117
+rid:22 and total_duration:1.932826280593872 and total_token:2 and agent_normalized:0.966413140296936
+rid:23 and total_duration:1.9357330799102783 and total_token:2 and agent_normalized:0.9678665399551392
+rid:24 and total_duration:1.8613488674163818 and total_token:2 and agent_normalized:0.9306744337081909
+rid:25 and total_duration:1.8650233745574951 and total_token:2 and agent_normalized:0.9325116872787476
+rid:26 and total_duration:1.7893202304840088 and total_token:2 and agent_normalized:0.8946601152420044
+rid:27 and total_duration:1.7163829803466797 and total_token:2 and agent_normalized:0.8581914901733398
+rid:28 and total_duration:1.646881341934204 and total_token:2 and agent_normalized:0.823440670967102
+rid:29 and total_duration:1.648573398590088 and total_token:2 and agent_normalized:0.824286699295044
+rid:3 and total_duration:2.6252827644348145 and total_token:2 and agent_normalized:1.3126413822174072
+rid:30 and total_duration:1.7238976955413818 and total_token:4 and agent_normalized:0.43097442388534546
+rid:31 and total_duration:1.577749252319336 and total_token:2 and agent_normalized:0.788874626159668
+rid:4 and total_duration:2.57316255569458 and total_token:2 and agent_normalized:1.28658127784729
+rid:5 and total_duration:2.5765907764434814 and total_token:2 and agent_normalized:1.2882953882217407
+rid:6 and total_duration:2.5043606758117676 and total_token:2 and agent_normalized:1.2521803379058838
+rid:7 and total_duration:8.92224645614624 and total_token:512 and agent_normalized:0.017426262609660625
+rid:8 and total_duration:2.508084774017334 and total_token:2 and agent_normalized:1.254042387008667
+rid:9 and total_duration:2.4314675331115723 and total_token:2 and agent_normalized:1.2157337665557861
+without_agent and bs:32 and agent_normalized_latency:0.9272539231344752
+without_agent and bs:32 and avg_jct:2.536960132420063

@@ -1,0 +1,1007 @@
+args.agent_parallelism:False
+without_agent start with agent
+model:/home/xiaoxiang/data/Llama-3.1-8B
+0 vllm/config.py scheduler_config.py __init__ max_num_batched_tokens: None
+3 vllm/config.py scheduler_config.py __init__ max_num_batched_tokens: 1024
+INFO 10-28 16:00:01 config.py:1061] Chunked prefill is enabled with max_num_batched_tokens=1024.
+INFO 10-28 16:00:01 llm_engine.py:238] Initializing an LLM engine (v0.6.3.post2.dev36+g855e0e6f) with config: model='/home/xiaoxiang/data/Llama-3.1-8B', speculative_config=None, tokenizer='/home/xiaoxiang/data/Llama-3.1-8B', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, rope_scaling=None, rope_theta=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=131072, download_dir=None, load_format=LoadFormat.AUTO, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto, quantization_param_path=None, device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='outlines'), observability_config=ObservabilityConfig(otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=0, served_model_name=/home/xiaoxiang/data/Llama-3.1-8B, num_scheduler_steps=1, chunked_prefill_enabled=True multi_step_stream_outputs=True, enable_prefix_caching=True, use_async_output_proc=True, use_cached_outputs=False, mm_processor_kwargs=None)
+INFO 10-28 16:00:04 model_runner.py:1055] Starting to load model /home/xiaoxiang/data/Llama-3.1-8B...
+Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards:  25% Completed | 1/4 [00:01<00:04,  1.51s/it]
+Loading safetensors checkpoint shards:  50% Completed | 2/4 [00:03<00:03,  1.58s/it]
+Loading safetensors checkpoint shards:  75% Completed | 3/4 [00:04<00:01,  1.63s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:05<00:00,  1.19s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:05<00:00,  1.34s/it]
+
+INFO 10-28 16:00:10 model_runner.py:1066] Loading model weights took 14.9888 GB
+INFO 10-28 16:00:11 worker.py:260] Memory profiling results: total_gpu_memory=79.15GiB initial_memory_usage=15.50GiB peak_torch_memory=16.17GiB memory_usage_post_profile=15.53Gib non_torch_memory=0.54GiB kv_cache_size=54.53GiB gpu_memory_utilization=0.90
+INFO 10-28 16:00:11 gpu_executor.py:122] # GPU blocks: 27919, # CPU blocks: 2048
+INFO 10-28 16:00:11 gpu_executor.py:126] Maximum concurrency for 131072 tokens per request: 3.41x
+INFO 10-28 16:00:13 model_runner.py:1394] Capturing the model for CUDA graphs. This may lead to unexpected consequences if the model is not static. To run the model in eager mode, set 'enforce_eager=True' or use '--enforce-eager' in the CLI.
+INFO 10-28 16:00:13 model_runner.py:1398] CUDA graphs can take additional 1~3 GiB memory per GPU. If you are running out of memory, consider decreasing `gpu_memory_utilization` or enforcing eager mode. You can also reduce the `max_num_seqs` as needed to decrease memory usage.
+INFO 10-28 16:00:26 model_runner.py:1522] Graph capturing finished in 13 secs.
+/home/xiaoxiang/vllm/agent/agent.py:630: DeprecationWarning: The keyword arguments {'inputs'} are deprecated and will be removed in a future update. Please use the 'prompt' parameter instead.
+  warm_up(engine)
+/home/xiaoxiang/vllm/agent/agent.py:776: DeprecationWarning: The keyword arguments {'inputs'} are deprecated and will be removed in a future update. Please use the 'prompt' parameter instead.
+  without_agent( args, prompts)
+len(prompt):118
+start warm up
+finish warm up
+without_agent max_token:256 
+1 without agent len(reqs):32
+0 rid:31 and rid1:31i0 and rid2:31i1
+need_r1_react_num:1 and need_r2_react_num:0
+0 rid:30 and rid1:30i0 and rid2:30i1
+need_r1_react_num:1 and need_r2_react_num:0
+0 rid:29 and rid1:29i0 and rid2:29i1
+need_r1_react_num:1 and need_r2_react_num:0
+0 rid:28 and rid1:28i0 and rid2:28i1
+need_r1_react_num:1 and need_r2_react_num:0
+0 rid:27 and rid1:27i0 and rid2:27i1
+need_r1_react_num:1 and need_r2_react_num:0
+0 rid:26 and rid1:26i0 and rid2:26i1
+need_r1_react_num:1 and need_r2_react_num:0
+0 rid:25 and rid1:25i0 and rid2:25i1
+need_r1_react_num:1 and need_r2_react_num:0
+0 rid:24 and rid1:24i0 and rid2:24i1
+need_r1_react_num:1 and need_r2_react_num:0
+0 rid:23 and rid1:23i0 and rid2:23i1
+need_r1_react_num:1 and need_r2_react_num:0
+0 rid:22 and rid1:22i0 and rid2:22i1
+need_r1_react_num:1 and need_r2_react_num:0
+0 rid:21 and rid1:21i0 and rid2:21i1
+need_r1_react_num:1 and need_r2_react_num:0
+0 rid:20 and rid1:20i0 and rid2:20i1
+need_r1_react_num:1 and need_r2_react_num:0
+0 rid:19 and rid1:19i0 and rid2:19i1
+need_r1_react_num:1 and need_r2_react_num:0
+0 rid:18 and rid1:18i0 and rid2:18i1
+need_r1_react_num:1 and need_r2_react_num:0
+0 rid:17 and rid1:17i0 and rid2:17i1
+need_r1_react_num:1 and need_r2_react_num:0
+0 rid:16 and rid1:16i0 and rid2:16i1
+need_r1_react_num:1 and need_r2_react_num:0
+0 rid:15 and rid1:15i0 and rid2:15i1
+need_r1_react_num:1 and need_r2_react_num:0
+0 rid:14 and rid1:14i0 and rid2:14i1
+need_r1_react_num:1 and need_r2_react_num:0
+0 rid:13 and rid1:13i0 and rid2:13i1
+need_r1_react_num:1 and need_r2_react_num:0
+0 rid:12 and rid1:12i0 and rid2:12i1
+need_r1_react_num:1 and need_r2_react_num:0
+0 rid:11 and rid1:11i0 and rid2:11i1
+need_r1_react_num:1 and need_r2_react_num:0
+0 rid:10 and rid1:10i0 and rid2:10i1
+need_r1_react_num:1 and need_r2_react_num:0
+0 rid:9 and rid1:9i0 and rid2:9i1
+need_r1_react_num:1 and need_r2_react_num:0
+0 rid:8 and rid1:8i0 and rid2:8i1
+need_r1_react_num:1 and need_r2_react_num:0
+0 rid:7 and rid1:7i0 and rid2:7i1
+need_r1_react_num:1 and need_r2_react_num:0
+0 rid:6 and rid1:6i0 and rid2:6i1
+need_r1_react_num:1 and need_r2_react_num:0
+0 rid:5 and rid1:5i0 and rid2:5i1
+need_r1_react_num:1 and need_r2_react_num:0
+0 rid:4 and rid1:4i0 and rid2:4i1
+need_r1_react_num:1 and need_r2_react_num:0
+0 rid:3 and rid1:3i0 and rid2:3i1
+need_r1_react_num:1 and need_r2_react_num:0
+0 rid:2 and rid1:2i0 and rid2:2i1
+need_r1_react_num:1 and need_r2_react_num:0
+0 rid:1 and rid1:1i0 and rid2:1i1
+need_r1_react_num:1 and need_r2_react_num:0
+0 rid:0 and rid1:0i0 and rid2:0i1
+need_r1_react_num:1 and need_r2_react_num:0
+one step time:0.03324627876281738
+one step time:0.10974502563476562
+one step time:0.07510161399841309
+0 rid:31i1 and rid1:31i0 and rid2:31i1
+one step time:0.07370495796203613
+0 rid:30i1 and rid1:30i0 and rid2:30i1
+one step time:0.07423567771911621
+0 rid:29i1 and rid1:29i0 and rid2:29i1
+one step time:0.07506871223449707
+one step time:0.0750875473022461
+one step time:0.07523608207702637
+0 rid:28i1 and rid1:28i0 and rid2:28i1
+one step time:0.07508659362792969
+0 rid:27i1 and rid1:27i0 and rid2:27i1
+one step time:0.07488059997558594
+0 rid:26i1 and rid1:26i0 and rid2:26i1
+0 rid:24i1 and rid1:24i0 and rid2:24i1
+one step time:0.0745995044708252
+0 rid:25i1 and rid1:25i0 and rid2:25i1
+one step time:0.07616209983825684
+one step time:0.07523751258850098
+one step time:0.07075214385986328
+0 rid:20i1 and rid1:20i0 and rid2:20i1
+one step time:0.07555389404296875
+one step time:0.07609033584594727
+one step time:0.07486414909362793
+0 rid:17i1 and rid1:17i0 and rid2:17i1
+one step time:0.07518482208251953
+one step time:0.0757744312286377
+one step time:0.07697582244873047
+one step time:0.0764474868774414
+one step time:0.07658529281616211
+one step time:0.07657527923583984
+one step time:0.07746219635009766
+0 rid:11i1 and rid1:11i0 and rid2:11i1
+one step time:0.07680130004882812
+0 rid:10i1 and rid1:10i0 and rid2:10i1
+one step time:0.0761570930480957
+0 rid:9i1 and rid1:9i0 and rid2:9i1
+one step time:0.0750579833984375
+one step time:0.07684445381164551
+one step time:0.07692480087280273
+one step time:0.07715821266174316
+0 rid:6i1 and rid1:6i0 and rid2:6i1
+one step time:0.07667422294616699
+one step time:0.07744646072387695
+one step time:0.07741212844848633
+0 rid:3i1 and rid1:3i0 and rid2:3i1
+one step time:0.07751345634460449
+0 rid:2i1 and rid1:2i0 and rid2:2i1
+one step time:0.07799959182739258
+0 rid:1i1 and rid1:1i0 and rid2:1i1
+one step time:0.07760095596313477
+one step time:0.0779409408569336
+0 rid:31i0 and rid1:31i0 and rid2:31i1
+one step time:0.07796764373779297
+0 rid:30i0 and rid1:30i0 and rid2:30i1
+one step time:0.0784001350402832
+0 rid:7i1 and rid1:7i0 and rid2:7i1
+0 rid:29i0 and rid1:29i0 and rid2:29i1
+one step time:0.07784342765808105
+0 rid:28i0 and rid1:28i0 and rid2:28i1
+one step time:0.07663369178771973
+0 rid:27i0 and rid1:27i0 and rid2:27i1
+one step time:0.07798004150390625
+0 rid:26i0 and rid1:26i0 and rid2:26i1
+one step time:0.07734131813049316
+one step time:0.07792329788208008
+0 rid:24i0 and rid1:24i0 and rid2:24i1
+one step time:0.07721352577209473
+0 rid:25i0 and rid1:25i0 and rid2:25i1
+one step time:0.07842326164245605
+0 rid:20i0 and rid1:20i0 and rid2:20i1
+one step time:0.0786583423614502
+0 rid:17i0 and rid1:17i0 and rid2:17i1
+one step time:0.07863903045654297
+0 rid:11i0 and rid1:11i0 and rid2:11i1
+one step time:0.07820534706115723
+0 rid:10i0 and rid1:10i0 and rid2:10i1
+one step time:0.07766485214233398
+0 rid:9i0 and rid1:9i0 and rid2:9i1
+one step time:0.07594037055969238
+0 rid:6i0 and rid1:6i0 and rid2:6i1
+one step time:0.07734036445617676
+one step time:0.07738733291625977
+0 rid:3i0 and rid1:3i0 and rid2:3i1
+one step time:0.03654766082763672
+0 rid:2i0 and rid1:2i0 and rid2:2i1
+one step time:0.03566741943359375
+0 rid:5i1 and rid1:5i0 and rid2:5i1
+0 rid:1i0 and rid1:1i0 and rid2:1i1
+one step time:0.06019401550292969
+finished[-1]:{'request_id': '31', 'total_duration': 4.391969203948975, 'total_token': 3} and rid:31i0
+one step time:0.04498600959777832
+finished[-1]:{'request_id': '30', 'total_duration': 4.433242321014404, 'total_token': 3} and rid:30i0
+one step time:0.035230159759521484
+0 rid:7i0 and rid1:7i0 and rid2:7i1
+one step time:0.035134077072143555
+finished[-1]:{'request_id': '29', 'total_duration': 4.500892162322998, 'total_token': 3} and rid:29i0
+one step time:0.038938283920288086
+finished[-1]:{'request_id': '28', 'total_duration': 4.538625478744507, 'total_token': 5} and rid:28i0
+one step time:0.03541445732116699
+finished[-1]:{'request_id': '27', 'total_duration': 4.570579767227173, 'total_token': 5} and rid:27i0
+one step time:0.03468823432922363
+finished[-1]:{'request_id': '26', 'total_duration': 4.602118968963623, 'total_token': 5} and rid:26i0
+INFO 10-28 16:00:32 metrics.py:363] Avg prompt throughput: 12436.1 tokens/s, Avg generation throughput: 134.7 tokens/s, Running: 15 reqs, Swapped: 0 reqs, Pending: 10 reqs, GPU KV cache usage: 3.7%, CPU KV cache usage: 0.0%.
+INFO 10-28 16:00:32 metrics.py:379] Prefix cache hit rate: GPU: 16.55%, CPU: 0.00%
+one step time:0.035865068435668945
+finished[-1]:{'request_id': '24', 'total_duration': 4.629366874694824, 'total_token': 3} and rid:24i0
+one step time:0.03506326675415039
+finished[-1]:{'request_id': '25', 'total_duration': 4.670174598693848, 'total_token': 5} and rid:25i0
+one step time:0.03396940231323242
+one step time:0.03626418113708496
+finished[-1]:{'request_id': '20', 'total_duration': 4.725840330123901, 'total_token': 3} and rid:20i0
+one step time:0.039691925048828125
+finished[-1]:{'request_id': '17', 'total_duration': 4.756619930267334, 'total_token': 3} and rid:17i0
+one step time:0.03854966163635254
+finished[-1]:{'request_id': '11', 'total_duration': 4.776129245758057, 'total_token': 3} and rid:11i0
+one step time:0.03506350517272949
+finished[-1]:{'request_id': '10', 'total_duration': 4.808138847351074, 'total_token': 3} and rid:10i0
+one step time:0.034513235092163086
+finished[-1]:{'request_id': '9', 'total_duration': 4.839838027954102, 'total_token': 3} and rid:9i0
+one step time:0.034912824630737305
+finished[-1]:{'request_id': '6', 'total_duration': 4.86613130569458, 'total_token': 3} and rid:6i0
+one step time:0.03620123863220215
+finished[-1]:{'request_id': '3', 'total_duration': 4.893438100814819, 'total_token': 3} and rid:3i0
+one step time:0.07492947578430176
+finished[-1]:{'request_id': '2', 'total_duration': 4.965738296508789, 'total_token': 3} and rid:2i0
+one step time:0.03344917297363281
+one step time:0.035343170166015625
+finished[-1]:{'request_id': '1', 'total_duration': 5.028273820877075, 'total_token': 3} and rid:1i0
+one step time:0.032941341400146484
+one step time:0.015223979949951172
+finished[-1]:{'request_id': '7', 'total_duration': 5.0965211391448975, 'total_token': 13} and rid:7i0
+one step time:0.014883041381835938
+one step time:0.01486515998840332
+one step time:0.014839649200439453
+one step time:0.014831304550170898
+one step time:0.01479196548461914
+one step time:0.014890193939208984
+one step time:0.014770269393920898
+one step time:0.01486515998840332
+one step time:0.014797449111938477
+one step time:0.014871597290039062
+one step time:0.014854669570922852
+one step time:0.014827251434326172
+one step time:0.01487588882446289
+one step time:0.014844655990600586
+one step time:0.014812707901000977
+one step time:0.014799118041992188
+one step time:0.014755487442016602
+one step time:0.014789581298828125
+one step time:0.014768123626708984
+one step time:0.01482534408569336
+one step time:0.014851093292236328
+one step time:0.014811992645263672
+one step time:0.01485443115234375
+one step time:0.014806032180786133
+one step time:0.014890432357788086
+one step time:0.014858245849609375
+one step time:0.014942646026611328
+one step time:0.014870166778564453
+one step time:0.014991044998168945
+one step time:0.014935731887817383
+one step time:0.014907121658325195
+one step time:0.014878273010253906
+one step time:0.01488947868347168
+one step time:0.01488947868347168
+one step time:0.014907121658325195
+one step time:0.014853715896606445
+one step time:0.014867544174194336
+one step time:0.014924764633178711
+one step time:0.014935970306396484
+one step time:0.014896154403686523
+one step time:0.014911174774169922
+one step time:0.014969110488891602
+one step time:0.014974117279052734
+one step time:0.014955282211303711
+one step time:0.01493692398071289
+one step time:0.015010356903076172
+one step time:0.01499795913696289
+one step time:0.01501607894897461
+one step time:0.014950275421142578
+one step time:0.014989614486694336
+one step time:0.01605677604675293
+one step time:0.015023231506347656
+one step time:0.01493978500366211
+one step time:0.014948606491088867
+one step time:0.014917373657226562
+one step time:0.014954328536987305
+one step time:0.014966964721679688
+one step time:0.014993429183959961
+one step time:0.01498103141784668
+one step time:0.015000581741333008
+one step time:0.014984607696533203
+one step time:0.01504969596862793
+one step time:0.014987468719482422
+one step time:0.014950275421142578
+one step time:0.014904975891113281
+one step time:0.014942407608032227
+one step time:0.014962196350097656
+one step time:0.014970779418945312
+one step time:0.014944314956665039
+one step time:0.014956951141357422
+one step time:0.014948129653930664
+one step time:0.014926671981811523
+one step time:0.014955759048461914
+one step time:0.015053749084472656
+one step time:0.0150299072265625
+one step time:0.014931917190551758
+one step time:0.014978170394897461
+one step time:0.015016317367553711
+one step time:0.015010833740234375
+one step time:0.014937639236450195
+one step time:0.014950037002563477
+one step time:0.0150146484375
+one step time:0.015098333358764648
+one step time:0.014970064163208008
+one step time:0.01504659652709961
+one step time:0.015029430389404297
+one step time:0.015027046203613281
+one step time:0.014983177185058594
+one step time:0.015082836151123047
+one step time:0.015033483505249023
+one step time:0.015102386474609375
+one step time:0.015020370483398438
+one step time:0.015513181686401367
+one step time:0.015308856964111328
+one step time:0.015334367752075195
+one step time:0.015233755111694336
+one step time:0.015013933181762695
+one step time:0.015019416809082031
+one step time:0.01506495475769043
+one step time:0.014975309371948242
+one step time:0.015040397644042969
+one step time:0.0150299072265625
+one step time:0.015015363693237305
+one step time:0.014999866485595703
+one step time:0.015110492706298828
+one step time:0.015404224395751953
+one step time:0.015104293823242188
+one step time:0.015042543411254883
+one step time:0.015149593353271484
+one step time:0.015388011932373047
+one step time:0.015320301055908203
+one step time:0.015001773834228516
+one step time:0.01502847671508789
+one step time:0.014993906021118164
+one step time:0.015071392059326172
+one step time:0.015038251876831055
+one step time:0.015053033828735352
+one step time:0.015043973922729492
+one step time:0.015039682388305664
+one step time:0.014993906021118164
+one step time:0.015099287033081055
+one step time:0.015059471130371094
+one step time:0.015144586563110352
+one step time:0.01505279541015625
+one step time:0.015099763870239258
+one step time:0.015069723129272461
+one step time:0.015116453170776367
+one step time:0.01502847671508789
+one step time:0.015046834945678711
+one step time:0.015033483505249023
+one step time:0.015079021453857422
+one step time:0.015030622482299805
+one step time:0.015082120895385742
+one step time:0.015076398849487305
+one step time:0.015052556991577148
+one step time:0.015131711959838867
+one step time:0.015114545822143555
+one step time:0.015111923217773438
+one step time:0.015149593353271484
+one step time:0.015083789825439453
+one step time:0.01508021354675293
+one step time:0.015122652053833008
+one step time:0.015049219131469727
+one step time:0.015011072158813477
+one step time:0.015045166015625
+one step time:0.015035152435302734
+one step time:0.015071630477905273
+one step time:0.015034675598144531
+one step time:0.015053272247314453
+one step time:0.015079975128173828
+one step time:0.015009880065917969
+one step time:0.015048503875732422
+one step time:0.015087604522705078
+one step time:0.015115976333618164
+one step time:0.015157938003540039
+one step time:0.015091657638549805
+one step time:0.015072822570800781
+one step time:0.015127897262573242
+one step time:0.015119552612304688
+one step time:0.015050649642944336
+one step time:0.01503300666809082
+one step time:0.015065908432006836
+one step time:0.015059947967529297
+one step time:0.015018463134765625
+one step time:0.015068531036376953
+one step time:0.015067100524902344
+one step time:0.015045404434204102
+one step time:0.015052556991577148
+one step time:0.015096902847290039
+one step time:0.015103816986083984
+one step time:0.015205860137939453
+one step time:0.015090227127075195
+one step time:0.015089988708496094
+one step time:0.015118598937988281
+one step time:0.015065431594848633
+one step time:0.015091657638549805
+one step time:0.018210411071777344
+one step time:0.016188621520996094
+one step time:0.015131235122680664
+one step time:0.015144824981689453
+one step time:0.015147686004638672
+one step time:0.015121936798095703
+one step time:0.015077829360961914
+one step time:0.015079021453857422
+one step time:0.015136003494262695
+one step time:0.015136241912841797
+one step time:0.015181541442871094
+one step time:0.015126705169677734
+one step time:0.015140295028686523
+0 rid:23i1 and rid1:23i0 and rid2:23i1
+one step time:0.076873779296875
+0 rid:22i1 and rid1:22i0 and rid2:22i1
+one step time:0.07806158065795898
+0 rid:21i1 and rid1:21i0 and rid2:21i1
+one step time:0.07765936851501465
+one step time:0.07670712471008301
+0 rid:19i1 and rid1:19i0 and rid2:19i1
+one step time:0.07766842842102051
+0 rid:18i1 and rid1:18i0 and rid2:18i1
+one step time:0.07401275634765625
+one step time:0.060718536376953125
+one step time:0.015425443649291992
+0 rid:16i1 and rid1:16i0 and rid2:16i1
+one step time:0.07696986198425293
+0 rid:15i1 and rid1:15i0 and rid2:15i1
+one step time:0.0783393383026123
+0 rid:14i1 and rid1:14i0 and rid2:14i1
+one step time:0.07839512825012207
+0 rid:13i1 and rid1:13i0 and rid2:13i1
+one step time:0.07703661918640137
+0 rid:12i1 and rid1:12i0 and rid2:12i1
+one step time:0.07864570617675781
+one step time:0.07865333557128906
+one step time:0.0716257095336914
+one step time:0.015459537506103516
+0 rid:8i1 and rid1:8i0 and rid2:8i1
+one step time:0.07641839981079102
+one step time:0.035868167877197266
+one step time:0.015253305435180664
+one step time:0.015197992324829102
+one step time:0.015163898468017578
+0 rid:4i1 and rid1:4i0 and rid2:4i1
+one step time:0.0762944221496582
+one step time:0.035819053649902344
+one step time:0.015256881713867188
+one step time:0.01528167724609375
+0 rid:0i1 and rid1:0i0 and rid2:0i1
+one step time:0.07616043090820312
+one step time:0.036066532135009766
+one step time:0.015391349792480469
+one step time:0.015207767486572266
+one step time:0.015178203582763672
+one step time:0.015125751495361328
+one step time:0.015208959579467773
+INFO 10-28 16:00:37 metrics.py:363] Avg prompt throughput: 6134.9 tokens/s, Avg generation throughput: 654.9 tokens/s, Running: 14 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 4.2%, CPU KV cache usage: 0.0%.
+INFO 10-28 16:00:37 metrics.py:379] Prefix cache hit rate: GPU: 22.65%, CPU: 0.00%
+one step time:0.015234231948852539
+one step time:0.015160560607910156
+one step time:0.015126228332519531
+one step time:0.015118837356567383
+one step time:0.015147924423217773
+one step time:0.01524806022644043
+one step time:0.015349864959716797
+one step time:0.015127897262573242
+one step time:0.015146017074584961
+one step time:0.015172481536865234
+one step time:0.015217065811157227
+one step time:0.015124320983886719
+one step time:0.015160322189331055
+one step time:0.015187740325927734
+one step time:0.015111923217773438
+one step time:0.015139102935791016
+one step time:0.015150070190429688
+one step time:0.015113592147827148
+one step time:0.015118598937988281
+one step time:0.015099763870239258
+one step time:0.01521158218383789
+one step time:0.015137434005737305
+one step time:0.015194416046142578
+one step time:0.01516580581665039
+one step time:0.015238046646118164
+one step time:0.015157699584960938
+one step time:0.015161991119384766
+one step time:0.015151739120483398
+one step time:0.015105962753295898
+one step time:0.015152454376220703
+one step time:0.015151500701904297
+0 rid:5i0 and rid1:5i0 and rid2:5i1
+one step time:0.03711056709289551
+one step time:0.03532552719116211
+one step time:0.01541757583618164
+one step time:0.015161752700805664
+one step time:0.015150070190429688
+one step time:0.015192270278930664
+one step time:0.015245199203491211
+one step time:0.015248537063598633
+one step time:0.015242815017700195
+one step time:0.015232563018798828
+one step time:0.01530313491821289
+one step time:0.015176773071289062
+one step time:0.01526188850402832
+one step time:0.015169143676757812
+one step time:0.015234231948852539
+one step time:0.015163898468017578
+one step time:0.015276670455932617
+one step time:0.015177011489868164
+one step time:0.015260457992553711
+one step time:0.015211105346679688
+one step time:0.015202522277832031
+one step time:0.015236377716064453
+one step time:0.015290498733520508
+one step time:0.015314579010009766
+one step time:0.015208721160888672
+one step time:0.015275955200195312
+one step time:0.015223503112792969
+one step time:0.015244722366333008
+one step time:0.015250444412231445
+one step time:0.01514577865600586
+one step time:0.015135526657104492
+one step time:0.015167474746704102
+one step time:0.015254020690917969
+one step time:0.015166282653808594
+one step time:0.015201091766357422
+one step time:0.015157699584960938
+one step time:0.015210390090942383
+one step time:0.015226602554321289
+one step time:0.015224695205688477
+one step time:0.015277624130249023
+one step time:0.015202760696411133
+one step time:0.015237569808959961
+one step time:0.015291452407836914
+one step time:0.015293598175048828
+one step time:0.015232563018798828
+one step time:0.015225887298583984
+one step time:0.015230178833007812
+one step time:0.015255212783813477
+one step time:0.015273332595825195
+one step time:0.01527261734008789
+one step time:0.015247106552124023
+one step time:0.015183210372924805
+one step time:0.015224695205688477
+one step time:0.015277862548828125
+one step time:0.015303850173950195
+one step time:0.015305757522583008
+one step time:0.015264034271240234
+one step time:0.015328168869018555
+one step time:0.01529836654663086
+one step time:0.015310525894165039
+one step time:0.015270233154296875
+one step time:0.015250444412231445
+one step time:0.015172004699707031
+one step time:0.015233755111694336
+one step time:0.015233278274536133
+one step time:0.015326738357543945
+one step time:0.015272378921508789
+one step time:0.015283823013305664
+one step time:0.015285253524780273
+one step time:0.01526784896850586
+one step time:0.015328645706176758
+one step time:0.015348434448242188
+one step time:0.015230655670166016
+one step time:0.015306949615478516
+one step time:0.01529836654663086
+one step time:0.015329599380493164
+one step time:0.015259265899658203
+one step time:0.015298843383789062
+one step time:0.015278339385986328
+one step time:0.015258312225341797
+one step time:0.015262603759765625
+one step time:0.015285968780517578
+one step time:0.015293359756469727
+one step time:0.015260934829711914
+one step time:0.015228748321533203
+one step time:0.0152740478515625
+one step time:0.015297889709472656
+one step time:0.015363454818725586
+one step time:0.015330314636230469
+one step time:0.015294075012207031
+one step time:0.0153350830078125
+one step time:0.015236616134643555
+one step time:0.015291690826416016
+one step time:0.015275239944458008
+one step time:0.015314340591430664
+one step time:0.015201568603515625
+one step time:0.015529394149780273
+one step time:0.015372276306152344
+one step time:0.015240669250488281
+one step time:0.015229463577270508
+one step time:0.015297651290893555
+one step time:0.015281915664672852
+one step time:0.015327692031860352
+one step time:0.015317678451538086
+one step time:0.015301704406738281
+one step time:0.015293359756469727
+one step time:0.01534581184387207
+one step time:0.015319585800170898
+one step time:0.01526188850402832
+one step time:0.015206336975097656
+one step time:0.015320062637329102
+one step time:0.015300273895263672
+one step time:0.015324592590332031
+0 rid:19i0 and rid1:19i0 and rid2:19i1
+one step time:0.03679013252258301
+one step time:0.03480720520019531
+one step time:0.01532888412475586
+finished[-1]:{'request_id': '19', 'total_duration': 11.94810938835144, 'total_token': 427} and rid:19i0
+one step time:0.015121698379516602
+one step time:0.01513051986694336
+one step time:0.015179634094238281
+one step time:0.01514887809753418
+one step time:0.015080928802490234
+one step time:0.015160799026489258
+one step time:0.015129566192626953
+one step time:0.015135049819946289
+one step time:0.015120744705200195
+one step time:0.015087604522705078
+one step time:0.015101194381713867
+one step time:0.015120506286621094
+one step time:0.01511383056640625
+one step time:0.015123844146728516
+one step time:0.015154123306274414
+one step time:0.01512908935546875
+one step time:0.015129327774047852
+one step time:0.015181303024291992
+one step time:0.01516413688659668
+one step time:0.015238761901855469
+one step time:0.01511383056640625
+one step time:0.015233516693115234
+one step time:0.015142440795898438
+one step time:0.015131235122680664
+one step time:0.01515817642211914
+one step time:0.015148401260375977
+one step time:0.015081405639648438
+one step time:0.015112638473510742
+one step time:0.015157938003540039
+one step time:0.015099763870239258
+one step time:0.015177249908447266
+one step time:0.015067100524902344
+one step time:0.01517796516418457
+one step time:0.015171289443969727
+one step time:0.01518559455871582
+one step time:0.015234947204589844
+one step time:0.015109777450561523
+one step time:0.015231132507324219
+one step time:0.015242815017700195
+one step time:0.015193462371826172
+one step time:0.015232563018798828
+one step time:0.015178203582763672
+one step time:0.015215635299682617
+one step time:0.015190839767456055
+one step time:0.015287399291992188
+one step time:0.015224695205688477
+one step time:0.015340089797973633
+one step time:0.015178203582763672
+one step time:0.015239715576171875
+one step time:0.015214204788208008
+one step time:0.015339374542236328
+one step time:0.015571832656860352
+one step time:0.015559673309326172
+one step time:0.015268802642822266
+one step time:0.01530313491821289
+one step time:0.015212535858154297
+one step time:0.015260934829711914
+one step time:0.015215396881103516
+one step time:0.015186548233032227
+one step time:0.015209674835205078
+one step time:0.015210628509521484
+one step time:0.015233039855957031
+one step time:0.01526951789855957
+one step time:0.015265941619873047
+one step time:0.015257596969604492
+one step time:0.015221118927001953
+one step time:0.015309572219848633
+one step time:0.015326261520385742
+one step time:0.015273571014404297
+one step time:0.015253782272338867
+one step time:0.015233516693115234
+one step time:0.015189409255981445
+one step time:0.015267610549926758
+one step time:0.015247344970703125
+one step time:0.015244483947753906
+one step time:0.015194416046142578
+one step time:0.015269041061401367
+one step time:0.015252351760864258
+one step time:0.015366792678833008
+0 rid:23i0 and rid1:23i0 and rid2:23i1
+one step time:0.03791546821594238
+0 rid:22i0 and rid1:22i0 and rid2:22i1
+one step time:0.037384748458862305
+0 rid:21i0 and rid1:21i0 and rid2:21i1
+one step time:0.03518390655517578
+one step time:0.035798072814941406
+one step time:0.03533220291137695
+0 rid:18i0 and rid1:18i0 and rid2:18i1
+one step time:0.03586983680725098
+one step time:0.03499007225036621
+one step time:0.015459299087524414
+0 rid:16i0 and rid1:16i0 and rid2:16i1
+one step time:0.03630185127258301
+0 rid:15i0 and rid1:15i0 and rid2:15i1
+one step time:0.03596758842468262
+one step time:0.04023623466491699
+0 rid:14i0 and rid1:14i0 and rid2:14i1
+one step time:0.03719830513000488
+0 rid:13i0 and rid1:13i0 and rid2:13i1
+one step time:0.037568092346191406
+0 rid:12i0 and rid1:12i0 and rid2:12i1
+one step time:0.03538966178894043
+one step time:0.036626577377319336
+one step time:0.03500723838806152
+0 rid:8i0 and rid1:8i0 and rid2:8i1
+one step time:0.03513741493225098
+one step time:0.0348515510559082
+one step time:0.015513420104980469
+one step time:0.01527857780456543
+one step time:0.015273809432983398
+0 rid:4i0 and rid1:4i0 and rid2:4i1
+one step time:0.035439252853393555
+one step time:0.03445839881896973
+one step time:0.015360355377197266
+one step time:0.015343666076660156
+0 rid:0i0 and rid1:0i0 and rid2:0i1
+one step time:0.035309553146362305
+one step time:0.04107356071472168
+one step time:0.01532435417175293
+one step time:0.015258550643920898
+one step time:0.015290260314941406
+one step time:0.015378952026367188
+one step time:0.015340566635131836
+one step time:0.015348672866821289
+one step time:0.015390157699584961
+one step time:0.015357732772827148
+one step time:0.015340328216552734
+one step time:0.01530766487121582
+one step time:0.015347957611083984
+one step time:0.015340328216552734
+one step time:0.015358209609985352
+one step time:0.015284299850463867
+one step time:0.015357255935668945
+one step time:0.015410423278808594
+one step time:0.01533651351928711
+one step time:0.015352010726928711
+one step time:0.015301227569580078
+one step time:0.015339851379394531
+one step time:0.015341520309448242
+one step time:0.015322446823120117
+one step time:0.015341758728027344
+one step time:0.015375614166259766
+one step time:0.015358209609985352
+one step time:0.015302419662475586
+one step time:0.01531672477722168
+one step time:0.015297889709472656
+one step time:0.015276670455932617
+one step time:0.015403509140014648
+one step time:0.01541280746459961
+one step time:0.015395402908325195
+one step time:0.015328168869018555
+one step time:0.015343904495239258
+one step time:0.015317201614379883
+one step time:0.015479564666748047
+finished[-1]:{'request_id': '5', 'total_duration': 14.568225860595703, 'total_token': 537} and rid:5i0
+one step time:0.015235662460327148
+INFO 10-28 16:00:42 metrics.py:363] Avg prompt throughput: 4381.7 tokens/s, Avg generation throughput: 774.2 tokens/s, Running: 12 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 4.4%, CPU KV cache usage: 0.0%.
+INFO 10-28 16:00:42 metrics.py:379] Prefix cache hit rate: GPU: 34.38%, CPU: 0.00%
+one step time:0.015641450881958008
+one step time:0.01530599594116211
+one step time:0.015310287475585938
+one step time:0.015171289443969727
+one step time:0.015239477157592773
+one step time:0.015234708786010742
+one step time:0.015188455581665039
+one step time:0.015136241912841797
+one step time:0.015197515487670898
+one step time:0.01515507698059082
+one step time:0.015233278274536133
+one step time:0.015131235122680664
+one step time:0.015209436416625977
+one step time:0.015181779861450195
+one step time:0.01526021957397461
+one step time:0.015245437622070312
+one step time:0.015238761901855469
+one step time:0.015212774276733398
+one step time:0.015223264694213867
+one step time:0.015172243118286133
+one step time:0.015210390090942383
+one step time:0.015153169631958008
+one step time:0.015343189239501953
+one step time:0.015153646469116211
+one step time:0.015198469161987305
+one step time:0.015259981155395508
+one step time:0.015254974365234375
+one step time:0.01519155502319336
+one step time:0.015196561813354492
+one step time:0.015177011489868164
+one step time:0.015251874923706055
+one step time:0.015249252319335938
+one step time:0.015249252319335938
+one step time:0.015294075012207031
+one step time:0.0152435302734375
+one step time:0.015241861343383789
+one step time:0.015213727951049805
+one step time:0.01523447036743164
+one step time:0.015158414840698242
+one step time:0.015263795852661133
+one step time:0.015199661254882812
+one step time:0.01523447036743164
+one step time:0.015235424041748047
+one step time:0.015254497528076172
+one step time:0.015316247940063477
+one step time:0.015293598175048828
+one step time:0.01528310775756836
+one step time:0.015317678451538086
+one step time:0.015281438827514648
+one step time:0.015265941619873047
+one step time:0.015241384506225586
+one step time:0.015165328979492188
+one step time:0.015516281127929688
+one step time:0.015848159790039062
+one step time:0.015265941619873047
+one step time:0.0152740478515625
+one step time:0.015254497528076172
+one step time:0.015232563018798828
+one step time:0.015300989151000977
+one step time:0.015239238739013672
+one step time:0.015234947204589844
+one step time:0.01522970199584961
+one step time:0.015257596969604492
+one step time:0.015243053436279297
+one step time:0.01532435417175293
+one step time:0.015289068222045898
+one step time:0.015407800674438477
+one step time:0.01526784896850586
+one step time:0.015274524688720703
+one step time:0.015265226364135742
+one step time:0.015286922454833984
+one step time:0.015307426452636719
+one step time:0.015257120132446289
+one step time:0.015302658081054688
+one step time:0.015357017517089844
+one step time:0.015254735946655273
+one step time:0.015246868133544922
+one step time:0.017246007919311523
+one step time:0.015343427658081055
+one step time:0.015384435653686523
+one step time:0.01536107063293457
+one step time:0.015282392501831055
+one step time:0.015286684036254883
+one step time:0.015314102172851562
+one step time:0.015287399291992188
+one step time:0.015250682830810547
+one step time:0.01526951789855957
+one step time:0.015305757522583008
+one step time:0.015377521514892578
+one step time:0.015341520309448242
+one step time:0.015329122543334961
+one step time:0.015290260314941406
+one step time:0.015274763107299805
+one step time:0.015317678451538086
+one step time:0.015331506729125977
+one step time:0.015378713607788086
+one step time:0.015338659286499023
+one step time:0.015359163284301758
+one step time:0.015367746353149414
+one step time:0.01536417007446289
+one step time:0.015289545059204102
+one step time:0.015312671661376953
+one step time:0.015300512313842773
+one step time:0.015317440032958984
+one step time:0.015250444412231445
+one step time:0.015300273895263672
+one step time:0.01532745361328125
+one step time:0.015317678451538086
+one step time:0.015332221984863281
+one step time:0.015256881713867188
+one step time:0.015464067459106445
+one step time:0.015335321426391602
+one step time:0.015368461608886719
+one step time:0.015351533889770508
+one step time:0.01544642448425293
+one step time:0.015329122543334961
+one step time:0.015328407287597656
+one step time:0.015238761901855469
+one step time:0.015323400497436523
+one step time:0.015279531478881836
+one step time:0.015331745147705078
+one step time:0.015411853790283203
+one step time:0.015334129333496094
+one step time:0.015241622924804688
+one step time:0.015290260314941406
+one step time:0.01529240608215332
+one step time:0.015424489974975586
+one step time:0.015388250350952148
+one step time:0.015417337417602539
+one step time:0.015379667282104492
+one step time:0.015383243560791016
+one step time:0.015282630920410156
+one step time:0.0154266357421875
+one step time:0.015300989151000977
+one step time:0.01532745361328125
+one step time:0.015592336654663086
+one step time:0.015310287475585938
+one step time:0.015372276306152344
+one step time:0.015408992767333984
+one step time:0.015342950820922852
+one step time:0.015346527099609375
+one step time:0.015388727188110352
+one step time:0.015358209609985352
+one step time:0.01551365852355957
+one step time:0.015380620956420898
+one step time:0.015358209609985352
+one step time:0.015472412109375
+one step time:0.015329837799072266
+one step time:0.015323162078857422
+one step time:0.015334844589233398
+one step time:0.01534581184387207
+one step time:0.015297412872314453
+one step time:0.015325307846069336
+one step time:0.015361309051513672
+one step time:0.015532970428466797
+one step time:0.015301942825317383
+one step time:0.015388727188110352
+one step time:0.015277385711669922
+one step time:0.01539301872253418
+one step time:0.015405416488647461
+one step time:0.015439748764038086
+one step time:0.015385866165161133
+one step time:0.015389442443847656
+one step time:0.015367269515991211
+one step time:0.01536417007446289
+one step time:0.015535354614257812
+one step time:0.01538848876953125
+one step time:0.015373706817626953
+one step time:0.015334129333496094
+one step time:0.015397787094116211
+one step time:0.015448570251464844
+one step time:0.015392780303955078
+one step time:0.01538538932800293
+one step time:0.015422821044921875
+one step time:0.015496015548706055
+one step time:0.015424966812133789
+one step time:0.015512943267822266
+one step time:0.015420913696289062
+one step time:0.015424489974975586
+one step time:0.015426874160766602
+one step time:0.015380382537841797
+one step time:0.015385627746582031
+one step time:0.015303373336791992
+one step time:0.015395641326904297
+one step time:0.015359640121459961
+one step time:0.015376567840576172
+one step time:0.01545572280883789
+one step time:0.015464067459106445
+one step time:0.01533198356628418
+one step time:0.015385866165161133
+one step time:0.015423059463500977
+one step time:0.015430688858032227
+one step time:0.01579451560974121
+one step time:0.015708446502685547
+finished[-1]:{'request_id': '23', 'total_duration': 17.61564826965332, 'total_token': 768} and rid:23i0
+one step time:0.01541280746459961
+one step time:0.015557527542114258
+finished[-1]:{'request_id': '22', 'total_duration': 17.643751859664917, 'total_token': 768} and rid:22i0
+one step time:0.014958620071411133
+finished[-1]:{'request_id': '21', 'total_duration': 17.65587878227234, 'total_token': 768} and rid:21i0
+one step time:0.014857292175292969
+one step time:0.014769792556762695
+finished[-1]:{'request_id': '18', 'total_duration': 17.676085710525513, 'total_token': 768} and rid:18i0
+one step time:0.014239788055419922
+one step time:0.014386415481567383
+one step time:0.014149188995361328
+finished[-1]:{'request_id': '16', 'total_duration': 17.712719917297363, 'total_token': 768} and rid:16i0
+one step time:0.01395273208618164
+one step time:0.014299631118774414
+finished[-1]:{'request_id': '15', 'total_duration': 17.737534999847412, 'total_token': 768} and rid:15i0
+one step time:0.013660669326782227
+finished[-1]:{'request_id': '14', 'total_duration': 17.748339414596558, 'total_token': 768} and rid:14i0
+one step time:0.013880491256713867
+one step time:0.01381373405456543
+finished[-1]:{'request_id': '13', 'total_duration': 17.772932767868042, 'total_token': 768} and rid:13i0
+one step time:0.013139724731445312
+one step time:0.013362646102905273
+finished[-1]:{'request_id': '12', 'total_duration': 17.796608209609985, 'total_token': 768} and rid:12i0
+one step time:0.01295924186706543
+finished[-1]:{'request_id': '8', 'total_duration': 17.797131776809692, 'total_token': 768} and rid:8i0
+one step time:0.012979507446289062
+one step time:0.012917757034301758
+one step time:0.012598037719726562
+one step time:0.012642860412597656
+one step time:0.012588024139404297
+finished[-1]:{'request_id': '4', 'total_duration': 17.849758863449097, 'total_token': 768} and rid:4i0
+one step time:0.01248621940612793
+one step time:0.012434959411621094
+one step time:0.012420654296875
+one step time:0.012827396392822266
+finished[-1]:{'request_id': '0', 'total_duration': 17.888418197631836, 'total_token': 768} and rid:0i0
+len(finished):32
+batch:32 and normalized_latency:0.7793498923358498
+batch:32 and avg e2e latency:10.140774451196194
