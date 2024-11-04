@@ -209,7 +209,7 @@ def agentb(react_num, reactB, comm_args, args):
                         waiting_req.pop(rid)
             else:
                 if req_type == REQ_TYPE.Prefill_DECODE:
-                    if output_text_len % agent_prefill_token == 0 and output_text != '':
+                    if output_text_len != 0 and output_text_len % agent_prefill_token == 0 and output_text != '':
                         print(f"11 agentB rid:{rid} is not finished prefill+decode and generate {output_text_len} tokens")
                         send_a_data = AgentBData(rid, output_text, output_text_len) 
                         send_a_data.finished = False #this llm call is not done  

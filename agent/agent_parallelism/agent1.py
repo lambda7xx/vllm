@@ -284,7 +284,7 @@ def agentA(react_num, reactA, comm_args, args):
                     #agent_a_send_b_data = AgentAData(rid, prompt, output_text)
                     if req_type == REQ_TYPE.Prefill_DECODE:
                         info[rid].send_time = now
-                        send_data[rid] = AgentAData(rid, output_text)
+                        send_data[rid] = AgentAData(rid, output_text, output_text_len)
                         send_data[rid].finished = True
                         info[rid].prompt += output_text #update the prompt, so that the next time it will use the updated prompt
                         #start to do its agent prefill
@@ -302,8 +302,8 @@ def agentA(react_num, reactA, comm_args, args):
                 output_text_len = len(request_output.outputs[0].token_ids)
                 output_text = request_output.outputs[0].text
                 req_type = info[rid].req_type
-                if output_text_len % agent_prefill_tokens == 0 and req_type == REQ_TYPE.Prefill_DECODE:
-                    agent_a_send_b_data = AgentAData(rid,output_text)
+                if output_text_len != 0 and output_text_len % agent_prefill_tokens == 0 and req_type == REQ_TYPE.Prefill_DECODE:
+                    agent_a_send_b_data = AgentAData(rid,output_text, output_text_len)
                     send_data[rid] = agent_a_send_b_data
                     send_data[rid].finished = False
                     print(f"11 agentA rid:{rid} is prefill+decode  and reactA[rid]:{reactA[rid]} and send {output_text_len} tokens to B")
