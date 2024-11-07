@@ -16,7 +16,7 @@ class WaitingReq:
         self.output_text = output_text
 
 class AgentAData:
-    def __init__(self, request_id, output_text, output_text_len):
+    def __init__(self, request_id:str, output_text, output_text_len):
         self.request_id = request_id
         self.output_text = output_text
         self.finished = False
@@ -24,7 +24,7 @@ class AgentAData:
         #self.req_type = REQ_TYPE.Prefill_DECODE
 
 class AgentBData:
-    def __init__(self, request_id,output_text, output_text_len):
+    def __init__(self, request_id:str,output_text, output_text_len):
         self.request_id = request_id
         self.output_text = output_text
         self.finished = False

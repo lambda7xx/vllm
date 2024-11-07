@@ -219,15 +219,15 @@ def agentA(react_num, reactA, comm_args, args):
                     output_len = req.output_text_len
                     #两种情况：req.finished = false, 这是agent prefill, req.finished = true, 这是agent prefill+decode, 然后统计
                     if req.finished:
+                        print(f"1 agentA recv from agent B rid:{rid} is prefill+decode reactA[rid]:{reactA[rid]} and type(rid):{type(rid)} and rid in info:{rid in info}")
+                        print(f"1.2 agentA recv from agent B rid:{rid} is prefill+decode and info[rid].send_time:{info[rid].send_time}")
                         info[rid].total_duration += now - info[rid].send_time
                         info[rid].total_token += output_len
                         info[rid].send_time = None
-                        print(f"1 agentA recv from agent B rid:{rid} is prefill+decode reactA[rid]:{reactA[rid]}")
                         reqs.append([rid, info[rid].prompt + output_text, REQ_TYPE.Prefill_DECODE])
           
                     else:
-                        if agent_prefill_marked[rid] == True:#its previous agent prefill is done
-                        # info[rid].send_time = now
+                        if rid not in agent_prefill_marked or agent_prefill_marked[rid] == True:#its previous agent prefill is done
                             print(f"2 agentA recv from agent B rid:{rid} is agent prefill reactA[rid]:{reactA[rid]}")
                             reqs.append([rid, info[rid].prompt + output_text, REQ_TYPE.AGENT_PREFILL])
                             agent_prefill_marked[rid] = False
@@ -288,8 +288,8 @@ def agentA(react_num, reactA, comm_args, args):
                         send_data[rid].finished = True
                         info[rid].prompt += output_text #update the prompt, so that the next time it will use the updated prompt
                         #start to do its agent prefill
-                        print(f"8 agentA rid:{rid} is prefill+decode but the application is not done, so start to do agent prefill and reactA[rid]:{reactA[rid]}")
-                        reqs.append([rid, prompt, REQ_TYPE.AGENT_PREFILL])
+                        print(f"8 agentA rid:{rid} is prefill+decode but the application is not done and type(rid):{type(rid)}, set its send_time and reactA[rid]:{reactA[rid]} and send_time:{info[rid].send_time}")
+                        # reqs.append([rid, prompt, REQ_TYPE.AGENT_PREFILL])
                     elif req_type == REQ_TYPE.AGENT_PREFILL:
                         agent_prefill_marked[rid] = True
                         print(f"9 agentA rid:{rid} is agent prefill done but the application is not done and reactA[rid]:{reactA[rid]}")
