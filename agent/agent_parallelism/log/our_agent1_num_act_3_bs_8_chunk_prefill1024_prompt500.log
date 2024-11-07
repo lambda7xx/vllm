@@ -1,23 +1,23 @@
 agentA bs:8 and max_token:256 and model:/home/xiaoxiang/data/Llama-3.1-8B
 0 vllm/config.py scheduler_config.py __init__ max_num_batched_tokens: None
 3 vllm/config.py scheduler_config.py __init__ max_num_batched_tokens: 1024
-INFO 11-07 03:56:24 config.py:1061] Chunked prefill is enabled with max_num_batched_tokens=1024.
-INFO 11-07 03:56:24 llm_engine.py:238] Initializing an LLM engine (v0.6.3.post2.dev36+g855e0e6f) with config: model='/home/xiaoxiang/data/Llama-3.1-8B', speculative_config=None, tokenizer='/home/xiaoxiang/data/Llama-3.1-8B', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, rope_scaling=None, rope_theta=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=131072, download_dir=None, load_format=LoadFormat.AUTO, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto, quantization_param_path=None, device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='outlines'), observability_config=ObservabilityConfig(otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=0, served_model_name=/home/xiaoxiang/data/Llama-3.1-8B, num_scheduler_steps=1, chunked_prefill_enabled=True multi_step_stream_outputs=True, enable_prefix_caching=True, use_async_output_proc=True, use_cached_outputs=False, mm_processor_kwargs=None)
-INFO 11-07 03:56:26 model_runner.py:1055] Starting to load model /home/xiaoxiang/data/Llama-3.1-8B...
+INFO 11-07 04:11:30 config.py:1061] Chunked prefill is enabled with max_num_batched_tokens=1024.
+INFO 11-07 04:11:30 llm_engine.py:238] Initializing an LLM engine (v0.6.3.post2.dev36+g855e0e6f) with config: model='/home/xiaoxiang/data/Llama-3.1-8B', speculative_config=None, tokenizer='/home/xiaoxiang/data/Llama-3.1-8B', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, rope_scaling=None, rope_theta=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=131072, download_dir=None, load_format=LoadFormat.AUTO, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto, quantization_param_path=None, device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='outlines'), observability_config=ObservabilityConfig(otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=0, served_model_name=/home/xiaoxiang/data/Llama-3.1-8B, num_scheduler_steps=1, chunked_prefill_enabled=True multi_step_stream_outputs=True, enable_prefix_caching=True, use_async_output_proc=True, use_cached_outputs=False, mm_processor_kwargs=None)
+INFO 11-07 04:11:32 model_runner.py:1055] Starting to load model /home/xiaoxiang/data/Llama-3.1-8B...
 Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
-Loading safetensors checkpoint shards:  25% Completed | 1/4 [00:01<00:04,  1.66s/it]
-Loading safetensors checkpoint shards:  50% Completed | 2/4 [00:03<00:03,  1.72s/it]
-Loading safetensors checkpoint shards:  75% Completed | 3/4 [00:05<00:01,  1.71s/it]
-Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:05<00:00,  1.26s/it]
-Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:05<00:00,  1.42s/it]
+Loading safetensors checkpoint shards:  25% Completed | 1/4 [00:01<00:04,  1.47s/it]
+Loading safetensors checkpoint shards:  50% Completed | 2/4 [00:03<00:03,  1.57s/it]
+Loading safetensors checkpoint shards:  75% Completed | 3/4 [00:04<00:01,  1.61s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:05<00:00,  1.18s/it]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:05<00:00,  1.32s/it]
 
-INFO 11-07 03:56:32 model_runner.py:1066] Loading model weights took 14.9888 GB
-INFO 11-07 03:56:33 worker.py:260] Memory profiling results: total_gpu_memory=79.15GiB initial_memory_usage=15.50GiB peak_torch_memory=16.17GiB memory_usage_post_profile=15.53Gib non_torch_memory=0.54GiB kv_cache_size=54.53GiB gpu_memory_utilization=0.90
-INFO 11-07 03:56:33 gpu_executor.py:122] # GPU blocks: 27919, # CPU blocks: 2048
-INFO 11-07 03:56:33 gpu_executor.py:126] Maximum concurrency for 131072 tokens per request: 3.41x
-INFO 11-07 03:56:35 model_runner.py:1394] Capturing the model for CUDA graphs. This may lead to unexpected consequences if the model is not static. To run the model in eager mode, set 'enforce_eager=True' or use '--enforce-eager' in the CLI.
-INFO 11-07 03:56:35 model_runner.py:1398] CUDA graphs can take additional 1~3 GiB memory per GPU. If you are running out of memory, consider decreasing `gpu_memory_utilization` or enforcing eager mode. You can also reduce the `max_num_seqs` as needed to decrease memory usage.
-INFO 11-07 03:56:50 model_runner.py:1522] Graph capturing finished in 14 secs.
+INFO 11-07 04:11:38 model_runner.py:1066] Loading model weights took 14.9888 GB
+INFO 11-07 04:11:39 worker.py:260] Memory profiling results: total_gpu_memory=79.15GiB initial_memory_usage=15.50GiB peak_torch_memory=16.17GiB memory_usage_post_profile=15.53Gib non_torch_memory=0.54GiB kv_cache_size=54.53GiB gpu_memory_utilization=0.90
+INFO 11-07 04:11:39 gpu_executor.py:122] # GPU blocks: 27919, # CPU blocks: 2048
+INFO 11-07 04:11:39 gpu_executor.py:126] Maximum concurrency for 131072 tokens per request: 3.41x
+INFO 11-07 04:11:41 model_runner.py:1394] Capturing the model for CUDA graphs. This may lead to unexpected consequences if the model is not static. To run the model in eager mode, set 'enforce_eager=True' or use '--enforce-eager' in the CLI.
+INFO 11-07 04:11:41 model_runner.py:1398] CUDA graphs can take additional 1~3 GiB memory per GPU. If you are running out of memory, consider decreasing `gpu_memory_utilization` or enforcing eager mode. You can also reduce the `max_num_seqs` as needed to decrease memory usage.
+INFO 11-07 04:11:54 model_runner.py:1522] Graph capturing finished in 13 secs.
 start warm up
 start warm up
 finish warm up
@@ -32,48 +32,177 @@ warm up finished
 4 agentA rid:1 is added to engine for prefill+decode and reactA[rid]:0
 4 agentA rid:0 is added to engine for prefill+decode and reactA[rid]:0
 6 agentA rid:5 is finished and req_type:REQ_TYPE.Prefill_DECODE and reactA[rid]:1 
-8 agentA rid:5 is prefill+decode but the application is not done and type(rid):<class 'str'>, set its send_time and reactA[rid]:1 and send_time:1730951812.0315478
+8 agentA rid:5 is prefill+decode but the application is not done and type(rid):<class 'str'>, set its send_time and reactA[rid]:1 and send_time:1730952716.2661107
 6 agentA rid:6 is finished and req_type:REQ_TYPE.Prefill_DECODE and reactA[rid]:1 
-8 agentA rid:6 is prefill+decode but the application is not done and type(rid):<class 'str'>, set its send_time and reactA[rid]:1 and send_time:1730951812.031793
+8 agentA rid:6 is prefill+decode but the application is not done and type(rid):<class 'str'>, set its send_time and reactA[rid]:1 and send_time:1730952716.266331
 12 agentA send data to B and len(send_data):2
 6 agentA rid:3 is finished and req_type:REQ_TYPE.Prefill_DECODE and reactA[rid]:1 
-8 agentA rid:3 is prefill+decode but the application is not done and type(rid):<class 'str'>, set its send_time and reactA[rid]:1 and send_time:1730951812.106509
+8 agentA rid:3 is prefill+decode but the application is not done and type(rid):<class 'str'>, set its send_time and reactA[rid]:1 and send_time:1730952716.3406992
 6 agentA rid:4 is finished and req_type:REQ_TYPE.Prefill_DECODE and reactA[rid]:1 
-8 agentA rid:4 is prefill+decode but the application is not done and type(rid):<class 'str'>, set its send_time and reactA[rid]:1 and send_time:1730951812.1067524
+8 agentA rid:4 is prefill+decode but the application is not done and type(rid):<class 'str'>, set its send_time and reactA[rid]:1 and send_time:1730952716.3409142
 12 agentA send data to B and len(send_data):2
 6 agentA rid:1 is finished and req_type:REQ_TYPE.Prefill_DECODE and reactA[rid]:1 
-8 agentA rid:1 is prefill+decode but the application is not done and type(rid):<class 'str'>, set its send_time and reactA[rid]:1 and send_time:1730951812.1569784
+8 agentA rid:1 is prefill+decode but the application is not done and type(rid):<class 'str'>, set its send_time and reactA[rid]:1 and send_time:1730952716.3911555
 12 agentA send data to B and len(send_data):1
-0 agentA recv data from B rid:1 and finished:True
-1 agentA recv from agent B rid:1 is prefill+decode reactA[rid]:1 and type(rid):<class 'str'> and rid in info:True
-1.2 agentA recv from agent B rid:1 is prefill+decode and info[rid].send_time:1730951812.1569784
-4 agentA rid:1 is added to engine for prefill+decode and reactA[rid]:1
-6 agentA rid:1 is finished and req_type:REQ_TYPE.Prefill_DECODE and reactA[rid]:2 
-7 agentA application rid:1 is finished and num_reqs:1 and reactA[rid]:2
 0 agentA recv data from B rid:5 and finished:True
 1 agentA recv from agent B rid:5 is prefill+decode reactA[rid]:1 and type(rid):<class 'str'> and rid in info:True
-1.2 agentA recv from agent B rid:5 is prefill+decode and info[rid].send_time:1730951812.0315478
+1.2 agentA recv from agent B rid:5 is prefill+decode and info[rid].send_time:1730952716.2661107
 0 agentA recv data from B rid:6 and finished:True
 1 agentA recv from agent B rid:6 is prefill+decode reactA[rid]:1 and type(rid):<class 'str'> and rid in info:True
-1.2 agentA recv from agent B rid:6 is prefill+decode and info[rid].send_time:1730951812.031793
+1.2 agentA recv from agent B rid:6 is prefill+decode and info[rid].send_time:1730952716.266331
 4 agentA rid:6 is added to engine for prefill+decode and reactA[rid]:1
 4 agentA rid:5 is added to engine for prefill+decode and reactA[rid]:1
 0 agentA recv data from B rid:3 and finished:True
 1 agentA recv from agent B rid:3 is prefill+decode reactA[rid]:1 and type(rid):<class 'str'> and rid in info:True
-1.2 agentA recv from agent B rid:3 is prefill+decode and info[rid].send_time:1730951812.106509
+1.2 agentA recv from agent B rid:3 is prefill+decode and info[rid].send_time:1730952716.3406992
 0 agentA recv data from B rid:4 and finished:True
 1 agentA recv from agent B rid:4 is prefill+decode reactA[rid]:1 and type(rid):<class 'str'> and rid in info:True
-1.2 agentA recv from agent B rid:4 is prefill+decode and info[rid].send_time:1730951812.1067524
+1.2 agentA recv from agent B rid:4 is prefill+decode and info[rid].send_time:1730952716.3409142
 4 agentA rid:4 is added to engine for prefill+decode and reactA[rid]:1
 4 agentA rid:3 is added to engine for prefill+decode and reactA[rid]:1
 6 agentA rid:6 is finished and req_type:REQ_TYPE.Prefill_DECODE and reactA[rid]:2 
-7 agentA application rid:6 is finished and num_reqs:2 and reactA[rid]:2
-0 agentA recv data from B rid:1 and finished:True
-1 agentA recv from agent B rid:1 is prefill+decode reactA[rid]:2 and type(rid):<class 'str'> and rid in info:True
-1.2 agentA recv from agent B rid:1 is prefill+decode and info[rid].send_time:None
-[rank0]: Traceback (most recent call last):
-[rank0]:   File "/home/xiaoxiang/vllm/agent/agent_parallelism/agent1.py", line 364, in <module>
-[rank0]:     agentA(args.num_act,reactA, comm_args, args)
-[rank0]:   File "/home/xiaoxiang/vllm/agent/agent_parallelism/agent1.py", line 224, in agentA
-[rank0]:     info[rid].total_duration += now - info[rid].send_time
-[rank0]: TypeError: unsupported operand type(s) for -: 'float' and 'NoneType'
+7 agentA application rid:6 is finished and num_reqs:1 and reactA[rid]:2
+6 agentA rid:4 is finished and req_type:REQ_TYPE.Prefill_DECODE and reactA[rid]:2 
+7 agentA application rid:4 is finished and num_reqs:2 and reactA[rid]:2
+6 agentA rid:5 is finished and req_type:REQ_TYPE.Prefill_DECODE and reactA[rid]:2 
+7 agentA application rid:5 is finished and num_reqs:3 and reactA[rid]:2
+6 agentA rid:3 is finished and req_type:REQ_TYPE.Prefill_DECODE and reactA[rid]:2 
+7 agentA application rid:3 is finished and num_reqs:4 and reactA[rid]:2
+6 agentA rid:0 is finished and req_type:REQ_TYPE.Prefill_DECODE and reactA[rid]:1 
+8 agentA rid:0 is prefill+decode but the application is not done and type(rid):<class 'str'>, set its send_time and reactA[rid]:1 and send_time:1730952716.8136077
+11 agentA rid:0 is prefill+decode  and reactA[rid]:1 and send 32 tokens to B
+12 agentA send data to B and len(send_data):1
+11 agentA rid:0 is prefill+decode  and reactA[rid]:1 and send 32 tokens to B
+12 agentA send data to B and len(send_data):1
+11 agentA rid:0 is prefill+decode  and reactA[rid]:1 and send 64 tokens to B
+12 agentA send data to B and len(send_data):1
+11 agentA rid:0 is prefill+decode  and reactA[rid]:1 and send 64 tokens to B
+12 agentA send data to B and len(send_data):1
+11 agentA rid:0 is prefill+decode  and reactA[rid]:1 and send 96 tokens to B
+12 agentA send data to B and len(send_data):1
+11 agentA rid:0 is prefill+decode  and reactA[rid]:1 and send 96 tokens to B
+12 agentA send data to B and len(send_data):1
+11 agentA rid:0 is prefill+decode  and reactA[rid]:1 and send 128 tokens to B
+12 agentA send data to B and len(send_data):1
+11 agentA rid:0 is prefill+decode  and reactA[rid]:1 and send 128 tokens to B
+12 agentA send data to B and len(send_data):1
+11 agentA rid:0 is prefill+decode  and reactA[rid]:1 and send 160 tokens to B
+12 agentA send data to B and len(send_data):1
+11 agentA rid:0 is prefill+decode  and reactA[rid]:1 and send 160 tokens to B
+12 agentA send data to B and len(send_data):1
+11 agentA rid:0 is prefill+decode  and reactA[rid]:1 and send 192 tokens to B
+12 agentA send data to B and len(send_data):1
+11 agentA rid:0 is prefill+decode  and reactA[rid]:1 and send 192 tokens to B
+12 agentA send data to B and len(send_data):1
+11 agentA rid:0 is prefill+decode  and reactA[rid]:1 and send 224 tokens to B
+12 agentA send data to B and len(send_data):1
+11 agentA rid:0 is prefill+decode  and reactA[rid]:1 and send 224 tokens to B
+12 agentA send data to B and len(send_data):1
+6 agentA rid:7 is finished and req_type:REQ_TYPE.Prefill_DECODE and reactA[rid]:1 
+8 agentA rid:7 is prefill+decode but the application is not done and type(rid):<class 'str'>, set its send_time and reactA[rid]:1 and send_time:1730952719.6099482
+12 agentA send data to B and len(send_data):1
+6 agentA rid:2 is finished and req_type:REQ_TYPE.Prefill_DECODE and reactA[rid]:1 
+8 agentA rid:2 is prefill+decode but the application is not done and type(rid):<class 'str'>, set its send_time and reactA[rid]:1 and send_time:1730952719.6480486
+12 agentA send data to B and len(send_data):1
+0 agentA recv data from B rid:7 and finished:False
+2 agentA recv from agent B rid:7 is agent prefill reactA[rid]:1
+5 agentA rid:7 is added to engine for agent prefill and reactA[rid]:1
+0 agentA recv data from B rid:2 and finished:False
+2 agentA recv from agent B rid:2 is agent prefill reactA[rid]:1
+5 agentA rid:2 is added to engine for agent prefill and reactA[rid]:1
+6 agentA rid:7 is finished and req_type:REQ_TYPE.AGENT_PREFILL and reactA[rid]:1 
+9 agentA rid:7 is agent prefill done but the application is not done and reactA[rid]:1
+6 agentA rid:2 is finished and req_type:REQ_TYPE.AGENT_PREFILL and reactA[rid]:1 
+9 agentA rid:2 is agent prefill done but the application is not done and reactA[rid]:1
+INFO 11-07 04:12:00 metrics.py:363] Avg prompt throughput: 1745.2 tokens/s, Avg generation throughput: 115.2 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 11-07 04:12:00 metrics.py:379] Prefix cache hit rate: GPU: 46.84%, CPU: 0.00%
+0 agentA recv data from B rid:2 and finished:True
+1 agentA recv from agent B rid:2 is prefill+decode reactA[rid]:1 and type(rid):<class 'str'> and rid in info:True
+1.2 agentA recv from agent B rid:2 is prefill+decode and info[rid].send_time:1730952719.6480486
+4 agentA rid:2 is added to engine for prefill+decode and reactA[rid]:1
+6 agentA rid:2 is finished and req_type:REQ_TYPE.Prefill_DECODE and reactA[rid]:2 
+7 agentA application rid:2 is finished and num_reqs:5 and reactA[rid]:2
+0 agentA recv data from B rid:7 and finished:False
+2 agentA recv from agent B rid:7 is agent prefill reactA[rid]:1
+5 agentA rid:7 is added to engine for agent prefill and reactA[rid]:1
+6 agentA rid:7 is finished and req_type:REQ_TYPE.AGENT_PREFILL and reactA[rid]:1 
+9 agentA rid:7 is agent prefill done but the application is not done and reactA[rid]:1
+0 agentA recv data from B rid:7 and finished:False
+2 agentA recv from agent B rid:7 is agent prefill reactA[rid]:1
+5 agentA rid:7 is added to engine for agent prefill and reactA[rid]:1
+6 agentA rid:7 is finished and req_type:REQ_TYPE.AGENT_PREFILL and reactA[rid]:1 
+9 agentA rid:7 is agent prefill done but the application is not done and reactA[rid]:1
+0 agentA recv data from B rid:7 and finished:True
+1 agentA recv from agent B rid:7 is prefill+decode reactA[rid]:1 and type(rid):<class 'str'> and rid in info:True
+1.2 agentA recv from agent B rid:7 is prefill+decode and info[rid].send_time:1730952719.6099482
+4 agentA rid:7 is added to engine for prefill+decode and reactA[rid]:1
+11 agentA rid:7 is prefill+decode  and reactA[rid]:2 and send 32 tokens to B
+12 agentA send data to B and len(send_data):1
+11 agentA rid:7 is prefill+decode  and reactA[rid]:2 and send 64 tokens to B
+12 agentA send data to B and len(send_data):1
+11 agentA rid:7 is prefill+decode  and reactA[rid]:2 and send 96 tokens to B
+12 agentA send data to B and len(send_data):1
+11 agentA rid:7 is prefill+decode  and reactA[rid]:2 and send 128 tokens to B
+12 agentA send data to B and len(send_data):1
+11 agentA rid:7 is prefill+decode  and reactA[rid]:2 and send 160 tokens to B
+12 agentA send data to B and len(send_data):1
+11 agentA rid:7 is prefill+decode  and reactA[rid]:2 and send 192 tokens to B
+12 agentA send data to B and len(send_data):1
+INFO 11-07 04:12:05 metrics.py:363] Avg prompt throughput: 822.0 tokens/s, Avg generation throughput: 44.6 tokens/s, Running: 1 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.3%, CPU KV cache usage: 0.0%.
+INFO 11-07 04:12:05 metrics.py:379] Prefix cache hit rate: GPU: 62.17%, CPU: 0.00%
+11 agentA rid:7 is prefill+decode  and reactA[rid]:2 and send 224 tokens to B
+12 agentA send data to B and len(send_data):1
+6 agentA rid:7 is finished and req_type:REQ_TYPE.Prefill_DECODE and reactA[rid]:2 
+7 agentA application rid:7 is finished and num_reqs:6 and reactA[rid]:2
+INFO 11-07 04:12:10 metrics.py:363] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 7.2 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 11-07 04:12:10 metrics.py:379] Prefix cache hit rate: GPU: 62.17%, CPU: 0.00%
+INFO 11-07 04:12:15 metrics.py:363] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 11-07 04:12:15 metrics.py:379] Prefix cache hit rate: GPU: 62.17%, CPU: 0.00%
+INFO 11-07 04:12:20 metrics.py:363] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 11-07 04:12:20 metrics.py:379] Prefix cache hit rate: GPU: 62.17%, CPU: 0.00%
+INFO 11-07 04:12:25 metrics.py:363] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 11-07 04:12:25 metrics.py:379] Prefix cache hit rate: GPU: 62.17%, CPU: 0.00%
+INFO 11-07 04:12:30 metrics.py:363] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 11-07 04:12:30 metrics.py:379] Prefix cache hit rate: GPU: 62.17%, CPU: 0.00%
+INFO 11-07 04:12:35 metrics.py:363] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 11-07 04:12:35 metrics.py:379] Prefix cache hit rate: GPU: 62.17%, CPU: 0.00%
+INFO 11-07 04:12:40 metrics.py:363] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 11-07 04:12:40 metrics.py:379] Prefix cache hit rate: GPU: 62.17%, CPU: 0.00%
+INFO 11-07 04:12:45 metrics.py:363] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 11-07 04:12:45 metrics.py:379] Prefix cache hit rate: GPU: 62.17%, CPU: 0.00%
+INFO 11-07 04:12:50 metrics.py:363] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 11-07 04:12:50 metrics.py:379] Prefix cache hit rate: GPU: 62.17%, CPU: 0.00%
+INFO 11-07 04:12:55 metrics.py:363] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 11-07 04:12:55 metrics.py:379] Prefix cache hit rate: GPU: 62.17%, CPU: 0.00%
+INFO 11-07 04:13:00 metrics.py:363] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 11-07 04:13:00 metrics.py:379] Prefix cache hit rate: GPU: 62.17%, CPU: 0.00%
+INFO 11-07 04:13:05 metrics.py:363] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 11-07 04:13:05 metrics.py:379] Prefix cache hit rate: GPU: 62.17%, CPU: 0.00%
+INFO 11-07 04:13:10 metrics.py:363] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 11-07 04:13:10 metrics.py:379] Prefix cache hit rate: GPU: 62.17%, CPU: 0.00%
+INFO 11-07 04:13:15 metrics.py:363] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 11-07 04:13:15 metrics.py:379] Prefix cache hit rate: GPU: 62.17%, CPU: 0.00%
+INFO 11-07 04:13:20 metrics.py:363] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 11-07 04:13:20 metrics.py:379] Prefix cache hit rate: GPU: 62.17%, CPU: 0.00%
+INFO 11-07 04:13:25 metrics.py:363] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 11-07 04:13:25 metrics.py:379] Prefix cache hit rate: GPU: 62.17%, CPU: 0.00%
+INFO 11-07 04:13:30 metrics.py:363] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 11-07 04:13:30 metrics.py:379] Prefix cache hit rate: GPU: 62.17%, CPU: 0.00%
+INFO 11-07 04:13:35 metrics.py:363] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 11-07 04:13:35 metrics.py:379] Prefix cache hit rate: GPU: 62.17%, CPU: 0.00%
+INFO 11-07 04:13:40 metrics.py:363] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 11-07 04:13:40 metrics.py:379] Prefix cache hit rate: GPU: 62.17%, CPU: 0.00%
+INFO 11-07 04:13:45 metrics.py:363] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 11-07 04:13:45 metrics.py:379] Prefix cache hit rate: GPU: 62.17%, CPU: 0.00%
+INFO 11-07 04:13:50 metrics.py:363] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 11-07 04:13:50 metrics.py:379] Prefix cache hit rate: GPU: 62.17%, CPU: 0.00%
+INFO 11-07 04:13:55 metrics.py:363] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 11-07 04:13:55 metrics.py:379] Prefix cache hit rate: GPU: 62.17%, CPU: 0.00%
+INFO 11-07 04:14:00 metrics.py:363] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 11-07 04:14:00 metrics.py:379] Prefix cache hit rate: GPU: 62.17%, CPU: 0.00%
+INFO 11-07 04:14:05 metrics.py:363] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 11-07 04:14:05 metrics.py:379] Prefix cache hit rate: GPU: 62.17%, CPU: 0.00%
+INFO 11-07 04:14:10 metrics.py:363] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 11-07 04:14:10 metrics.py:379] Prefix cache hit rate: GPU: 62.17%, CPU: 0.00%
+INFO 11-07 04:14:15 metrics.py:363] Avg prompt throughput: 0.0 tokens/s, Avg generation throughput: 0.0 tokens/s, Running: 0 reqs, Swapped: 0 reqs, Pending: 0 reqs, GPU KV cache usage: 0.0%, CPU KV cache usage: 0.0%.
+INFO 11-07 04:14:15 metrics.py:379] Prefix cache hit rate: GPU: 62.17%, CPU: 0.00%

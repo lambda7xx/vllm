@@ -145,10 +145,14 @@ def agentb(react_num, reactB, comm_args, args):
                     output_text = agent_a_data.output_text
                     if agent_a_data.finished:#this should be prefill+decode
                         print(f"1 agentB recv data from A rid:{rid} and this req is prefill+decode")
-                        reqs.append([rid,info[rid].prompt + output_text, REQ_TYPE.Prefill_DECODE])
+                        #has to wait for the agent prefill done
+                        if agent_prefill_marked[rid] == True:
+                            reqs.append([rid,info[rid].prompt + output_text, REQ_TYPE.Prefill_DECODE])
+                        else:
+                            waiting_req[rid] = WaitingReq(rid, info[rid].prompt, output_text)
                     else:#should be agent prefill 
                         print(f"2 agentB recv data from A rid:{rid} and this req is agent prefill")
-                        if rid not in agent_prefill_marked or  agent_prefill_marked[rid] == False:#previous agent prefill not done
+                        if  agent_prefill_marked[rid] == False:#previous agent prefill not done
                             print(f"3  agentB recv data from A rid:{rid} and this req is agent prefill but in the waiting queue")
                             waiting_req[rid] = WaitingReq(rid, info[rid].prompt, output_text)
                         else:
