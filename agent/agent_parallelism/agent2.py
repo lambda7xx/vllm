@@ -148,7 +148,7 @@ def agentb(react_num, reactB, comm_args, args):
                         reqs.append([rid,info[rid].prompt + output_text, REQ_TYPE.Prefill_DECODE])
                     else:#should be agent prefill 
                         print(f"2 agentB recv data from A rid:{rid} and this req is agent prefill")
-                        if agent_prefill_marked[rid] == False:#previous agent prefill not done
+                        if rid not in agent_prefill_marked or  agent_prefill_marked[rid] == False:#previous agent prefill not done
                             print(f"3  agentB recv data from A rid:{rid} and this req is agent prefill but in the waiting queue")
                             waiting_req[rid] = WaitingReq(rid, info[rid].prompt, output_text)
                         else:
@@ -189,7 +189,8 @@ def agentb(react_num, reactB, comm_args, args):
             output_text_len = len(request_output.outputs[0].token_ids)
             output_text = request_output.outputs[0].text
             req_type = info[rid].req_type
-
+            finished = request_output.finished
+            print(f"7.2 agentB rid:{rid} and rid:{rid}  and finished:{finished} and  req_type:{req_type} ")
             if request_output.finished:
                 if reactB[rid] == b_need_react_num:
                     need_reqs  += 1 #agent b has finished its llm call for this application rid 

@@ -245,7 +245,7 @@ def agentA(react_num, reactA, comm_args, args):
             if rid not in info:
                 info[rid] = ReactReq(rid, now,prompt)
             if req_type == REQ_TYPE.Prefill_DECODE:
-                info[rid].now = now
+                info[rid].arr = now
                 if reactA[rid] < a_need_rect:
                     # prefill+decode 
                     print(f"4 agentA rid:{rid} is added to engine for prefill+decode and reactA[rid]:{reactA[rid]}")
@@ -253,7 +253,7 @@ def agentA(react_num, reactA, comm_args, args):
                     reactA[rid] += 1
                     info[rid].req_type = REQ_TYPE.Prefill_DECODE
             else:
-                info[rid].now = None 
+                info[rid].arr = None
                 #只有上一个agent + prefill完成，才会计入到request_outputs中
                 #agnt prefill 
                 print(f"5 agentA rid:{rid} is added to engine for agent prefill and reactA[rid]:{reactA[rid]}")
@@ -285,6 +285,7 @@ def agentA(react_num, reactA, comm_args, args):
                     if req_type == REQ_TYPE.Prefill_DECODE:
                         info[rid].send_time = now
                         send_data[rid] = AgentAData(rid, output_text, output_text_len)
+                        assert rid in info and info[rid].send_time != None," the rid is not in info or the send_time is None"
                         send_data[rid].finished = True
                         info[rid].prompt += output_text #update the prompt, so that the next time it will use the updated prompt
                         #start to do its agent prefill

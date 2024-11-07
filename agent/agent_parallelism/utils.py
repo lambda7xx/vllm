@@ -40,7 +40,7 @@ class ReactReq:
         self.send_time = 0  
         self.finished = False
         self.prompt = prompt
-        self.req_type = REQ_TYPE.Prefill_DECODE
+        self.req_type = None 
 
 
 class BSendData:
